@@ -1,0 +1,22 @@
+---
+---
+
+@import 'font/arvo';
+
+:root {
+  --bg-color: #f2eedd;
+  --text-color: #0d2857;
+}
+
+html {
+  font-family: Arvo;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+
+.key-phrase {
+  background-color: #fffa;
+  // padding: 0.1rem;
+}
