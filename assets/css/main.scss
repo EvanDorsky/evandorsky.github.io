@@ -6,6 +6,8 @@
 :root {
   --bg-color: #f2eedd;
   --text-color: #0d2857;
+  // --bg-color: #0d2857;
+  // --text-color: #f2eedd;
 }
 
 html {
@@ -17,6 +19,22 @@ html {
 }
 
 .key-phrase {
-  background-color: #fffa;
-  // padding: 0.1rem;
+  background-color: #fff2;
+}
+
+.feature {
+  display: none;
+
+  &.selected {
+    display: block;
+  }
+}
+
+.key-phrase {
+  color: inherit;
+  text-decoration: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

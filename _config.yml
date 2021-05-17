@@ -34,9 +34,9 @@ github_username:  jekyll
 plugins:
   - jekyll-feed
 
-stylus:
-  compress: false
-  path: css
+collections:
+  features:
+    output: false
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -45,6 +45,8 @@ stylus:
 #
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
+include:
+  - node_modules
 #
 # exclude:
 #   - .sass-cache/
