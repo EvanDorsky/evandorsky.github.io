@@ -34,9 +34,13 @@ body {
 }
 
 .feature {
-  display: none;
   font-size: 1.3rem;
   padding-left: 1rem;
+
+  transition: height 1s;
+
+  display: none;
+  overflow: hidden;
 
   &.selected {
     display: block;
