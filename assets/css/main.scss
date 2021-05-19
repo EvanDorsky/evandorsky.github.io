@@ -10,7 +10,7 @@
   // --text-color: #f2eedd;
 }
 
-html {
+body {
   font-family: Arvo;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -18,12 +18,25 @@ html {
   line-height: 1.5;
 }
 
+.wrapper {
+  max-width: 50rem;
+  // on my mac, 1rem == 16px
+  margin: 0 auto;
+}
+
 .key-phrase {
   background-color: #fff2;
 }
 
+.drop-cap {
+  font-size: 1.8rem;
+  font-style: inherit;
+}
+
 .feature {
   display: none;
+  font-size: 1.3rem;
+  padding-left: 1rem;
 
   &.selected {
     display: block;
