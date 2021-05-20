@@ -31,6 +31,8 @@ body {
 em.key-line {
   font-style: inherit;
 
+  transition: background-color 0.5s;
+
   &.selected {
     background-color: #ffff;
   }
