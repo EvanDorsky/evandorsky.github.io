@@ -14,7 +14,7 @@ body {
   font-family: Arvo;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   line-height: 1.5;
 }
 
@@ -25,25 +25,37 @@ body {
 }
 
 .key-phrase {
-  background-color: #fff2;
+  background-color: #fffa;
+}
+
+em.key-line {
+  font-style: inherit;
+
+  &.selected {
+    background-color: #ffff;
+  }
 }
 
 .drop-cap {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-style: inherit;
 }
 
 .feature {
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding-left: 1rem;
 
-  transition: height 1s;
+  transition: height 0.5s;
 
   display: none;
   overflow: hidden;
 
   &.selected {
     display: block;
+  }
+
+  a {
+    color: inherit;
   }
 }
 
