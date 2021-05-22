@@ -2,6 +2,7 @@
 layout: feature
 key: apple-spg
 title:  "Apple Special Projects Group"
+img-fmt: "jpg"
 ---
 
 *My team*{:.drop-cap}

@@ -2,6 +2,7 @@
 layout: feature
 key: perceptive
 title:  "Perceptive Sensing"
+img-fmt: "png"
 ---
 
 *My team*{:.drop-cap}

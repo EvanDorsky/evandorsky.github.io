@@ -1,7 +1,8 @@
 ---
 layout: feature
 key: olin-js
-title:  "Olin.js"
+title: "Olin.js"
+img-fmt: "svg"
 ---
 I joined a student teaching team to give the second offering of [Olin.js](https://github.com/olinjs/olinjs), a semester long for-credit course on full stack web development (in [node.js](https://nodejs.org/en/)). We created all the course materials and ran everything – we gave lectures, graded assignments, held office hours, etc.
 
