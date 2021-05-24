@@ -41,7 +41,7 @@ I graduated with a BS ECE from **Olin College**{:#olin .key-phrase} in 2016.
 > In 2014, _I led an effort to bring a mechanical energy harvester from proof-of-concept to functioning prototype at **FastCap Ultracapacitors**{:#fastcap .key-phrase}._{:.fastcap-line .key-line}
 {{ site.features | where:"key","fastcap" }}
 
-> In 2013, _I built the Beta product for **playposit**{:#playposit .key-phrase}, a video-based EdTech startup._{:.playposit-line .key-line}
+> In 2013, _I built the Beta product for **PlayPosit**{:#playposit .key-phrase}, a video-centric EdTech startup._{:.playposit-line .key-line}
 {{ site.features | where:"key","playposit" }}
 
 <br>
