@@ -1,6 +1,7 @@
 ---
 layout: feature
 key: fastcap
-title:  "Apple Special Projects Group"
+title:  "FastCap Ultracapacitors"
+img-fmt: png
 ---
 olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs

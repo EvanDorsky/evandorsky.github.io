@@ -2,7 +2,7 @@
 layout: feature
 key: playposit
 title:  "PlayPosit"
-img-fmt: "png"
+img-fmt: png
 ---
 
 *My team*{:.drop-cap}

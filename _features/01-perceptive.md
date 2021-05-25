@@ -2,9 +2,8 @@
 layout: feature
 key: perceptive
 title:  "Perceptive Sensing"
-img-fmt: "png"
+img-fmt: png
 ---
-
 *My team*{:.drop-cap}
 of eight (the entire company) was building a novel autonomous vehicle sensor solution from scratch. [They still are](https://www.perceptivesensing.ai).
 
