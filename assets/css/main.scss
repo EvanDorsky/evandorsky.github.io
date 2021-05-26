@@ -54,11 +54,12 @@ em.key-line {
 
   div.img-box {
     float: right;
-    width: 15rem;
+    width: 18rem;
     padding: 1rem;
 
     img {
       width: 100%;
+      border-radius: 5px;
     }
     .caption {
       text-align: center;

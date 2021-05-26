@@ -19,16 +19,16 @@ Between then and April 2021, _I built the software stack from the ground up for 
 
 {{ site.features | where:"key","perceptive" }}
 
-I graduated with a BS ECE from **Olin College**{:#olin .key-phrase} in 2016.
+I graduated with a BSECE from **Olin College**{:#olin .key-phrase} in 2016.
 
-> _While I was there, I **designed and taught a course**{:#olin-js .key-phrase} on web development with five fellow student instructors_{:.olin-js-line .key-line},
+> While I was there, _I **designed and taught a course**{:#olin-js .key-phrase} on web development with five fellow student instructors_{:.olin-js-line .key-line},
 > _**served as a teaching assistant**{:#ninja .key-phrase} for five other engineering courses_{:.ninja-line .key-line},
 > and _**taught a mini course**{:#practical-ee .key-phrase} on introductory electrical engineering concepts_{:.practical-ee-line .key-line}.
 {{ site.features | where:"key","olin-js" }}
 {{ site.features | where:"key","ninja" }}
 {{ site.features | where:"key","practical-ee" }}
 
-> _I also (on student teams) **designed an integrated circuit**{:#madvlsi .key-phrase} with my team's faces on it_{:.madvlsi-line .key-line},
+> I also (on student teams) _**designed an integrated circuit**{:#madvlsi .key-phrase} with my team's faces on it_{:.madvlsi-line .key-line},
 > _**built a real arcade game cabinet**{:#spaceteam .key-phrase} based on a smartphone game about yelling_{:.spaceteam-line .key-line},
 > and _**designed and built a prototype power outlet faceplate**{:#ivani-scope .key-phrase} that monitors electricity usage [US10627253B2]_{:.ivani-scope-line .key-line}.
 {{ site.features | where:"key","madvlsi" }}

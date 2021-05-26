@@ -1,7 +1,7 @@
 ---
 layout: feature
 key: spaceteam
-title:  "Apple Special Projects Group"
+title:  "Spaceteam Penny Arcade"
 img-fmt: jpg
 ---
 olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs

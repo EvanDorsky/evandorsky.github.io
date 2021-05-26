@@ -1,7 +1,7 @@
 ---
 layout: feature
 key: ivani-scope
-title:  "Apple Special Projects Group"
+title:  "Ivani SCOPE"
 img-fmt: jpg
 ---
 olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs

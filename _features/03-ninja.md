@@ -1,6 +1,7 @@
 ---
 layout: feature
 key: ninja
-title:  "Apple Special Projects Group"
+title:  "NINJA"
+img-fmt: jpg
 ---
 olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs olinjs
