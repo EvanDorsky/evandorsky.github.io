@@ -56,7 +56,7 @@ function keyphraseClick(event) {
   }
 
   d3.transition()
-    .duration(1000)
+    .duration(500)
     .tween("scroll", scrollTween(scrollTarget))
 
 }
@@ -102,4 +102,8 @@ function main(event) {
     d3
       .selectAll(".key-phrase")
       .on("click", keyphraseClick)
+
+    // make all links open in new windows
+    d3.selectAll("a")
+      .attr("target", "_blank")
 }

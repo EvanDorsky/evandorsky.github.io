@@ -43,14 +43,22 @@ em.key-line {
   font-style: inherit;
 }
 
+.left-border-indent {
+  padding-left: 2rem;
+  border-left: 2px solid var(--text-color);
+}
+
+#index-indent {
+  padding-left: 2rem;
+}
+
 .feature {
-  font-size: 1rem;
-  padding-left: 1rem;
+  display: none;
+  overflow: hidden;
 
   transition: height 0.5s;
 
-  display: none;
-  overflow: hidden;
+  font-size: 1rem;
 
   div.img-box {
     float: right;
