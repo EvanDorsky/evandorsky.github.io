@@ -69,6 +69,12 @@ a {
 // index.md elements
 // 
 
+.home {
+  p {
+    margin-bottom: 0;
+  }
+}
+
 .key-phrase {
   color: inherit;
   background-color: #fffa;
@@ -91,7 +97,7 @@ em.key-line {
 }
 
 .feature {
-  display: none;
+  height: 0px;
   overflow: hidden;
 
   transition: height 0.5s;
