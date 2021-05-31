@@ -98,9 +98,12 @@ em.key-line {
 
 .feature {
   height: 0px;
+  transition: all 0.5s;
+  transition-property: height, margin-top;
+
   overflow: hidden;
 
-  transition: height 0.5s;
+  margin-top: 0;
 
   font-size: 1rem;
 

@@ -90,7 +90,9 @@ function selectorOpen(sel, id) {
   setTimeout(()=>{
     selectorSelect(sel)
 
+    // specify properties to transition to
     els.style('height', detailHeight+'px')
+       .style('margin-top', '16px')
 
     setTimeout(()=>{
         selectorSelect(sel)
@@ -110,9 +112,10 @@ function selectorClose(sel, id) {
     els.style('height', detailHeight+'px')
   }
   setTimeout(()=>{
+    // specify properties to transition to
     els.style('height', 0)
+       .style('margin-top', '0')
     selectorDeselect(sel)
-
   }, 5)
 }
 
