@@ -32,7 +32,7 @@ and _**taught a mini course**{:#practical-ee .key-phrase} on electrical engineer
 
 My teams _**designed an integrated circuit**{:#madvlsi .key-phrase} with our faces on it_{:.madvlsi-line .key-line},
 _**built a real arcade game cabinet**{:#spaceteam .key-phrase} based on a smartphone game about yelling_{:.spaceteam-line .key-line},
-and _**designed and built a prototype power outlet faceplate**{:#ivani-scope .key-phrase} that monitors electricity usage [US10627253B2]_{:.ivani-scope-line .key-line}.
+and _**designed and built a prototype power outlet faceplate**{:#ivani-scope .key-phrase} that monitors electricity usage [[US10627253B2]](https://patents.google.com/patent/US10627253B2/en)_{:.ivani-scope-line .key-line}.
 {{ site.features | where:"key","madvlsi" }}
 {{ site.features | where:"key","spaceteam" }}
 {{ site.features | where:"key","ivani-scope" }}

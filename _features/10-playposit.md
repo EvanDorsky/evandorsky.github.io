@@ -6,7 +6,7 @@ img-fmt: png
 ---
 
 *My team*{:.drop-cap}
-was a startup in an EdTech accelerator program – two cofounders, me, and another engineer who left three weeks after I started. Our product was an E-Learning platform designed for the [flipped classroom](https://en.wikipedia.org/wiki/Flipped_classroom). The platform allowed teachers to turn an existing internet video into a lesson for their students by adding "checks for understanding" (multiple choice questions, short answers, etc.) that would pop up at times of their choosing as the video played.
+was a startup in an EdTech accelerator program – two cofounders, one engineer, and me. Our product was an E-Learning platform designed for the [flipped classroom](https://en.wikipedia.org/wiki/Flipped_classroom). The platform allowed teachers to turn an existing internet video into a lesson for their students by adding "checks for understanding" (multiple choice questions, short answers, etc.) that would pop up at times of their choosing as the video played.
 
 *My work*{:.drop-cap}
 was to build the product based on the founders' vision and their Alpha version. I

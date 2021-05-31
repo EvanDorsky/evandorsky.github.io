@@ -18,6 +18,10 @@ body {
   line-height: 1.5;
 }
 
+a {
+  color: inherit;
+}
+
 .wrapper {
   max-width: 50rem;
   // on my mac, 1rem == 16px
@@ -76,10 +80,6 @@ em.key-line {
 
   &.selected {
     display: block;
-  }
-
-  a {
-    color: inherit;
   }
 }
 
