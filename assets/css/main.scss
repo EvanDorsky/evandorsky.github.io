@@ -10,6 +10,10 @@
   // --text-color: #f2eedd;
 }
 
+//
+// cross page styles
+//
+
 body {
   font-family: Arvo;
   background-color: var(--bg-color);
@@ -22,8 +26,14 @@ a {
   color: inherit;
 }
 
+.wrapper {
+  max-width: 50rem;
+  // on my mac, 1rem == 16px
+  margin: 0 auto;
+}
+
 // 
-// index content specific
+// index.md sections
 // 
 
 #index-indent {
@@ -41,22 +51,23 @@ a {
     color: var(--bg-color);
     width: 50%;
     padding-top: 10rem;
+    padding-left: 1rem;
   }
 
   .img-box {
+    border-radius: 5px;
+    overflow: hidden;
     z-index: -1;
+
+    img {
+      filter: brightness(80%);
+    }
   }
 }
 
 // 
+// index.md elements
 // 
-// 
-
-.wrapper {
-  max-width: 50rem;
-  // on my mac, 1rem == 16px
-  margin: 0 auto;
-}
 
 .key-phrase {
   color: inherit;
@@ -103,6 +114,11 @@ em.key-line {
 //
 
 .img-box {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+
   img {
     width: 100%;
     border-radius: 5px;
