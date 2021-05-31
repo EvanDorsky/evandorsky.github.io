@@ -22,6 +22,36 @@ a {
   color: inherit;
 }
 
+// 
+// index content specific
+// 
+
+#index-indent {
+  padding-left: 2rem;
+}
+
+#personal-statement {
+  position: relative;
+  height: auto;
+
+  .text-box {
+    position: absolute;
+    top: 0;
+
+    color: var(--bg-color);
+    width: 50%;
+    padding-top: 10rem;
+  }
+
+  .img-box {
+    z-index: -1;
+  }
+}
+
+// 
+// 
+// 
+
 .wrapper {
   max-width: 50rem;
   // on my mac, 1rem == 16px
@@ -29,7 +59,14 @@ a {
 }
 
 .key-phrase {
+  color: inherit;
   background-color: #fffa;
+
+  text-decoration: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 em.key-line {
@@ -39,6 +76,39 @@ em.key-line {
 
   &.selected {
     background-color: #ffff;
+  }
+}
+
+.feature {
+  display: none;
+  overflow: hidden;
+
+  transition: height 0.5s;
+
+  font-size: 1rem;
+
+  .img-box {
+    float: right;
+    width: 18rem;
+    padding: 1rem;
+  }
+
+  &.selected {
+    display: block;
+  }
+}
+
+//
+// "modules"
+//
+
+.img-box {
+  img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .caption {
+    text-align: center;
   }
 }
 
@@ -52,42 +122,6 @@ em.key-line {
   border-left: 2px solid var(--text-color);
 }
 
-#index-indent {
-  padding-left: 2rem;
-}
-
-.feature {
-  display: none;
-  overflow: hidden;
-
-  transition: height 0.5s;
-
-  font-size: 1rem;
-
-  div.img-box {
-    float: right;
-    width: 18rem;
-    padding: 1rem;
-
-    img {
-      width: 100%;
-      border-radius: 5px;
-    }
-    .caption {
-      text-align: center;
-    }
-  }
-
-  &.selected {
-    display: block;
-  }
-}
-
-.key-phrase {
-  color: inherit;
-  text-decoration: inherit;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
+//
+//
+//

@@ -2,18 +2,7 @@
 layout: default
 ---
 
-<div markdown="1" id="personal-statement">
-
-Hi! I'm Evan.
-<br>
-<br>
-I'm an engineer with an interest in complex systems at the intersection of hardware and software.
-<!-- I'm an engineer interested in complex systems at the intersection of hardware and software. -->
-<!-- I'm an engineer working on complex systems at the intersection of hardware and software. -->
-
-I also play classical violin, spin fire and juggle, and occasionally build things out of wood.
-
-</div>
+{% include about.html %}
 
 _I spent 2016-19 working in the **Apple Special Projects Group**{:#apple-spg .key-phrase} as a sensor hardware integration engineer._{:.apple-spg-line .key-line}
 
