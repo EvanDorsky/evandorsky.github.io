@@ -17,14 +17,7 @@ function idFromSelEl(el) {
   return classesFilt[0].replace(/-line$/g, '')
 }
 
-function keyphraseClick(event) {
-  var id = d3.select(this).attr("id")
-
-  var sel_detailBox = "."+id
-  var sel_keyline   = "."+id+"-line"
-
-  var wasSelected = d3.select(sel_detailBox).classed("selected")
-
+function scrollToKeyline(sel) {
   // padding above the element to scroll to
   var padding = 6
 
@@ -32,7 +25,7 @@ function keyphraseClick(event) {
   var curSelEl = d3.selectAll(".selected").filter(".key-line")
 
   var curScroll = document.querySelector("html").scrollTop
-  var newSelPos = document.querySelector(sel_keyline).getBoundingClientRect().y
+  var newSelPos = document.querySelector(sel).getBoundingClientRect().y
 
   // if an element is currently selected, need to account for it
   var scrollTarget = curScroll + newSelPos - padding
@@ -47,24 +40,26 @@ function keyphraseClick(event) {
       scrollTarget -= curSelDetailBox.height
     }
   }
+  d3.transition()
+    .duration(500)
+    .tween("scroll", __scrollTween(scrollTarget))
+}
+
+function keyphraseClick(event) {
+  var id = d3.select(this).attr("id")
+
+  var sel_detailBox = "."+id
+  var sel_keyline   = sel_detailBox+"-line"
+
+  var wasSelected = d3.select(sel_detailBox).classed("selected")
+
+  scrollToKeyline(sel_keyline)
 
   selectorClose(".feature", id)
   selectorDeselect(".key-line")
   if (!wasSelected) {
     selectorOpen(sel_detailBox, id)
     selectorSelect(sel_keyline)
-  }
-
-  d3.transition()
-    .duration(500)
-    .tween("scroll", scrollTween(scrollTarget))
-
-}
-
-function scrollTween(offset) {
-  return function() {
-    var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset)
-    return function(t) { window.scrollTo(0, i(t)); }
   }
 }
 
@@ -96,6 +91,13 @@ function selectorClose(sel, id) {
   els.style('height', 0)
 
   selectorDeselect(sel)
+}
+
+function __scrollTween(offset) {
+  return function() {
+    var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset)
+    return function(t) { window.scrollTo(0, i(t)); }
+  }
 }
 
 function main(event) {
