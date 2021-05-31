@@ -17,27 +17,35 @@ function idFromSelEl(el) {
   return classesFilt[0].replace(/-line$/g, '')
 }
 
+function getSelDetailBox() {
+  var curSelEl = d3.selectAll(".selected").filter(".key-line")
+  if (!curSelEl.empty()) {
+    var selQuery = "."+idFromSelEl(curSelEl)
+    return document.querySelector(selQuery)
+  }
+  return null
+}
+
 function scrollToKeyline(sel) {
   // padding above the element to scroll to
   var padding = 6
-
-  // get the currently selected line, if there is one
-  var curSelEl = d3.selectAll(".selected").filter(".key-line")
 
   var curScroll = document.querySelector("html").scrollTop
   var newSelPos = document.querySelector(sel).getBoundingClientRect().y
 
   // if an element is currently selected, need to account for it
   var scrollTarget = curScroll + newSelPos - padding
-  if (!curSelEl.empty()) {
-    var selQuery = "."+idFromSelEl(curSelEl)
-    var curSelDetailBox = document.querySelector(selQuery).getBoundingClientRect()
 
-    var curSelY = curSelDetailBox.y
+  // get the currently selected detailed box, if there is one
+  var curSelDetailBox = getSelDetailBox()
+
+  if (curSelDetailBox) {
+    var box = curSelDetailBox.getBoundingClientRect()
+    var curSelY = box.y
 
     // if the new scroll target (the "key-line") is below the currently selected detail box
     if (newSelPos > curSelY) {
-      scrollTarget -= curSelDetailBox.height
+      scrollTarget -= box.height
     }
   }
   d3.transition()
@@ -80,17 +88,32 @@ function selectorOpen(sel, id) {
   var detailHeight = document.querySelector("."+id).offsetHeight
   els.style('height', 0)
   setTimeout(()=>{
-      selectorSelect(sel)
+    selectorSelect(sel)
 
-      els.style('height', detailHeight+'px')
+    els.style('height', detailHeight+'px')
+
+    setTimeout(()=>{
+        selectorSelect(sel)
+
+        els.style('height', 'auto')
+    }, 505)
   }, 5)
 }
 
 function selectorClose(sel, id) {
   var els = d3.selectAll(sel)
-  els.style('height', 0)
 
-  selectorDeselect(sel)
+  var detailBox = getSelDetailBox()
+  if (detailBox) {
+    var detailHeight = detailBox.offsetHeight
+
+    els.style('height', detailHeight+'px')
+  }
+  setTimeout(()=>{
+    els.style('height', 0)
+    selectorDeselect(sel)
+
+  }, 5)
 }
 
 function __scrollTween(offset) {
