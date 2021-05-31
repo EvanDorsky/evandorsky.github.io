@@ -92,7 +92,7 @@ function selectorOpen(sel, id) {
 
     // specify properties to transition to
     els.style('height', detailHeight+'px')
-       .style('margin-top', '16px')
+       .style('margin-top', '1rem')
 
     setTimeout(()=>{
         selectorSelect(sel)
