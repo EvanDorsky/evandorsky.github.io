@@ -4,6 +4,9 @@
   }
 )()
 
+// global state set when a feature is opening or closing
+featureLock = false
+
 // figure out which "feature" an element is associated with
 function idFromSelEl(el) {
   var classes = el.attr("class").split(" ")
@@ -55,20 +58,46 @@ function scrollToKeyline(sel) {
 
 function keyphraseClick(event) {
   var id = d3.select(this).attr("id")
+  keyphraseOpen(id)
+}
 
+function keyphraseOpen(id, doScroll=true, openTo=-1) {
   var sel_detailBox = "."+id
   var sel_keyline   = sel_detailBox+"-line"
 
   var wasSelected = d3.select(sel_detailBox).classed("selected")
 
-  scrollToKeyline(sel_keyline)
+  // 0. if we happen to be opening a feature at this moment,
+  //    don't do anything
+  if (featureLock) {
+    return
+  }
 
+  if (doScroll) {
+    // 1. scroll to the clicked line
+    scrollToKeyline(sel_keyline)
+  }
+
+  // 2. close any open features
   selectorClose(".feature", id)
+
+  // 3. deselect any selected lines
   selectorDeselect(".key-line")
+
+  // 4. open the feature, if it wasn't already open
   if (!wasSelected) {
-    selectorOpen(sel_detailBox, id)
+    selectorOpen(sel_detailBox, id, openTo)
     selectorSelect(sel_keyline)
   }
+}
+
+function doHint() {
+  setTimeout(()=>{
+    keyphraseOpen("apple-spg", false, 200)
+    setTimeout(()=> {
+      keyphraseOpen("apple-spg", false)
+    }, 1000)
+  }, 1500)
 }
 
 function selectorSelect(sel) {
@@ -81,23 +110,34 @@ function selectorDeselect(sel) {
   els.classed('selected', false)
 }
 
-function selectorOpen(sel, id) {
+function selectorOpen(sel, id, openTo) {
   var els = d3.selectAll(sel)
   els.style('display', 'block')
      .style('height', 'auto')
   var detailHeight = document.querySelector("."+id).offsetHeight
   els.style('height', 0)
+
+  var openHeight = detailHeight
+  if (openTo != -1) {
+    openHeight = openTo
+  }
+
+  featureLock = true
   setTimeout(()=>{
     selectorSelect(sel)
 
     // specify properties to transition to
-    els.style('height', detailHeight+'px')
+    els.style('height', openHeight+'px')
        .style('margin-top', '1rem')
 
     setTimeout(()=>{
         selectorSelect(sel)
 
-        els.style('height', 'auto')
+        if (openTo == -1) {
+          els.style('height', 'auto')
+        }
+
+        featureLock = false
     }, 505)
   }, 5)
 }
@@ -111,12 +151,17 @@ function selectorClose(sel, id) {
 
     els.style('height', detailHeight+'px')
   }
+  featureLock = true
   setTimeout(()=>{
     // specify properties to transition to
     els.style('height', 0)
        .style('margin-top', '0')
     selectorDeselect(sel)
   }, 5)
+
+  setTimeout(()=>{
+    featureLock = false
+  }, 505)
 }
 
 function __scrollTween(offset) {
@@ -134,4 +179,7 @@ function main(event) {
     // make all links open in new windows
     d3.selectAll("a")
       .attr("target", "_blank")
+
+    // run the "hint" to indicate clickable elements
+    doHint()
 }
