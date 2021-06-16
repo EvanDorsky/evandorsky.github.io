@@ -96,7 +96,7 @@ function doHint() {
     keyphraseOpen("apple-spg", false, 200)
     setTimeout(()=> {
       keyphraseOpen("apple-spg", false)
-    }, 1000)
+    }, 900)
   }, 1500)
 }
 
