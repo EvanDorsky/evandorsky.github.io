@@ -41,7 +41,5 @@ In 2014, _I led an effort to bring a mechanical energy harvester from proof-of-c
 In 2013, _I built the Beta product for **PlayPosit**{:#playposit .key-phrase}, a video-centric EdTech startup._{:.playposit-line .key-line}
 {{ site.features | where:"key","playposit" }}
 
-<br>
-Thanks for making it this far!
 
-If you want to learn more, contact me **here**.
+If you want to learn more, contact me [**here**](mailto://evan.dorsky@icloud.com){:.key-phrase}.
