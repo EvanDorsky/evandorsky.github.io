@@ -20,6 +20,7 @@ body {
   color: var(--text-color);
   font-size: 1.3rem;
   line-height: 1.5;
+  margin: 0;
 }
 
 a {
@@ -30,6 +31,7 @@ a {
   max-width: 50rem;
   // on my mac, 1rem == 16px
   margin: 0 auto;
+  margin-bottom: 2rem;
 }
 
 // 
@@ -41,26 +43,46 @@ a {
 }
 
 #personal-statement {
+  max-width: 50rem;
+  margin: 0 auto;
+  width: 100%;
   position: relative;
-  height: auto;
+  overflow: hidden;
+}
 
-  .text-box {
+#jumbotron {
+  position: relative;
+  overflow: hidden;
+
+  img.bg {
+    z-index: -1;
     position: absolute;
     top: 0;
+    height: 500px;
+    filter: blur(1rem);
+  }
+}
+
+#personal-statement .flex {
+  max-height: 20rem;
+  display: flex;
+  align-items: center;
+
+  .text-box {
+    flex: 0 1 auto;
 
     color: var(--bg-color);
-    width: 50%;
-    padding-top: 10rem;
+
     padding-left: 1rem;
   }
 
   .img-box {
-    border-radius: 5px;
-    overflow: hidden;
-    z-index: -1;
+    flex: 0 1 100%;
 
+    overflow: hidden;
     img {
-      filter: brightness(75%);
+      display: block;
+      border-radius: 0px;
     }
   }
 }

@@ -2,8 +2,6 @@
 layout: home
 ---
 
-{% include about.html %}
-
 _I spent 2016-19 working in the **Apple Special Projects Group**{:#apple-spg .key-phrase} as a sensor hardware integration engineer._{:.apple-spg-line .key-line}
 
 {{ site.features | where:"key","apple-spg" }}
