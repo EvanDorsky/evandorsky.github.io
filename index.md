@@ -40,4 +40,4 @@ In 2013, _I built the Beta product for **PlayPosit**{:#playposit .key-phrase}, a
 {{ site.features | where:"key","playposit" }}
 
 
-If you want to learn more, contact me [**here**](mailto://evan.dorsky@icloud.com){:.key-phrase}.
+If you want to learn more, contact me [**here**](mailto:evan.dorsky@icloud.com){:.key-phrase}.
