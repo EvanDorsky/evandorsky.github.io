@@ -7,10 +7,11 @@ from multiprocessing.pool import Pool
 import exifread
 
 def thumb(path, height):
-  dirname = os.path.dirname(path)
+  dirpath = os.path.dirname(path)
   filename = os.path.basename(path)
-  path_tn = os.path.join(dirname,
+  path_tn = os.path.join(dirpath, '..',
     filename.split('.')[0]+'_tn.jpg')
+  print('path tn: %s' % path_tn)
   call(['convert', path, '-resize', str(height), path_tn])
   return path_tn
 
@@ -27,7 +28,7 @@ def gray(path):
 
 def process(dirname_filename):
   dirname, filename = dirname_filename
-  if '.jpg' in filename:
+  if 'original' in dirname and '.jpg' in filename:
     path = os.path.join(dirname, filename)
     if 'film' in dirname:
       with open(path, 'rb') as img_f:
