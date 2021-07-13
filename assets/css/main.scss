@@ -44,6 +44,16 @@ a {
   padding-left: 2rem;
 }
 
+#jumbotron {
+  position: relative;
+  overflow: hidden;
+
+  background-image: url(../img/about/me-bg_tn.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 #personal-statement {
   max-width: 50rem;
   margin: 0 auto;
@@ -52,35 +62,30 @@ a {
   overflow: hidden;
 }
 
-#jumbotron {
-  position: relative;
-  overflow: hidden;
-
-  img.bg {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    height: 500px;
-    filter: blur(1rem);
-  }
-}
-
 #personal-statement .flex {
   display: flex;
-  align-items: center;
+  align-items: top;
 
   .text-box {
-    flex: 0 1 auto;
+    position: relative;
+    p {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0;
+      width: 20rem;
+      z-index: 1;
+    }
+    flex: 1 0 5rem;
 
     color: var(--bg-color);
 
-    padding-left: 1rem;
+    padding: 1rem;
   }
 
   .img-box {
-    flex: 1 0 auto;
+    flex: 1 0 250px;
 
-    overflow: hidden;
     img {
       display: block;
       border-radius: 0px;
