@@ -4,7 +4,7 @@ key: ninja
 title:  "NINJA"
 img-fmt: jpg
 ---
-Throughout my time at Olin College I served as a "NINJA" (**N**eed **I**nformation **N**ow? **J**ust **A**sk! – Olin's term for course assistants) for introductory electrical engineering classes:
+Over my time at Olin College I served as a "NINJA" (**N**eed **I**nformation **N**ow? **J**ust **A**sk! – Olin's term for course assistants) for introductory electrical engineering classes:
 
 - Modeling and Control (circuits)
 - Real World Measurements (circuits for sensors)
