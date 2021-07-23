@@ -3,12 +3,7 @@
 
 @import 'font/arvo';
 
-:root {
-  --bg-color: #f2eedd;
-  --text-color: #0d2857;
-  // --bg-color: #0d2857;
-  // --text-color: #f2eedd;
-}
+@import 'defines';
 
 //
 // cross page styles
@@ -171,10 +166,21 @@ em.key-line {
     }
     img {
       max-height: 90vh;
-      max-width: 90vh;
+      max-width: 90vw;
 
       padding: 3rem 0;
     }
+  }
+}
+
+.series-thumb-container {
+  display: flex;
+}
+
+.series-thumb {
+  flex: 0 1 50%;
+  a {
+    text-decoration: inherit;
   }
 }
 
