@@ -152,6 +152,30 @@ em.key-line {
 }
 
 //
+// analog category elements
+//
+
+.analog {
+  padding: 1rem;
+
+  .photo-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+      flex: 0 1 100%;
+      text-align: center;
+    }
+    img {
+      max-height: 90vh;
+      max-width: 90vh;
+
+      padding: 3rem;
+    }
+  }
+}
+
+//
 // "modules"
 //
 
