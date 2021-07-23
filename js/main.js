@@ -177,8 +177,8 @@ function main(event) {
       .on("click", keyphraseClick)
 
     // make all links open in new windows
-    d3.selectAll("a")
-      .attr("target", "_blank")
+    // d3.selectAll("a")
+    //   .attr("target", "_blank")
 
     // run the "hint" to indicate clickable elements
     doHint()

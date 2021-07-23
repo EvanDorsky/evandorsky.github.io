@@ -165,10 +165,10 @@ em.key-line {
       text-align: center;
     }
     img {
-      max-height: 90vh;
+      max-height: 88vh;
       max-width: 90vw;
 
-      padding: 3rem 0;
+      padding: 6vh 0;
     }
   }
 }
@@ -179,6 +179,7 @@ em.key-line {
 
 .series-thumb {
   flex: 0 1 50%;
+  margin: 1rem !important;
   a {
     text-decoration: inherit;
   }

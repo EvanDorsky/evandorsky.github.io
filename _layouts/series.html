@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ "/assets/css/analog.css" | prepend: full_base_url }}">
+
+<div class="analog">
+  <h2>{{ page.title }}</h2>
+  {{ content }}
+
+    <div class="photo-list">
+      {% for i in ( 1.. page.n_photos ) %}
+        <div>
+          <img src="/assets/img/analog/{{ page.key }}/{{ i }}_tn.jpg">
+        </div>
+      {% endfor %}
+    </div>
+</div>
