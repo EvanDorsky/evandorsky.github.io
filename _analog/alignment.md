@@ -1,6 +1,6 @@
 ---
 layout: analog
 key: alignment
-n_photos: 30
+n_photos: 31
 title:  "Alignment"
 ---
