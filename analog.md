@@ -2,13 +2,13 @@
 layout: default
 ---
 
+{% include navbar.html size="small" backarrow="true" %}
+
 <div class="wrapper">
 
 <div markdown="1" class="analog-intro">
 
 ## Analog Photography
-
-made digital for you.
 
 </div>
 

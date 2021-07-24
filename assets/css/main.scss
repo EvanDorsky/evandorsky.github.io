@@ -20,6 +20,12 @@ body {
 
 a {
   color: inherit;
+  text-decoration: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .wrapper {
@@ -29,6 +35,9 @@ a {
   margin-bottom: 2rem;
 
   padding: 0 1rem 0 1rem;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 // 
@@ -91,12 +100,6 @@ a {
 // 
 // index.md elements
 // 
-
-.home {
-  p {
-    margin-bottom: 0;
-  }
-}
 
 .key-phrase {
   color: inherit;
@@ -188,6 +191,47 @@ em.key-line {
 //
 // "modules"
 //
+
+#navbar {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+
+  position: relative;
+
+  &.small {
+    font-size: 1rem;
+  }
+}
+
+#navbar-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 50rem;
+  margin: 0 auto;
+
+  .nav-item {
+    flex: 0 1 auto;
+    padding: 1rem 0;
+    text-align: center;
+    a {
+      // using em instead of rem
+      // makes this padding relative to the
+      // font size of this element
+      padding-left: 0.2em;
+    }
+  }
+}
+
+#back-arrow {
+  position: absolute;
+
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 .img-box {
   position: relative;
