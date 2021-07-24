@@ -2,4 +2,15 @@
 layout: default
 ---
 
-{{ content }}
+{% if page.jumbotron %}
+  {% include about.html %}
+{% endif %}
+
+{% include navbar.html hide_backarrow=page.jumbotron %}
+{% unless layout.no_wrapper %}
+  <div class="wrapper">
+{% endunless %}
+    {{ content }}
+{% unless layout.no_wrapper %}
+  </div>
+{% endunless %}

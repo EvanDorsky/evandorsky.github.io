@@ -1,9 +1,9 @@
 <div id="navbar" class={{ include.size }}>
-  {% if include.backarrow %}
+  {% unless include.hide_backarrow %}
     <div id="back-arrow">
-      <a href="/"><</a>
+      <a href=".."><</a>
     </div>
-  {% endif %}
+  {% endunless %}
   <div id="navbar-content">
     <div class="nav-item">
       📷 <a href="/analog">Photography</a>
