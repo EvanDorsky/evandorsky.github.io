@@ -1,4 +1,8 @@
-<div id="navbar" class={{ include.size }}>
+<div id="navbar"
+  {% unless include.hide_backarrow %}
+  class="small"
+  {% endunless %}
+  >
   {% unless include.hide_backarrow %}
     <div id="back-arrow">
       <a href=".."><</a>
