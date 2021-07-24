@@ -6,8 +6,8 @@ img-fmt: jpg
 ---
 Over my time at Olin College I served as a "NINJA" (**N**eed **I**nformation **N**ow? **J**ust **A**sk! – Olin's term for course assistants) for introductory electrical engineering courses:
 
-- Modeling and Control (circuits)
-- Real World Measurements (circuits for sensors)
+- Modeling and Control - circuits
+- Real World Measurements - circuits for sensors
 - Introduction to Sensors, Instrumentation, and Measurement
 
 and more advanced courses:
