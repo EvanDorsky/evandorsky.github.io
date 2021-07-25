@@ -1,6 +1,7 @@
 ---
 layout: page
 jumbotron: false
+title: Music
 ---
 
 ## Music

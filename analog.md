@@ -1,6 +1,8 @@
 ---
 layout: page
 jumbotron: false
+title: Analog Photography
+thumb: /assets/img/analog/alignment/29_tn.jpg
 ---
 
 ## Analog Photography
