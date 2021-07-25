@@ -239,6 +239,14 @@ em.key-line {
 
 .back-arrow {
   position: absolute;
+  top: 0; left: 0;
+
+  height: 100%;
+  width: 3rem;
+}
+
+.back-arrow-icon {
+  position: absolute;
 
   border: solid var(--bg-color);
   border-width: 0 2px 2px 0;
@@ -249,7 +257,6 @@ em.key-line {
 
   top: 50%;
   transform: translateY(-50%) rotate(135deg);
-  // transform: translateY(-50%);
 }
 
 .img-box {
