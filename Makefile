@@ -9,4 +9,5 @@ deploy:
 
 img:
 	rm -f assets/img/**/*_tn.jpg
+	rm -f assets/img/analog/**/*_tn.jpg
 	python scripts/process_img.py
