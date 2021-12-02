@@ -4,6 +4,17 @@ jumbotron: true
 title: Evan Dorsky
 ---
 
+Hi! I'm Evan.
+![Evan Dorsky](assets/img/about/me_tn.jpg){:#headshot}
+
+
+I'm an engineer working on complex systems at the intersection of hardware and software.
+
+
+Currently based in San Francisco.
+
+
+
 _I spent 2016-19 working in the **Apple Special Projects Group**{:#apple-spg .key-phrase} as a sensor hardware integration engineer._{:.apple-spg-line .key-line}
 
 {{ site.features | where:"key","apple-spg" }}

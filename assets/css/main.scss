@@ -2,6 +2,7 @@
 ---
 
 @import 'font/arvo';
+@import 'font/public-sans';
 
 @import 'defines';
 
@@ -10,10 +11,10 @@
 //
 
 body {
-  font-family: Arvo;
+  font-family: Public Sans;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   margin: 0;
 }
@@ -40,61 +41,18 @@ a {
   }
 }
 
+#headshot {
+  float: right;
+  width: 12rem;
+  border-radius: 1000px;
+}
+
 // 
 // index.md sections
 // 
 
 #index-indent {
   padding-left: 2rem;
-}
-
-#jumbotron {
-  position: relative;
-  overflow: hidden;
-
-  background-image: url(../img/about/me-bg_tn.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-#personal-statement {
-  max-width: 50rem;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-#personal-statement .flex {
-  display: flex;
-  align-items: top;
-
-  .text-box {
-    position: relative;
-    p {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      margin: 0;
-      width: 20rem;
-      z-index: 1;
-    }
-    flex: 1 0 10rem;
-
-    color: var(--bg-color);
-
-    padding: 1rem;
-  }
-
-  .img-box {
-    flex: 1 0 250px;
-
-    img {
-      display: block;
-      border-radius: 0px;
-    }
-  }
 }
 
 // 
@@ -105,12 +63,38 @@ a {
   color: inherit;
   background-color: #fffa;
 
-  text-decoration: underline;
+  // text-decoration: underline;
 
   &:hover {
     text-decoration: underline;
     cursor: pointer;
   }
+
+}
+
+#apple-spg.key-phrase {
+  color: #D8A88E;
+  background-color: #473653;
+}
+
+#perceptive.key-phrase {
+  color: #A1E4BE;
+  background-color: #3500D5;
+}
+
+#olin.key-phrase {
+  color: #C93029;
+  background-color: #F1CCCE;
+}
+
+#olin-js.key-phrase {
+  color: #483554;
+  background-color: #D1EB7F;
+}
+
+#ninja.key-phrase {
+  color: #202973;
+  background-color: #A4E5B6;
 }
 
 em.key-line {
