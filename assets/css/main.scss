@@ -45,6 +45,7 @@ a {
   float: right;
   width: 12rem;
   border-radius: 1000px;
+  // filter: grayscale(100%);
 }
 
 // 
@@ -69,32 +70,6 @@ a {
     text-decoration: underline;
     cursor: pointer;
   }
-
-}
-
-#apple-spg.key-phrase {
-  color: #D8A88E;
-  background-color: #473653;
-}
-
-#perceptive.key-phrase {
-  color: #A1E4BE;
-  background-color: #3500D5;
-}
-
-#olin.key-phrase {
-  color: #C93029;
-  background-color: #F1CCCE;
-}
-
-#olin-js.key-phrase {
-  color: #483554;
-  background-color: #D1EB7F;
-}
-
-#ninja.key-phrase {
-  color: #202973;
-  background-color: #A4E5B6;
 }
 
 em.key-line {
@@ -166,7 +141,7 @@ em.key-line {
 }
 
 .series-thumb {
-  flex: 1 2 15rem;
+  flex: 1 2 20rem;
   margin: 1rem !important;
   a {
     text-decoration: inherit;
@@ -192,8 +167,8 @@ em.key-line {
 }
 
 #navbar {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  // background-color: var(--text-color);
+  color: var(--text-color);
 
   position: relative;
 
