@@ -35,7 +35,7 @@ plugins:
 collections:
   features:
     output: false
-  analog:
+  film:
     output: true
 
 markdown: kramdown

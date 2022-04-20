@@ -31,4 +31,4 @@ if __name__ == '__main__':
   p = Pool(32)
   process_files('assets/img/about', 500)
 
-  process_files('assets/img/analog', '1000x1000')
+  process_files('assets/img/film', '1000x1000')

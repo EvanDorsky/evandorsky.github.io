@@ -2,16 +2,16 @@
 layout: page
 no_wrapper: true
 ---
-<link rel="stylesheet" href="{{ "/assets/css/analog.css" | prepend: full_base_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
-<div class="analog">
+<div class="film">
   <h2>{{ page.title }}</h2>
   {{ content }}
 
     <div class="photo-list">
       {% for i in ( 1.. page.n_photos ) %}
         <div>
-          <img src="/assets/img/analog/{{ page.key }}/{{ i }}_tn.jpg">
+          <img src="/assets/img/film/{{ page.key }}/{{ i }}_tn.jpg">
         </div>
       {% endfor %}
     </div>

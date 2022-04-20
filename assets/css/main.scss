@@ -9,6 +9,9 @@
 //
 // cross page styles
 //
+.photo-banner {
+  width: 10px;
+}
 
 body {
   font-family: Public Sans;
@@ -109,10 +112,10 @@ em.key-line {
 }
 
 //
-// analog category elements
+// film category elements
 //
 
-.analog {
+.film {
   padding: 1rem;
   h2 {
     text-align: center;
