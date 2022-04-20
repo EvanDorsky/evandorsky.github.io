@@ -3,6 +3,7 @@
 
 @import 'font/arvo';
 @import 'font/public-sans';
+@import 'font/noto-sans-mono';
 
 @import 'defines';
 
@@ -167,6 +168,15 @@ em.key-line {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
+}
+
+.photo-details {
+  font-family: 'Noto Sans Mono', sans-serif;
+  .photo-caption {
+    font-family: 'Public Sans';
+    font-size: medium;
+  }
+  font-size: small;
 }
 
 #navbar {

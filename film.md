@@ -15,12 +15,13 @@ photos:
     path: film/selected/goldengate.jpg
   mb:
     caption: Monte Bello Open Space Preserve
-    camera: Yashica Mat EM
+    camera: Yashica-Mat EM
     lens: Yashinon 80mm f/3.5
     stock: Kodak Ektar 100
     path: film/selected/montebello.jpg
 ---
 
+<!-- selected photos -->
 {%- include photo.html photo=page.photos.gg -%}
 {%- include photo.html photo=page.photos.mb -%}
 

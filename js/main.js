@@ -172,6 +172,7 @@ function __scrollTween(offset) {
 }
 
 function main(event) {
+    // key phrase click event
     d3
       .selectAll(".key-phrase")
       .on("click", keyphraseClick)
@@ -179,6 +180,11 @@ function main(event) {
     // make all links open in new windows
     // d3.selectAll("a")
     //   .attr("target", "_blank")
+
+    // photo mouseover event
+    d3
+      .selectAll(".img-box series-thumb")
+      .on("mouseover", keyphraseClick)
 
     // run the "hint" to indicate clickable elements
     doHint()
