@@ -15,7 +15,7 @@ Between then and April 2021, _I built the software stack from the ground up for 
 
 {{ site.features | where:"key","perceptive" }}
 
-I graduated with a BSECE from <a href="https://www.olin.edu" target="blank"><b>Olin College</b></a>{:#olin .key-phrase} in 2016 .
+I graduated with a BSECE from <a href="https://www.olin.edu" target="blank"><b>Olin College</b></a>{:#olin .key-phrase} in 2016.
 
 <div markdown="1" id="index-indent">
 

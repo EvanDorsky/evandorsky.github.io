@@ -3,11 +3,8 @@ layout: page
 jumbotron: false
 title: Music
 
-navbar:
-  key: music
+navbar: true
 ---
-
-## Music
 
 <div class="series-thumb-container">
   <div class="img-box series-thumb">

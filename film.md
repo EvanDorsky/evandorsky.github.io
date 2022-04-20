@@ -4,8 +4,7 @@ jumbotron: false
 title: Photography
 thumb: /assets/img/film/alignment/29_tn.jpg
 
-navbar:
-  key: photography
+navbar: true
 ---
 
 <div class="img-box series-thumb">
