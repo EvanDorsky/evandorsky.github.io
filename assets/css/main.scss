@@ -192,10 +192,13 @@ em.key-line {
     padding: 1rem 0;
     text-align: center;
     a {
-      // using em instead of rem
-      // makes this padding relative to the
-      // font size of this element
-      padding-left: 0.2em;
+      &:hover, {
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+    &.active {
+      font-weight: bold;
     }
   }
 }

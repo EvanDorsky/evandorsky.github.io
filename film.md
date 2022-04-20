@@ -1,8 +1,11 @@
 ---
 layout: page
 jumbotron: false
-title: Film Photography
+title: Photography
 thumb: /assets/img/film/alignment/29_tn.jpg
+
+navbar:
+  key: photography
 ---
 
 <div class="img-box series-thumb">

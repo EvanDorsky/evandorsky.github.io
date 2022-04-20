@@ -2,6 +2,9 @@
 layout: page
 jumbotron: false
 title: Music
+
+navbar:
+  key: music
 ---
 
 ## Music
