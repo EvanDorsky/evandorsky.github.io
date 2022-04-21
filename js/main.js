@@ -62,8 +62,14 @@ function keyphraseClick(event) {
 }
 
 function imgClick(event) {
-  var modal = d3.select(this).select('.photo-modal-bg')
-  modal.classed('active', true)
+  var modal = d3.select(this.parentNode).select('.photo-modal-bg')
+  if (!modal.classed('active')) {
+    modal.classed('active', true)
+  }
+}
+
+function bgClick(event) {
+  d3.select(this).classed('active', false)
 }
 
 function keyphraseOpen(id, doScroll=true, openTo=-1) {
@@ -178,18 +184,20 @@ function __scrollTween(offset) {
 
 function main(event) {
     // key phrase click event
-    d3
-      .selectAll(".key-phrase")
+    d3.selectAll(".key-phrase")
       .on("click", keyphraseClick)
 
     // make all links open in new windows
     // d3.selectAll("a")
     //   .attr("target", "_blank")
 
-    // photo click event
-    d3
-      .selectAll(".img-box")
+    // photo click events
+    d3.selectAll(".img-box")
+      .select("img")
       .on("click", imgClick)
+
+    d3.selectAll(".photo-modal-bg")
+      .on("click", bgClick)
 
     // run the "hint" to indicate clickable elements
     doHint()
