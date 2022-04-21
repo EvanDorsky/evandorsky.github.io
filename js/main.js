@@ -69,7 +69,7 @@ function imgClick(event) {
 }
 
 function bgClick(event) {
-  d3.select(this).classed('active', false)
+  d3.selectAll('.photo-modal-bg').classed('active', false)
 }
 
 function keyphraseOpen(id, doScroll=true, openTo=-1) {
@@ -198,6 +198,9 @@ function main(event) {
 
     d3.selectAll(".photo-modal-bg")
       .on("click", bgClick)
+
+    d3.select('body')
+      .on("keydown", bgClick)
 
     // run the "hint" to indicate clickable elements
     doHint()
