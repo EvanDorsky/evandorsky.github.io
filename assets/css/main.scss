@@ -35,6 +35,11 @@ a {
 
 .wrapper {
   max-width: 50rem;
+
+  &.wide {
+    max-width: 100rem;
+  }
+
   // on my mac, 1rem == 16px
   margin: 0 auto;
   margin-bottom: 2rem;
@@ -146,6 +151,14 @@ em.key-line {
 }
 
 .gallery-piece {
+  cursor: pointer;
+  // default size
+  flex: 1 2 50rem;
+
+  &.medium {
+    flex: 1 2 30rem;
+  }
+
   &.small {
     flex: 1 2 20rem;
   }
@@ -176,6 +189,7 @@ em.key-line {
 
 .photo-modal-bg {
   display: none;
+  cursor: auto;
 
   position: fixed;
   left: 0;

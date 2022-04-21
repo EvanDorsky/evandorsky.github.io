@@ -1,5 +1,6 @@
 ---
 layout: page
+wrapper_type: wide
 jumbotron: false
 title: Photography
 thumb: /assets/img/film/selected/goldengate.jpg
@@ -31,8 +32,8 @@ photos:
 <div class="gallery">
 
 {%- include photo.html photo=page.photos.gg -%}
-{%- include photo.html photo=page.photos.mb -%}
-{%- include photo.html photo=page.photos.cj psize="small" -%}
+{%- include photo.html photo=page.photos.mb psize="medium" -%}
+{%- include photo.html photo=page.photos.cj psize="medium" -%}
 
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
