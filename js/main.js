@@ -61,6 +61,11 @@ function keyphraseClick(event) {
   keyphraseOpen(id)
 }
 
+function imgClick(event) {
+  var modal = d3.select(this).select('.photo-modal-bg')
+  modal.classed('active', true)
+}
+
 function keyphraseOpen(id, doScroll=true, openTo=-1) {
   var sel_detailBox = "."+id
   var sel_keyline   = sel_detailBox+"-line"
@@ -181,10 +186,10 @@ function main(event) {
     // d3.selectAll("a")
     //   .attr("target", "_blank")
 
-    // photo mouseover event
+    // photo click event
     d3
-      .selectAll(".img-box series-thumb")
-      .on("mouseover", keyphraseClick)
+      .selectAll(".img-box")
+      .on("click", imgClick)
 
     // run the "hint" to indicate clickable elements
     doHint()

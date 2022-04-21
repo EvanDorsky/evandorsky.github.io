@@ -170,13 +170,44 @@ em.key-line {
   height: 100%;
 }
 
+.photo-modal-bg {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0, 0.5);
+  z-index: 999;
+
+  &.active {
+    display: block;
+  }
+}
+
+.photo-modal {
+  background-color: var(--bg-color);
+  position: absolute;
+  margin: 0 auto;
+  top: 50%;
+  // left: 50%;
+  transform: translate(0, -50%);
+
+  max-width: 100vh;
+  max-height: 100vh;
+  // height: 100vh;
+  img.fullsize {
+    border-radius: 0;
+  }
+}
+
 .photo-details {
   font-family: 'Noto Sans Mono', sans-serif;
   .photo-caption {
     font-family: 'Public Sans';
     font-size: 1.1rem;
   }
-  
+
   font-size: 0.7rem;
 }
 
