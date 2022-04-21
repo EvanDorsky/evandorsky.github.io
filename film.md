@@ -19,16 +19,24 @@ photos:
     lens: Yashinon 80mm f/3.5
     stock: Kodak Ektar 100
     path: film/selected/montebello.jpg
+  cj:
+    caption: Coastal Jams
+    camera: Yashica-Mat EM
+    lens: Yashinon 80mm f/3.5
+    stock: Kodak Ektachrome (EPZ Expired '84)
+    path: film/selected/coastaljams.jpg
 ---
 
 <!-- selected photos -->
+<div class="gallery">
+
 {%- include photo.html photo=page.photos.gg -%}
 {%- include photo.html photo=page.photos.mb -%}
+{%- include photo.html photo=page.photos.cj psize="small" -%}
 
-<div class="series-thumb-container">
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
-  <div class="img-box series-thumb">
+  <div class="img-box gallery-piece small">
     <a href="{{ series.url }}">
       <img src="/assets/img/film/{{ series.key }}/{{ series.key_photo }}_tn.jpg"/>
       <div class="caption">

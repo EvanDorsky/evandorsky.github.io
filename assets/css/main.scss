@@ -139,13 +139,17 @@ em.key-line {
   }
 }
 
-.series-thumb-container {
+.gallery {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.series-thumb {
-  flex: 1 2 20rem;
+.gallery-piece {
+  &.small {
+    flex: 1 2 20rem;
+  }
+
   margin: 1rem !important;
   a {
     text-decoration: inherit;
