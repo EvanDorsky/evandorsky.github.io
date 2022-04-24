@@ -26,6 +26,30 @@ photos:
     lens: Yashinon 80mm f/3.5
     stock: Kodak Ektachrome (EPZ Expired '84)
     path: film/selected/coastaljams.jpg
+  ph:
+    caption: Mission District
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak Ektar 100
+    path: film/selected/house.jpg
+  bernie:
+    caption: Market Street
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak Portra 160
+    path: film/selected/bernie.jpg
+  chef:
+    caption: Mission Bernal
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak TMAX 400 (shot at 3200)
+    path: film/selected/chef.jpg
+  flamingo:
+    caption: Chinatown
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak TMAX 400 (shot at 3200)
+    path: film/selected/flamingo.jpg
 ---
 
 <!-- selected photos -->
@@ -34,6 +58,10 @@ photos:
 {%- include photo.html photo=page.photos.gg -%}
 {%- include photo.html photo=page.photos.mb psize="medium" -%}
 {%- include photo.html photo=page.photos.cj psize="medium" -%}
+{%- include photo.html photo=page.photos.ph psize="medium" -%}
+{%- include photo.html photo=page.photos.bernie psize="medium" -%}
+{%- include photo.html photo=page.photos.chef psize="medium" -%}
+{%- include photo.html photo=page.photos.flamingo psize="medium" -%}
 
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
