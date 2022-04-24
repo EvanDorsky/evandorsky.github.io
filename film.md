@@ -42,13 +42,13 @@ photos:
     caption: Mission Bernal
     camera: Mamiya 645 Pro TL
     lens: Sekor C 80mm f/2.8
-    stock: Kodak TMAX 400 (shot at 3200)
+    stock: Kodak TMAX 400 @ 3200
     path: film/selected/chef.jpg
   flamingo:
     caption: Chinatown
     camera: Mamiya 645 Pro TL
     lens: Sekor C 80mm f/2.8
-    stock: Kodak TMAX 400 (shot at 3200)
+    stock: Kodak TMAX 400 @ 3200
     path: film/selected/flamingo.jpg
 ---
 
