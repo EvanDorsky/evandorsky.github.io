@@ -66,12 +66,19 @@ photos:
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
 {%- include photo.html photo=page.photos.pacifica psize="medium" -%}
 
+
+
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
   <div class="img-box gallery-piece small">
     <a href="{{ series.url }}">
       {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
-      <img src="/assets/img/film/{{ series.slug }}/{{ num_str }}.jpg"/>
+
+{% assign pathsplit = series.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign series_name = namesplit[0] %}
+      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
       <div class="caption">
         {{ series.title }}
       </div>
