@@ -24,7 +24,7 @@ photos:
     caption: Coastal Jams
     camera: Yashica-Mat EM
     lens: Yashinon 80mm f/3.5
-    stock: Kodak Ektachrome (EPZ Expired '84)
+    stock: Kodak Ektachrome 100X
     path: film/selected/coastaljams.jpg
   purplehouse:
     caption: Mission District
@@ -54,7 +54,7 @@ photos:
     caption: Pacifica
     camera: Yashica-Mat EM
     lens: Yashinon 80mm f/3.5
-    stock: Kodak Ektachrome (EPZ Expired '84)
+    stock: Kodak Ektachrome 100X
     path: film/selected/pacifica.jpg
 ---
 
