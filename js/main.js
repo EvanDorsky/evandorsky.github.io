@@ -191,14 +191,16 @@ function main(event) {
     // d3.selectAll("a")
     //   .attr("target", "_blank")
 
-    // photo click events
+    // modal popup
     d3.selectAll(".gallery-piece")
       .select("img")
       .on("click", imgClick)
 
+    // modal dismiss
     d3.selectAll(".photo-modal-bg")
       .on("click", bgClick)
 
+    // modal dismiss
     d3.select('body')
       .on("keydown", bgClick)
 
