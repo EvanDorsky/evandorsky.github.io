@@ -7,11 +7,11 @@ no_wrapper: true
 <div class="film">
   <h2>{{ page.title }}</h2>
   {{ content }}
-
     <div class="photo-list">
       {% for i in ( 1.. page.n_photos ) %}
         <div>
-          <img src="/assets/img/film/{{ page.key }}/{{ i }}_tn.jpg">
+          {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
+          <img src="/assets/img/film/{{ page.slug }}/{{ num_str }}.jpg">
         </div>
       {% endfor %}
     </div>
