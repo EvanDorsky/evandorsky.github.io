@@ -69,7 +69,7 @@ photos:
 
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
-  <div class="img-box gallery-piece small">
+  <div class="gallery-piece">
     <a href="{{ series.url }}">
       {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
 
@@ -84,4 +84,6 @@ photos:
     </a>
   </div>
 {% endfor %}
+  <div class="gallery-piece small">
+  </div>
 </div>

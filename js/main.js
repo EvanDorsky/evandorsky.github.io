@@ -192,7 +192,7 @@ function main(event) {
     //   .attr("target", "_blank")
 
     // photo click events
-    d3.selectAll(".img-box")
+    d3.selectAll(".gallery-piece")
       .select("img")
       .on("click", imgClick)
 
