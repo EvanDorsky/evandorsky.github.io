@@ -64,7 +64,6 @@ photos:
 {%- include photo.html photo=page.photos.ggbridge -%}
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
-{%- include photo.html photo=page.photos.pacifica psize="medium" -%}
 
 
 
