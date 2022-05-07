@@ -68,6 +68,57 @@ function imgClick(event) {
   }
 }
 
+function bodyKeydown(event) {
+  // return bgClick(event)
+  reflowGallery()
+}
+
+function reflowGallery() {
+  var pieces = d3.selectAll('.gallery-piece')
+
+  var im_infos = []
+  var lastRectLeft = 99999999
+  var runningRow = -1
+  pieces.each(function(el, i) {
+    var innerimg = d3.select(this).select('img').node()
+    if (!innerimg) {
+      return
+    }
+    var info = {
+      node: this,
+      width: innerimg.offsetWidth,
+      height: innerimg.offsetHeight,
+      rect: this.getBoundingClientRect()
+    }
+
+    if (info.rect.left < lastRectLeft) {
+      runningRow++
+      im_infos.push([])
+    }
+
+    info.ar = (1.0 * info.width) / info.height
+    info.row = runningRow
+
+    lastRectLeft = info.rect.left
+    im_infos[im_infos.length-1].push(info)
+  })
+
+  var rowWidth = 1500
+  im_infos.forEach((row_els, i) => {
+    console.log('Row: '+i)
+    var arSum = 0
+    row_els.forEach((el, j) => {
+      arSum += el.ar
+    })
+    var rowH = rowWidth / arSum
+    console.log('rowH: '+rowH)
+    row_els.forEach((el, j) => {
+      d3.select(el.node)
+        .style('height', rowH + 'px')
+    })
+  })
+}
+
 function bgClick(event) {
   d3.selectAll('.photo-modal-bg').classed('active', false)
 }
@@ -202,7 +253,7 @@ function main(event) {
 
     // modal dismiss
     d3.select('body')
-      .on("keydown", bgClick)
+      .on("keydown", bodyKeydown)
 
     // run the "hint" to indicate clickable elements
     doHint()

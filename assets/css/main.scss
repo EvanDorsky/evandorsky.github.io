@@ -147,23 +147,33 @@ em.key-line {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: space-evenly;
 }
 
 .gallery-piece {
   cursor: pointer;
   // default size
-  flex: 1 2 50rem;
+  flex: 0 1 auto;
+  height: 20vh;
+  padding: 0.5rem;
+
+  img {
+    max-height: 100%;
+    vertical-align: bottom;
+  }
+
+  .caption {
+    display: block;
+  }
 
   &.medium {
-    flex: 1 2 30rem;
+    // flex: 1 2 30rem;
   }
 
   &.small {
-    flex: 1 2 20rem;
+    // flex: 1 2 20rem;
   }
 
-  margin: 1rem !important;
   a {
     text-decoration: inherit;
   }
