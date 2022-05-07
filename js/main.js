@@ -103,7 +103,7 @@ function reflowGallery() {
   })
 
   var container = d3.select('.wrapper').node()
-  var rowWidth = (container.offsetWidth-32)-1
+  var rowWidth = container.offsetWidth
   im_infos.forEach((row_els, i) => {
     var arSum = 0
     row_els.forEach((el, j) => {
