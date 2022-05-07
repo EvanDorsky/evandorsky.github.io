@@ -69,8 +69,7 @@ function imgClick(event) {
 }
 
 function bodyKeydown(event) {
-  // return bgClick(event)
-  reflowGallery()
+  return bgClick(event)
 }
 
 function reflowGallery() {
@@ -103,15 +102,16 @@ function reflowGallery() {
     im_infos[im_infos.length-1].push(info)
   })
 
-  var rowWidth = 1500
+  var container = d3.select('.wrapper').node()
+  var rowWidth = (container.offsetWidth-32)*0.99
+  console.log('rowWidth')
+  console.log(rowWidth)
   im_infos.forEach((row_els, i) => {
-    console.log('Row: '+i)
     var arSum = 0
     row_els.forEach((el, j) => {
       arSum += el.ar
     })
     var rowH = rowWidth / arSum
-    console.log('rowH: '+rowH)
     row_els.forEach((el, j) => {
       d3.select(el.node)
         .style('height', rowH + 'px')
@@ -234,6 +234,10 @@ function __scrollTween(offset) {
 }
 
 function main(event) {
+    // reflow the gallery
+    reflowGallery()
+    window.onresize = reflowGallery
+
     // key phrase click event
     d3.selectAll(".key-phrase")
       .on("click", keyphraseClick)
@@ -254,6 +258,7 @@ function main(event) {
     // modal dismiss
     d3.select('body')
       .on("keydown", bodyKeydown)
+
 
     // run the "hint" to indicate clickable elements
     doHint()

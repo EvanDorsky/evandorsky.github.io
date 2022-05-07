@@ -44,7 +44,7 @@ a {
   margin: 0 auto;
   margin-bottom: 2rem;
 
-  padding: 0 1rem 0 1rem;
+  padding: 0 16px 0 16px;
   p {
     margin-bottom: 0;
   }
@@ -155,7 +155,6 @@ em.key-line {
   // default size
   flex: 0 1 auto;
   height: 20vh;
-  padding: 0.5rem;
 
   img {
     max-height: 100%;
