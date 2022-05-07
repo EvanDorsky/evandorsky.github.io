@@ -103,18 +103,23 @@ function reflowGallery() {
   })
 
   var container = d3.select('.wrapper').node()
-  var rowWidth = (container.offsetWidth-32)*0.99
-  console.log('rowWidth')
-  console.log(rowWidth)
+  var rowWidth = (container.offsetWidth-32)-1
   im_infos.forEach((row_els, i) => {
     var arSum = 0
     row_els.forEach((el, j) => {
       arSum += el.ar
     })
+    var viewH = window.innerHeight
+
     var rowH = rowWidth / arSum
+
     row_els.forEach((el, j) => {
+      var elW = rowH * el.ar
+      var elWpercent = 100.0 * elW / rowWidth
       d3.select(el.node)
         .style('height', rowH + 'px')
+        // .style('height', rowVH + 'vh')
+        .style('width', elWpercent + '%')
     })
   })
 }
@@ -234,8 +239,10 @@ function __scrollTween(offset) {
 }
 
 function main(event) {
-    // reflow the gallery
+    // flow the gallery
     reflowGallery()
+
+    // reflow the gallery
     window.onresize = reflowGallery
 
     // key phrase click event
