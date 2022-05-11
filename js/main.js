@@ -106,20 +106,26 @@ function reflowGallery() {
   var rowWidth = (container.offsetWidth-28)
   im_infos.forEach((row_els, i) => {
     var arSum = 0
+    var rowCount = 0
     row_els.forEach((el, j) => {
       arSum += el.ar
+      rowCount++
     })
     var viewH = window.innerHeight
 
-    var rowH = rowWidth / arSum
+    var rowH = (rowWidth / arSum)
 
     row_els.forEach((el, j) => {
       var elW = rowH * el.ar
+      // var elWpercent = (100.0 - totalMargin) * elW / rowWidth
       var elWpercent = 100.0 * elW / rowWidth
       d3.select(el.node)
         .style('height', rowH + 'px')
-        // .style('height', rowVH + 'vh')
+        // .style('margin', '0' + margin/2 + '%')
+        // .style('margin', margin/2 + '%')
         .style('width', elWpercent + '%')
+      // d3.select(el.node).select('img')
+      //   .style('width', '98%')
     })
   })
 }
