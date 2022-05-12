@@ -147,7 +147,7 @@ em.key-line {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .gallery-piece {
@@ -156,8 +156,12 @@ em.key-line {
   flex: 0 1 auto;
   height: 20vh;
 
+  background-color: red;
+
   img {
+    opacity: 50%;
     max-height: 100%;
+    max-width: 100%;
     vertical-align: bottom;
   }
 

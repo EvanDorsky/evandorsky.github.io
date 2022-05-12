@@ -106,19 +106,28 @@ function reflowGallery() {
   var rowWidth = (container.offsetWidth-28)
   im_infos.forEach((row_els, i) => {
     var arSum = 0
-    var rowCount = 0
-    row_els.forEach((el, j) => {
-      arSum += el.ar
-      rowCount++
-    })
     var viewH = window.innerHeight
 
-    var rowH = (rowWidth / arSum)
+    var elMargin = 1;
+    var rowCount = row_els.length
+
+    var totalMargin = rowCount*2*elMargin;
 
     row_els.forEach((el, j) => {
+      arSum += el.ar
+    })
+
+    row_els.forEach((el, j) => {
+      var marginFactor = 1 - totalMargin/100.0
+
+      var rowH = rowWidth * marginFactor / arSum
+
       var elW = rowH * el.ar
-      // var elWpercent = (100.0 - totalMargin) * elW / rowWidth
+
       var elWpercent = 100.0 * elW / rowWidth
+
+      // var rowH = (rowWidth * ((100.0 - totalMargin)/100.0)) / arSum
+      // var elWpercent = 100.0 * elW / rowWidth
       d3.select(el.node)
         .style('height', rowH + 'px')
         // .style('margin', '0' + margin/2 + '%')

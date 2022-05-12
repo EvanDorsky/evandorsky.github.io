@@ -84,6 +84,4 @@ photos:
     </a>
   </div>
 {% endfor %}
-  <div class="gallery-piece small">
-  </div>
 </div>
