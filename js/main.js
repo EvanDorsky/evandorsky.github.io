@@ -249,34 +249,39 @@ function __scrollTween(offset) {
 }
 
 function main(event) {
-    // flow the gallery
-    reflowGallery()
+  // restore display: flex
+  // (gallery is set to display: none
+  // on load to prevent popping)
+  d3.select('.gallery')
+    .style('display', 'flex')
 
-    // reflow the gallery
-    window.onresize = reflowGallery
+  // flow the gallery
+  reflowGallery()
 
-    // key phrase click event
-    d3.selectAll(".key-phrase")
-      .on("click", keyphraseClick)
+  // reflow the gallery
+  window.onresize = reflowGallery
 
-    // make all links open in new windows
-    // d3.selectAll("a")
-    //   .attr("target", "_blank")
+  // key phrase click event
+  d3.selectAll(".key-phrase")
+    .on("click", keyphraseClick)
 
-    // modal popup
-    d3.selectAll(".gallery-piece")
-      .select("img")
-      .on("click", imgClick)
+  // make all links open in new windows
+  // d3.selectAll("a")
+  //   .attr("target", "_blank")
 
-    // modal dismiss
-    d3.selectAll(".photo-modal-bg")
-      .on("click", bgClick)
+  // modal popup
+  d3.selectAll(".gallery-piece")
+    .select("img")
+    .on("click", imgClick)
 
-    // modal dismiss
-    d3.select('body')
-      .on("keydown", bodyKeydown)
+  // modal dismiss
+  d3.selectAll(".photo-modal-bg")
+    .on("click", bgClick)
 
+  // modal dismiss
+  d3.select('body')
+    .on("keydown", bodyKeydown)
 
-    // run the "hint" to indicate clickable elements
-    doHint()
+  // run the "hint" to indicate clickable elements
+  doHint()
 }
