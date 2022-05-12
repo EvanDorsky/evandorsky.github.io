@@ -65,8 +65,6 @@ photos:
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
 
-
-
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
   <div class="gallery-piece small">
@@ -78,9 +76,9 @@ photos:
 {% assign namesplit = name_ext | split: '.' %}
 {% assign series_name = namesplit[0] %}
       <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
-      <div class="caption">
+      <!-- <div class="caption">
         {{ series.title }}
-      </div>
+      </div> -->
     </a>
   </div>
 {% endfor %}

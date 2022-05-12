@@ -108,7 +108,7 @@ function reflowGallery() {
     var arSum = 0
     var viewH = window.innerHeight
 
-    var elMargin = 1;
+    var elMargin = 0.75;
     var rowCount = row_els.length
 
     var totalMargin = rowCount*2*elMargin;
@@ -120,21 +120,16 @@ function reflowGallery() {
     row_els.forEach((el, j) => {
       var marginFactor = 1 - totalMargin/100.0
 
-      var rowH = rowWidth * marginFactor / arSum
+      var rowElH = rowWidth * marginFactor / arSum
 
-      var elW = rowH * el.ar
-
+      var elW = rowElH * el.ar
       var elWpercent = 100.0 * elW / rowWidth
 
-      // var rowH = (rowWidth * ((100.0 - totalMargin)/100.0)) / arSum
-      // var elWpercent = 100.0 * elW / rowWidth
+      var marginHpx = 2*elMargin / 100.0 * rowWidth
+
       d3.select(el.node)
-        .style('height', rowH + 'px')
-        // .style('margin', '0' + margin/2 + '%')
-        // .style('margin', margin/2 + '%')
+        .style('height', (rowElH + marginHpx) + 'px')
         .style('width', elWpercent + '%')
-      // d3.select(el.node).select('img')
-      //   .style('width', '98%')
     })
   })
 }

@@ -152,14 +152,10 @@ em.key-line {
 
 .gallery-piece {
   cursor: pointer;
-  // default size
   flex: 0 1 auto;
   height: 20vh;
 
-  background-color: red;
-
   img {
-    opacity: 50%;
     max-height: 100%;
     max-width: 100%;
     vertical-align: bottom;
