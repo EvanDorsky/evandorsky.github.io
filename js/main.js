@@ -76,7 +76,7 @@ function reflowGallery() {
   var pieces = d3.selectAll('.gallery-piece')
 
   var im_infos = []
-  var lastRectLeft = 99999999
+  var lastRectTop = -1
   var runningRow = -1
   pieces.each(function(el, i) {
     var innerimg = d3.select(this).select('img').node()
@@ -90,7 +90,8 @@ function reflowGallery() {
       rect: this.getBoundingClientRect()
     }
 
-    if (info.rect.left < lastRectLeft) {
+    // detect new row
+    if (info.rect.top > lastRectTop) {
       runningRow++
       im_infos.push([])
     }
@@ -98,17 +99,20 @@ function reflowGallery() {
     info.ar = (1.0 * info.width) / info.height
     info.row = runningRow
 
-    lastRectLeft = info.rect.left
+    lastRectTop = info.rect.top
     im_infos[im_infos.length-1].push(info)
   })
 
   var container = d3.select('.wrapper').node()
   var rowWidth = (container.offsetWidth-28)
+
+  console.log('im_infos')
+  console.log(im_infos)
   im_infos.forEach((row_els, i) => {
     var arSum = 0
     var viewH = window.innerHeight
 
-    var elMargin = 0.75;
+    var elMargin = 0.5;
     var rowCount = row_els.length
 
     var totalMargin = rowCount*2*elMargin;
