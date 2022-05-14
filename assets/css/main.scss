@@ -151,11 +151,16 @@ em.key-line {
 }
 
 .gallery-piece {
-  // background-color: red;
   cursor: pointer;
   flex: 0 1 auto;
   height: 22vw;
   // height: 20rem;
+
+  &.no-reflow {
+    flex: 1 0 20rem;
+    margin: 0.2rem;
+    height: auto;
+  }
 
   img {
     // opacity: 50%;
