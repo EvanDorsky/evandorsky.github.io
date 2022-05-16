@@ -62,7 +62,9 @@ function keyphraseClick(event) {
 }
 
 function imgClick(event) {
-  var modal = d3.select(this.parentNode).select('.photo-modal-bg')
+  var imName = d3.select(this).attr("name")
+  var modal = d3.selectAll(`.photo-modal-bg[name='${imName}']`)
+
   if (!modal.classed('active')) {
     modal.classed('active', true)
   }
@@ -256,14 +258,14 @@ function main(event) {
   // restore display: flex
   // (gallery is set to display: none
   // on load to prevent popping)
-  d3.select('.gallery')
-    .style('display', 'flex')
+  // d3.select('.gallery')
+    // .style('display', 'flex')
 
   // flow the gallery
-  reflowGallery()
+  // reflowGallery()
 
   // reflow the gallery
-  window.onresize = reflowGallery
+  // window.onresize = reflowGallery
 
   // key phrase click event
   d3.selectAll(".key-phrase")
@@ -274,7 +276,7 @@ function main(event) {
   //   .attr("target", "_blank")
 
   // modal popup
-  d3.selectAll(".gallery-piece")
+  d3.selectAll(".fj-gallery-item")
     .select("img")
     .on("click", imgClick)
 
@@ -285,6 +287,11 @@ function main(event) {
   // modal dismiss
   d3.select('body')
     .on("keydown", bodyKeydown)
+
+  fjGallery(document.querySelectorAll('.fj-gallery'), {
+    itemSelector: '.fj-gallery-item',
+    transitionDuration: 0
+  });
 
   // run the "hint" to indicate clickable elements
   doHint()

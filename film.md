@@ -59,7 +59,7 @@ photos:
 ---
 
 <!-- selected photos -->
-<div class="gallery">
+<div class="fj-gallery">
 
 {%- include photo.html photo=page.photos.ggbridge -%}
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
@@ -67,14 +67,14 @@ photos:
 
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}
-  <div class="gallery-piece small">
+  <div class="fj-gallery-item">
     <a href="{{ series.url }}">
-      {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
+  {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
 
-{% assign pathsplit = series.path | split: '/' %}
-{% assign name_ext = pathsplit[-1] %}
-{% assign namesplit = name_ext | split: '.' %}
-{% assign series_name = namesplit[0] %}
+  {% assign pathsplit = series.path | split: '/' %}
+  {% assign name_ext = pathsplit[-1] %}
+  {% assign namesplit = name_ext | split: '.' %}
+  {% assign series_name = namesplit[0] %}
       <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
       <!-- <div class="caption">
         {{ series.title }}
