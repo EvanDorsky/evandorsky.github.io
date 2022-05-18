@@ -56,6 +56,12 @@ photos:
     lens: Yashinon 80mm f/3.5
     stock: Kodak Ektachrome 100X Pro
     path: film/selected/pacifica.jpg
+  cruise:
+    caption: Cruise
+    camera: Yashica-Mat EM
+    lens: Yashinon 80mm f/3.5
+    stock: Kodak Gold 200
+    path: film/2022-05-07-cruise/05.jpg
 ---
 
 <!-- selected photos -->
@@ -64,6 +70,7 @@ photos:
 {%- include photo.html photo=page.photos.ggbridge -%}
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
+{%- include photo.html photo=page.photos.cruise psize="medium" -%}
 
 {% assign series_sorted = site.film | sort: "order" %}
 {% for series in series_sorted %}

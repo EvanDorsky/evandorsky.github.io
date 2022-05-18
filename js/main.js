@@ -290,7 +290,10 @@ function main(event) {
 
   fjGallery(document.querySelectorAll('.fj-gallery'), {
     itemSelector: '.fj-gallery-item',
-    transitionDuration: 0
+    transitionDuration: 0,
+    gutter: 20,
+    rowHeight: 500,
+    rowHeightTolerance: 0.3
   });
 
   // run the "hint" to indicate clickable elements
