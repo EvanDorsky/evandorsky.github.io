@@ -83,9 +83,9 @@ photos:
   {% assign namesplit = name_ext | split: '.' %}
   {% assign series_name = namesplit[0] %}
       <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
-      <!-- <div class="caption">
+      <div class="caption">
         {{ series.title }}
-      </div> -->
+      </div>
     </a>
   </div>
 {% endfor %}

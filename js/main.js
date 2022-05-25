@@ -74,72 +74,6 @@ function bodyKeydown(event) {
   return bgClick(event)
 }
 
-function reflowGallery() {
-  var pieces = d3.selectAll('.gallery-piece')
-
-  var im_infos = []
-  var lastRectTop = -1
-  var runningRow = -1
-  pieces.each(function(el, i) {
-    var innerimg = d3.select(this).select('img').node()
-    if (!innerimg) {
-      return
-    }
-    var info = {
-      node: this,
-      width: innerimg.offsetWidth,
-      height: innerimg.offsetHeight,
-      rect: this.getBoundingClientRect()
-    }
-
-    // detect new row
-    if (info.rect.top > lastRectTop) {
-      runningRow++
-      im_infos.push([])
-    }
-
-    info.ar = (1.0 * info.width) / info.height
-    info.row = runningRow
-
-    lastRectTop = info.rect.top
-    im_infos[im_infos.length-1].push(info)
-  })
-
-  var container = d3.select('.wrapper').node()
-  var rowWidth = (container.offsetWidth-28)
-
-  console.log('im_infos')
-  console.log(im_infos)
-  im_infos.forEach((row_els, i) => {
-    var arSum = 0
-    var viewH = window.innerHeight
-
-    var elMargin = 0.5;
-    var rowCount = row_els.length
-
-    var totalMargin = rowCount*2*elMargin;
-
-    row_els.forEach((el, j) => {
-      arSum += el.ar
-    })
-
-    row_els.forEach((el, j) => {
-      var marginFactor = 1 - totalMargin/100.0
-
-      var rowElH = rowWidth * marginFactor / arSum
-
-      var elW = rowElH * el.ar
-      var elWpercent = 100.0 * elW / rowWidth
-
-      var marginHpx = 2*elMargin / 100.0 * rowWidth
-
-      d3.select(el.node)
-        .style('height', (rowElH + marginHpx) + 'px')
-        .style('width', elWpercent + '%')
-    })
-  })
-}
-
 function bgClick(event) {
   d3.selectAll('.photo-modal-bg').classed('active', false)
 }
@@ -261,12 +195,6 @@ function main(event) {
   // d3.select('.gallery')
     // .style('display', 'flex')
 
-  // flow the gallery
-  // reflowGallery()
-
-  // reflow the gallery
-  // window.onresize = reflowGallery
-
   // key phrase click event
   d3.selectAll(".key-phrase")
     .on("click", keyphraseClick)
@@ -293,7 +221,8 @@ function main(event) {
     transitionDuration: 0,
     gutter: 20,
     rowHeight: 500,
-    rowHeightTolerance: 0.3
+    rowHeightTolerance: 0.3,
+    calculateItemsHeight: true
   });
 
   // run the "hint" to indicate clickable elements

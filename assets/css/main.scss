@@ -151,8 +151,23 @@ em.key-line {
 }
 
 .fj-gallery-item {
+  transition: background-color 0.5s;
+  &:hover {
+    text-decoration: inherit;
+    background-color: black;
+    color: white;
+  }
   img {
     max-width: 100%;
+    display: block;
+  }
+  a:hover {
+    text-decoration: inherit;
+  }
+  .caption { 
+    font-weight: 100;
+    transition: color 0.5s;
+    padding-left: 4px;
   }
 }
 
@@ -250,6 +265,7 @@ em.key-line {
   font-family: 'Noto Sans Mono', sans-serif;
   .photo-caption {
     font-family: 'Public Sans';
+    font-weight: 200;
     font-size: 1.1rem;
   }
 
