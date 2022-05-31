@@ -38,6 +38,8 @@ def process_imgs(path, dim):
     filenames_by_dir = ((dirpath, fname) for fname in filenames)
     p.map(functools.partial(process, dim=dim), filenames_by_dir)
 
+# modes
+
 def run_process_img(args):
   process_imgs('assets/img/about', 500)
   process_imgs('assets/img/film', '1000x1000')
