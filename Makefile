@@ -10,4 +10,4 @@ deploy:
 img:
 	rm -f assets/img/**/*_tn.jpg
 	rm -f assets/img/film/**/*_tn.jpg
-	python scripts/process_img.py
+	python util.py process-img
