@@ -164,10 +164,21 @@ em.key-line {
   a:hover {
     text-decoration: inherit;
   }
-  .caption { 
+  .caption {
+    display: flex;
+    // justify-content: space-between;
+  }
+  .title { 
     font-weight: 100;
     transition: color 0.5s;
     padding-left: 4px;
+    margin-right: 16px;
+  }
+  .date { 
+    opacity: 50%;
+    padding-right: 4px;
+    font-weight: 100;
+    transition: color 0.5s;
   }
 }
 

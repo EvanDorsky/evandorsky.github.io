@@ -72,7 +72,7 @@ photos:
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
 {%- include photo.html photo=page.photos.cruise psize="medium" -%}
 
-{% assign series_sorted = site.film | sort: "order" %}
+{% assign series_sorted = site.film | reverse %}
 {% for series in series_sorted %}
   <div class="fj-gallery-item">
     <a href="{{ series.url }}">
@@ -84,7 +84,12 @@ photos:
   {% assign series_name = namesplit[0] %}
       <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
       <div class="caption">
-        {{ series.title }}
+        <div class="title">
+          {{ series.title }}
+        </div>
+        <div class="date">
+          {{ series.date | date: "%B %Y" }}
+        </div>
       </div>
     </a>
   </div>
