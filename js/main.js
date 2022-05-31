@@ -220,7 +220,7 @@ function main(event) {
     itemSelector: '.fj-gallery-item',
     transitionDuration: 0,
     gutter: 20,
-    rowHeight: 500,
+    rowHeight: 350,
     rowHeightTolerance: 0.3,
     calculateItemsHeight: true
   });
