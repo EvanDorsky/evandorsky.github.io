@@ -62,6 +62,12 @@ photos:
     lens: Yashinon 80mm f/3.5
     stock: Kodak Gold 200
     path: film/2022-05-07-cruise/05.jpg
+  truck:
+    caption: Clarendon Heights
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak Gold 200
+    path: film/selected/truck.jpg
 ---
 
 <!-- selected photos -->
@@ -69,8 +75,9 @@ photos:
 
 {%- include photo.html photo=page.photos.ggbridge -%}
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
-{%- include photo.html photo=page.photos.coastjams psize="medium" -%}
+{%- include photo.html photo=page.photos.truck psize="medium" -%}
 {%- include photo.html photo=page.photos.cruise psize="medium" -%}
+{%- include photo.html photo=page.photos.coastjams psize="medium" -%}
 
 {% assign series_sorted = site.film | reverse %}
 {% for series in series_sorted %}
