@@ -68,6 +68,12 @@ photos:
     lens: Sekor C 80mm f/2.8
     stock: Kodak Gold 200
     path: film/selected/truck.jpg
+  mill:
+    caption: Mill Valley
+    camera: Mamiya 645 Pro TL
+    lens: Sekor C 80mm f/2.8
+    stock: Kodak Portra 160
+    path: film/selected/mill.jpg
 ---
 
 <!-- selected photos -->
@@ -75,6 +81,7 @@ photos:
 
 {%- include photo.html photo=page.photos.ggbridge -%}
 {%- include photo.html photo=page.photos.montebello psize="medium" -%}
+{%- include photo.html photo=page.photos.mill psize="medium" -%}
 {%- include photo.html photo=page.photos.truck psize="medium" -%}
 {%- include photo.html photo=page.photos.cruise psize="medium" -%}
 {%- include photo.html photo=page.photos.coastjams psize="medium" -%}
