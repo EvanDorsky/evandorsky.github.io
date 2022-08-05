@@ -1,6 +1,5 @@
 <div id="navbar">
 
-
   {% unless include.hide_backarrow %}
     <i class="back-arrow-icon"></i>
     <a class="back-arrow" href="..">
@@ -11,7 +10,8 @@
   {% assign pagename = namesplit[0] %}
 
   <div id="navbar-content">
-  {% for spage in site.pages %}
+  {% assign pages_sorted = site.pages | sort: "navbar-order" %}
+  {% for spage in pages_sorted %}
     {% if spage.navbar %}
       {% assign namesplit = spage.name | split: '.' %}
       {% assign name = namesplit[0] %}
