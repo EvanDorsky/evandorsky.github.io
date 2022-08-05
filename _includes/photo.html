@@ -1,16 +1,16 @@
-{% assign p = include.photo %}
+<!-- {% assign p = include.photo %} -->
 
-<div class="photo-modal-bg" name="{{ p.path }}">
+<div class="photo-modal-bg" name="{{ include.src }}">
   <div class="photo-modal">
-    <img class="fullsize" src="/assets/img/{{ p.path }}"/>
-    <div class="photo-details">
-      <div class="photo-caption">{{ p.caption }}</div>
-      <div class="camera">{{ p.camera }}</div>
-      <div class="lens">{{ p.lens }}</div>
-      <div class="stock">{{ p.stock }}</div>
-    </div>
+    <img class="fullsize" src="/assets/img/{{ include.src }}"/>
+    <!-- <div class="photo-details"> -->
+      <!-- <div class="photo-caption">{{ p.caption }}</div> -->
+      <!-- <div class="camera">{{ p.camera }}</div> -->
+      <!-- <div class="lens">{{ p.lens }}</div> -->
+      <!-- <div class="stock">{{ p.stock }}</div> -->
+    <!-- </div> -->
   </div>
 </div>
 <div class="fj-gallery-item">
-  <img src="/assets/img/{{ p.path }}" name="{{ p.path }}"/>
+  <img src="/assets/img/{{ include.src }}" name="{{ include.src }}"/>
 </div>
