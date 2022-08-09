@@ -13,7 +13,7 @@ layout: series
 order: 0
 n_photos: 
 key_photo: 
-title:  
+title: 
 ---
 """
 
