@@ -2,20 +2,29 @@
 layout: page
 jumbotron: true
 wrapper_type: wide
-title: Gallery
+title: Home
 navbar: true
 navbar-order: 0
-
-n_photos: 58
 ---
 
-<!-- selected photos -->
-<div class="fj-gallery">
+{% assign series_sorted = site.film | reverse %}
+{% for series in series_sorted %}
+  {% if series.layout != 'gallery' %}
+    {% continue %}
+  {% endif %}
 
-{% for i in ( 1.. page.n_photos ) %}
-  {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
-  {% capture img_src %}film/gallery/{{ num_str }}.jpg{% endcapture %}
+  <div class="gallery-card">
+    <a href="{{ series.url }}">
+  {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
 
-  {% include photo.html src=img_src %}
+  {% assign pathsplit = series.path | split: '/' %}
+  {% assign name_ext = pathsplit[-1] %}
+  {% assign namesplit = name_ext | split: '.' %}
+  {% assign series_name = namesplit[0] %}
+      <div class="title">
+        {{ series.title }}
+      </div>
+      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
+    </a>
+  </div>
 {% endfor %}
-</div>

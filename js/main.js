@@ -216,11 +216,13 @@ function main(event) {
   d3.select('body')
     .on("keydown", bodyKeydown)
 
+  // window.galleryRowHeight = 250
+
   fjGallery(document.querySelectorAll('.fj-gallery'), {
     itemSelector: '.fj-gallery-item',
     transitionDuration: 0,
     gutter: 20,
-    rowHeight: 350,
+    rowHeight: window.galleryRowHeight,
     rowHeightTolerance: 0.3,
     calculateItemsHeight: true
   });

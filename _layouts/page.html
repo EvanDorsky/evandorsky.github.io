@@ -1,11 +1,12 @@
 ---
 layout: default
+wrapper_type: default
 ---
 
 {%- include navbar.html hide_backarrow=page.jumbotron -%}
 
-{% unless layout.no_wrapper or page.no_wrapper %}
-  <div class="wrapper {{ page.wrapper_type }}">
+{% unless layout.no_wrapper %}
+  <div class="wrapper {{ layout.wrapper_type }}">
 {% endunless %}
     {{ content }}
 {% unless layout.no_wrapper %}
