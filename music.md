@@ -4,7 +4,7 @@ jumbotron: false
 title: Music
 
 navbar: true
-navbar-order: 3
+navbar-order: 2
 ---
 
 <div class="gallery">

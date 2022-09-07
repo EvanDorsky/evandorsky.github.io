@@ -53,11 +53,21 @@ a {
   }
 }
 
-#headshot {
-  float: right;
-  width: 12rem;
-  border-radius: 1000px;
-  // filter: grayscale(100%);
+#about-container {
+  display: flex;
+}
+
+#about-left {
+  flex: 0 1 auto;
+  img {
+    width: 100%;
+  }
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+#about-right {
+  flex: 0 1 auto;
 }
 
 // 
@@ -111,7 +121,7 @@ em.key-line {
 
   .img-box {
     float: right;
-    width: 18rem;
+    width: 10rem;
     padding: 1rem;
   }
 

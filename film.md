@@ -2,7 +2,7 @@
 layout: page
 wrapper_type: wide
 jumbotron: false
-title: Journal
+title: Photojournal
 thumb: /assets/img/film/selected/goldengate.jpg
 
 navbar: true

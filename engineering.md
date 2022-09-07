@@ -1,19 +1,31 @@
 ---
 layout: page
 jumbotron: false
-title: Engineering
-thumb: /assets/img/film/alignment/29_tn.jpg
+title: About
+thumb: /assets/img/about/me.jpg
 
 navbar: true
-navbar-order: 2
+navbar-order: 3
 
 ---
 
+<div markdown="1" id="about-container">
+  <div id="about-left">
+  <img src="/assets/img/about/me.jpg"/>
+  </div>
+
+<div markdown="1" id="about-right">
+
+Hi! I'm Evan.
+
+I'm a [photographer, violinist, educator, engineer] based in San Francisco.
+
+
 _I spent 2016-19 working in the **Apple Special Projects Group**{:#apple-spg .key-phrase} as a sensor hardware integration engineer._{:.apple-spg-line .key-line}
 
-{{ site.features | where:"key","apple-spg" }}
-
 Between then and April 2021, _I built the software stack from the ground up for **Perceptive Sensing**{:#perceptive .key-phrase}, a small startup in the autonomous vehicle space._{:.perceptive-line .key-line}
+
+{{ site.features | where:"key","apple-spg" }}
 
 {{ site.features | where:"key","perceptive" }}
 
@@ -47,4 +59,7 @@ In 2013, _I built the Beta product for **PlayPosit**{:#playposit .key-phrase}, a
 {{ site.features | where:"key","playposit" }}
 
 
-If you want to learn more, contact me [**here**](mailto:evan.dorsky@icloud.com){:.key-phrase}.
+You can contact me [**here**](mailto:evan.dorsky@icloud.com){:.key-phrase}.
+
+  </div>
+</div>
