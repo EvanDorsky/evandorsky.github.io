@@ -2,7 +2,7 @@
 role: feature
 layout: gallery
 
-order: 0
+order: 1
 n_photos: 58
 key_photo: 10
 title: Selected Work
