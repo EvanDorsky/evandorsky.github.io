@@ -1,0 +1,14 @@
+---
+layout: default
+wrapper_type: wide
+---
+
+{%- include navbar.html hide_backarrow=page.jumbotron -%}
+
+{% unless layout.no_wrapper %}
+  <div class="wrapper {{ layout.wrapper_type }}">
+{% endunless %}
+    {{ content }}
+{% unless layout.no_wrapper %}
+  </div>
+{% endunless %}

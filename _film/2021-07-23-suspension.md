@@ -1,7 +1,8 @@
 ---
+role: feature
 layout: series
 order: 1
-n_photos: 16
-key_photo: 5
-title:  "Suspension"
+n_photos: 17
+key_photo: 12
+title: Suspension
 ---
