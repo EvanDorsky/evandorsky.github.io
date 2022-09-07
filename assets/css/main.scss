@@ -197,10 +197,11 @@ em.key-line {
   }
   .caption {
     display: flex;
+    font-family: Public Sans;
+    font-weight: 400;
     // justify-content: space-between;
   }
   .title { 
-    font-weight: 100;
     transition: color 0.5s;
     padding-left: 4px;
     margin-right: 16px;
@@ -208,7 +209,6 @@ em.key-line {
   .date { 
     opacity: 50%;
     padding-right: 4px;
-    font-weight: 100;
     transition: color 0.5s;
   }
 }
