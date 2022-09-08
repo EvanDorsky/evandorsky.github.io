@@ -10,8 +10,11 @@ navbar-order: 3
 ---
 
 <div markdown="1" id="about-container">
-  <div id="about-left">
+  <div markdown="1" id="about-left">
   <img src="/assets/img/about/me.jpg"/>
+  <caption markdown="1">
+    Photo by [@renahlee](https://www.instagram.com/renahlee/)
+  </caption>
   </div>
 
 <div markdown="1" id="about-right">
