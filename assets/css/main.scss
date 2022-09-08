@@ -58,7 +58,7 @@ a {
 }
 
 #about-left {
-  flex: 0 1 auto;
+  flex: 0 1 40%;
   img {
     width: 100%;
   }
@@ -68,7 +68,7 @@ a {
 }
 
 #about-right {
-  flex: 0 1 auto;
+  flex: 1 0 60%;
 }
 
 // 
