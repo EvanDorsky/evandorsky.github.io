@@ -137,30 +137,37 @@ em.key-line {
 
 .gallery-card {
   &.gallery {
-    margin: 2rem 10%;
-    font-size: 2.5rem;
+    a {
+      font-size: 6vw;
+      width: 80vw;
+      margin: 2rem auto;
+
+      img {
+        max-height: 60vh;
+      }
+    }
   }
-  margin: 2rem 20%;
-  font-size: 1.5rem;
 
   a {
+    font-size: 4vw;
+    width: 75vw;
+    margin: 2rem auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 
     &:hover {
       text-decoration: none;
     }
-    * {
-      flex: 0 1 auto;
-    }
     .title {
+      flex: 0 0 20vw;
       text-align: right;
-      padding-right: 5rem;
-      width: 40%;
     }
     img {
-      width: 60%;
+      flex: 1 0 auto;
+      max-width: 70%;
+      max-height: 30vh;
+      object-fit: contain;
     }
   }
 }
