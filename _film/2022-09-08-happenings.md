@@ -2,9 +2,9 @@
 role: feature
 layout: gallery
 
-order: 0
-n_photos: 21
+order: 1
+n_photos: 25
 key_photo: 1
-title: Friends
+title: Events
 row_height: 500
 ---
