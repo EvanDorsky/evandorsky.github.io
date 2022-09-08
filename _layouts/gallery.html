@@ -4,21 +4,4 @@ wrapper_type: wide
 
 ---
 
-<div class="fj-gallery">
-
-<script type="text/javascript">
-  window.galleryRowHeight = {{ page.row_height }}
-</script>
-
-{% for i in ( 1.. page.n_photos ) %}
-  {% assign pathsplit = page.path | split: '/' %}
-  {% assign name_ext = pathsplit[-1] %}
-  {% assign namesplit = name_ext | split: '.' %}
-  {% assign page_name = namesplit[0] %}
-
-  {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
-  {% capture img_src %}film/{{ page_name }}/{{ num_str }}.jpg{% endcapture %}
-
-  {% include photo.html src=img_src %}
-{% endfor %}
-</div>
+{% include gallery.html row_height=page.row_height n_photos=page.n_photos path=page.path %}

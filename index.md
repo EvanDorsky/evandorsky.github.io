@@ -11,7 +11,10 @@ navbar-order: 0
 
 <div class="feature-gallery-container">
 {% for series in series_sorted %}
-  {% if series.role != 'feature' or series.layout != 'gallery' %}
+  {% unless series.role == 'feature' and series.layout == 'gallery' %}
+    {% continue %}
+  {% endunless %}
+  {% if series.title == "Selected Work" %}
     {% continue %}
   {% endif %}
 
@@ -51,4 +54,12 @@ navbar-order: 0
       <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
     </a>
   </div>
+{% endfor %}
+
+{% include gallery.html row_height=page.row_height n_photos=page.n_photos path=page.path %}
+
+{% for gallery in site.film %}
+  {% if gallery.title == "Selected Work" %}
+    {% include gallery.html row_height=gallery.row_height n_photos=gallery.n_photos path=gallery.path %}
+  {% endif %}
 {% endfor %}
