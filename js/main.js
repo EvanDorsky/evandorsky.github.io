@@ -109,17 +109,27 @@ function keyphraseOpen(id, doScroll=true, openTo=-1) {
 }
 
 function doHint() {
+  // briefly reveal a feature section
   setTimeout(()=>{
     keyphraseOpen("apple-spg", false, 100)
 
-    d3.selectAll('.key-phrase').classed('hint', true)
-
     setTimeout(()=> {
       keyphraseOpen("apple-spg", false)
-
-      d3.selectAll('.key-phrase').classed('hint', false)
-    }, 1500)
+    }, 1200)
   }, 1500)
+
+  setTimeout(()=>{
+    d3.selectAll('.key-phrase').classed('hint', true)
+    setTimeout(()=>{
+      d3.selectAll('.key-phrase').classed('hint', false)
+    }, 200)
+    setTimeout(()=>{
+      d3.selectAll('.key-phrase').classed('hint', true)
+    }, 400)
+    setTimeout(()=>{
+      d3.selectAll('.key-phrase').classed('hint', false)
+    }, 600)
+  }, 1600)
 }
 
 function selectorSelect(sel) {
