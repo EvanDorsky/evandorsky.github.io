@@ -110,10 +110,15 @@ function keyphraseOpen(id, doScroll=true, openTo=-1) {
 
 function doHint() {
   setTimeout(()=>{
-    keyphraseOpen("apple-spg", false, 200)
+    keyphraseOpen("apple-spg", false, 100)
+
+    d3.selectAll('.key-phrase').classed('hint', true)
+
     setTimeout(()=> {
       keyphraseOpen("apple-spg", false)
-    }, 900)
+
+      d3.selectAll('.key-phrase').classed('hint', false)
+    }, 1500)
   }, 1500)
 }
 

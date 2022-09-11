@@ -85,23 +85,27 @@ a {
 
 .key-phrase {
   color: inherit;
-  background-color: #fffa;
+  background-color: rgba(var(--text-color-rgb), 0.1);
 
-  // text-decoration: underline;
+  transition: background-color 0.5s, color 0.5s;
 
   &:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+  &.hint {
+    color: var(--bg-color);
+    background-color: var(--text-color);
   }
 }
 
 em.key-line {
   font-style: inherit;
 
-  transition: background-color 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 
   &.selected {
-    background-color: #ffff;
+    background-color: rgba(var(--text-color-rgb), 0.1);
   }
 }
 
@@ -203,8 +207,8 @@ em.key-line {
   transition: background-color 0.5s;
   &:hover {
     text-decoration: inherit;
-    background-color: black;
-    color: white;
+    background-color: var(--text-color);
+    color: var(--bg-color);
   }
   img {
     max-width: 100%;
@@ -414,6 +418,33 @@ em.key-line {
   padding-left: 2rem;
   border-left: 2px solid var(--text-color);
 }
+
+// spotify theme
+
+// #apple-spg.key-phrase {
+//   color: #D8A88E;
+//   background-color: #473653;
+// }
+
+// #perceptive.key-phrase {
+//   color: #A1E4BE;
+//   background-color: #3500D5;
+// }
+
+// #olin.key-phrase {
+//   color: #C93029;
+//   background-color: #F1CCCE;
+// }
+
+// #olin-js.key-phrase {
+//   color: #483554;
+//   background-color: #D1EB7F;
+// }
+
+// #ninja.key-phrase {
+//   color: #202973;
+//   background-color: #A4E5B6;
+//  }
 
 //
 //
