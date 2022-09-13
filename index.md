@@ -2,7 +2,7 @@
 layout: page-wide
 jumbotron: true
 wrapper_type: wide
-title: Home
+title: Gallery
 navbar: true
 navbar-order: 0
 ---
@@ -56,6 +56,7 @@ navbar-order: 0
   </div>
 {% endfor %}
 
+<div id="gallery"></div>
 {% include gallery.html row_height=page.row_height n_photos=page.n_photos path=page.path %}
 
 {% for gallery in site.film %}
