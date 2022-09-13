@@ -209,6 +209,7 @@ h2#gallery {
 }
 
 .fj-gallery-item {
+  cursor: pointer;
   transition: background-color 0.5s;
   &:hover {
     text-decoration: inherit;
