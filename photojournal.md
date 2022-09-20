@@ -38,7 +38,7 @@ row_height: 250
           {{ series.title }}
         </div>
         <div class="date">
-          {{ series.date | date: "%B %Y" }}
+          {{ series.date | date: "%b %Y" }}
         </div>
       </div>
     </a>
