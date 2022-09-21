@@ -14,6 +14,10 @@ order: 0
 n_photos: 
 key_photo: 
 title: 
+camera: 
+lens: 
+film: 
+format: 
 ---
 """
 
