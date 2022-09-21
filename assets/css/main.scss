@@ -186,7 +186,8 @@ h2#gallery {
 //
 
 .film {
-  padding: 1rem;
+  width: 90vw;
+  margin: 0 auto;
   h2 {
     text-align: center;
   }
@@ -196,12 +197,13 @@ h2#gallery {
     flex-wrap: wrap;
 
     div {
-      flex: 0 1 100%;
       text-align: center;
     }
     img {
+      flex: 0 1 100%;
       max-height: 88vh;
       max-width: 90vw;
+      object-fit: contain;
 
       padding: 6vh 0;
     }

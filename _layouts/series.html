@@ -14,10 +14,8 @@ no_wrapper: true
   {% assign page_name = namesplit[0] %}
     <div class="photo-list">
       {% for i in ( 1.. page.n_photos ) %}
-        <div>
-          {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
-          <img src="/assets/img/film/{{ page_name }}/{{ num_str }}.jpg">
-        </div>
+        {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
+        <img src="/assets/img/film/{{ page_name }}/{{ num_str }}.jpg">
       {% endfor %}
     </div>
     <div class="photo-details">
