@@ -26,8 +26,8 @@ IM_EXTS = [
   '.jpg'
 ]
 
-def is_im(file):
-  return os.path.splitext(file)[-1] in IM_EXTS
+def is_im(path):
+  return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
 
 def create_webp(im, webp):
   return call(['magick', im, '-resize', '1000x1000', '-quality', '90', '-define', 'webp:method=6', webp])
@@ -56,17 +56,20 @@ def run_process_img(args):
 
       ims = sorted(os.listdir(im_dir))
       for im in ims:
-        shutil.move(os.path.join(im_dir, im), orig_path)
+        im_path = os.path.join(im_dir, im)
+        if is_im(im_path):
+          shutil.copy(im_path, os.path.join(orig_path, im))
+          os.remove(im_path)
 
     originals = sorted(os.listdir(orig_path))
     # 2. for each image in the original folder...
     for fname in originals:
-      if is_im(fname):
+      im_orig_path = os.path.join(orig_path, fname)
+      if is_im(im_orig_path):
         # 1. check for the presence of a corresponding webp
         webp_name = os.path.splitext(fname)[0] + '.webp'
         webp_path = os.path.join(im_dir, webp_name)
 
-        im_orig_path   = os.path.join(orig_path, fname)
         make_webp = False
         if args.force:
           # allow us to force webp creation
