@@ -12,7 +12,7 @@
   {% assign page_name = namesplit[0] %}
 
   {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
-  {% capture img_src %}film/{{ page_name }}/{{ num_str }}.jpg{% endcapture %}
+  {% capture img_src %}film/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
 
   {% include photo.html src=img_src %}
 {% endfor %}

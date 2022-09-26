@@ -29,7 +29,7 @@ navbar-order: 0
       <div class="title">
         {{ series.title }}
       </div>
-      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
+      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.webp"/>
     </a>
   </div>
 {% endfor %}
@@ -51,7 +51,7 @@ navbar-order: 0
       <div class="title">
         {{ series.title }}
       </div>
-      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
+      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.webp"/>
     </a>
   </div>
 {% endfor %}

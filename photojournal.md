@@ -32,7 +32,7 @@ row_height: 250
   {% assign name_ext = pathsplit[-1] %}
   {% assign namesplit = name_ext | split: '.' %}
   {% assign series_name = namesplit[0] %}
-      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.jpg"/>
+      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.webp"/>
       <div class="caption">
         <div class="title">
           {{ series.title }}
