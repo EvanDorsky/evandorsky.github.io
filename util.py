@@ -13,7 +13,7 @@ series_template = """---
 layout: series
 order: 0
 n_photos: 
-key_photo: 
+key_photo: 1
 title: 
 camera: 
 lens: 
@@ -89,10 +89,34 @@ def run_process_img(args):
 
 
 def run_series(args):
-  os.mkdir('assets/img/film/%s' % args.name)
+  im_path = 'assets/img/film/%s' % args.name
+  md_path = '_film/%s.md' % args.name
 
-  with open('_film/%s.md' % args.name, 'w') as f:
-    f.write(series_template)
+  if args.remove:
+    try:
+      shutil.rmtree(im_path)
+      os.remove(md_path)
+    except Exception as e:
+      print('Failed to remove series: %s' % e)
+  else:
+    try:
+      os.mkdir(im_path)
+    except FileExistsError:
+      pass
+    except Exception as e:
+      raise
+
+    # move image files into the new series path
+    ph_path = os.path.expanduser(args.photo_path)
+    photo_files = os.listdir(ph_path)
+    for photo in photo_files:
+      res_path = os.path.join(im_path, photo)
+      if os.path.exists(res_path):
+        os.remove(res_path)
+      shutil.move(os.path.join(ph_path, photo), im_path)
+
+    with open(md_path, 'w') as f:
+      f.write(series_template)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -109,7 +133,13 @@ if __name__ == '__main__':
     'series': {
       'func': run_series,
       'args': {
-        'name': {}
+        'name': {},
+        '--photo-path': {
+          'default': '~/Film/Outbox'
+        },
+        '--remove': {
+          'action': 'store_true'
+        }
       }
     }
   }
