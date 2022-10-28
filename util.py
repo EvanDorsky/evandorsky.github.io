@@ -8,6 +8,7 @@ import functools
 import argparse
 import os
 import shutil
+import yaml
 
 series_template = """---
 layout: series
@@ -30,7 +31,7 @@ def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
 
 def create_webp(im, webp):
-  return call(['magick', im, '-resize', '1000x1000', '-quality', '90', '-define', 'webp:method=6', webp])
+  return call(['magick', im, '-resize', '1500x1500', '-quality', '90', '-define', 'webp:method=6', webp])
 
 def run_process_img(args):
   im_dirs = []
@@ -81,8 +82,16 @@ def run_process_img(args):
             # 2. check timestamps
             orig_time = os.path.getmtime(im_orig_path)
             webp_time = os.path.getmtime(webp_path)
+
+            # check the time of this document
+            code_time = os.path.getmtime(os.path.abspath(__file__))
             if orig_time > webp_time: # if the original is newer than the webp
               make_webp = True
+
+            # if the code is newer than the file, update it
+            elif code_time > webp_time:
+              make_webp = True
+
         # 3. if the webp is stale, or missing, update it
         if make_webp:
           create_webp(im_orig_path, webp_path)
