@@ -1,13 +1,12 @@
 ---
-layout: page
-wrapper_type: wide
+layout: page-wide
 jumbotron: false
 title: Photojournal
 thumb: /assets/img/film/selected/goldengate.jpg
 
 navbar: true
 navbar-order: 1
-row_height: 250
+row_height: 350
 
 ---
 
