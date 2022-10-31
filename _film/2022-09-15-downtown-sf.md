@@ -1,10 +1,10 @@
 ---
 layout: series
-order: -1
+order: 0
 n_photos: 6
-key_photo: 4
-title: Financial District
-camera: Olympus XA
+key_photo: 5
+title: Downtown SF
+camera: Olympux XA
 lens: Zuiko 35mm f/2.8
 film: Kodak Gold 200
 format: 135
