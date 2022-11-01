@@ -1,6 +1,7 @@
 ---
 layout: series
-order: 0
+date: 2022-10-18 00:00:01
+order: 1
 n_photos: 7
 key_photo: 7
 title: Los Angeles

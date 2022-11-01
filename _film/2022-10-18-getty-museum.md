@@ -1,6 +1,7 @@
 ---
 layout: series
-order: 0
+date: 2022-10-18 00:00:02
+order: 10
 n_photos: 9
 key_photo: 6
 title: Getty Museum
