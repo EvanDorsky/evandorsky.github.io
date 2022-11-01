@@ -1,0 +1,9 @@
+
+{% assign pathsplit = page.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+{% assign num_str = include.i | prepend: '00' | slice: -2, 2 %}
+<div class="photo-list">
+  <img src="/assets/img/film/{{ page_name }}/{{ num_str }}.webp">
+</div>

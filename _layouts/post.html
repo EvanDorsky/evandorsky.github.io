@@ -1,5 +1,18 @@
 ---
-layout: default
+layout: page
+no_wrapper: true
 ---
+<link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
-{{ content }}
+<div class="film">
+  <h3>{{ page.subtitle }}</h3>
+  <span class="post-date">{{ page.date | date: "%A, %B %d" }}</span>
+
+  {{ content }}
+
+  <div class="photo-details">
+    <div class="camera">{{ page.camera }}</div>
+    <div class="lens">{{ page.lens }}</div>
+    <div class="stock">{{ page.film }}</div>
+  </div>
+</div>
