@@ -12,7 +12,13 @@
 
   <title>{{page.title}}</title>
 
-  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:title" content="
+  {% if page.subtitle %}
+    {{ page.subtitle }}
+  {% else %}
+    {{ page.title }}
+  {%endif%}
+  " />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="Evan's portfolio site" />
   <meta property="og:image" content="
