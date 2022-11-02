@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: series
 date: 2022-10-18 10:00:00
 subtitle: Westwood, Burbank
 order: 1
@@ -11,7 +11,3 @@ lens: Mamiya Sekor C 55mm f/2.8 N, 80mm f/2.8 N, Zuiko 35mm f/2.8
 film: CineStill 400D, Kodak Ektar 100, FPP Retrochrome 400
 format: 120
 ---
-
-{% for i in ( 1..page.n_photos ) %}
-  {% include series-photo.html i=i %}
-{% endfor %}
