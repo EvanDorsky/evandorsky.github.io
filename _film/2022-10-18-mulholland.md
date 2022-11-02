@@ -1,5 +1,6 @@
 ---
 layout: series
+date: 2022-10-18 12:00:00
 order: 0
 n_photos: 3
 key_photo: 3
