@@ -228,14 +228,16 @@ h2#gallery {
   flex: 0 1 auto;
   text-align: center;
   font-weight: 500;
-  height: 20rem;
 }
 
 .fj-gallery-item {
   &.standalone {
     padding: 1rem;
     img {
-      width: 100%;
+      max-width: 40vw;
+      max-height: 20rem;
+      object-fit: contain;
+      height: 100%;
     }
   }
   cursor: pointer;
