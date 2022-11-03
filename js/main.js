@@ -233,6 +233,7 @@ function main(event) {
 
   // window.galleryRowHeight = 250
 
+  console.log('we did')
   fjGallery(document.querySelectorAll('.fj-gallery'), {
     itemSelector: '.fj-gallery-item',
     transitionDuration: 0,
@@ -241,6 +242,7 @@ function main(event) {
     rowHeightTolerance: 0.3,
     calculateItemsHeight: true
   });
+  console.log('do this')
 
   // run the "hint" to indicate clickable elements
   doHint()

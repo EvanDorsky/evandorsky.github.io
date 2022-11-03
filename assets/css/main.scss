@@ -216,13 +216,36 @@ h2#gallery {
   opacity: 50%;
 }
 
+.post-footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  margin-bottom: 6rem;
+  margin-top: 4rem;
+}
+
+.post-footer-item {
+  flex: 0 1 auto;
+  text-align: center;
+  font-weight: 500;
+  height: 20rem;
+}
+
 .fj-gallery-item {
+  &.standalone {
+    padding: 1rem;
+    img {
+      width: 100%;
+    }
+  }
   cursor: pointer;
   transition: background-color 0.5s;
   &:hover {
     text-decoration: inherit;
-    background-color: var(--text-color);
     color: var(--bg-color);
+    .caption {
+      background-color: var(--text-color);
+    }
   }
   img {
     max-width: 100%;
@@ -232,10 +255,10 @@ h2#gallery {
     text-decoration: inherit;
   }
   .caption {
+    transition: background-color 0.5s;
     display: flex;
     font-family: Public Sans;
     font-weight: 200;
-    // justify-content: space-between;
   }
   .title { 
     transition: color 0.5s;

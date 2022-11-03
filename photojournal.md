@@ -23,24 +23,7 @@ row_height: 350
     {% continue %}
   {% endif %}
 
-  <div class="fj-gallery-item">
-    <a href="{{ series.url }}">
-  {% assign num_str = series.key_photo | prepend: '00' | slice: -2, 2 %}
+  {% include post-preview.html post=series %}
 
-  {% assign pathsplit = series.path | split: '/' %}
-  {% assign name_ext = pathsplit[-1] %}
-  {% assign namesplit = name_ext | split: '.' %}
-  {% assign series_name = namesplit[0] %}
-      <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.webp"/>
-      <div class="caption">
-        <div class="title">
-          {{ series.title }}
-        </div>
-        <div class="date">
-          {{ series.date | date: "%b %Y" }}
-        </div>
-      </div>
-    </a>
-  </div>
 {% endfor %}
 </div>

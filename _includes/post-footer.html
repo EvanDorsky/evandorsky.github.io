@@ -1,0 +1,15 @@
+
+<div class="post-footer">
+{% if page.previous.url %}
+<div class="post-footer-item">
+  Previous
+  {% include post-preview.html post=page.previous type="standalone" %}
+</div>
+{% endif %}
+{% if page.next.url %}
+<div class="post-footer-item">
+  Next
+  {% include post-preview.html post=page.next type="standalone" %}
+</div>
+{% endif %}
+</div>

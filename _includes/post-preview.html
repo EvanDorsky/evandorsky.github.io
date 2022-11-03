@@ -1,0 +1,19 @@
+<div class="fj-gallery-item {{ include.type }}">
+  <a href="{{ include.post.url }}">
+{% assign num_str = include.post.key_photo | prepend: '00' | slice: -2, 2 %}
+
+{% assign pathsplit = include.post.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign series_name = namesplit[0] %}
+    <img src="/assets/img/film/{{ series_name }}/{{ num_str }}.webp"/>
+    <div class="caption">
+      <div class="title">
+        {{ include.post.title }}
+      </div>
+      <div class="date">
+        {{ include.post.date | date: "%b %Y" }}
+      </div>
+    </div>
+  </a>
+</div>
