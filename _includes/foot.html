@@ -1,4 +1,12 @@
 <footer>
+  
+  <meta property="og:image" content="
+  {% if page.thumb %}
+    {{ page.thumb }}
+  {% else %}
+    /assets/img/about/me_tn.jpg
+  {%endif%}
+  " />
 
   <script type="text/javascript" src="/js/main.js"></script>
   
