@@ -231,12 +231,13 @@ h2#gallery {
 }
 
 .fj-gallery-item {
+  position: relative;
   &.standalone {
-    padding: 1rem;
+    margin: 1rem;
     img {
-      max-width: 40vw;
+      // max-width: 40vw;
       max-height: 20rem;
-      object-fit: contain;
+      // object-fit: contain;
       height: 100%;
     }
   }
