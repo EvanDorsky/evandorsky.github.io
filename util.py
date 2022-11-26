@@ -9,19 +9,19 @@ import argparse
 import os
 import shutil
 import yaml
+from collections import OrderedDict
 
-series_template = """---
-layout: series
-order: 0
-n_photos: 
-key_photo: 1
-title: 
-camera: 
-lens: 
-film: 
-format: 
----
-"""
+series_info = OrderedDict([
+  ("layout", "series"),
+  ("order", 0),
+  ("n_photos", ""),
+  ("key_photo", 1),
+  ("title", ""),
+  ("camera", ""),
+  ("lens", ""),
+  ("film", ""),
+  ("format", ""),
+])
 
 IM_EXTS = [
   '.jpg'
@@ -102,6 +102,14 @@ def run_process_img(args):
         if make_webp:
           create_webp(im_orig_path, webp_path, im_dim)
 
+def info_tostr(info):
+  sep = "---\n"
+  frontmatter = sep
+  for key in info:
+    frontmatter += "%s: %s\n" % (key, info[key])
+
+  frontmatter += sep
+  return frontmatter
 
 def run_series(args):
   im_path = 'assets/img/film/%s' % args.name
@@ -130,8 +138,12 @@ def run_series(args):
         os.remove(res_path)
       shutil.move(os.path.join(ph_path, photo), im_path)
 
+    # fill series info
+    series_info["n_photos"] = len(photo_files)
+    frontmatter = info_tostr(series_info)
+
     with open(md_path, 'w') as f:
-      f.write(series_template)
+      f.write(frontmatter)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
