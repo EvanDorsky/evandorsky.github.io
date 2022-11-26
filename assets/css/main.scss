@@ -241,14 +241,6 @@ h2#gallery {
     }
   }
   cursor: pointer;
-  transition: background-color 0.5s;
-  &:hover {
-    text-decoration: inherit;
-    color: var(--bg-color);
-    .caption {
-      background-color: var(--text-color);
-    }
-  }
   img {
     max-width: 100%;
     display: block;
@@ -256,7 +248,30 @@ h2#gallery {
   a:hover {
     text-decoration: inherit;
   }
+  transition: background-color 0.5s;
+  &:hover {
+    text-decoration: inherit;
+    .gradient-bg {
+      opacity: 1;
+    }
+  }
+  .gradient-bg {
+    transition: opacity 0.5s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+    opacity: 0.6;
+    height: 2rem;
+    width: 100%;
+  }
   .caption {
+    width: 100%;
+    color: var(--bg-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
     transition: background-color 0.5s;
     display: flex;
     font-family: Public Sans;
