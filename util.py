@@ -34,6 +34,9 @@ def create_webp(im, webp, dim):
   return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
 
 def run_process_img(args):
+  print("Generating web images...")
+  if type(args) == argparse.Namespace:
+    args = vars(args)
   im_dirs = []
   for dirpath, dirnames, filenames in os.walk('./assets/img/film'):
     for fname in filenames:
@@ -57,7 +60,7 @@ def run_process_img(args):
     with open(series_file, "r") as f:
       docs = yaml.load_all(f, Loader=yaml.FullLoader)
 
-      im_dim = args.dim
+      im_dim = args["dim"]
       for doc in docs:
         if doc is not None and 'im_dim' in doc:
           im_dim = doc['im_dim']
@@ -84,7 +87,7 @@ def run_process_img(args):
         webp_path = os.path.join(im_dir, webp_name)
 
         make_webp = False
-        if args.force:
+        if args["force"]:
           # allow us to force webp creation
           make_webp = True
         else:
@@ -144,6 +147,9 @@ def run_series(args):
 
     with open(md_path, 'w') as f:
       f.write(frontmatter)
+
+  # run process-img, since there are new images to process now
+  run_process_img({"dim": 1500, "force": False})
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
