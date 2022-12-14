@@ -57,8 +57,6 @@ navbar-order: 0
 {% endfor %}
 
 <h2 id="gallery">Selected Work</h2>
-{% include gallery.html row_height=page.row_height n_photos=page.n_photos path=page.path %}
-
 {% for gallery in site.film %}
   {% if gallery.title == "Selected Work" %}
     {% include gallery.html row_height=gallery.row_height n_photos=gallery.n_photos path=gallery.path %}

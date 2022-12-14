@@ -5,7 +5,10 @@
   window.galleryRowHeight = {{ include.row_height }}
 </script>
 
-{% for i in ( 1.. include.n_photos ) %}
+{% assign n_start = include.n_start | default: 1 %}
+{% assign n_end   = n_start | plus: include.n_photos | minus: 1 %}
+
+{% for i in ( n_start.. n_end ) %}
   {% assign pathsplit = include.path | split: '/' %}
   {% assign name_ext = pathsplit[-1] %}
   {% assign namesplit = name_ext | split: '.' %}
