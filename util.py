@@ -61,9 +61,14 @@ def run_process_img(args):
       docs = yaml.load_all(f, Loader=yaml.FullLoader)
 
       im_dim = args["dim"]
-      for doc in docs:
-        if doc is not None and 'im_dim' in doc:
-          im_dim = doc['im_dim']
+      try:
+        for doc in docs:
+          if doc is not None and 'im_dim' in doc:
+            im_dim = doc['im_dim']
+      except yaml.scanner.ScannerError as e:
+        print('Warning: Could not parse series document as YAML: %s' % e)
+      except Exception as e:
+        raise
 
   # 1. if the "original" folder doesn't exist, create it and move all the images there
     orig_path = os.path.join(im_dir, 'original')
@@ -118,29 +123,33 @@ def run_series(args):
   im_path = 'assets/img/film/%s' % args.name
   md_path = '_film/%s.md' % args.name
 
-  if args.remove:
+  if args.action in ["remove", "refresh"]:
     try:
       shutil.rmtree(im_path)
-      os.remove(md_path)
+      if args.action == "remove":
+        os.remove(md_path)
     except Exception as e:
       print('Failed to remove series: %s' % e)
-  else:
-    try:
-      os.mkdir(im_path)
-    except FileExistsError:
-      pass
-    except Exception as e:
-      raise
+    if args.action == "remove":
+      return
 
-    # move image files into the new series path
-    ph_path = os.path.expanduser(args.photo_path)
-    photo_files = os.listdir(ph_path)
-    for photo in photo_files:
-      res_path = os.path.join(im_path, photo)
-      if os.path.exists(res_path):
-        os.remove(res_path)
-      shutil.move(os.path.join(ph_path, photo), im_path)
+  try:
+    os.mkdir(im_path)
+  except FileExistsError:
+    pass
+  except Exception as e:
+    raise
 
+  # move image files into the new series path
+  ph_path = os.path.expanduser(args.photo_path)
+  photo_files = os.listdir(ph_path)
+  for photo in photo_files:
+    res_path = os.path.join(im_path, photo)
+    if os.path.exists(res_path):
+      os.remove(res_path)
+    shutil.move(os.path.join(ph_path, photo), im_path)
+
+  if args.action == "create":
     # fill series info
     series_info["n_photos"] = len(photo_files)
     frontmatter = info_tostr(series_info)
@@ -174,8 +183,9 @@ if __name__ == '__main__':
         '--photo-path': {
           'default': '~/Film/Outbox'
         },
-        '--remove': {
-          'action': 'store_true'
+        '--action': {
+          'type': str,
+          'default': 'create'
         }
       }
     }
