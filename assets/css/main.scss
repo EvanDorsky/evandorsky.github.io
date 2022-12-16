@@ -191,22 +191,22 @@ h2#gallery {
   h2 {
     text-align: center;
   }
+}
 
-  .photo-list {
-    display: flex;
-    flex-wrap: wrap;
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
 
-    div {
-      text-align: center;
-    }
-    img {
-      flex: 0 1 100%;
-      max-height: 88vh;
-      max-width: 90vw;
-      object-fit: contain;
+  div {
+    text-align: center;
+  }
+  img {
+    flex: 0 1 100%;
+    max-height: 88vh;
+    max-width: 90vw;
+    object-fit: contain;
 
-      padding: 6vh 0;
-    }
+    padding: 3vh 0;
   }
 }
 
@@ -233,6 +233,10 @@ h2#gallery {
 }
 
 // gallery item
+
+.fj-gallery {
+  padding: 1.5vh 0;
+}
 
 .fj-gallery-item {
   position: relative;
