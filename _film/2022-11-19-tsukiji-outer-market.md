@@ -7,18 +7,17 @@ key_photo: 3
 title: Tsukiji Outer Market
 camera: Olympus XA, Mamiya 645 Pro TL
 lens: Zuiko 35mm f/2.8, Mamiya Sekor C 80mm f/2.8 N
-film: Ilford FP4+ 125, Fuji Reala 100, Ilford Delta 400
+film: Fuji Reala 100, Ilford Delta 400, Ilford FP4+ 125
 format: 120, 135
 ---
 
-Out of the station, we were led by our mapping apps past a wide open area. We figured this is where the wholesale "inner market" of Tsukiji market used to be. It was moved to a nearby manmade island in 2018.
+Out of the station, we were led by our mapping apps past a wide open area. We figured this is where the wholesale Tsukiji "inner market" used to be. It was moved to a nearby manmade island in 2018.
 
 {% for i in ( 1..2 ) %}
   {% include series-photo.html i=i %}
 {% endfor %}
 
 Before long the retail "outer market" greeted us with a flurry of color and activity.
-
 
 {% include gallery.html row_height=400 n_start=3 n_photos=4 path=page.path %}
 
