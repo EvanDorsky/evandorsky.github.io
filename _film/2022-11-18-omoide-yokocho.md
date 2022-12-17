@@ -22,7 +22,7 @@ In blocking the sky from view, the highrise doesn't remind of the surrounding ci
 {% include series-photo.html i=2 %}
 {% include series-photo.html i=3 %}
 
-Walking down the alley is an experience of peering into tiny independent worlds, mostly yakitori shops. Most restaurants are bar style seating – a large shop might seat eight.
+Walking down the alley is an experience of peering into tiny adjacent worlds, mostly yakitori shops. Restaurants are bar style seating – a large one might seat eight.
 
 {% for i in ( 4..6 ) %}
   {% include series-photo.html i=i %}
