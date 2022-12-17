@@ -28,6 +28,6 @@ Walking down the alley is an experience of peering into tiny independent worlds,
   {% include series-photo.html i=i %}
 {% endfor %}
 
-The alley is dense but ends quickly. We had already eaten dinner, but we walked through the alley at least twice just to get our fill of the sights and smells.
+The alley is dense but ends quickly. We had already eaten dinner, but we walked back and forth at least twice just to get our fill of the sights and smells.
 
 {% include series-photo.html i=7 %}
