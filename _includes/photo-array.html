@@ -1,21 +1,21 @@
-
 <div class="photo-array">
 
 {% assign n_start = include.n_start | default: 1 %}
 {% assign n_end   = n_start | plus: include.n_photos | minus: 1 %}
 
 {% for i in ( n_start.. n_end ) %}
-  {% assign pathsplit = include.path | split: '/' %}
+  {% assign pathsplit = page.path | split: '/' %}
   {% assign name_ext = pathsplit[-1] %}
   {% assign namesplit = name_ext | split: '.' %}
   {% assign page_name = namesplit[0] %}
 
-  {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
+  {% assign num_str = photo_index | prepend: '00' | slice: -2, 2 %}
   {% capture img_src %}film/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
 
   <div class="photo-container">
     <img src="/assets/img/{{ img_src }}" name="{{ img_src }}"/>
   </div>
+  {% assign photo_index = photo_index | plus: 1 %}
 {% endfor %}
 
 </div>

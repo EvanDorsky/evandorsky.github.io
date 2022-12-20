@@ -11,6 +11,8 @@ film: Kodak Portra 800
 format: 120
 ---
 
+{% assign photo_index = 1 %}
+
 Exit D3 of Shinjuku-nishiguchi station drops you straight into Omoide Yokocho, a little enclave of an alley between a boulevard and a massive train line overpass. But most tourists will arrive via the sprawling Shinjuku station, notorious even among locals for being a maze. I think we walked from Kabukicho.
 
 A neighboring highrise is visible, but its massive lit sign just looks like another sign for an alleyway restaurant.
