@@ -1,8 +1,8 @@
 ---
 layout: post
 order: 0
-n_photos: 14
-key_photo: 14
+n_photos: 16
+key_photo: 16
 title: Dongdaemun
 subtitle: Dongdaemun
 camera: Olympus XA, Mamiya 645 Pro TL
