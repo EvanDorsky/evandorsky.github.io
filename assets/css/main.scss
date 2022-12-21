@@ -195,7 +195,7 @@ h2#gallery {
     font-weight: 600;
   }
   p {
-    max-width: 40rem;
+    max-width: Min(100%, 40rem);
   }
 }
 
