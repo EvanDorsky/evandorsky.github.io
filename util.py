@@ -17,6 +17,7 @@ series_info = OrderedDict([
   ("n_photos", ""),
   ("key_photo", 1),
   ("title", ""),
+  ("subtitle", ""),
   ("camera", ""),
   ("lens", ""),
   ("film", ""),
