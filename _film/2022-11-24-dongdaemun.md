@@ -13,7 +13,7 @@ format: 120, 135
 
 {% assign photo_index = 1 %}
 
-We found ourselves in Dongdaemun a number of times during our visit. It was one of a few of Seoul neighborhoods we visited that juxtaposed retail attractions and heavy industry. Dongdaemun was both a garment district – full of small clothing shops – and a textile district – bulk rolls of fabric everywhere.
+We found ourselves in Dongdaemun a number of times during our visit. It was one of many Seoul neighborhoods we visited that juxtaposed retail attractions and heavy industry. Dongdaemun seems to be both a garment district – full of small clothing shops – and a textile district – bulk rolls of fabric everywhere.
 
 It's also right along Cheonggyecheon, a stream that runs through downtown Seoul. Because the sun set so early, we often caught the neighborhood during golden hour.
 
