@@ -28,12 +28,12 @@ The grills filled this covered alley with smoke.
 
 The streets around the alley were sparsely populated but lively.
 
+{% include series-photo.html %}
 {% include photo-array.html n_photos=2 %}
 {% include series-photo.html %}
 
 Neighboring Ginza was on display, at a safe distance.
 
-{% include series-photo.html %}
 {% include series-photo.html %}
 
 This was the densest alley we explored, full of restaurants and activity. We didn't spot many foreigners here.
