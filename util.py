@@ -12,7 +12,7 @@ import yaml
 from collections import OrderedDict
 
 series_info = OrderedDict([
-  ("layout", "series"),
+  ("layout", "post"),
   ("order", 0),
   ("n_photos", ""),
   ("key_photo", 1),
@@ -59,17 +59,20 @@ def run_process_img(args):
     series_file = os.path.join('_film', series_name+".md")
 
     with open(series_file, "r") as f:
-      docs = yaml.load_all(f, Loader=yaml.FullLoader)
-
+      docs = yaml.safe_load_all(f)
       im_dim = args["dim"]
-      try:
-        for doc in docs:
+      for doc in docs:
+        try:
           if doc is not None and 'im_dim' in doc:
             im_dim = doc['im_dim']
-      except yaml.scanner.ScannerError as e:
-        print('Warning: Could not parse series document as YAML: %s' % e)
-      except Exception as e:
-        raise
+          # this is kind of lazy, but we know that the first doc will be valid
+          # and the text after the doc separator won't be, so just break after
+          # yielding the first one
+          break
+        except yaml.scanner.ScannerError as e:
+          print('Warning: Could not parse series document as YAML: %s' % e)
+        except Exception as e:
+          raise
 
   # 1. if the "original" folder doesn't exist, create it and move all the images there
     orig_path = os.path.join(im_dir, 'original')
@@ -157,6 +160,13 @@ def run_series(args):
 
     with open(md_path, 'w') as f:
       f.write(frontmatter)
+      f.write('\n')
+      f.write('{% assign photo_index = 1 %}')
+      f.write('\n')
+      f.write('\n')
+      for i in range(series_info["n_photos"]):
+        f.write('{% include series-photo.html %}')
+        f.write('\n')
 
   # run process-img, since there are new images to process now
   run_process_img({"dim": 1500, "force": False})

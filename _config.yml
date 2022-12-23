@@ -26,7 +26,8 @@ description: >- # this means to ignore newlines until the next key
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: dorskyee
-github_username:  Evan Dorsky
+instagram_username: dorskyee
+github_username: EvanDorsky
 
 # Build settings
 # theme: notepad
@@ -40,6 +41,11 @@ collections:
     output: true
 
 markdown: kramdown
+
+photo_meta:
+  cameras:
+    mamiya: Mamiya 645 Pro TL
+    olympus: Olympus XA
 
 # Exclude from processing.
 # The following items will not be processed, by default.
