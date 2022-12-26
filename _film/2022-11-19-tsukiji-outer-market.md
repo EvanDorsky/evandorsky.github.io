@@ -3,7 +3,7 @@ layout: post
 subtitle: Tsukiji Outer Market
 order: 0
 n_photos: 18
-key_photo: 6
+key_photo: 3
 title: Tsukiji Outer Market
 camera: Olympus XA, Mamiya 645 Pro TL
 lens: Zuiko 35mm f/2.8, Mamiya Sekor C 80mm f/2.8 N
