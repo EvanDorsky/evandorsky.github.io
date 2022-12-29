@@ -423,7 +423,7 @@ h2#gallery {
 .photo-modal {
   z-index: 90;
   border-radius: 5px;
-  background-color: var(--bg-color);
+  // background-color: var(--bg-color);
 
   max-width: 100vw;
 
@@ -437,6 +437,7 @@ h2#gallery {
 }
 
 .photo-details {
+  color: white;
   padding: 0.5rem;
   font-family: 'Noto Sans Mono', sans-serif;
   .photo-caption {

@@ -2,7 +2,7 @@
 
 import sys, os
 from pprint import pprint
-from subprocess import call
+from subprocess import call, run
 from multiprocessing.pool import Pool
 import functools
 import argparse
@@ -10,8 +10,15 @@ import os
 import shutil
 import yaml
 from collections import OrderedDict
-import piexif
 import json
+
+def valid_path(path):
+  try:
+    os.makedirs(path)
+  except FileExistsError:
+    pass
+
+  return path
 
 series_info = OrderedDict([
   ("layout", "post"),
@@ -36,28 +43,38 @@ IM_EXTS = [
   '.jpg'
 ]
 
-def exif_get(exif, key):
-  keys = meta_key[key]
-  res = exif
-  for exif_key in keys:
-    res = res[exif_key]
+def exif_text_to_dict(text):
+  exif = {}
+  for line in text.split('\n'):
+    for i, char in enumerate(line):
+      if char == ':':
+        break
+    exif[line[:i].strip()] = line[i+1:].strip()
 
-  return res
+  return exif
+
+def load_photo_meta(path):
+  res = run(['exiftool', path], capture_output=True, text=True)
+  return exif_text_to_dict(res.stdout)
 
 # get NLP-formatted metadata from exif data
-def exif_get_nlp(exif):
-  meta = exif_get(exif, 'camera')
-  meta_split = list(map(str.strip, str(meta).split('|')))
+def get_info_dict(exif):
+  desc = exif['Description']
 
-  stock_speed = meta_split[2].split('\\n')[0]
+  desc_split = list(map(str.strip, str(desc).split('|')))
+  try:
+    stock_speed = desc_split[2].split('..')[0]
+  except IndexError:
+    stock_speed = ''
   stock_speed = stock_speed.split(' ')
 
   stock = ' '.join(stock_speed[:-1])
   speed = stock_speed[-1]
 
   res = {
-    'camera': meta_split[0][2:],
-    'lens': meta_split[1],
+    'title': exif['Title'],
+    'camera': exif['Camera Model Name'],
+    'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
     'stock': stock,
     'speed': speed
   }
@@ -213,13 +230,14 @@ def run_series(args):
     jpg_path = os.path.join(im_out_path, 'original')
     for dirpath, dirs, files in os.walk(jpg_path):
       for file in files:
-        info = piexif.load(os.path.join(dirpath, file))
-        data = exif_get_nlp(info)
+        meta = load_photo_meta(os.path.join(dirpath, file))
+        data = get_info_dict(meta)
+
         if args.action == "read":
           pprint(data)
         else:
           json_name = os.path.splitext(file)[0] + '.json'
-          with open(os.path.join(im_out_path, json_name), 'w') as f:
+          with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
             json.dump(data, f)
 
   if args.action != "read":

@@ -18,6 +18,6 @@
   {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
   {% capture img_src %}film/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
 
-  {% include photo.html src=img_src %}
+  {% include photo.html src=img_src folder=page_name num_str=num_str %}
 {% endfor %}
 </div>
