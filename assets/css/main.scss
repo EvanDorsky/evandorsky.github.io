@@ -434,10 +434,12 @@ h2#gallery {
     max-height: 80vh;
     border-radius: 0;
   }
+  .photo-details {
+    color: white;
+  }
 }
 
 .photo-details {
-  color: white;
   padding: 0.5rem;
   font-family: 'Noto Sans Mono', sans-serif;
   .photo-caption {
