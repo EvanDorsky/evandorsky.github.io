@@ -10,6 +10,8 @@ import os
 import shutil
 import yaml
 from collections import OrderedDict
+import piexif
+import json
 
 series_info = OrderedDict([
   ("layout", "post"),
@@ -24,9 +26,43 @@ series_info = OrderedDict([
   ("format", ""),
 ])
 
+meta_key = {
+  'lens_make': ('Exif', 42035),
+  'lens_model': ('Exif', 42036),
+  'camera': ('0th', 270)
+}
+
 IM_EXTS = [
   '.jpg'
 ]
+
+def exif_get(exif, key):
+  keys = meta_key[key]
+  res = exif
+  for exif_key in keys:
+    res = res[exif_key]
+
+  return res
+
+# get NLP-formatted metadata from exif data
+def exif_get_nlp(exif):
+  meta = exif_get(exif, 'camera')
+  meta_split = list(map(str.strip, str(meta).split('|')))
+
+  stock_speed = meta_split[2].split('\\n')[0]
+  stock_speed = stock_speed.split(' ')
+
+  stock = ' '.join(stock_speed[:-1])
+  speed = stock_speed[-1]
+
+  res = {
+    'camera': meta_split[0][2:],
+    'lens': meta_split[1],
+    'stock': stock,
+    'speed': speed
+  }
+
+  return res
 
 def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
@@ -81,10 +117,10 @@ def run_process_img(args):
 
       ims = sorted(os.listdir(im_dir))
       for im in ims:
-        im_path = os.path.join(im_dir, im)
-        if is_im(im_path):
-          shutil.copy(im_path, os.path.join(orig_path, im))
-          os.remove(im_path)
+        im_out_path = os.path.join(im_dir, im)
+        if is_im(im_out_path):
+          shutil.copy(im_out_path, os.path.join(orig_path, im))
+          os.remove(im_out_path)
 
     originals = sorted(os.listdir(orig_path))
     # 2. for each image in the "original" folder...
@@ -124,12 +160,18 @@ def info_tostr(info):
   return frontmatter
 
 def run_series(args):
-  im_path = 'assets/img/film/%s' % args.name
+  im_out_path = 'assets/img/film/%s' % args.name
   md_path = '_film/%s.md' % args.name
 
-  if args.action in ["remove", "refresh"]:
+  input_path = os.path.expanduser(args.input_path)
+  input_files = os.listdir(input_path)
+  # if we're just refreshing and there are no input images,
+  # don't delete the existing images
+  if len(input_files) == 0 and args.action == "refresh":
+    pass
+  elif args.action in ["remove", "refresh"]:
     try:
-      shutil.rmtree(im_path)
+      shutil.rmtree(im_out_path)
       if args.action == "remove":
         os.remove(md_path)
     except Exception as e:
@@ -138,24 +180,22 @@ def run_series(args):
       return
 
   try:
-    os.mkdir(im_path)
+    os.mkdir(im_out_path)
   except FileExistsError:
     pass
   except Exception as e:
     raise
 
   # move image files into the new series path
-  ph_path = os.path.expanduser(args.photo_path)
-  photo_files = os.listdir(ph_path)
-  for photo in photo_files:
-    res_path = os.path.join(im_path, photo)
+  for photo in input_files:
+    res_path = os.path.join(im_out_path, photo)
     if os.path.exists(res_path):
       os.remove(res_path)
-    shutil.move(os.path.join(ph_path, photo), im_path)
+    shutil.move(os.path.join(input_path, photo), im_out_path)
 
   if args.action == "create":
     # fill series info
-    series_info["n_photos"] = len(photo_files)
+    series_info["n_photos"] = len(input_files)
     frontmatter = info_tostr(series_info)
 
     with open(md_path, 'w') as f:
@@ -168,8 +208,24 @@ def run_series(args):
         f.write('{% include series-photo.html %}')
         f.write('\n')
 
-  # run process-img, since there are new images to process now
-  run_process_img({"dim": 1500, "force": False})
+  # then dump the metadata into a file for the site builder
+  if args.action in ["create", "refresh", "read"]:
+    jpg_path = os.path.join(im_out_path, 'original')
+    for dirpath, dirs, files in os.walk(jpg_path):
+      for file in files:
+        info = piexif.load(os.path.join(dirpath, file))
+        data = exif_get_nlp(info)
+        if args.action == "read":
+          pprint(data)
+        else:
+          json_name = os.path.splitext(file)[0] + '.json'
+          with open(os.path.join(im_out_path, json_name), 'w') as f:
+            json.dump(data, f)
+
+  if args.action != "read":
+    # run process-img, since there are new images to process now
+    run_process_img({"dim": 1500, "force": False})
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -191,7 +247,7 @@ if __name__ == '__main__':
       'func': run_series,
       'args': {
         'name': {},
-        '--photo-path': {
+        '--input-path': {
           'default': '~/Film/Outbox'
         },
         '--action': {
