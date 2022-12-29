@@ -1,11 +1,5 @@
 <div id="navbar">
 
-  {% unless include.hide_backarrow %}
-    <i class="back-arrow-icon"></i>
-    <a class="back-arrow" href="..">
-    </a>
-  {% endunless %}
-
   {% assign namesplit = page.name | split: '.' %}
   {% assign pagename = namesplit[0] %}
 
