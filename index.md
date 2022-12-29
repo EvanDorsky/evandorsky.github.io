@@ -1,7 +1,6 @@
 ---
-layout: page-wide
-jumbotron: true
-wrapper_type: wide
+layout: index
+jumbotron: false
 title: Gallery
 navbar: true
 navbar-order: 0
@@ -9,8 +8,13 @@ navbar-order: 0
 
 {% assign series_sorted = site.film | sort: 'order' %}
 
-{% for gallery in site.film %}
-  {% if gallery.role %}
-    {% include gallery.html row_height=gallery.row_height n_photos=gallery.n_photos path=gallery.path %}
+<div class="film">
+{% for gallery in series_sorted %}
+  {% if gallery.role != "feature" %}
+    {% continue %}
   {% endif %}
+
+  <h3>{{ gallery.title }}</h3>
+  {{ gallery.content }}
 {% endfor %}
+</div>

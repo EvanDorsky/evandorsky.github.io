@@ -232,13 +232,18 @@ function main(event) {
     .on("keydown", bodyKeydown)
 
   // window.galleryRowHeight = 250
+  var galleryRowTol = 0.3
+  if (window.galleryRowTol) {
+    galleryRowTol = window.galleryRowTol
+  }
 
   fjGallery(document.querySelectorAll('.fj-gallery'), {
     itemSelector: '.fj-gallery-item',
     transitionDuration: 0,
     gutter: 20,
     rowHeight: window.galleryRowHeight,
-    rowHeightTolerance: 0.3,
+    rowHeightTolerance: galleryRowTol,
+    lastRow: "center",
     calculateItemsHeight: true
   });
 

@@ -135,10 +135,6 @@ em.key-line {
   }
 }
 
-.feature-gallery-container {
-  margin-bottom: 8rem;
-}
-
 h2#gallery {
   padding-top: 1rem;
   font-weight: 400;
@@ -268,7 +264,9 @@ h2#gallery {
 // gallery item
 
 .fj-gallery {
-  padding: 1.5vh 0;
+  // this is half of the "gutter" set in main.js
+  // which enables consecutive galleries to flow together
+  padding-bottom: 10px;
 }
 
 .fj-gallery-item {
