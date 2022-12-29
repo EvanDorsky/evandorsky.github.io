@@ -1,5 +1,5 @@
 ---
-role: feature
+role: portfolio
 layout: gallery
 
 order: 1

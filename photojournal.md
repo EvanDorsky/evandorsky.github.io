@@ -19,7 +19,7 @@ row_height: 350
 
 {% assign series_sorted = site.film | reverse %}
 {% for series in series_sorted %}
-  {% if series.role == 'feature' %}
+  {% if series.role %}
     {% continue %}
   {% endif %}
 

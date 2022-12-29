@@ -1,5 +1,5 @@
 ---
-role: feature
+role: series
 layout: series
 order: 3
 n_photos: 31
