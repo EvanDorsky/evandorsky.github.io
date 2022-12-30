@@ -225,9 +225,14 @@ def run_series(args):
         f.write('{% include series-photo.html %}')
         f.write('\n')
 
+  if args.action != "read":
+    # run process-img, since there are new images to process now
+    run_process_img({"dim": 1500, "force": False})
+
   # then dump the metadata into a file for the site builder
   if args.action in ["create", "refresh", "read"]:
     jpg_path = os.path.join(im_out_path, 'original')
+    contents = os.listdir(jpg_path)
     for dirpath, dirs, files in os.walk(jpg_path):
       for file in files:
         meta = load_photo_meta(os.path.join(dirpath, file))
@@ -239,10 +244,6 @@ def run_series(args):
           json_name = os.path.splitext(file)[0] + '.json'
           with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
             json.dump(data, f)
-
-  if args.action != "read":
-    # run process-img, since there are new images to process now
-    run_process_img({"dim": 1500, "force": False})
 
 
 if __name__ == '__main__':
