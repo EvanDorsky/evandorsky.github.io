@@ -17,7 +17,6 @@ We found ourselves in Dongdaemun a number of times during our visit. It was one 
 
 It's also right along Cheonggyecheon, a stream that runs through downtown Seoul. Because the sun set so early, we often caught the neighborhood during golden hour.
 
-{% include photo-array.html n_photos=2 %}
 {% include series-photo.html %}
 
 People, carts, and scooters moved products back and forth.
