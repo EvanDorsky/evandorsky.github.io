@@ -59,7 +59,10 @@ def load_photo_meta(path):
 
 # get NLP-formatted metadata from exif data
 def get_info_dict(exif):
-  desc = exif['Description']
+  try:
+    desc = exif['Description']
+  except KeyError:
+    return {}
 
   desc_split = list(map(str.strip, str(desc).split('|')))
   try:
@@ -71,13 +74,16 @@ def get_info_dict(exif):
   stock = ' '.join(stock_speed[:-1])
   speed = stock_speed[-1]
 
-  res = {
-    'title': exif['Title'],
-    'camera': exif['Camera Model Name'],
-    'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
-    'stock': stock,
-    'speed': speed
-  }
+  try:
+    res = {
+      'title': exif['Title'],
+      'camera': exif['Camera Model Name'],
+      'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
+      'stock': stock,
+      'speed': speed
+    }
+  except KeyError:
+    return {}
 
   return res
 
