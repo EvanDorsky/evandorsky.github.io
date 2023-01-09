@@ -1,6 +1,7 @@
 ---
 layout: post
 order: 0
+date: 2022-11-25 14:00:00
 n_photos: 15
 key_photo: 3
 title: Gyeongbokgung

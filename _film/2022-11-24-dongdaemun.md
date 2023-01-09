@@ -1,6 +1,7 @@
 ---
 layout: post
 order: 0
+date: 2022-11-24 16:00:00
 n_photos: 16
 key_photo: 5
 title: Dongdaemun
