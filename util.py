@@ -74,6 +74,12 @@ def get_info_dict(exif):
   stock = ' '.join(stock_speed[:-1])
   speed = stock_speed[-1]
 
+  # just fill empty keys so we can build a partial dict
+  keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens ID']
+  for key in keys:
+    if key not in exif:
+      exif[key] = ''
+
   try:
     res = {
       'title': exif['Title'],
@@ -245,6 +251,7 @@ def run_series(args):
         data = get_info_dict(meta)
 
         if args.action == "read":
+          print(os.path.join(dirpath, file))
           pprint(data)
         else:
           json_name = os.path.splitext(file)[0] + '.json'
