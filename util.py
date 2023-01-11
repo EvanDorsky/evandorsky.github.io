@@ -183,7 +183,24 @@ def info_tostr(info):
   frontmatter += sep
   return frontmatter
 
+def get_valid_series_name(name):
+  series = sorted(os.listdir('assets/img/film/'))
+  candidates = []
+  for s in series:
+    if name in s:
+      candidates += [s]
+
+  if len(candidates) == 1:
+    return candidates[0]
+  else:
+    print('multiple possible series:')
+    pprint(candidates)
+    print('exiting')
+    exit()
+
 def run_series(args):
+  args.name = get_valid_series_name(args.name)
+
   im_out_path = 'assets/img/film/%s' % args.name
   md_path = '_film/%s.md' % args.name
 
@@ -277,8 +294,6 @@ def run_series(args):
     if args.action == "read":
       pprint(os.path.join(dirpath, file))
       pprint(photo)
-      pprint('---')
-      pprint(meta_summary)
     else:
       # create json data files
       json_name = os.path.splitext(file)[0] + '.json'
