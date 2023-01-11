@@ -191,7 +191,11 @@ def get_valid_series_name(name):
       candidates += [s]
 
   if len(candidates) == 1:
-    return candidates[0]
+    guess = candidates[0]
+
+    print('Series: %s (input: %s)' % (guess, name))
+
+    return guess
   else:
     print('multiple possible series:')
     pprint(candidates)
