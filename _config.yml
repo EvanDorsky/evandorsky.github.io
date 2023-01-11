@@ -39,6 +39,8 @@ collections:
     output: false
   film:
     output: true
+  portfolio:
+    output: true
 
 markdown: kramdown
 

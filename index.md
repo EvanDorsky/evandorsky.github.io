@@ -6,7 +6,7 @@ navbar: true
 navbar-order: 0
 ---
 
-{% assign series_sorted = site.film | sort: 'order' %}
+{% assign series_sorted = site.portfolio | sort: 'order' %}
 
 {% for gallery in series_sorted %}
   {% if gallery.role != "feature" %}
