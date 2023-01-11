@@ -33,12 +33,6 @@ series_info = OrderedDict([
   ("format", ""),
 ])
 
-meta_key = {
-  'lens_make': ('Exif', 42035),
-  'lens_model': ('Exif', 42036),
-  'camera': ('0th', 270)
-}
-
 IM_EXTS = [
   '.jpg'
 ]
@@ -85,6 +79,7 @@ def get_info_dict(exif):
       'title': exif['Title'],
       'camera': exif['Camera Model Name'],
       'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
+      'lens_make': exif['Lens Make'],
       'stock': stock,
       'speed': speed
     }
@@ -241,23 +236,72 @@ def run_series(args):
     # run process-img, since there are new images to process now
     run_process_img({"dim": 1500, "force": False})
 
-  # then dump the metadata into a file for the site builder
+  # then collect the metadata
+  series_meta = []
   if args.action in ["create", "refresh", "read"]:
     jpg_path = os.path.join(im_out_path, 'original')
     contents = os.listdir(jpg_path)
     for dirpath, dirs, files in os.walk(jpg_path):
       for file in files:
         meta = load_photo_meta(os.path.join(dirpath, file))
-        data = get_info_dict(meta)
+        series_meta += [get_info_dict(meta)]
 
-        if args.action == "read":
-          print(os.path.join(dirpath, file))
-          pprint(data)
-        else:
-          json_name = os.path.splitext(file)[0] + '.json'
-          with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
-            json.dump(data, f)
+    # create metadata summary
+    meta_summary = {}
 
+    meta_summary = {
+      key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
+    }
+
+    # create series summary strings
+    # lens summary
+    meta_summary['lens_dict'] = {make: [] for make in meta_summary['lens_make']}
+    for lens in meta_summary['lens']:
+      for make in meta_summary['lens_make']:
+        if make in lens:
+          make_len = len(make)
+          meta_summary['lens_dict'][make] += [lens[make_len+1:]]
+          break
+
+    lenses = meta_summary['lens_dict']
+    make_summaries = []
+    for make in lenses:
+      make_summaries += [make+' '+', '.join(lenses[make])]
+    lens_summary = ', '.join(make_summaries)
+
+    meta_summary['lens_summary'] = lens_summary
+    meta_summary['camera_summary'] = ', '.join(meta_summary['camera'])
+    meta_summary['stock_summary'] = ', '.join(meta_summary['stock'])
+
+  for photo in series_meta:
+    if args.action == "read":
+      pprint(os.path.join(dirpath, file))
+      pprint(photo)
+      pprint('---')
+      pprint(meta_summary)
+    else:
+      # create json data files
+      json_name = os.path.splitext(file)[0] + '.json'
+      with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
+        json.dump(photo, f)
+
+      with open('_data/%s/series.json' % args.name, 'w') as f:
+        json.dump(meta_summary, f)
+
+
+def get_prefixes(labels):
+  n_labels = len(labels)
+  for i in range(n_labels):
+    for j in range(i+1, n_labels):
+      pfix = prefix(labels[i], labels[j])
+      print("%i and %i share: %s" % (i, j, pfix))
+
+def prefix(a, b):
+  for i in range(len(a)):
+    if a[i] != b[i]:
+      break
+
+  return a[:i]
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
