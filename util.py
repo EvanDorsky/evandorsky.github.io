@@ -94,6 +94,18 @@ def is_im(path):
 def create_webp(im, webp, dim):
   return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
 
+def get_series_path(name):
+  series_folders = ['_film', '_portfolio']
+  for folder in series_folders:
+    test_path = os.path.join(folder, name+".md")
+
+    if os.path.isfile(test_path):
+      return test_path
+
+  print("Could not find markdown file for series: %s" % name)
+  print("Exiting")
+  exit()
+
 def run_process_img(args):
   print("Generating web images...")
   if type(args) == argparse.Namespace:
@@ -116,7 +128,7 @@ def run_process_img(args):
   for im_dir in im_dirs:
     series_name = os.path.split(im_dir)[-1]
 
-    series_file = os.path.join('_film', series_name+".md")
+    series_file = get_series_path(series_name)
 
     with open(series_file, "r") as f:
       docs = yaml.safe_load_all(f)
