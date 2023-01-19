@@ -351,21 +351,22 @@ h2#gallery {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .selected-preview {
   display: flex;
-  height: 10rem;
+  height: 6rem;
   align-items: center;
+  padding: 1rem 0;
 
   img {
     flex: 0 1 auto;
     height: 100%;
   }
   .title {
-    flex: 1 0 auto;
-    padding-left: 2rem;
+    flex: 0 1 auto;
+    padding: 0 2rem;
   }
 }
 
