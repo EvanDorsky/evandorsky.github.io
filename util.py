@@ -380,7 +380,6 @@ if __name__ == '__main__':
 
 
 
-
 '''
 def run_process_img(args):
   process_imgs('assets/img/about', 500)
