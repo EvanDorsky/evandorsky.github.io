@@ -358,7 +358,7 @@ h2#gallery {
   display: flex;
   height: 6rem;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 1rem 1rem 0;
 
   img {
     flex: 0 1 auto;
@@ -366,7 +366,7 @@ h2#gallery {
   }
   .title {
     flex: 0 1 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 }
 
