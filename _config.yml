@@ -41,13 +41,11 @@ collections:
     output: true
   portfolio:
     output: true
+    permalink: /:name
 
 markdown: kramdown
 
-photo_meta:
-  cameras:
-    mamiya: Mamiya 645 Pro TL
-    olympus: Olympus XA
+permalink: pretty
 
 # Exclude from processing.
 # The following items will not be processed, by default.
