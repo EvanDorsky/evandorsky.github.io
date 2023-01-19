@@ -26,11 +26,7 @@ series_info = OrderedDict([
   ("n_photos", ""),
   ("key_photo", 1),
   ("title", ""),
-  ("subtitle", ""),
-  ("camera", ""),
-  ("lens", ""),
-  ("film", ""),
-  ("format", ""),
+  ("subtitle", "")
 ])
 
 IM_EXTS = [
@@ -74,17 +70,14 @@ def get_info_dict(exif):
     if key not in exif:
       exif[key] = ''
 
-  try:
-    res = {
-      'title': exif['Title'],
-      'camera': exif['Camera Model Name'],
-      'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
-      'lens_make': exif['Lens Make'],
-      'stock': stock,
-      'speed': speed
-    }
-  except KeyError:
-    return {}
+  res = {
+    'title': exif['Title'],
+    'camera': exif['Camera Model Name'],
+    'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
+    'lens_make': exif['Lens Make'],
+    'stock': stock,
+    'speed': speed
+  }
 
   return res
 
@@ -215,7 +208,8 @@ def get_valid_series_name(name):
     exit()
 
 def run_series(args):
-  args.name = get_valid_series_name(args.name)
+  if args.action != 'create':
+    args.name = get_valid_series_name(args.name)
 
   im_out_path = 'assets/img/film/%s' % args.name
   md_path = '_film/%s.md' % args.name

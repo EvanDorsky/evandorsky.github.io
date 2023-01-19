@@ -197,7 +197,7 @@ h2#gallery {
   p {
     max-width: Min(100%, 40rem);
   }
-  &.index:nth-child(even) {
+  &.index:nth-child(odd) {
     color: white;
     background-color: black;
   }
@@ -344,6 +344,28 @@ h2#gallery {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+}
+
+.selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.selected-preview {
+  display: flex;
+  height: 10rem;
+  align-items: center;
+
+  img {
+    flex: 0 1 auto;
+    height: 100%;
+  }
+  .title {
+    flex: 1 0 auto;
+    padding-left: 2rem;
   }
 }
 

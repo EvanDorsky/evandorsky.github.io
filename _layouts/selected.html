@@ -1,0 +1,26 @@
+---
+layout: page
+no_wrapper: true
+---
+
+{% include meta-thumbnail.html %}
+
+<link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
+
+<div class="film">
+  <h3>{{ page.subtitle }}</h3>
+
+  {{ content }}
+
+  {% assign pathsplit = page.path | split: '/' %}
+  {% assign name_ext = pathsplit[-1] %}
+  {% assign namesplit = name_ext | split: '.' %}
+  {% assign page_name = namesplit[0] %}
+
+  {% assign series_meta = site.data[page_name]['series'] %}
+  <div class="photo-details">
+    <div class="camera">{{ series_meta.camera_summary }}</div>
+    <div class="lens">{{ series_meta.lens_summary }}</div>
+    <div class="stock">{{ series_meta.stock_summary }}</div>
+  </div>
+</div>

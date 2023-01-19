@@ -1,10 +1,10 @@
 
-<div class="fj-gallery">
-
 <script type="text/javascript">
   window.galleryRowHeight = {{ include.row_height }}
   window.galleryRowTol = {{ include.row_tol }}
 </script>
+
+<div class="fj-gallery">
 
 {% assign n_start = include.n_start | default: 1 %}
 {% assign n_end   = n_start | plus: include.n_photos | minus: 1 %}
