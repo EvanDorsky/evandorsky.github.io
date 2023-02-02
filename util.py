@@ -195,17 +195,24 @@ def get_valid_series_name(name):
     if name in s:
       candidates += [s]
 
+  guess = None
   if len(candidates) == 1:
     guess = candidates[0]
+  else:
+    # check for a perfect match if there are multiple candidates
+    for c in candidates:
+      if name == c:
+        guess = c
 
+  if guess is not None:
     print('Series: %s (input: %s)' % (guess, name))
 
     return guess
-  else:
-    print('multiple possible series:')
-    pprint(candidates)
-    print('exiting')
-    exit()
+
+  print('multiple possible series:')
+  pprint(candidates)
+  print('exiting')
+  exit()
 
 def run_series(args):
   if args.action != 'create':
