@@ -269,7 +269,7 @@ def run_series(args):
     jpg_path = os.path.join(im_out_path, 'original')
     contents = os.listdir(jpg_path)
     for dirpath, dirs, files in os.walk(jpg_path):
-      for file in files:
+      for file in sorted(files):
         meta = load_photo_meta(os.path.join(dirpath, file))
         series_meta += [get_info_dict(meta)]
 
@@ -300,13 +300,19 @@ def run_series(args):
     meta_summary['camera_summary'] = ', '.join(meta_summary['camera'])
     meta_summary['stock_summary'] = ', '.join(meta_summary['stock'])
 
-  for photo in series_meta:
+  # metadata now lives in series_meta
+
+  for i, photo in enumerate(series_meta):
+    filename = "%02i.jpg" % (i+1)
     if args.action == "read":
-      pprint(os.path.join(dirpath, file))
+      pprint(os.path.join(dirpath, filename))
       pprint(photo)
     else:
+      print('make the json data')
       # create json data files
-      json_name = os.path.splitext(file)[0] + '.json'
+      json_name = os.path.splitext(filename)[0] + '.json'
+      print('put it here: %s' % os.path.join(valid_path('_data/%s' % args.name), json_name))
+      pprint(photo)
       with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
         json.dump(photo, f)
 
