@@ -62,7 +62,7 @@ In 2013, _I built the Beta product for **PlayPosit**{:#playposit .key-phrase}, a
 {{ site.features | where:"key","playposit" }}
 
 
-You can contact me [**here**](mailto:evan.dorsky@icloud.com){:.key-phrase}.
+You can contact me [**here**](mailto:evan.dorsky@gmail.com){:.key-phrase}.
 
   </div>
 </div>
