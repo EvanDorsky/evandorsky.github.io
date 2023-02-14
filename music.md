@@ -8,6 +8,7 @@ navbar-order: 2
 ---
 
 <div class="gallery">
+  {% include youtube.html src="https://www.youtube-nocookie.com/embed/eG6oCKFAvLI?start=191&amp;list=PLwIz1LznV3-nqtD4DS4oYojlEhiuI_MPj" %}
   {% include youtube.html src="https://www.youtube-nocookie.com/embed/k4yzGmpalVM?start=192" %}
   {% include youtube.html src="https://www.youtube-nocookie.com/embed/6pl2B97aRs4?start=141" %}
   {% include youtube.html src="https://www.youtube-nocookie.com/embed/FgMYhpUyIg4?start=136" %}
