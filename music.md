@@ -50,7 +50,7 @@ navbar-order: 2
 <div class="show-label year">{{ current_year }}</div>
 <div class="music-shows">
   {% endif %}
-  {% include music-show.html show=show %}
+  {% include music-show.html show=show happened=current_happened %}
   {% assign last_year = show.date | date: "%Y" %}
 
   {% assign last_happened = true %}

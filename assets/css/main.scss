@@ -378,9 +378,16 @@ footer {
 }
 
 .music-shows {
-  padding-left: 1rem;
+  padding-left: 1.1rem;
   border-left: 1px solid black;
-  margin-left: 1rem;
+  margin-left: 1.1rem;
+}
+
+.show-label {
+  font-weight: 600;
+
+  &.year {
+  }
 }
 
 .music-show {
@@ -388,22 +395,20 @@ footer {
     font-size: 1.5rem;
   }
   .details {
-    padding-left: 1rem;
+    padding-left: 1.1rem;
   }
   .venue {
   }
+  .address {
+    font-size: 1rem;
+  }
   .date {
+    font-weight: 800;
   }
   .link {
+    font-weight: 600;
   }
-  padding-bottom: 1rem;
-}
-
-.show-label {
-  font-weight: 900;
-
-  &.year {
-  }
+  padding-bottom: 1.2rem;
 }
 
 .gallery-piece {

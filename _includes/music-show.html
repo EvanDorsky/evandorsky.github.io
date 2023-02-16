@@ -1,13 +1,22 @@
 
 <div class="music-show">
     {% assign s=include.show %}
+    {% if include.happened %}
+      <div class="date">{{ s.date | date: "%B %-d" }}</div>
+    {% else %}
+      <div class="date">{{ s.date | date: "%A, %B %-d at %-I %p" }}</div>
+    {% endif %}
     <div class="title">{{ s.title }}</div>
     <div class="details">
       <div class="venue">{{ s.venue }}</div>
-      <div class="date">{{ s.date | date: "%A, %B %-d at %-I %p " }}</div>
+    {% if include.happened %}
+        <div class="link"><a href="{{ s.url }}">Recordings</a></div>
+    {% else %}
+      <div class="address">{{ s.address }}</div>
       {% if s.link != "" %}
         <div class="link"><a href="{{ s.link }}" target="blank">Tickets</a></div>
       {% endif %}
+    {% endif %}
     </div>
 
     <!-- {% for rec in s.recordings %} -->
