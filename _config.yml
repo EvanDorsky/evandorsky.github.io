@@ -39,6 +39,8 @@ collections:
     output: false
   film:
     output: true
+  shows:
+    output: true
   portfolio:
     output: true
     permalink: /:name

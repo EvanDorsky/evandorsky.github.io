@@ -1,0 +1,16 @@
+
+<div class="music-show">
+    {% assign s=include.show %}
+    <div class="title">{{ s.title }}</div>
+    <div class="details">
+      <div class="venue">{{ s.venue }}</div>
+      <div class="date">{{ s.date | date: "%A, %B %-d at %-I %p " }}</div>
+      {% if s.link != "" %}
+        <div class="link"><a href="{{ s.link }}" target="blank">Tickets</a></div>
+      {% endif %}
+    </div>
+
+    <!-- {% for rec in s.recordings %} -->
+      <!-- {% include youtube.html src=rec %} -->
+    <!-- {% endfor %} -->
+</div>
