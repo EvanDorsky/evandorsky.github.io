@@ -5,6 +5,7 @@ date: "9/4/2022 7pm"
 venue: "Kaleidoscope"
 address: ""
 ensemble: "String Duo, Piano Trio"
+role: "Viola, Violin"
 rep: "Mozart, Beethoven"
 link: ""
 recordings: [

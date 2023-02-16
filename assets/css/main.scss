@@ -391,8 +391,16 @@ footer {
 }
 
 .music-show {
+  &:not(.upcoming) {
+    font-size: 1rem;
+  }
+
   .title {
-    font-size: 1.5rem;
+    font-size: 136%;
+  }
+  .role {
+    font-size: 90%;
+    display: none;
   }
   .details {
     padding-left: 1.1rem;
