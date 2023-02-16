@@ -4,7 +4,7 @@
     {% if include.happened %}
       <div class="date">{{ s.date | date: "%B %-d" }}</div>
     {% else %}
-      <div class="date">{{ s.date | date: "%A, %B %-d at %-I %p" }}</div>
+      <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p" }}</div>
     {% endif %}
     <div class="title">{{ s.title }}</div>
     <div class="details">
@@ -13,13 +13,7 @@
         <div class="link"><a href="{{ s.url }}">Recordings</a></div>
     {% else %}
       <div class="address">{{ s.address }}</div>
-      {% if s.link != "" %}
-        <div class="link"><a href="{{ s.link }}" target="blank">Tickets</a></div>
-      {% endif %}
+      <div class="link">Free{% if s.link != "" %}: <a href="{{ s.link }}" target="blank">RSVP</a>{% endif %}</div>
     {% endif %}
     </div>
-
-    <!-- {% for rec in s.recordings %} -->
-      <!-- {% include youtube.html src=rec %} -->
-    <!-- {% endfor %} -->
 </div>
