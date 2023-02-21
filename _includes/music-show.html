@@ -12,6 +12,10 @@
     {% endif %}
     <div class="details">
       <div class="venue">{{ s.venue }}</div>
+    {% if s.feature %}
+      {% assign rec = s.recordings[0] %}
+      {% include youtube.html src=rec %}
+    {% endif %}
     {% if include.happened %}
         <div class="link"><a href="{{ s.url }}">Recordings</a></div>
     {% else %}
