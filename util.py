@@ -65,7 +65,7 @@ def get_info_dict(exif):
   speed = stock_speed[-1]
 
   # just fill empty keys so we can build a partial dict
-  keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens ID']
+  keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens']
   for key in keys:
     if key not in exif:
       exif[key] = ''
@@ -73,7 +73,7 @@ def get_info_dict(exif):
   res = {
     'title': exif['Title'],
     'camera': exif['Camera Model Name'],
-    'lens': exif['Lens Make'] + ' ' + exif['Lens ID'],
+    'lens': exif['Lens Make'] + ' ' + exif['Lens'],
     'lens_make': exif['Lens Make'],
     'stock': stock,
     'speed': speed
