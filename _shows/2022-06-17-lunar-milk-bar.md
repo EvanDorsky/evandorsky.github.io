@@ -9,7 +9,7 @@ role: "Violin"
 rep: "Lunar Noon: Symbolic Creature"
 link: "https://www.eventbrite.com/e/ben-absentlunar-noonaudrey-claireleng-bian-tickets-339523683477"
 recordings: [
-  https://www.youtube-nocookie.com/embed/dVjTc_rxsXM,
-  https://www.youtube-nocookie.com/embed/a5Hc3DFHlso
+  "https://www.youtube-nocookie.com/embed/dVjTc_rxsXM",
+  "https://www.youtube-nocookie.com/embed/a5Hc3DFHlso"
 ]
 ---
