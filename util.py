@@ -12,6 +12,10 @@ import yaml
 from collections import OrderedDict
 import json
 
+import sqlite3 as sl
+import stripe
+stripe.api_key = "sk_test_51MdQnKB1vb1395e1LOXH5pkDD0EOtuNoMlbxLc6xN8ufMGPM6seyG0XLGYFgR7KkF6Ty4HuhKhnHiGxNDP9q6b8600Hpn09sFZ"
+
 def valid_path(path):
   try:
     os.makedirs(path)
@@ -51,10 +55,18 @@ def load_photo_meta(path):
 def get_info_dict(exif):
   try:
     desc = exif['Description']
+    keywords = exif['Keywords']
   except KeyError:
     return {}
 
   desc_split = list(map(str.strip, str(desc).split('|')))
+
+  # look for "Caption" (field name in Lightroom) -- metadata that the Stripe integration uses
+  # this is the primary key for the product in the Products database
+  photo_id = ''
+  if '..' in desc_split[0]:
+    photo_id = desc_split[0].split('..')[0]
+
   try:
     stock_speed = desc_split[2].split('..')[0]
   except IndexError:
@@ -64,6 +76,19 @@ def get_info_dict(exif):
   stock = ' '.join(stock_speed[:-1])
   speed = stock_speed[-1]
 
+  # pick the film format out of the keywords
+  # this is where NLP shoves the film format, it's not ideal
+  # but hopefully this works
+
+  # "35mm" is the default because digital photos won't have a film format,
+  # and my digital photos are all 3x2, at least for now
+  # see how resilient it is?
+  film_format = '35mm'
+  for fformat in ['6x6', '645', '35mm']:
+    if fformat in keywords:
+      film_format = fformat
+      break
+
   # just fill empty keys so we can build a partial dict
   keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens']
   for key in keys:
@@ -71,12 +96,14 @@ def get_info_dict(exif):
       exif[key] = ''
 
   res = {
+    'id': photo_id,
     'title': exif['Title'],
     'camera': exif['Camera Model Name'],
     'lens': exif['Lens Make'] + ' ' + exif['Lens'],
     'lens_make': exif['Lens Make'],
     'stock': stock,
-    'speed': speed
+    'speed': speed,
+    'format': film_format
   }
 
   return res
@@ -341,6 +368,45 @@ def prefix(a, b):
 
   return a[:i]
 
+### sqlite
+
+def dict_factory(cursor, row):
+  fields = [column[0] for column in cursor.description]
+  return {key: value for key, value in zip(fields, row)}
+
+def run_test(args):
+  # load photo metadata
+  photo = get_info_dict(load_photo_meta('store/test.jpg'))
+
+  photos = [photo]
+  con = sl.connect('store/test.db')
+  with con:
+    con.row_factory = dict_factory
+    c = con.cursor()
+
+    for p in photos:
+      # check if this id already exists in the database
+      res = c.execute("SELECT id from Products WHERE id == (?)", (p["id"],))
+      # if it doesn't, add to the database
+      if not res.fetchone():
+        c.execute("""
+            INSERT INTO Products (id, name, camera, lens, stock, ar, active) VALUES (?, ?, ?, ?, ?, ?, ?)
+          """, (photo['id'], photo['title'], photo['camera'], photo['lens'], photo['stock'], photo['format'], 1))
+
+# database schema: corresponding key in metadata dict, or default value
+
+# "id": id
+# "name": title
+# "desc": 
+# "location": 
+# "date": 
+# "camera": camera
+# "lens": lens
+# "stock": stock
+# "active": 1
+# "image": 
+# "ar": format
+
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
 
@@ -368,6 +434,11 @@ if __name__ == '__main__':
           'type': str,
           'default': 'create'
         }
+      }
+    },
+    'test': {
+      'func': run_test,
+      'args': {
       }
     }
   }
