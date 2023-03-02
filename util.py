@@ -403,7 +403,7 @@ def run_productize(args):
 
       photos.append(photo)
 
-  con = sl.connect('store/test.db')
+  con = sl.connect('store/store.db')
   with con:
     con.row_factory = dict_factory
     c = con.cursor()
@@ -413,10 +413,11 @@ def run_productize(args):
       res = c.execute("SELECT id from Products WHERE id == (?)", (p["id"],))
       # if it doesn't exist, add to the database
       if res.fetchone() is None:
-        c.execute("""
-            INSERT INTO Products (id, name, camera, lens, stock, format, category, image, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], p['category'], p['image'], 1))
-        print("Added photo id: %s" % p['id'])
+        if not args.dryrun:
+          c.execute("""
+              INSERT INTO Products (id, name, camera, lens, stock, format, category, image, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], p['category'], p['image'], 1))
+          print("Added photo id: %s" % p['id'])
 
 # database schema: corresponding key in metadata dict, or default value
 
@@ -489,7 +490,10 @@ if __name__ == '__main__':
     'productize': {
       'func': run_productize,
       'args': {
-        'name': {}
+        'name': {},
+        '--dryrun': {
+          'action': 'store_true'
+        }
       }
     },
     'upload': {
