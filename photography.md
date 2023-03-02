@@ -1,7 +1,7 @@
 ---
 layout: page-wide
 jumbotron: false
-title: Photojournal
+title: Photography
 thumb: /assets/img/film/selected/goldengate.jpg
 
 navbar: true
