@@ -14,7 +14,7 @@ import json
 
 import sqlite3 as sl
 import stripe
-stripe.api_key = "sk_test_51MdQnKB1vb1395e1LOXH5pkDD0EOtuNoMlbxLc6xN8ufMGPM6seyG0XLGYFgR7KkF6Ty4HuhKhnHiGxNDP9q6b8600Hpn09sFZ"
+stripe.api_key = "sk_test_51Mgj2BEhyRPhN5qgaRf5BPVYAMFjyNGvBXK8l5LAsuAH2l10rjbw6XXYXxc01zvFlQGkBfcaraOrfp19mOnRw6d600hPBFQDaP"
 
 def valid_path(path):
   try:
@@ -395,6 +395,12 @@ def run_productize(args):
   for fname in filenames:
     with open(os.path.join(data_dir, fname), 'r') as f:
       photo = json.load(f)
+
+      photo_fname = os.path.splitext(fname)[0] + '.webp'
+      # construct image url
+      # p_image = "https://www.evandors.ky/assets/img/film/2022-12-28-street/01.webp"
+      photo['image'] = "https://www.evandors.ky/assets/img/film/%s" % (os.path.join(args.name, photo_fname))
+
       photos.append(photo)
 
   con = sl.connect('store/test.db')
@@ -408,8 +414,8 @@ def run_productize(args):
       # if it doesn't exist, add to the database
       if res.fetchone() is None:
         c.execute("""
-            INSERT INTO Products (id, name, camera, lens, stock, ar, category, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], p['category'], 1))
+            INSERT INTO Products (id, name, camera, lens, stock, format, category, image, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], p['category'], p['image'], 1))
         print("Added photo id: %s" % p['id'])
 
 # database schema: corresponding key in metadata dict, or default value
@@ -418,13 +424,38 @@ def run_productize(args):
 # "name": title
 # "desc": 
 # "location": 
+# "category": category
 # "date": 
 # "camera": camera
 # "lens": lens
 # "stock": stock
 # "active": 1
 # "image": 
-# "ar": format
+# "format": format
+
+def run_upload(args):
+  con = sl.connect('store/store.db')
+  with con:
+    con.row_factory = dict_factory
+    c = con.cursor()
+
+    rows = c.execute("SELECT * from Products")
+    for p in rows.fetchall():
+      # for now, delete the matching product if it exists
+      try:
+        stripe.Product.delete(p['id'])
+      except Exception as e:
+        pass
+      stripe.Product.create(
+        id=p['id'],
+        name=p['name'],
+        active=bool(p['active']),
+        description=p['desc'],
+        images=[p['image']],
+        shippable=True,
+        metadata=p
+      )
+      print("Created product: %s" % p['id'])
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -459,6 +490,11 @@ if __name__ == '__main__':
       'func': run_productize,
       'args': {
         'name': {}
+      }
+    },
+    'upload': {
+      'func': run_upload,
+      'args': {
       }
     }
   }
