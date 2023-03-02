@@ -276,6 +276,20 @@ footer {
   opacity: 0.5;
 }
 
+// print store banner
+.print-store-banner {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+
+  text-align: center;
+  padding: 1rem;
+
+  em {
+    font-size: 150%;
+    font-style: inherit;
+  }
+}
+
 // gallery item
 
 .fj-gallery {
