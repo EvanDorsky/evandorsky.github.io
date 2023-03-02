@@ -351,11 +351,8 @@ def run_series(args):
       pprint(os.path.join(dirpath, filename))
       pprint(photo)
     else:
-      print('make the json data')
       # create json data files
       json_name = os.path.splitext(filename)[0] + '.json'
-      print('put it here: %s' % os.path.join(valid_path('_data/%s' % args.name), json_name))
-      pprint(photo)
       with open(os.path.join(valid_path('_data/%s' % args.name), json_name), 'w') as f:
         json.dump(photo, f)
 
@@ -482,7 +479,7 @@ def run_upload(args):
           # for each price, check if it's already in stripe
           # if it's not, create it
           if int(price['id']) not in uploaded_prices:
-            stripe.Price.create(
+            sprice = stripe.Price.create(
               product=product['id'],
               active=bool(price['active']),
               nickname=price['nickname'],
@@ -493,12 +490,31 @@ def run_upload(args):
             print("Created price: $%.2f (id: %i)" % (price['unit_amount'], price['id']))
           else:
             # otherwise, update it
-            stripe.Price.modify(uploaded_prices[price['id']]['id'],
+            sprice = stripe.Price.modify(uploaded_prices[price['id']]['id'],
               active=bool(price['active']),
               nickname=price['nickname'],
               metadata=price
             )
             print("Updated price: $%.2f (id: %i)" % (price['unit_amount'], price['id']))
+          # then, check if a payment link exists. if it doesn't, create one
+          paymentlink = stripe.PaymentLink.create(
+            line_items = [{
+              "price": sprice['id'],
+              "quantity": 1
+            }],
+            metadata=price,
+            custom_text={
+              "shipping_address": {
+                "message": price['nickname']
+              }
+            },
+            shipping_address_collection={
+              "allowed_countries": ["US"]
+            }
+          )
+          print("%s: %s" % (product['id'], price['nickname']))
+          print('---------')
+          print("%s: %s" % (paymentlink['id'], paymentlink['url']))
 
 
 if __name__ == '__main__':
@@ -561,9 +577,6 @@ if __name__ == '__main__':
         subparser.add_argument(arg_name, **arg)
 
   args = parser.parse_args()
-
-  # any setup
-  p = Pool(32)
 
   # run the selected mode
   modes[args.mode]['func'](args)
