@@ -374,11 +374,20 @@ def dict_factory(cursor, row):
   fields = [column[0] for column in cursor.description]
   return {key: value for key, value in zip(fields, row)}
 
-def run_test(args):
-  # load photo metadata
-  photo = get_info_dict(load_photo_meta('store/test.jpg'))
+def run_productize(args):
+  args.name = get_valid_series_name(args.name)
 
-  photos = [photo]
+  # load photo metadata
+  data_dir = os.path.join(valid_path('_data/%s' % args.name))
+
+  filenames = sorted([el for el in os.listdir(data_dir) if 'series' not in el])
+
+  photos = []
+  for fname in filenames:
+    with open(os.path.join(data_dir, fname), 'r') as f:
+      photo = json.load(f)
+      photos.append(photo)
+
   con = sl.connect('store/test.db')
   with con:
     con.row_factory = dict_factory
@@ -387,11 +396,12 @@ def run_test(args):
     for p in photos:
       # check if this id already exists in the database
       res = c.execute("SELECT id from Products WHERE id == (?)", (p["id"],))
-      # if it doesn't, add to the database
-      if not res.fetchone():
+      # if it doesn't exist, add to the database
+      if res.fetchone() is None:
         c.execute("""
             INSERT INTO Products (id, name, camera, lens, stock, ar, active) VALUES (?, ?, ?, ?, ?, ?, ?)
-          """, (photo['id'], photo['title'], photo['camera'], photo['lens'], photo['stock'], photo['format'], 1))
+          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], 1))
+        print("Added photo id: %s" % p['id'])
 
 # database schema: corresponding key in metadata dict, or default value
 
@@ -436,9 +446,10 @@ if __name__ == '__main__':
         }
       }
     },
-    'test': {
-      'func': run_test,
+    'productize': {
+      'func': run_productize,
       'args': {
+        'name': {}
       }
     }
   }
