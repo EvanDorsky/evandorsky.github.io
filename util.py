@@ -410,8 +410,8 @@ def run_productize(args):
 
     for p in photos:
       # check if this id already exists in the database
-      res = c.execute("SELECT id from Products WHERE id == (?)", (p["id"],))
       # if it doesn't exist, add to the database
+      res = c.execute("SELECT id from Products WHERE id == (?)", (p["id"],))
       if res.fetchone() is None:
         if not args.dryrun:
           c.execute("""
@@ -447,16 +447,21 @@ def run_upload(args):
         stripe.Product.delete(p['id'])
       except Exception as e:
         pass
-      stripe.Product.create(
-        id=p['id'],
-        name=p['name'],
-        active=bool(p['active']),
-        description=p['desc'],
-        images=[p['image']],
-        shippable=True,
-        metadata=p
-      )
-      print("Created product: %s" % p['id'])
+
+      res = c.execute("SELECT * from Prices WHERE formats LIKE '%' || (?) || '%'", (p['format'],))
+      pprint(res.fetchall())
+
+      if not args.dryrun:
+        stripe.Product.create(
+          id=p['id'],
+          name=p['name'],
+          active=bool(p['active']),
+          description=p['desc'],
+          images=[p['image']],
+          shippable=True,
+          metadata=p
+        )
+        print("Created product: %s" % p['id'])
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -499,6 +504,9 @@ if __name__ == '__main__':
     'upload': {
       'func': run_upload,
       'args': {
+        '--dryrun': {
+          'action': 'store_true'
+        }
       }
     }
   }
