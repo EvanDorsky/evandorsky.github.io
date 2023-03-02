@@ -60,6 +60,7 @@ def get_info_dict(exif):
     return {}
 
   desc_split = list(map(str.strip, str(desc).split('|')))
+  keywords_split = list(map(str.strip, str(keywords).split(',')))
 
   # look for "Caption" (field name in Lightroom) -- metadata that the Stripe integration uses
   # this is the primary key for the product in the Products database
@@ -88,6 +89,13 @@ def get_info_dict(exif):
     if fformat in keywords:
       film_format = fformat
       break
+  # another hack – "lrk:" prefix to pass unbounded info along instead of relying on empty fields
+  category = ''
+  for keyword in keywords_split:
+    if 'lrk:' in keyword:
+      kw_parts = keyword[4:].split(':')
+      if kw_parts[0] == 'category':
+        category = kw_parts[1]
 
   # just fill empty keys so we can build a partial dict
   keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens']
@@ -103,6 +111,7 @@ def get_info_dict(exif):
     'lens_make': exif['Lens Make'],
     'stock': stock,
     'speed': speed,
+    'category': category,
     'format': film_format
   }
 
@@ -399,8 +408,8 @@ def run_productize(args):
       # if it doesn't exist, add to the database
       if res.fetchone() is None:
         c.execute("""
-            INSERT INTO Products (id, name, camera, lens, stock, ar, active) VALUES (?, ?, ?, ?, ?, ?, ?)
-          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], 1))
+            INSERT INTO Products (id, name, camera, lens, stock, ar, category, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          """, (p['id'], p['title'], p['camera'], p['lens'], p['stock'], p['format'], p['category'], 1))
         print("Added photo id: %s" % p['id'])
 
 # database schema: corresponding key in metadata dict, or default value
