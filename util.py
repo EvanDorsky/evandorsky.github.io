@@ -441,27 +441,65 @@ def run_upload(args):
     c = con.cursor()
 
     rows = c.execute("SELECT * from Products")
-    for p in rows.fetchall():
-      # for now, delete the matching product if it exists
-      try:
-        stripe.Product.delete(p['id'])
-      except Exception as e:
-        pass
-
-      res = c.execute("SELECT * from Prices WHERE formats LIKE '%' || (?) || '%'", (p['format'],))
-      pprint(res.fetchall())
+    for product in rows.fetchall():
+      res = c.execute("SELECT * from Prices WHERE formats LIKE '%' || (?) || '%'", (product['format'],))
+      prices = res.fetchall()
 
       if not args.dryrun:
-        stripe.Product.create(
-          id=p['id'],
-          name=p['name'],
-          active=bool(p['active']),
-          description=p['desc'],
-          images=[p['image']],
-          shippable=True,
-          metadata=p
-        )
-        print("Created product: %s" % p['id'])
+        product_exists = True
+        try:
+          stripe.Product.retrieve(product['id'])
+        except stripe.error.InvalidRequestError:
+          product_exists = False
+        if not product_exists:
+          stripe.Product.create(
+            id=product['id'],
+            name=product['name'],
+            active=bool(product['active']),
+            description=product['desc'],
+            images=[product['image']],
+            shippable=True,
+            metadata=product
+          )
+          print("Created product: %s" % product['id'])
+        else:
+          stripe.Product.modify(product['id'],
+            name=product['name'],
+            active=bool(product['active']),
+            description=product['desc'],
+            images=[product['image']],
+            shippable=True,
+            metadata=product
+          )
+          print("Updated product: %s" % product['id'])
+
+        stripe_prices = stripe.Price.list(product=product['id'])
+        uploaded_prices = {}
+        for sp in stripe_prices:
+          uploaded_prices[int(sp['metadata']['id'])] = sp
+
+        for price in prices:
+          # for each price, check if it's already in stripe
+          # if it's not, create it
+          if int(price['id']) not in uploaded_prices:
+            stripe.Price.create(
+              product=product['id'],
+              active=bool(price['active']),
+              nickname=price['nickname'],
+              unit_amount=int(price['unit_amount'] * 100),
+              currency=price['currency'],
+              metadata=price
+            )
+            print("Created price: $%.2f (id: %i)" % (price['unit_amount'], price['id']))
+          else:
+            # otherwise, update it
+            stripe.Price.modify(uploaded_prices[price['id']]['id'],
+              active=bool(price['active']),
+              nickname=price['nickname'],
+              metadata=price
+            )
+            print("Updated price: $%.2f (id: %i)" % (price['unit_amount'], price['id']))
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
