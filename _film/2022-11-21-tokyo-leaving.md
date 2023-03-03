@@ -9,6 +9,7 @@ camera:
 lens: 
 film: 
 format: 
+location: Tokyo
 ---
 
 {% assign photo_index = 1 %}

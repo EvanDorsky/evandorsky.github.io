@@ -8,4 +8,5 @@ camera: Pentax MX
 lens: Pentax-M 50mm f/1.4
 film: Fujicolor Superia 400
 format: 135
+location: Tokyo
 ---

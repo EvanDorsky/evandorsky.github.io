@@ -8,4 +8,5 @@ camera: Mamiya 645 Pro TL
 lens: Mamiya Sekor C 55mm f/2.8 N, 80mm f/2.8 N
 film: Fuji Provia 100, Kodak Ektar 100
 format: 120
+location: Los Angeles
 ---

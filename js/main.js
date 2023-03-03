@@ -236,6 +236,10 @@ function main(event) {
   if (window.galleryRowTol) {
     galleryRowTol = window.galleryRowTol
   }
+  var galleryLastRow = "center"
+  if (window.galleryLastRow) {
+    galleryLastRow = window.galleryLastRow
+  }
 
   fjGallery(document.querySelectorAll('.fj-gallery'), {
     itemSelector: '.fj-gallery-item',
@@ -243,7 +247,7 @@ function main(event) {
     gutter: 20,
     rowHeight: window.galleryRowHeight,
     rowHeightTolerance: galleryRowTol,
-    lastRow: "center",
+    lastRow: galleryLastRow,
     calculateItemsHeight: true
   });
 

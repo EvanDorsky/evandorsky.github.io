@@ -5,7 +5,6 @@ n_photos: 22
 key_photo: 2
 title: Bangalore
 subtitle: Bangalore
-location: Bangalore, Tokyo
 ---
 
 {% assign photo_index = 1 %}

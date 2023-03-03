@@ -292,6 +292,24 @@ footer {
 
 // gallery item
 
+.fj-gallery-separator {
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  .sep-date {
+    flex: 0 1 auto;
+    padding-right: 0.5rem;
+    margin: 0;
+  }
+  .sep-loc {
+    flex: 0 1 auto;
+    // font-weight: 600;
+    font-size: 130%;
+  }
+}
+
 .fj-gallery {
   // this is half of the "gutter" set in main.js
   // which enables consecutive galleries to flow together

@@ -8,4 +8,5 @@ camera: Olympus XA
 lens: Zuiko 35mm f/2.8
 film: Fuji Provia 100, Kodak Gold 200
 format: 135
+location: Yosemite National Park
 ---

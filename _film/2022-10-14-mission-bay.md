@@ -8,4 +8,5 @@ camera: Mamiya 645 Pro TL
 lens: Mamiya Sekor C 55mm f/2.8 N
 film: Kodak Gold 200
 format: 120
+location: San Francisco Bay
 ---
