@@ -9,6 +9,7 @@ camera: Yashica-Mat EM
 lens: Yashinon 80mm f/3.5
 film: Kodak TMAX 400
 format: 120
+location: San Francisco Bay
 ---
 
 {% assign photo_index = 1 %}

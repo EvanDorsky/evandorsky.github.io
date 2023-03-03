@@ -8,6 +8,9 @@ navbar-order: 0
 
 {% assign series_sorted = site.portfolio | sort: 'order' %}
 
+{% include print-banner.html %}
+<div></div>
+
 <div class="film index">
   <div class="selected-list">
   {% for gallery in series_sorted %}
