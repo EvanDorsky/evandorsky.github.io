@@ -4,12 +4,10 @@ jumbotron: false
 title: Gallery
 navbar: true
 navbar-order: 0
+show-banner: true
 ---
 
 {% assign series_sorted = site.portfolio | sort: 'order' %}
-
-{% include print-banner.html %}
-<div></div>
 
 <div class="film index">
   <div class="selected-list">
