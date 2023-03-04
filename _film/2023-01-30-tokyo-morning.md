@@ -5,7 +5,7 @@ n_photos: 6
 key_photo: 1
 title: 24 Hours in Tokyo, Morning
 subtitle: 24 Hours in Tokyo, Morning
-location: Bangalore, India. Layover in Tokyo
+location: Bangalore, India. Tokyo Layover
 ---
 
 {% assign photo_index = 1 %}

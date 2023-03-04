@@ -30,7 +30,7 @@ navbar-order: 2
 <!-- upcoming shows (time flows down) -->
 {% if shows_u.size > 0 %}
   <div class="show-label upcoming">Upcoming Concerts</div>
-  <div class="music-shows">
+  <div class="left-line-border">
 
   {% for show in shows_u %}
     {% include music-show.html show=show happened=false %}
@@ -50,7 +50,7 @@ navbar-order: 2
     </div>
     {% endunless %}
     <div class="show-label year">{{ current_year }}</div>
-    <div class="music-shows">
+    <div class="left-line-border">
   {% endif %}
   {% include music-show.html show=show happened=true %}
   {% assign last_year = show.date | date: "%Y" %}

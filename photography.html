@@ -15,7 +15,7 @@ show-banner: true
   window.galleryLastRow = "left"
 </script>
 
-<h4>Photojournal</h4>
+<h3 class="pj-header">Photojournal</h3>
 
 {% assign last_location = Nil %}
 {% assign current_location = Nil %}
@@ -33,14 +33,14 @@ show-banner: true
   </div>
   {% endunless %}
   <div class="fj-gallery-separator">
-    <h4 class="sep-date">
+    <div class="sep-date">
       {{ series.date | date: "%B %Y" }}
-    </h4>
+    </div>
     <div class="sep-loc">
       {{ current_location }}
     </div>
   </div>
-  <div class="fj-gallery">
+  <div class="left-line-border fj-gallery">
   {% endif %}
 
   {% include post-preview.html post=series %}

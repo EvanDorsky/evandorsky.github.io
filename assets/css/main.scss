@@ -292,6 +292,10 @@ footer {
 
 // gallery item
 
+.pj-header {
+  margin-bottom: 0;
+}
+
 .fj-gallery-separator {
   margin: 0;
 
@@ -300,13 +304,13 @@ footer {
   align-items: baseline;
   .sep-date {
     flex: 0 1 auto;
+    font-weight: 800;
     padding-right: 0.5rem;
-    margin: 0;
   }
   .sep-loc {
     flex: 0 1 auto;
     // font-weight: 600;
-    font-size: 130%;
+    font-size: 136%;
   }
 }
 
@@ -409,10 +413,12 @@ footer {
   }
 }
 
-.music-shows {
-  padding-left: 1.1rem;
-  border-left: 1px solid black;
+.left-line-border {
   margin-left: 1.1rem;
+  border-left: 1px solid black;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+  margin-right: 1.1rem;
 }
 
 .show-label {
