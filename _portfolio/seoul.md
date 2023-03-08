@@ -1,7 +1,7 @@
 ---
 role: selected
 layout: selected
-order: 0
+order: 2
 n_photos: 13
 key_photo: 2
 title: Seoul

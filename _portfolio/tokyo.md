@@ -1,7 +1,7 @@
 ---
 role: selected
 layout: selected
-order: 0
+order: 1
 n_photos: 14
 key_photo: 12
 title: Tokyo
