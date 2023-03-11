@@ -3,7 +3,7 @@ role: selected
 layout: selected
 order: 0
 n_photos: 11
-key_photo: 6
+key_photo: 8
 title: San Francisco
 subtitle: San Francisco
 ---
