@@ -421,6 +421,14 @@ footer {
   margin-right: 1.1rem;
 }
 
+.left-line-border-min {
+  margin-left: 0.55rem;
+  border-left: 1px solid black;
+  padding-left: 0.55rem;
+  padding-right: 0.55rem;
+  margin-right: 0.55rem;
+}
+
 .show-label {
   font-weight: 600;
 
@@ -430,29 +438,30 @@ footer {
 
 .music-show {
   &:not(.upcoming) {
-    font-size: 1rem;
-  }
-
-  .title {
-    font-size: 136%;
-  }
-  .role {
     font-size: 90%;
-    display: none;
-  }
-  .details {
-    padding-left: 1.1rem;
-  }
-  .venue {
-  }
-  .address {
-    font-size: 1rem;
   }
   .date {
     font-weight: 800;
   }
-  .link a {
-    font-weight: 600;
+  .title {
+    font-size: 136%;
+  }
+  .details {
+    padding-left: 1.1rem;
+    .role {
+      // font-size: 90%;
+      // display: none;
+    }
+    .venue {
+      font-size: 120%;
+    }
+    .link a {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .address {
+      font-size: 90%;
+    }
   }
   padding-bottom: 1.2rem;
 }
