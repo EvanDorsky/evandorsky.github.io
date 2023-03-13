@@ -4,7 +4,7 @@
       <div class="date">{{ s.date | date: "%B %-d" }}</div>
       <div class="title"><a href="{{ s.url }}">{{ s.title }}</a></div>
     {% else %}
-      <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p" }}</div>
+      <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p %Z" }}</div>
       <div class="title">{% if s.link != "" %}<a href="{{ s.link }}" target="blank">{% endif %}{{ s.title }}{% if s.link != "" %}</a>{% endif %}</div>
     {% endif %}
     <div class="details">
