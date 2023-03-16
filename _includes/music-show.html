@@ -16,7 +16,7 @@
         {% assign rec = s.recordings[0] %}
         {% include youtube.html src=rec %}
       {% else %}
-        <div class="link"><a href="{{ s.url }}">Recordings</a></div>
+        {% if s.recordings.size > 0 %}<div class="link"><a href="{{ s.url }}">Recordings</a></div>{% endif %}
       {% endif %}
     {% else %}
       <div class="address">{{ s.address }}</div>
