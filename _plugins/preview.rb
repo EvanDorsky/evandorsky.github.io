@@ -3,16 +3,17 @@ module Preview
     safe true
 
     def generate(site)
-      f = File.open("_site/index.html")
-      fd = f.read
+      # f = File.open("_site/index.html")
+      # fd = f.read
+      fd = "test"
 
-      IMGKit.configure do |config|
-        config.wkhtmltoimage = '/path/to/wkhtmltoimage'
-        config.default_options = {
-          :quality => 100
-        }
-        config.default_format = :png
-      end
+      # IMGKit.configure do |config|
+        # config.wkhtmltoimage = '/path/to/wkhtmltoimage'
+        # config.default_options = {
+          # :quality => 100
+        # }
+        # config.default_format = :png
+      # end
       kit = IMGKit.new(fd)
       kit.stylesheets << '_site/assets/css/main.css'
       # kit.to_file('out.png')
