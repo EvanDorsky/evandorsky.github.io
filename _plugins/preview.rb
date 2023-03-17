@@ -6,7 +6,14 @@ module Preview
       f = File.open("_site/index.html")
       fd = f.read
 
-      kit = IMGKit.new(fd, :quality => 100)
+      IMGKit.configure do |config|
+        config.wkhtmltoimage = '/path/to/wkhtmltoimage'
+        config.default_options = {
+          :quality => 100
+        }
+        config.default_format = :png
+      end
+      kit = IMGKit.new(fd)
       kit.stylesheets << '_site/assets/css/main.css'
       # kit.to_file('out.png')
       site.collections['shows'].docs.each do |show|
