@@ -2,7 +2,7 @@
 layout: page
 jumbotron: false
 title: About
-thumb: /assets/img/about/me.jpg
+thumb: /assets/img/about/me_tn.jpg
 
 navbar: true
 navbar-order: 3
