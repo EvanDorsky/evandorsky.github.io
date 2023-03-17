@@ -4,10 +4,12 @@ frontend:
     preBuild:
       commands:
         - bundle install
+        - sudo `which imgkit` --install-wkhtmltoimage
+        - rvmsudo imgkit --install-wkhtmltoimage
     # IMPORTANT - Please verify your build commands
     build:
       commands: 
-        - bundle exec jekyll b
+        - bundle exec jekyll build --trace
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: _site
