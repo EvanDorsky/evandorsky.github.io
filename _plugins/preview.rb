@@ -5,7 +5,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   fd = f.read
 
   kit = IMGKit.new(fd)
-  kit.stylesheets << '_site/assets/css/main.css'
+  # kit.stylesheets << '_site/assets/css/main.css'
   img = kit.to_img(:png)
   file = kit.to_file('out.png')
   site.collections['shows'].docs.each do |show|
