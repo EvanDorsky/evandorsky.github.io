@@ -22,8 +22,11 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "imgkit"
   # https://github.com/csquared/IMGKit/issues/79
-  # gem 'wkhtmltoimage-binary'
-  gem 'wkhtmltoimage-binary', '~> 0.11.0.1.1'
+  if RbConfig::CONFIG["arch"] == "arm64-darwin21"
+    gem 'wkhtmltoimage-binary'
+  else
+    gem 'wkhtmltoimage-binary', '~> 0.11.0.1.1'
+  end
 end
 
 # support for stylesheets with stylus
