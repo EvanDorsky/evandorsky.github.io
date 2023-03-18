@@ -20,8 +20,10 @@ gem "sorted_set"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
-  gem 'wkhtmltoimage-binary', '~> 0.11.0.1.1'
   gem "imgkit"
+  # https://github.com/csquared/IMGKit/issues/79
+  # gem 'wkhtmltoimage-binary'
+  gem 'wkhtmltoimage-binary', '~> 0.11.0.1.1'
 end
 
 # support for stylesheets with stylus
@@ -38,6 +40,4 @@ end
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # imgkit for thumbnail gen
-gem 'wkhtmltoimage-binary', '~> 0.11.0.1.1'
-gem "imgkit"
 
