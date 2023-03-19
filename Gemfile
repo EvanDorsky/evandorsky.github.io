@@ -20,6 +20,7 @@ gem "sorted_set"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-duplicate"
   gem "imgkit"
   # https://github.com/csquared/IMGKit/issues/79
   if RbConfig::CONFIG["arch"] == "arm64-darwin21"

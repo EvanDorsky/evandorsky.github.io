@@ -34,6 +34,7 @@ github_username: EvanDorsky
 # theme: notepad
 plugins:
   - jekyll-feed
+  - jekyll-duplicate
 
 collections:
   features:
@@ -49,6 +50,13 @@ collections:
 markdown: kramdown
 
 permalink: pretty
+
+duplicate_documents:
+  in_collection: shows
+  under_url_prefix: show_stub
+  format: html
+
+  with_layout: show-stub
 
 # Exclude from processing.
 # The following items will not be processed, by default.

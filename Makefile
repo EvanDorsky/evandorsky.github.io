@@ -1,6 +1,9 @@
 all:
 	bundle exec jekyll serve --livereload --watch
 
+build:
+	bundle exec jekyll build --trace
+
 serve:
 	# bundle exec jekyll serve --livereload --watch --host `ipconfig getifaddr en0`
 	bundle exec jekyll serve --livereload --watch

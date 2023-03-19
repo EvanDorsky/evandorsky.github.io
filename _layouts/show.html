@@ -3,13 +3,12 @@ layout: page
 no_wrapper: true
 ---
 
-{% include meta-thumbnail.html %}
+{% include show-meta-preview.html %}
 
 <link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
 <div class="film">
-  <h3>{{ page.title }}</h3>
-  <span class="post-date">{{ page.date | date: "%A, %B %d" }}</span>
+  {% include music-show.html show=page happened=false %}
   <br>
   <br>
 
@@ -25,4 +24,3 @@ no_wrapper: true
   {% endfor %}
 </div>
 
-<!-- {% include post-footer.html %} -->
