@@ -1,4 +1,4 @@
-if not RbConfig::CONFIG["arch"] == "arm64-darwin21"
+if ENV["PROD"]
   Jekyll::Hooks.register :pages, :post_write do |page|
     if page.data["layout"] == "show-stub"
       path = page.destination("/")
