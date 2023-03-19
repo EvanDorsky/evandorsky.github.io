@@ -7,8 +7,7 @@ Jekyll::Hooks.register :pages, :post_write do |page|
     fd = f.read
 
     kit = IMGKit.new(fd, 
-      :crop_w => 800,
-      :crop_h => 600)
+      :crop_h => 450)
     kit.stylesheets << '_site/assets/css/main.css'
     outpath = path + ".png"
     t1 = Time.now
