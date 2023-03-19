@@ -1,10 +1,6 @@
 ---
 ---
 
-@import 'font/public-sans';
-@import 'font/noto-sans-mono';
-@import 'font/lora';
-
 @import 'defines';
 
 //
@@ -435,7 +431,6 @@ footer {
 }
 
 .stub-wrapper {
-  font-family: Montserrat;
   margin: 1rem;
   font-size: 200%;
 }
