@@ -1,7 +1,7 @@
 ---
 layout: show
 title: "Ben Absent/Lunar Noon/Audrey Claire/leng Bian"
-date: "17/06/2022"
+date: "17/06/2022 8pm PDT"
 venue: "Milk Bar"
 address: "1840 Haight St, San Francisco"
 ensemble: "Lunar Noon"

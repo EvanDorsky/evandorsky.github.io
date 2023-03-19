@@ -1,7 +1,7 @@
 ---
 layout: show
 title: "Chamber Music with Friends"
-date: "9/4/2022 7pm"
+date: "9/4/2022 7pm PDT"
 venue: "Kaleidoscope"
 address: ""
 ensemble: "String Duo, Piano Trio"
