@@ -1,6 +1,14 @@
-<div class="music-show {% unless include.happened %}upcoming{% endunless %}">
-    {% assign s=include.show %}
-    {% if include.happened %}
+{% assign s=include.show %}
+
+{% assign now = "now" | date: "%s" %}
+{% assign showdate = s.date | date: "%s" %}
+{% assign happened=true %}
+{% if showdate > now %}
+  {% assign happened=false %}
+{% endif %}
+
+<div class="music-show {% unless happened %}upcoming{% endunless %}">
+    {% if happened %}
       <div class="date">{{ s.date | date: "%B %-d" }}</div>
       <div class="title"><a href="{{ s.url }}">{{ s.title }}</a></div>
     {% else %}
@@ -11,8 +19,8 @@
       <div class="role">{{ s.rep }}, {{ s.role }}</div>
       <div class="venue">{{ s.venue }}</div>
       <div class="venue-container left-line-border-min">
-    {% if include.happened %}
-      {% if s.feature %}
+    {% if happened %}
+      {% if include.hidefeature == nil and s.feature %}
         {% assign rec = s.recordings[0] %}
         {% include youtube.html src=rec %}
       {% else %}

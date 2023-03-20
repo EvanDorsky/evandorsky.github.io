@@ -6,13 +6,17 @@ if ENV["PROD"]
       f = File.open(path)
       fd = f.read
 
-      kit = IMGKit.new(fd, 
-        :crop_h => 450)
+      kit = IMGKit.new(fd,
+        :quality => 100,
+        :crop_h => 400,
+      )
       kit.stylesheets << '_site/assets/css/main.css'
       outpath = path + ".png"
       t1 = Time.now
+      puts "Generating preview for #{ path }..."
       file = kit.to_file(outpath)
       t2 = Time.now
+      puts "Generated in #{ t2 - t1 } sec"
     end
   end
 end

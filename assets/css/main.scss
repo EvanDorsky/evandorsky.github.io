@@ -431,8 +431,10 @@ footer {
 }
 
 .stub-wrapper {
-  margin: 1rem;
+  display: flex;
+  margin: 1.5rem;
   font-size: 200%;
+  height: auto;
 }
 
 .music-show {
