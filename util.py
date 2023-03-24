@@ -319,29 +319,35 @@ def run_series(args):
     # create metadata summary
     meta_summary = {}
 
-    meta_summary = {
-      key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
-    }
+    meta_valid = False
+    try:
+      meta_summary = {
+        key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
+      }
+      meta_valid = True
+    except Exception as e:
+      print("Metadata summary creation failed: %s" % e)
 
-    # create series summary strings
-    # lens summary
-    meta_summary['lens_dict'] = {make: [] for make in meta_summary['lens_make']}
-    for lens in meta_summary['lens']:
-      for make in meta_summary['lens_make']:
-        if make in lens:
-          make_len = len(make)
-          meta_summary['lens_dict'][make] += [lens[make_len+1:]]
-          break
+    if meta_valid:
+      # create series summary strings
+      # lens summary
+      meta_summary['lens_dict'] = {make: [] for make in meta_summary['lens_make']}
+      for lens in meta_summary['lens']:
+        for make in meta_summary['lens_make']:
+          if make in lens:
+            make_len = len(make)
+            meta_summary['lens_dict'][make] += [lens[make_len+1:]]
+            break
 
-    lenses = meta_summary['lens_dict']
-    make_summaries = []
-    for make in lenses:
-      make_summaries += [make+' '+', '.join(lenses[make])]
-    lens_summary = ', '.join(make_summaries)
+      lenses = meta_summary['lens_dict']
+      make_summaries = []
+      for make in lenses:
+        make_summaries += [make+' '+', '.join(lenses[make])]
+      lens_summary = ', '.join(make_summaries)
 
-    meta_summary['lens_summary'] = lens_summary
-    meta_summary['camera_summary'] = ', '.join(meta_summary['camera'])
-    meta_summary['stock_summary'] = ', '.join(meta_summary['stock'])
+      meta_summary['lens_summary'] = lens_summary
+      meta_summary['camera_summary'] = ', '.join(meta_summary['camera'])
+      meta_summary['stock_summary'] = ', '.join(meta_summary['stock'])
 
   # metadata now lives in series_meta
 
