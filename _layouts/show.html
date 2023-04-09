@@ -3,6 +3,11 @@ layout: page
 no_wrapper: true
 ---
 
+{% assign pathsplit = page.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+
 {% include show-meta-preview.html %}
 
 <link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
@@ -13,11 +18,6 @@ no_wrapper: true
   <br>
 
   {{ content }}
-
-  {% assign pathsplit = page.path | split: '/' %}
-  {% assign name_ext = pathsplit[-1] %}
-  {% assign namesplit = name_ext | split: '.' %}
-  {% assign page_name = namesplit[0] %}
 
   {% for rec in page.recordings %}
     {% include youtube.html src=rec %}

@@ -3,7 +3,6 @@ layout: page
 jumbotron: false
 title: Music
 
-thumb: /assets/img/about/me_tn.jpg
 navbar: true
 navbar-order: 2
 ---
@@ -11,6 +10,13 @@ navbar-order: 2
 {% assign now = "now" | date: "%s" %}
 
 {% assign shows = site.shows %}
+
+{% assign pathsplit = shows[-1].path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+
+{% include show-meta-preview.html %}
 
 <!-- create list of upcoming shows -->
 <!-- this is how we create an empty array in liquid -->

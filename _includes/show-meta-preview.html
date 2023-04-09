@@ -1,7 +1,2 @@
 
-{% assign pathsplit = page.path | split: '/' %}
-{% assign name_ext = pathsplit[-1] %}
-{% assign namesplit = name_ext | split: '.' %}
-{% assign page_name = namesplit[0] %}
-
 <meta property="og:image" content="/{{ page_name }}.html.png" />
