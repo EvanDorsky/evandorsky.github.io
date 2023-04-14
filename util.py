@@ -47,6 +47,11 @@ def exif_text_to_dict(text):
 
   return exif
 
+def load_info_dict(path):
+  exif = load_photo_meta(path)
+
+  return get_info_dict(exif)
+
 def load_photo_meta(path):
   res = run(['exiftool', path], capture_output=True, text=True)
   return exif_text_to_dict(res.stdout)
@@ -89,13 +94,6 @@ def get_info_dict(exif):
     if fformat in keywords:
       film_format = fformat
       break
-  # another hack – "lrk:" prefix to pass unbounded info along instead of relying on empty fields
-  category = ''
-  for keyword in keywords_split:
-    if 'lrk:' in keyword:
-      kw_parts = keyword[4:].split(':')
-      if kw_parts[0] == 'category':
-        category = kw_parts[1]
 
   # just fill empty keys so we can build a partial dict
   keys =['Title', 'Camera Model Name', 'Lens Make', 'Lens']
@@ -111,9 +109,17 @@ def get_info_dict(exif):
     'lens_make': exif['Lens Make'],
     'stock': stock,
     'speed': speed,
-    'category': category,
+    'category': '',
     'format': film_format
   }
+
+  # another hack – "lrk:" prefix to pass unbounded info along instead of relying on empty fields
+  for keyword in keywords_split:
+    if 'lrk:' in keyword:
+      kw_parts = keyword[4:].split(':')
+      key = kw_parts[0]
+
+      res[key] = kw_parts[1]
 
   return res
 
@@ -249,6 +255,22 @@ def get_valid_series_name(name):
   pprint(candidates)
   print('exiting')
   exit()
+
+def run_update(args):
+  input_path = os.path.expanduser(args.input_path)
+  input_files = os.listdir(input_path)
+
+  series = {}
+  for file in input_files:
+    meta = load_info_dict(os.path.join(input_path, file))
+    if 'series' in meta:
+      s = meta['series']
+      series_path = os.path.join(input_path, get_valid_series_name(s))
+      if series_path not in series:
+        series[series_path] = []
+      series[series_path] += [file]
+
+  print(series)
 
 def run_series(args):
   if args.action != 'create':
@@ -549,6 +571,14 @@ if __name__ == '__main__':
         '--action': {
           'type': str,
           'default': 'create'
+        }
+      }
+    },
+    'update': {
+      'func': run_update,
+      'args': {
+        '--input-path': {
+          'default': '~/Film/Outbox'
         }
       }
     },
