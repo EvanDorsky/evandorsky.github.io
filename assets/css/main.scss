@@ -55,6 +55,7 @@ a {
   flex: 0 1 40%;
   img {
     width: 100%;
+    border-radius: 50%;
   }
   margin-top: 1rem;
   margin-right: 2rem;
@@ -79,6 +80,8 @@ a {
 
 .key-phrase {
   color: inherit;
+  font-weight: 600;
+
   background-color: rgba(var(--text-color-rgb), 0.1);
 
   transition: background-color 0.5s, color 0.5s;
@@ -656,27 +659,27 @@ footer {
 
 // spotify theme
 
-// #apple-spg.key-phrase {
+// #apple-spg.kp {
 //   color: #D8A88E;
 //   background-color: #473653;
 // }
 
-// #perceptive.key-phrase {
+// #perceptive.kp {
 //   color: #A1E4BE;
 //   background-color: #3500D5;
 // }
 
-// #olin.key-phrase {
+// #olin.kp {
 //   color: #C93029;
 //   background-color: #F1CCCE;
 // }
 
-// #olin-js.key-phrase {
+// #olin-js.kp {
 //   color: #483554;
 //   background-color: #D1EB7F;
 // }
 
-// #ninja.key-phrase {
+// #ninja.kp {
 //   color: #202973;
 //   background-color: #A4E5B6;
 //  }
