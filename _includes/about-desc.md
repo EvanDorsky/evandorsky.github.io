@@ -6,7 +6,7 @@ I study how technology functions as a structuring force – an environment – i
 
 {{ site.features | where:"key","apple-spg" }}
 
-I draw on my **experience as an educator**{:#olin-js .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}{:.olin-js-line .practical-ee-line .key-line} exploring the embedding of ethics in technology.
+I draw on my _**experience as an educator**{:#olin-js .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}_{:.olin-js-line .practical-ee-line .key-line} exploring the embedding of ethics in technology.
 
 {{ site.features | where:"key","olin-js" }}
 {{ site.features | where:"key","practical-ee" }}
