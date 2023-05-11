@@ -6,9 +6,9 @@ I study how technology functions as a structuring force – an environment – i
 
 {{ site.features | where:"key","industry" }}
 
-_I draw on my **experience as an educator**{:#olin-js .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}_{:.practical-ee-line .olin-js-line .key-line} exploring the embedding of ethics in technology.
+_I draw on my **experience as an educator**{:#teaching .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}_{:.practical-ee-line .teaching-line .key-line} exploring the embedding of ethics in technology.
 
-{{ site.features | where:"key","olin-js" }}
+{{ site.features | where:"key","teaching" }}
 {{ site.features | where:"key","practical-ee" }}
 
 If you are still reading this, I would love to connect! If you'd like to learn more, you can check out my **[reading list](https://www.notion.so/evandorsky/Media-Technology-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec)**{:.key-phrase}, a living document. You can also contact me [**here**](mailto:evan.dorsky@gmail.com){:.key-phrase}.
