@@ -1,12 +1,12 @@
 Hi! I'm Evan.
 
-I'm an [engineer, educator] based in San Francisco.
+I'm an [engineer, artist, educator] based in San Francisco.
 
-I study how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#apple-spg .key-phrase}_{:.apple-spg-line .key-line} to ground my study in an understanding of how technology works, and how it actually gets built in industry.
+I study how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my study in an understanding of how technology works, and how it actually gets built in industry.
 
-{{ site.features | where:"key","apple-spg" }}
+{{ site.features | where:"key","industry" }}
 
-I draw on my _**experience as an educator**{:#olin-js .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}_{:.olin-js-line .practical-ee-line .key-line} exploring the embedding of ethics in technology.
+_I draw on my **experience as an educator**{:#olin-js .key-phrase} to lead **book clubs, reading groups, and seminars**{:#practical-ee .key-phrase}_{:.practical-ee-line .olin-js-line .key-line} exploring the embedding of ethics in technology.
 
 {{ site.features | where:"key","olin-js" }}
 {{ site.features | where:"key","practical-ee" }}

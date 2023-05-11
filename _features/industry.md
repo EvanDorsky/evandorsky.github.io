@@ -1,6 +1,6 @@
 ---
 layout: feature
-key: apple-spg
+key: industry
 title:  "Engineering Background"
 img-fmt: "jpg"
 ---
