@@ -49,10 +49,11 @@ a {
 
 #about-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #about-left {
-  flex: 0 1 40%;
+  flex: 0 0 15rem;
   img {
     width: 100%;
     border-radius: 50%;
@@ -60,10 +61,15 @@ a {
   margin-top: 1rem;
   margin-right: 2rem;
   font-size: 0.8rem;
+
+  .caption {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 #about-right {
-  flex: 1 0 60%;
+  flex: 1 0 30rem;
 }
 
 // 

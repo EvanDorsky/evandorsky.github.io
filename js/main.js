@@ -8,11 +8,11 @@
 featureLock = false
 
 // figure out which "feature" an element is associated with
-function idFromSelEl(el) {
+function classnameFromSelEl(el) {
   var classes = el.attr("class").split(" ")
 
   // filter out classes we don't care about
-  var classesFilt = classes.filter((c) => c != "selected" && c != "key-line")
+  var classesFilt = classes.filter((c) => c.includes("feature-"))
 
   // the class will be in the form "feature-name-line"
   // so get rid of the "line" suffix
@@ -21,9 +21,10 @@ function idFromSelEl(el) {
 }
 
 function getSelDetailBox() {
-  var curSelEl = d3.selectAll(".selected").filter(".key-line")
+  var curSelEl = d3.selectAll(".selected").filter(".feature")
+
   if (!curSelEl.empty()) {
-    var selQuery = "."+idFromSelEl(curSelEl)
+    var selQuery = "."+classnameFromSelEl(curSelEl)
     return document.querySelector(selQuery)
   }
   return null
@@ -39,7 +40,7 @@ function scrollToKeyline(sel) {
   // if an element is currently selected, need to account for it
   var scrollTarget = curScroll + newSelPos - padding
 
-  // get the currently selected detailed box, if there is one
+  // get the currently selected detail box, if there is one
   var curSelDetailBox = getSelDetailBox()
 
   if (curSelDetailBox) {
@@ -252,5 +253,5 @@ function main(event) {
   });
 
   // run the "hint" to indicate clickable elements
-  doHint()
+  // doHint()
 }
