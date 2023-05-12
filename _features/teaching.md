@@ -35,4 +35,4 @@ and more advanced courses:
 - Principles of Engineering – mechatronic systems design and integration
 - Controls – dynamic feedback control theory
 
-As a NINJA I graded assignments, held office hours (which were generally well attended at Olin), and gave the occasional lecture. When class time was devoted to open work time, I was often available to answer questions. Olin has no graduate students, so NINJAs work closely with professors to ensure students have the resources they need to succeed.
+As a NINJA I graded assignments, held office hours (which were generally well attended at Olin), and gave the occasional lecture. When class time was devoted to open work time, I was often available to answer questions. At Olin, NINJAs work closely with professors and are often involved in high level course design discussions, not just day-to-day teaching.
