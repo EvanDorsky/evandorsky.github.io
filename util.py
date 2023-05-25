@@ -130,7 +130,7 @@ def create_webp(im, webp, dim):
   return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
 
 def get_series_path(name):
-  series_folders = ['_film', '_portfolio']
+  series_folders = ['_photojournal', '_portfolio']
   for folder in series_folders:
     test_path = os.path.join(folder, name+".md")
 
@@ -277,7 +277,7 @@ def run_series(args):
     args.name = get_valid_series_name(args.name)
 
   im_out_path = 'assets/img/film/%s' % args.name
-  md_path = '_film/%s.md' % args.name
+  md_path = '_photojournal/%s.md' % args.name
 
   input_path = os.path.expanduser(args.input_path)
   input_files = os.listdir(input_path)

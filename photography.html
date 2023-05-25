@@ -1,7 +1,7 @@
 ---
 layout: page-wide
 jumbotron: false
-title: Photography
+title: Photo
 # thumb: /assets/img/film/2022-12-28-street/03.webp
 thumb: /assets/img/thumb.png
 
@@ -26,7 +26,7 @@ Check out <a href="https://luckybox.substack.com">Lucky Box</a> for longer form 
 
 {% assign last_location = Nil %}
 {% assign current_location = Nil %}
-{% assign series_sorted = site.film | reverse %}
+{% assign series_sorted = site.photojournal | reverse %}
 {% for series in series_sorted %}
   {% if series.role %}
     {% continue %}

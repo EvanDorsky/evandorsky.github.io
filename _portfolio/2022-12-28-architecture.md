@@ -1,5 +1,5 @@
 ---
-role: feature
+role: hidden
 layout: gallery
 order: 1
 n_photos: 5

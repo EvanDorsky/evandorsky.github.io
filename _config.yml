@@ -39,7 +39,7 @@ plugins:
 collections:
   features:
     output: false
-  film:
+  photojournal:
     output: true
   shows:
     output: true
