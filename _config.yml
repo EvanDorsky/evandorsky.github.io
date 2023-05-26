@@ -46,6 +46,8 @@ collections:
   portfolio:
     output: true
     permalink: /:name
+  photowork:
+    output: true
 
 markdown: kramdown
 

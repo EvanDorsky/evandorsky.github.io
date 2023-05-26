@@ -8,7 +8,7 @@ thumb: /assets/img/thumb.png
 navbar: true
 navbar-order: 1
 row_height: 350
-show-banner: true
+show-banner: false
 ---
 
 <script type="text/javascript">
@@ -16,11 +16,23 @@ show-banner: true
   window.galleryLastRow = "left"
 </script>
 
-<br>
-I shoot film on vintage cameras and lenses that I refurbish at my home in San Francisco.
-<br>
-<br>
-Check out <a href="https://luckybox.substack.com">Lucky Box</a> for longer form writing around cameras, film, process, etc.
+{% assign photowork = site.photowork | sort: 'order' %}
+{% include series-gallery.html collection=photowork %}
+
+{% assign series_sorted = site.portfolio | sort: 'order' %}
+
+{% for gallery in series_sorted %}
+  {% if gallery.role != "feature" %}
+    {% continue %}
+  {% endif %}
+
+<div class="film index">
+  <h4>{{ gallery.title }}</h4>
+  {{ gallery.content }}
+</div>
+{% endfor %}
+
+<!-- Photojournal -->
 
 <h3 class="pj-header">Photojournal</h3>
 
