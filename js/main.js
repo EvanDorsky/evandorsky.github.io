@@ -237,20 +237,23 @@ function main(event) {
   if (window.galleryRowTol) {
     galleryRowTol = window.galleryRowTol
   }
-  var galleryLastRow = "center"
+  var galleryLastRow = "left"
   if (window.galleryLastRow) {
     galleryLastRow = window.galleryLastRow
   }
 
-  fjGallery(document.querySelectorAll('.fj-gallery'), {
-    itemSelector: '.fj-gallery-item',
-    transitionDuration: 0,
-    gutter: 20,
-    rowHeight: window.galleryRowHeight,
-    rowHeightTolerance: galleryRowTol,
-    lastRow: galleryLastRow,
-    calculateItemsHeight: true
-  });
+  for (let id in window.galleries) {
+    let info = window.galleries[id]
+    fjGallery(document.querySelectorAll(`#${id}`), {
+      itemSelector: '.fj-gallery-item',
+      transitionDuration: 0,
+      gutter: 20,
+      rowHeight: info.row_height,
+      rowHeightTolerance: galleryRowTol,
+      lastRow: galleryLastRow,
+      calculateItemsHeight: true
+    });
+  }
 
   // run the "hint" to indicate clickable elements
   // doHint()

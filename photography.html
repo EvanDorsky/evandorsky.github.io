@@ -17,7 +17,7 @@ show-banner: false
 </script>
 
 {% assign photowork = site.photowork | sort: 'order' %}
-{% include series-gallery.html collection=photowork %}
+{% include series-gallery.html collection=photowork id="gallerytest" row_height=100 %}
 
 {% assign series_sorted = site.portfolio | sort: 'order' %}
 
@@ -35,6 +35,16 @@ show-banner: false
 <!-- Photojournal -->
 
 <h3 class="pj-header">Photojournal</h3>
+
+<script type="text/javascript">
+  if (!window.galleries) {
+    window.galleries = {}
+  }
+  window.galleries["photoj"] = {
+    row_height: 300,
+    row_tol: 0.3
+  }
+</script>
 
 {% assign last_location = Nil %}
 {% assign current_location = Nil %}
@@ -59,7 +69,7 @@ show-banner: false
       {{ current_location }}
     </div>
   </div>
-  <div class="left-line-border fj-gallery">
+  <div class="left-line-border fj-gallery" id="photoj">
   {% endif %}
 
   {% include post-preview.html post=series %}
