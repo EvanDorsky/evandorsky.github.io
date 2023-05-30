@@ -41,7 +41,7 @@ a {
   margin: 0 auto;
   margin-bottom: 2rem;
 
-  padding: 0 16px 0 16px;
+  padding: 0 20px;
   p {
     margin-bottom: 0;
   }
@@ -185,8 +185,8 @@ h2#gallery {
 //
 
 .film {
-  width: 90vw;
-  padding: 0 5vw;
+  width: 90%;
+  padding: 0 5%;
   h2 {
     text-align: center;
   }
@@ -199,10 +199,6 @@ h2#gallery {
   }
   p {
     max-width: Min(100%, 40rem);
-  }
-  &.index:nth-child(odd) {
-    color: white;
-    background-color: black;
   }
 }
 
@@ -336,6 +332,13 @@ footer {
       // height: 100%;
     }
   }
+  &.generic {
+    .caption {
+      font-family: inherit;
+      color: var(--text-color);
+    }
+  }
+
   cursor: pointer;
   img {
     max-width: 100%;
