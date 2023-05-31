@@ -16,21 +16,23 @@ show-banner: false
   window.galleryLastRow = "left"
 </script>
 
+<!-- Feature -->
+
+{% assign feature_gallery = site.portfolio | where: "title", "Feature" %}
+
+{{ feature_gallery[0].content }}
+
+<!-- Work -->
+
 {% assign photowork = site.photowork | sort: 'order' %}
-{% include series-gallery.html collection=photowork id="gallerytest" row_height=100 %}
+<h3>Work</h3>
+{% include series-gallery.html collection=photowork id="photowork" row_height=100 %}
 
-{% assign series_sorted = site.portfolio | sort: 'order' %}
+<!-- Selected -->
 
-{% for gallery in series_sorted %}
-  {% if gallery.role != "feature" %}
-    {% continue %}
-  {% endif %}
-
-<div class="film index">
-  <h4>{{ gallery.title }}</h4>
-  {{ gallery.content }}
-</div>
-{% endfor %}
+<h3>Selected</h3>
+{% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
+{% include series-gallery.html collection=portfolio id="gallerytest" row_height=100 %}
 
 <!-- Photojournal -->
 

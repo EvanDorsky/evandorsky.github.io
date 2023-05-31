@@ -5,16 +5,16 @@
 {% assign namesplit = name_ext | split: '.' %}
 {% assign series_name = namesplit[0] %}
 
+{% assign l = include.post.link | default: "" %}
+{% if l == "" %}
+  {% assign l = include.post.url %}
+{% endif %}
+
 <div class="fj-gallery-item {{ include.type }} generic">
-  <a class="post-preview" href="{{ include.post.link }}">
-    <img src="/assets/img/photowork/{{ series_name }}/{{ num_str }}.webp"/>
-    <div class="caption">
-      <div class="title">
-        {{ include.post.title }}
-      </div>
-      <!-- <div class="date"> -->
-        <!-- {{ include.post.date | date: "%b %Y" }} -->
-      <!-- </div> -->
+  <a class="post-preview" href="{{ l }}">
+    <img src="/assets/img/{{ post.collection }}/{{ series_name }}/{{ num_str }}.webp"/>
+    <div class="label">
+      {{ include.post.title }}
     </div>
   </a>
 </div>

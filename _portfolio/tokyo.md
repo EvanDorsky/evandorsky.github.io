@@ -10,4 +10,4 @@ subtitle: Tokyo
 
 {% assign photo_index = 1 %}
 
-{% include gallery.html row_height=532 row_tol=0.3 n_start=1 n_photos=page.n_photos path=page.path %}
+{% include gallery.html id="tokyo" row_height=450 row_tol=0.4 n_start=1 n_photos=page.n_photos path=page.path %}

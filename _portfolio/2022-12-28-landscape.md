@@ -1,11 +1,10 @@
 ---
-role: hidden
+role: feature
 layout: gallery
 order: 2
 n_photos: 4
 key_photo: 1
 title: Landscape
-row_height: 800
 ---
 
 {% assign photo_index = 1 %}
