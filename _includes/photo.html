@@ -1,6 +1,6 @@
 <!-- {% assign p = include.photo %} -->
 
-<div class="photo-modal-bg" name="{{ include.src }}">
+<div class="photo-modal-bg" name="{{ include.src }}" series="{{include.folder}}" index="{{include.num_str | plus: 0 }}" indexmax="{{include.series.n_photos}}">
   <div class="photo-modal">
     <img class="fullsize" src="/assets/img/{{ include.src }}"/>
     {% assign meta = site.data[include.folder][include.num_str] %}

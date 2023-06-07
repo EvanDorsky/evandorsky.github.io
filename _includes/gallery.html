@@ -13,16 +13,17 @@
   }
 </script>
 
-<div class="fj-gallery" id="{{ id }}">
+{% assign pathsplit = include.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+
+<div class="fj-gallery" id="{{ id }}" series="{{ page_name }}" n_photos="{{include.n_photos}}">
 
 {% assign n_start = include.n_start | default: 1 %}
 {% assign n_end   = n_start | plus: include.n_photos | minus: 1 %}
 
 {% for i in ( n_start.. n_end ) %}
-  {% assign pathsplit = include.path | split: '/' %}
-  {% assign name_ext = pathsplit[-1] %}
-  {% assign namesplit = name_ext | split: '.' %}
-  {% assign page_name = namesplit[0] %}
 
   {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
   {% capture img_src %}{{ page.collection }}/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
