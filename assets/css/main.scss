@@ -313,6 +313,17 @@ footer {
   }
 }
 
+.testmask {
+  font-family: Anton;
+  background: url(/assets/img/portfolio/san-francisco/02.webp) 0 0 / cover no-repeat;
+
+  font-weight: 800;
+  font-size: 100px;
+
+  background-clip: text;
+  color: rgba(0,0,0,0);
+}
+
 .fj-gallery {
   // this is half of the "gutter" set in main.js
   // which enables consecutive galleries to flow together
