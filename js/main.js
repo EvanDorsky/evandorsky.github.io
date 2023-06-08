@@ -72,21 +72,33 @@ function presentModal(name) {
 
   if (!modal.classed('active')) {
     modal.classed('active', true)
-    updateMode(mode.modal)
     window.modal = modal
   }
-}
-
-function updateMode(mode) {
-  window.mode = mode
-  if (window.mode != mode.modal) {
-    window.modal = null
+  if (!window.mode == Mode.modal) {
+    updateMode(Mode.modal)
   }
 }
 
-function dismissModal(event) {
-  d3.selectAll('.photo-modal-bg').classed('active', false)
-  updateMode(mode.default)
+function updateMode(newMode) {
+  var lastmode = window.mode
+  window.mode = newMode
+  if (window.mode != Mode.modal) {
+    window.modal = null
+  }
+  if (window.mode == Mode.modal) {
+    d3.selectAll('.gallery-modal-bg').classed('active', true)
+  }
+  if (lastmode == Mode.modal) {
+    d3.selectAll('.gallery-modal-bg').classed('active', false)
+  }
+}
+
+function dismissModal(event, complete=false) {
+  window.modal.classed('active', false)
+
+  if (complete) {
+    updateMode(Mode.default)
+  }
 }
 
 function keyphraseOpen(id, doScroll=true, openTo=-1) {
@@ -231,7 +243,7 @@ function __scrollTween(offset) {
   }
 }
 
-const mode = {
+const Mode = {
   default: 0,
   modal: 1
 }
@@ -240,17 +252,18 @@ function bodyKeydown(event) {
   if (event.keyCode == '65') {
     carouselSelect('carousel', 2)
   }
-  if (window.mode == mode.modal) {
-    // right arrow
+  if (window.mode == Mode.modal) {
     var indexChange = 0
     if (event.keyCode == '39') {
+      // right arrow
       indexChange = 1
     }
     else if (event.keyCode == '37') {
+      // left arrow
       indexChange = -1
     }
     else {
-      return dismissModal(event)
+      return dismissModal(event, true)
     }
     
     if (indexChange != 0) {
@@ -270,7 +283,7 @@ function bodyKeydown(event) {
 }
 
 function main(event) {
-  window.mode = mode.default
+  window.mode = Mode.default
   window.modal = ""
   // restore display: flex
   // (gallery is set to display: none
@@ -293,7 +306,7 @@ function main(event) {
 
   // modal dismiss
   d3.selectAll(".photo-modal-bg")
-    .on("click", dismissModal)
+    .on("click", (e) => dismissModal(e, true))
 
   // modal dismiss
   d3.select('body')

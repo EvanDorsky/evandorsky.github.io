@@ -603,16 +603,37 @@ footer {
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0,0,0, 0.85);
   z-index: 80;
 
   &.active {
     opacity: 1;
     visibility: visible;
-    .photo-modal {
-      opacity: 1;
-      visibility: visible;
-    }
+  }
+}
+
+.gallery-modal-bg {
+  cursor: auto;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 200ms, opacity 200ms linear;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+  z-index: 70;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -620,8 +641,6 @@ footer {
   z-index: 90;
   border-radius: 5px;
 
-  visibility: hidden;
-  opacity: 0;
   transition: visibility 200ms, opacity 200ms linear;
 
   max-width: 100vw;
@@ -634,7 +653,7 @@ footer {
     border-radius: 0;
   }
   .photo-details {
-    color: white;
+    color: var(--text-color);
   }
 }
 
