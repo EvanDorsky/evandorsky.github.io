@@ -25,13 +25,13 @@ show-banner: false
 <!-- Selected -->
 
 {% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include feature-gallery.html collection=portfolio id="carousel" %}
+{% include feature-gallery.html preview="carousel-item" collection=portfolio id="carousel" %}
 
 <!-- Work -->
 
 {% assign photowork = site.photowork | sort: 'order' %}
 <h3>Work</h3>
-{% include series-gallery.html collection=photowork id="photowork" row_height=200 %}
+{% include series-gallery.html preview="post-pre-generic" collection=photowork id="photowork" row_height=200 %}
 
 <!-- Photojournal -->
 

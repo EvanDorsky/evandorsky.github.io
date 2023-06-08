@@ -12,6 +12,6 @@
 
 <div class="carousel" id="{{ id }}">
 {% for post in include.collection %}
-  {% include post-pre-generic.html class="carousel-item" post=post %}
+  {% include {{ include.preview }}.html post=post %}
 {% endfor %}
 </div>
