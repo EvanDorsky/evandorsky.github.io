@@ -324,7 +324,14 @@ footer {
 
 .feature-gallery {
   display: flex;
-  overflow: scroll;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   height: 80vh;
 }
 
