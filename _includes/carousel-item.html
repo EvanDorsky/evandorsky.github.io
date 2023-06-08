@@ -19,7 +19,7 @@
   {% if cover %}
     {{ cover.content }}
   {% else %}
-    <div class="gallery-label">
+    <div class="carousel-label">
       {{ include.post.title }}
     </div>
     <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/{{ post.collection }}/{{ series_name }}/{{ num_str }}.webp"/>

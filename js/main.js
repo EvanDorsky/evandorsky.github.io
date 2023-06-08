@@ -206,6 +206,9 @@ function carouselSelect(cn, idx) {
 
   var didx = idx - c.idx
 
+  var item = el.selectAll('.carousel-item').nodes()[idx]
+  d3.select(item).classed('active', true)
+
   // d3.transition()
   //   .duration(500)
   //   .tween("scroll", (offset => () => {
@@ -312,6 +315,8 @@ function main(event) {
   d3.select('body')
     .on("keydown", bodyKeydown)
 
+  // gallery setup
+
   // window.galleryRowHeight = 250
   var galleryRowTol = 0.3
   if (window.galleryRowTol) {
@@ -334,6 +339,12 @@ function main(event) {
       calculateItemsHeight: true
     });
   }
+
+  // carousel setup
+  for (let id in window.carousels) {
+    carouselSelect(id, 1)
+  }
+
 
   // run the "hint" to indicate clickable elements
   // doHint()
