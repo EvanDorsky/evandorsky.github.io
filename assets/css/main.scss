@@ -313,21 +313,56 @@ footer {
   }
 }
 
-.testmask {
+.text-mask {
   font-family: Anton;
-  background: url(/assets/img/portfolio/san-francisco/02.webp) 0 0 / cover no-repeat;
 
   font-weight: 800;
-  font-size: 100px;
+  font-size: Min(18vh, 18vw);
 
-  background-clip: text;
   color: rgba(0,0,0,0);
+}
+
+.feature-gallery {
+  display: flex;
+  overflow: scroll;
+  height: 80vh;
+}
+
+.feature-gallery-item {
+  flex: 0 0 100%;
+  // width: 100%;
+  overflow: hidden;
+  height: 100%;
+  img {
+    max-width: 100%;
+    max-height: 90%;
+  }
+
+  a:hover {
+    text-decoration: inherit;
+  }
+
+  .post-preview-wrapper {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+  }
 }
 
 .fj-gallery {
   // this is half of the "gutter" set in main.js
   // which enables consecutive galleries to flow together
   padding-bottom: 10px;
+}
+
+.gallery-label {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+
+  font-size: 5rem;
+  font-family: Anton;
+  color: var(--bg-color);
 }
 
 .fj-gallery-item {
@@ -341,12 +376,6 @@ footer {
       max-height: 20rem;
       // object-fit: contain;
       // height: 100%;
-    }
-  }
-  &.generic {
-    .label {
-      font-family: Public Sans;
-      color: var(--text-color);
     }
   }
 

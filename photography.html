@@ -16,39 +16,22 @@ show-banner: false
   window.galleryLastRow = "left"
 </script>
 
-<div class="testmask">
-  SAN FRANCISCO<br>
-  IS BURSTING WITH<br>
-  COLOR AND LIFE
-</div>
-
-<br>
-<br>
-<br>
-
-<div class="testmask">
-  San Francisco<br>
-  is bursting with<br>
-  color and life
-</div>
-
 <!-- Feature -->
 
 {% assign feature_gallery = site.portfolio | where: "title", "Feature" %}
 
-{{ feature_gallery[0].content }}
+<!-- { { feature_gallery[0].content }} -->
+
+<!-- Selected -->
+
+{% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
+{% include feature-gallery.html collection=portfolio id="gallerytest" row_height=600 %}
 
 <!-- Work -->
 
 {% assign photowork = site.photowork | sort: 'order' %}
 <h3>Work</h3>
-{% include series-gallery.html collection=photowork id="photowork" row_height=100 %}
-
-<!-- Selected -->
-
-<h3>Selected</h3>
-{% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include series-gallery.html collection=portfolio id="gallerytest" row_height=100 %}
+{% include series-gallery.html collection=photowork id="photowork" row_height=200 %}
 
 <!-- Photojournal -->
 

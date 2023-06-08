@@ -5,16 +5,27 @@
 {% assign namesplit = name_ext | split: '.' %}
 {% assign series_name = namesplit[0] %}
 
+{% assign class = include.class | default: "fj-gallery-item" %}
+
 {% assign l = include.post.link | default: "" %}
 {% if l == "" %}
   {% assign l = include.post.url %}
 {% endif %}
 
-<div class="fj-gallery-item {{ include.type }} generic">
+{% assign covers = site.covers | where: "slug", include.post.slug %}
+{% assign cover = covers[0] %}
+
+<div class="{{ class }} {{ include.type }} generic">
+  <div class="post-preview-wrapper">
   <a class="post-preview" href="{{ l }}">
-    <img src="/assets/img/{{ post.collection }}/{{ series_name }}/{{ num_str }}.webp"/>
-    <div class="label">
+  {% if cover %}
+    {{ cover.content }}
+  {% else %}
+    <div class="gallery-label">
       {{ include.post.title }}
     </div>
+    <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/{{ post.collection }}/{{ series_name }}/{{ num_str }}.webp"/>
+  {% endif %}
   </a>
+  </div>
 </div>

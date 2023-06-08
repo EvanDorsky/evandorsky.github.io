@@ -68,8 +68,6 @@ function imgClick(event) {
 }
 
 function presentModal(name) {
-  console.log('presentModal')
-  console.log(name)
   var modal = d3.selectAll(`.photo-modal-bg[name='${name}']`)
 
   if (!modal.classed('active')) {

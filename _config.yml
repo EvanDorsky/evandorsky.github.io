@@ -36,6 +36,8 @@ plugins:
   - jekyll-feed
   - jekyll-duplicate
 
+excerpt_separator: <!-- more -->
+
 collections:
   features:
     output: false
@@ -47,6 +49,8 @@ collections:
     output: true
     permalink: /:name
   photowork:
+    output: true
+  covers:
     output: true
 
 markdown: kramdown
