@@ -360,7 +360,7 @@ function main(event) {
 
     carouselSelect(cn, 1)
 
-    // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 600)
+    setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 600)
   }
 
   // run the "hint" to indicate clickable elements

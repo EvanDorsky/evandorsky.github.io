@@ -323,6 +323,34 @@ footer {
   color: rgba(0,0,0,0);
 }
 
+// carousel
+
+.carousel-wrapper {
+  position: relative;
+  .button {
+    border: solid var(--text-color);
+    transform: rotate(45deg) skew(20deg, 20deg);
+
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 2rem);
+
+    width: Min(4rem, 5vw);
+    height: Min(4rem, 5vw);
+
+    // background-color: red;
+
+    &.left {
+      border-width: 0 0 2px 2px;
+      left: 0;
+    }
+    &.right {
+      border-width: 2px 2px 0 0;
+      right: 0;
+    }
+  }
+}
+
 .carousel {
   display: flex;
 
@@ -383,6 +411,7 @@ footer {
 
   .post-preview-wrapper {
     flex: 0 0 auto;
+    max-width: 90vw;
     position: relative;
     // width: fit-content;
     margin: 0 auto;
