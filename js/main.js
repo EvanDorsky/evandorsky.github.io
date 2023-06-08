@@ -199,22 +199,33 @@ function selectorOpen(sel, id, openTo) {
 
 // carousel functions
 
+function carouselButtonClick(cn, e) {
+  var c = window.carousels[cn]
+
+  var el = d3.select(e.target)
+  var dir = el.attr("dir")
+
+  var newIdx = c.idx + parseInt(dir)
+  if (0 < newIdx && newIdx <= c.len) {
+    carouselSelect(cn, newIdx)
+  }
+}
+
 function carouselSelect(cn, idx) {
   var c = window.carousels[cn]
 
   var el = d3.select(`.carousel#${cn}`)
 
-  var didx = idx - c.idx
+  var items = el.selectAll('.carousel-item')
+  var item = items.nodes()[idx-1]
 
-  var item = el.selectAll('.carousel-item').nodes()[idx]
+  // deselect all items
+  items.classed('active', false)
+
+  // select the desired one
   d3.select(item).classed('active', true)
 
-  // d3.transition()
-  //   .duration(500)
-  //   .tween("scroll", (offset => () => {
-  //     var i = d3.interpolateNumber(0, offset);
-  //     return t => scrollTo(0, i(t))
-  //   })(0 + document.querySelector(`.carousel#${cn}`).getBoundingClientRect().left))
+  window.carousels[cn].idx = idx
 }
 
 function selectorClose(sel, id) {
@@ -341,10 +352,16 @@ function main(event) {
   }
 
   // carousel setup
-  for (let id in window.carousels) {
-    carouselSelect(id, 1)
-  }
+  for (let cn in window.carousels) {
+    var el = d3.select(`.carousel#${cn}`)
 
+    d3.select(el.node().parentNode).selectAll('.button')
+      .on("click", (e) => carouselButtonClick(cn, e))
+
+    carouselSelect(cn, 1)
+
+    // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 600)
+  }
 
   // run the "hint" to indicate clickable elements
   // doHint()

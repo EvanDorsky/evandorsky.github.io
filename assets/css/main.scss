@@ -343,7 +343,7 @@ footer {
   img {
     display: block;
     max-width: 90vw;
-    max-height: 80vw;
+    max-height: 80vh;
     object-fit: contain;
   }
 
@@ -351,12 +351,24 @@ footer {
     text-decoration: inherit;
   }
 
-  position: relative;
-  display: none;
+  width: 0px;
+  max-width: 0px;
   align-items: center;
 
+  transition: visibility 600ms, opacity 600ms linear;
+  &.transition-all {
+    transition: visibility 600ms, opacity 600ms linear, max-width 600ms ease-in-out, width 600ms ease-in-out;
+  }
+
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+
   &.active {
-    display: flex;
+    width: 100%;
+    max-width: 100%;
+    opacity: 1;
+    visibility: visible;
   }
 
   .carousel-label {
