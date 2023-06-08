@@ -201,6 +201,7 @@ function selectorOpen(sel, id, openTo) {
 
 function carouselButtonClick(cn, e) {
   var c = window.carousels[cn]
+  clearInterval(window.carousels[cn].carouselInterval)
 
   var el = d3.select(e.target)
   var dir = el.attr("dir")
@@ -212,6 +213,7 @@ function carouselButtonClick(cn, e) {
 }
 
 function carouselSelect(cn, idx) {
+  console.log(`Select idx ${idx}`)
   var c = window.carousels[cn]
 
   var el = d3.select(`.carousel#${cn}`)
@@ -360,7 +362,9 @@ function main(event) {
 
     carouselSelect(cn, 1)
 
-    setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 600)
+    // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 800)
+
+    window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, (((window.carousels[cn].idx-1)+1)%window.carousels[cn].len)+1), 5000)
   }
 
   // run the "hint" to indicate clickable elements

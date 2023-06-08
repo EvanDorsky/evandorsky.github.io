@@ -383,9 +383,9 @@ footer {
   max-width: 0px;
   align-items: center;
 
-  transition: visibility 600ms, opacity 600ms linear;
+  transition: visibility 800ms, opacity 800ms linear;
   &.transition-all {
-    transition: visibility 600ms, opacity 600ms linear, max-width 600ms ease-in-out, width 600ms ease-in-out;
+    transition: visibility 800ms, opacity 800ms linear, max-width 800ms ease-in-out, width 800ms ease-in-out;
   }
 
   visibility: hidden;
