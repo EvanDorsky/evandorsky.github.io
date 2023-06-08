@@ -1,20 +1,17 @@
 
 {% assign id = include.id | default: "gallery-generic" %}
-{% assign row_height = include.row_height | default: 300 %}
-{% assign row_tol = include.row_tol | default: 0.3 %}
 
 <script type="text/javascript">
-  if (!window.galleries) {
-    window.galleries = {}
+  if (!window.carousels) {
+    window.carousels = {}
   }
-  window.galleries["{{ id }}"] = {
-    row_height: {{ row_height }},
-    row_tol: {{ row_tol }}
+  window.carousels["{{ id }}"] = {
+    idx: 1
   }
 </script>
 
-<div class="feature-gallery" id="{{ id }}">
+<div class="carousel" id="{{ id }}">
 {% for post in include.collection %}
-  {% include post-pre-generic.html class="feature-gallery-item" post=post %}
+  {% include post-pre-generic.html class="carousel-item" post=post %}
 {% endfor %}
 </div>

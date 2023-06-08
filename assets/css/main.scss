@@ -323,7 +323,7 @@ footer {
   color: rgba(0,0,0,0);
 }
 
-.feature-gallery {
+.carousel {
   display: flex;
 
   overflow-y: scroll;
@@ -336,7 +336,7 @@ footer {
   height: 80vh;
 }
 
-.feature-gallery-item {
+.carousel-item {
   flex: 0 0 100%;
   overflow: hidden;
   // width: 100%;
@@ -587,8 +587,16 @@ footer {
 }
 
 .photo-modal-bg {
-  display: none;
   cursor: auto;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 200ms, opacity 200ms linear;
 
   position: fixed;
   left: 0;
@@ -599,23 +607,29 @@ footer {
   z-index: 80;
 
   &.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    .photo-modal {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
 .photo-modal {
   z-index: 90;
   border-radius: 5px;
-  // background-color: var(--bg-color);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 200ms, opacity 200ms linear;
 
   max-width: 100vw;
 
   img.fullsize {
     display: block;
     width: auto;
-    max-width: 100vw;
+    max-width: 95vw;
     max-height: 80vh;
     border-radius: 0;
   }

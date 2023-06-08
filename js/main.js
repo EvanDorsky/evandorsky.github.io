@@ -77,36 +77,6 @@ function presentModal(name) {
   }
 }
 
-function bodyKeydown(event) {
-  if (window.mode == mode.modal) {
-    // right arrow
-    var indexChange = 0
-    if (event.keyCode == '39') {
-      indexChange = 1
-    }
-    else if (event.keyCode == '37') {
-      indexChange = -1
-    }
-    else {
-      return dismissModal(event)
-    }
-    
-    if (indexChange != 0) {
-      var gallery = d3.selectAll(`.fj-gallery[series='${window.modal.attr("series")}']`)
-      var maxphotos = gallery.attr("n_photos")
-
-      var newNum = parseInt(window.modal.attr("index")) + indexChange
-
-      if (0 < newNum && newNum <= maxphotos) {
-        var newModal = d3.selectAll(`.photo-modal-bg[index='${newNum}'][series='${window.modal.attr("series")}']`)
-        dismissModal()
-
-        presentModal(newModal.attr("name"))
-      }
-    }
-  }
-}
-
 function updateMode(mode) {
   window.mode = mode
   if (window.mode != mode.modal) {
@@ -215,6 +185,23 @@ function selectorOpen(sel, id, openTo) {
   }, 5)
 }
 
+// carousel functions
+
+function carouselSelect(cn, idx) {
+  var c = window.carousels[cn]
+
+  var el = d3.select(`.carousel#${cn}`)
+
+  var didx = idx - c.idx
+
+  // d3.transition()
+  //   .duration(500)
+  //   .tween("scroll", (offset => () => {
+  //     var i = d3.interpolateNumber(0, offset);
+  //     return t => scrollTo(0, i(t))
+  //   })(0 + document.querySelector(`.carousel#${cn}`).getBoundingClientRect().left))
+}
+
 function selectorClose(sel, id) {
   var els = d3.selectAll(sel)
 
@@ -247,6 +234,39 @@ function __scrollTween(offset) {
 const mode = {
   default: 0,
   modal: 1
+}
+
+function bodyKeydown(event) {
+  if (event.keyCode == '65') {
+    carouselSelect('carousel', 2)
+  }
+  if (window.mode == mode.modal) {
+    // right arrow
+    var indexChange = 0
+    if (event.keyCode == '39') {
+      indexChange = 1
+    }
+    else if (event.keyCode == '37') {
+      indexChange = -1
+    }
+    else {
+      return dismissModal(event)
+    }
+    
+    if (indexChange != 0) {
+      var gallery = d3.selectAll(`.fj-gallery[series='${window.modal.attr("series")}']`)
+      var maxphotos = gallery.attr("n_photos")
+
+      var newNum = parseInt(window.modal.attr("index")) + indexChange
+
+      if (0 < newNum && newNum <= maxphotos) {
+        var newModal = d3.selectAll(`.photo-modal-bg[index='${newNum}'][series='${window.modal.attr("series")}']`)
+        dismissModal()
+
+        setTimeout(() => presentModal(newModal.attr("name")), 0)
+      }
+    }
+  }
 }
 
 function main(event) {
