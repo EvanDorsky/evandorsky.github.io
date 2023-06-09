@@ -364,7 +364,7 @@ function main(event) {
 
     // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 800)
 
-    window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, (((window.carousels[cn].idx-1)+1)%window.carousels[cn].len)+1), 5000)
+    window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, (((window.carousels[cn].idx-1)+1)%window.carousels[cn].len)+1), 6000)
   }
 
   // run the "hint" to indicate clickable elements
