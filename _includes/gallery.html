@@ -2,6 +2,7 @@
 {% assign id = include.id | default: "fjgallery" %}
 {% assign row_height = include.row_height | default: 300 %}
 {% assign row_tol = include.row_tol | default: 0.3 %}
+{% assign gutter = include.gutter | default: 20 %}
 
 <script type="text/javascript">
   if (!window.galleries) {
@@ -9,7 +10,8 @@
   }
   window.galleries["{{ id }}"] = {
     row_height: {{ row_height }},
-    row_tol: {{ row_tol }}
+    row_tol: {{ row_tol }},
+    gutter: {{ gutter }}
   }
 </script>
 
