@@ -1,33 +1,12 @@
 ---
 layout: index
 jumbotron: false
-title: Gallery
+title: Projects
 navbar: true
 navbar-order: 0
 show-banner: true
 ---
 
-{% assign series_sorted = site.portfolio | sort: 'order' %}
+{% assign projects = site.projects %}
 
-<div class="film index">
-  <div class="selected-list">
-  {% for gallery in series_sorted %}
-    {% if gallery.role != "selected" %}
-      {% continue %}
-    {% endif %}
-
-    {% include selected-preview.html post=gallery %}
-  {% endfor %}
-  </div>
-</div>
-
-{% for gallery in series_sorted %}
-  {% if gallery.role != "feature" %}
-    {% continue %}
-  {% endif %}
-
-<div class="film index">
-  <h4>{{ gallery.title }}</h4>
-  {{ gallery.content }}
-</div>
-{% endfor %}
+{% include series-gallery.html preview="post-pre-generic" collection=projects id="projects" row_height=400 %}
