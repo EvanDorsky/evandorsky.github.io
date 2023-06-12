@@ -7,6 +7,6 @@ navbar-order: 0
 show-banner: true
 ---
 
-{% assign projects = site.projects %}
+{% assign proj_phys = site.projects | where: 'type', 'physical' %}
 
-{% include series-gallery.html preview="post-pre-generic" collection=projects id="projects" row_height=400 %}
+{% include series-gallery.html preview="post-pre-generic" collection=proj_phys id="projects" row_height=400 %}

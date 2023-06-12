@@ -1,5 +1,6 @@
 ---
 layout: post
-title: DSLR Scan
+title: DSLR Scanning Rig
+type: physical
 ---
 
