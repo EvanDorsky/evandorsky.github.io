@@ -2,7 +2,7 @@
 layout: index
 jumbotron: false
 title: Store
-thumb: /assets/img/film/2022-12-28-street/03.webp
+thumb: /assets/img/posts/2022-12-28-street/03.webp
 
 navbar: false
 row_height: 200

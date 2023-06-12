@@ -8,6 +8,6 @@
 
 {% assign num_str = photo_index | prepend: '00' | slice: -2, 2 %}
 <div class="photo-list">
-  <img src="/assets/img/{{ collection }}/{{ page_name }}/{{ num_str }}.webp">
+  <img src="/assets/img/posts/{{ page_name }}/{{ num_str }}.webp">
 </div>
 {% assign photo_index = photo_index | plus: 1 %}

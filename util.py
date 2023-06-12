@@ -146,7 +146,7 @@ def run_process_img(args):
   if type(args) == argparse.Namespace:
     args = vars(args)
   im_dirs = []
-  for dirpath, dirnames, filenames in os.walk('./assets/img/film'):
+  for dirpath, dirnames, filenames in os.walk('./assets/img/posts'):
     for fname in filenames:
       # disqualify the original folders themselves...
       if os.path.split(dirpath)[-1] == 'original':
@@ -231,7 +231,7 @@ def info_tostr(info):
   return frontmatter
 
 def get_valid_series_name(name):
-  series = sorted(os.listdir('assets/img/film/'))
+  series = sorted(os.listdir('assets/img/posts/'))
   candidates = []
   for s in series:
     if name in s:
@@ -276,7 +276,7 @@ def run_series(args):
   if args.action != 'create':
     args.name = get_valid_series_name(args.name)
 
-  im_out_path = 'assets/img/film/%s' % args.name
+  im_out_path = 'assets/img/posts/%s' % args.name
   md_path = '_photojournal/%s.md' % args.name
 
   input_path = os.path.expanduser(args.input_path)
@@ -423,8 +423,8 @@ def run_productize(args):
 
       photo_fname = os.path.splitext(fname)[0] + '.webp'
       # construct image url
-      # p_image = "https://www.evandors.ky/assets/img/film/2022-12-28-street/01.webp"
-      photo['image'] = "https://www.evandors.ky/assets/img/film/%s" % (os.path.join(args.name, photo_fname))
+      # p_image = "https://www.evandors.ky/assets/img/posts/2022-12-28-street/01.webp"
+      photo['image'] = "https://www.evandors.ky/assets/img/posts/%s" % (os.path.join(args.name, photo_fname))
 
       photos.append(photo)
 
@@ -622,7 +622,7 @@ if __name__ == '__main__':
 '''
 def run_process_img(args):
   process_imgs('assets/img/about', 500)
-  process_imgs('assets/img/film', '1000x1000')
+  process_imgs('assets/img/posts', '1000x1000')
 
 # create a thumbnail in the parent directory
 def thumb_jpg(path, dim, suffix=False):

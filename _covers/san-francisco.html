@@ -7,15 +7,15 @@ layout: page
 {% assign namesplit = name_ext | split: '.' %}
 {% assign page_name = namesplit[0] %}
 
-{% capture img_path %}/assets/img/{{ page.collection }}/{{ page_name }}/{% endcapture %}
+{% capture img_path %}/assets/img/covers/{{ page_name }}/{% endcapture %}
 
-<div class="text-mask" style="background: url({{img_path}}/cover.webp) 0 0 / cover no-repeat; background-clip: text;">
+<div class="text-mask" style="background: url({{img_path}}cover.webp) 0 0 / cover no-repeat; background-clip: text;">
   San Francisco
   <br>
   is bursting with
   <br>
   color and life
 </div>
-<!-- <div class="text-mask" style="background: url({{img_path}}/cover.webp) 0 0 / cover no-repeat; background-clip: text;"> -->
+<!-- <div class="text-mask" style="background: url({ {img_path}}/cover.webp) 0 0 / cover no-repeat; background-clip: text;"> -->
   <!-- is bursting with color and life -->
 <!-- </div> -->

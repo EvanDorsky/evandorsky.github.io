@@ -15,5 +15,5 @@ deploy:
 
 img:
 	rm -f assets/img/**/*_tn.jpg
-	rm -f assets/img/film/**/*_tn.jpg
+	rm -f assets/img/posts/**/*_tn.jpg
 	python util.py process-img
