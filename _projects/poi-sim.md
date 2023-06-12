@@ -1,5 +1,5 @@
 ---
 layout: post
-title: Poit Sim
+title: Poi Sim
 link: ""
 ---
