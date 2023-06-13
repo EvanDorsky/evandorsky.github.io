@@ -8,5 +8,7 @@ show-banner: true
 ---
 
 {% assign proj_phys = site.projects | where: 'type', 'physical' %}
+{% include series-gallery.html preview="post-pre-generic" collection=proj_phys id="projects-physical" gutter=0 row_height=400 %}
 
-{% include series-gallery.html preview="post-pre-generic" collection=proj_phys id="projects" gutter=0 row_height=400 %}
+{% assign proj_dig = site.projects | where: 'type', 'digital' %}
+{% include series-gallery.html preview="post-pre-generic" collection=proj_dig id="projects-digital" gutter=0 row_height=400 %}
