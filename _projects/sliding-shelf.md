@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Sliding Shelf
+title: Bedside Table / Storage Shelf
 link: ""
 type: physical
 order: 5

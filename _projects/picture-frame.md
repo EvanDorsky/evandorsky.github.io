@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Picture Frame
+title: Reclaimed Redwood Picture Frame
 link: ""
 type: physical
 order: 4

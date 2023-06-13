@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DSLR Scanning Rig
+title: Digitizing Film
 type: physical
 order: 0
 ---

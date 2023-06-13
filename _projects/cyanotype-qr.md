@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Analog QR Code
+title: "Analog QR / Digital Cyanotype"
 type: physical
 order: 3
 ---

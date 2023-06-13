@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 3D Printing
+title: Analog Camera / Digital Parts
 type: physical
 order: 2
 ---

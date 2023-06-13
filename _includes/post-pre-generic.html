@@ -22,6 +22,9 @@
     {{ cover.content }}
   {% else %}
     <div class="gallery-label">
+      <div class="gallery-label-text">
+        {{ include.post.title }}
+      </div>
     </div>
     <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
   {% endif %}

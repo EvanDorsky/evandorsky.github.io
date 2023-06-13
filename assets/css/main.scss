@@ -83,6 +83,31 @@ a {
     transition: opacity 800ms;
     overflow: hidden;
 
+    .gallery-label {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 100;
+
+      transition: opacity 800ms;
+
+      color: var(--bg-color);
+      background-color: rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 800ms;
+
+      .gallery-label-text {
+        position: absolute;
+        bottom: 0;
+        padding-left: 0.8rem;
+        padding-bottom: 0.5rem;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
     img {
       transition: transform 800ms;
     }
