@@ -76,6 +76,24 @@ a {
 // index.md sections
 // 
 
+// index.md workshop gallery
+
+#projects-physical {
+  .fj-gallery-item {
+    transition: opacity 800ms;
+    overflow: hidden;
+
+    img {
+      transition: transform 800ms;
+    }
+    &:hover {
+      img {
+        transform: scale(1.1) !important;
+      }
+    }
+  }
+}
+
 #index-indent {
   padding-left: 2rem;
 }
