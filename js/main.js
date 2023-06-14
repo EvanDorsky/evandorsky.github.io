@@ -4,6 +4,13 @@
   }
 )()
 
+// hack in the modulo operator
+// https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+Number.prototype.mod = function (n) {
+  "use strict"
+  return ((this % n) + n) % n
+}
+
 // global state set when a feature is opening or closing
 featureLock = false
 
@@ -206,10 +213,8 @@ function carouselButtonClick(cn, e) {
   var el = d3.select(e.target)
   var dir = el.attr("dir")
 
-  var newIdx = c.idx + parseInt(dir)
-  if (0 < newIdx && newIdx <= c.len) {
-    carouselSelect(cn, newIdx)
-  }
+  var newIdx = (c.idx + parseInt(dir)).mod(c.len)
+  carouselSelect(cn, newIdx)
 }
 
 function carouselSelect(cn, idx) {
@@ -219,7 +224,7 @@ function carouselSelect(cn, idx) {
   var el = d3.select(`.carousel#${cn}`)
 
   var items = el.selectAll('.carousel-item')
-  var item = items.nodes()[idx-1]
+  var item = items.nodes()[idx]
 
   // deselect all items
   items.classed('active', false)
@@ -265,9 +270,6 @@ const Mode = {
 }
 
 function bodyKeydown(event) {
-  if (event.keyCode == '65') {
-    carouselSelect('carousel', 2)
-  }
   if (window.mode == Mode.modal) {
     var indexChange = 0
     if (event.keyCode == '39') {
@@ -360,11 +362,11 @@ function main(event) {
     d3.select(el.node().parentNode).selectAll('.button')
       .on("click", (e) => carouselButtonClick(cn, e))
 
-    carouselSelect(cn, 1)
+    carouselSelect(cn, 0)
 
     // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 800)
 
-    window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, (((window.carousels[cn].idx-1)+1)%window.carousels[cn].len)+1), 6000)
+    window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, ((window.carousels[cn].idx+1).mod(window.carousels[cn].len))), 6000)
   }
 
   // run the "hint" to indicate clickable elements
