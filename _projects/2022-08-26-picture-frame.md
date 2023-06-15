@@ -13,4 +13,4 @@ I built some picture frames with my friend and neighbor – four for her and one
 
 We used some old fence boards from her backyard which were, befitting their California provenance, made of redwood.
 
-Underneath the rough-weathered 
+Beneath the rough-weathered surface, the wood looked brand new. I sanded the pieces before gluing, fine sanded the corners after gluing, and finally oiled the frame – with simple mineral oil since I couldn't wait to finish the piece and put it up on my wall.

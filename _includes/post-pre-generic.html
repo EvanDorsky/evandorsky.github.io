@@ -1,4 +1,4 @@
-{% assign num_str = include.post.key_photo | prepend: '00' | slice: -2, 2 %}
+{% assign num_str = include.post.n_photos | prepend: '00' | slice: -2, 2 %}
 
 {% assign pathsplit = include.post.path | split: '/' %}
 {% assign name_ext = pathsplit[-1] %}
