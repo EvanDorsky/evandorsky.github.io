@@ -20,7 +20,7 @@ All prints are 300 dpi inkjet prints with Precision Colors CLI-42 dye ink on Can
     {% continue %}
   {% endif %}
 
-<div class="film index">
+<div class="article-container index">
   <h4>{{ gallery.title }}</h4>
   {{ gallery.content }}
 </div>

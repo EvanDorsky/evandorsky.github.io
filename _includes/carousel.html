@@ -1,0 +1,33 @@
+
+{% assign id = include.id | default: "gallery-generic" %}
+{% assign class = include.class | default: "" %}
+
+{% assign pathsplit = page.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+
+<script type="text/javascript">
+  if (!window.carousels) {
+    window.carousels = {}
+  }
+  window.carousels["{{ id }}"] = {
+    idx: 0,
+    len: {{ page.n_photos }}
+  }
+</script>
+
+<div class="carousel-wrapper {{ class }}">
+  <div class="carousel" id="{{ id }}">
+  {% for i in ( 1.. page.n_photos ) %}
+    <div class="carousel-item">
+      {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
+      <div class="post-preview-wrapper">
+        <img src="/assets/img/posts/{{ page_name }}/{{ num_str }}.webp">
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="button left" dir="-1"></div>
+  <div class="button right" dir="1"></div>
+</div>

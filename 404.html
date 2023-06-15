@@ -27,9 +27,9 @@ layout: default
 
 </div>
 {% assign series_sorted = site.portfolio | sort: 'order' %}
-<div class="film index">
+<div class="article-container index">
 </div>
-<div class="film index">
+<div class="article-container index">
   <div class="selected-list">
   {% for gallery in series_sorted %}
     {% if gallery.role != "selected" %}

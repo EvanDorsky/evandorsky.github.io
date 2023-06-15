@@ -113,7 +113,7 @@ a {
     }
     &:hover {
       img {
-        transform: scale(1.1) !important;
+        transform: scale(1.05) !important;
       }
     }
   }
@@ -227,7 +227,26 @@ h2#gallery {
 // film category elements
 //
 
-.film {
+.project-photo {
+  display: inline-block;
+
+  float: right;
+
+  img {
+    flex: 0 1 100%;
+    max-width: 50vw;
+    // object-fit: contain;
+
+    // padding: 3vh 0;
+  }
+}
+
+.article-container {
+  // https://stackoverflow.com/questions/9537838/div-height-100-and-expands-to-fit-content
+  font-family: Lora;
+  display: block;
+  overflow: auto;
+
   width: 90%;
   padding: 0 5%;
   h2 {
@@ -369,6 +388,19 @@ footer {
 // carousel
 
 .carousel-wrapper {
+  &.project-carousel {
+    float: right;
+    width: 50%;
+
+    .carousel {
+      .carousel-item {
+        // height: fit-content;
+      }
+      // height: fit-content;
+      // height: auto;
+    }
+  }
+
   position: relative;
   .button {
     border: solid var(--text-color);

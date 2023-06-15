@@ -130,7 +130,7 @@ def create_webp(im, webp, dim):
   return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
 
 def get_series_path(name):
-  series_folders = ['_photojournal', '_portfolio']
+  series_folders = ['_photojournal', '_portfolio', '_projects']
   for folder in series_folders:
     test_path = os.path.join(folder, name+".md")
 
@@ -346,7 +346,8 @@ def run_series(args):
       meta_summary = {
         key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
       }
-      meta_valid = True
+      if meta_summary != {}:
+        meta_valid = True
     except Exception as e:
       print("Metadata summary creation failed: %s" % e)
 

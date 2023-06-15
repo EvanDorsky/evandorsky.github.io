@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: project
 title: Analog Metadata
 link: ""
 type: physical

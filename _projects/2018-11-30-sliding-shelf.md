@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: project
 title: Bedside Table / Storage Shelf
 link: ""
 type: physical
