@@ -397,12 +397,24 @@ footer {
       object-fit: contain;
       .carousel-item {
         .post-preview-wrapper {
+          position: relative;
           max-width: 100%;
           img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
           }
+
+          .carousel-item-label {
+            position: absolute;
+            bottom: 0;
+
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
+            width: calc(100% - 1rem);
+            color: var(--bg-color);
+            padding: 0.2rem 0.5rem;
+          }
+
         }
         // height: fit-content;
       }
@@ -413,16 +425,17 @@ footer {
 
   position: relative;
   .button-wrapper {
-    background: white;
-    width: Min(4rem, 5vw);
+    width: Min(4rem, 10vw);
     height: 100%;
     position: absolute;
     top: 0;
 
     &.left {
+      background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0));
       left: 0;
     }
     &.right {
+      background: linear-gradient(to left, rgba(255,255,255,0.1), rgba(255,255,255,0));
       right: 0;
     }
 
@@ -430,23 +443,22 @@ footer {
       position: absolute;
 
       border: solid var(--text-color);
-      transform: rotate(45deg) skew(20deg, 20deg);
+      transform: rotate(45deg) skew(8deg, 8deg);
 
       cursor: pointer;
-      top: calc(50% - Min(2rem, 2.5vw));
+      // half of the width/height
+      top: calc(50% - Min(0.75rem, 1vw));
 
-      width: Min(4rem, 5vw);
-      height: Min(4rem, 5vw);
-
-      // background-color: red;
+      width: Min(1.5rem, 2vw);
+      height: Min(1.5rem, 2vw);
 
       &.left {
-        border-width: 0 0 2px 2px;
-        left: 2px;
+        border-width: 0 0 3px 3px;
+        left: 6px;
       }
       &.right {
-        border-width: 2px 2px 0 0;
-        right: 0;
+        border-width: 3px 3px 0 0;
+        right: 6px;
       }
     }
   }

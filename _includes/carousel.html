@@ -1,11 +1,13 @@
 
 {% assign id = include.id | default: "gallery-generic" %}
 {% assign class = include.class | default: "" %}
+{% assign captions = include.captions | default: [] %}
 
 {% assign pathsplit = page.path | split: '/' %}
 {% assign name_ext = pathsplit[-1] %}
 {% assign namesplit = name_ext | split: '.' %}
 {% assign page_name = namesplit[0] %}
+
 
 <script type="text/javascript">
   if (!window.carousels) {
@@ -24,6 +26,12 @@
       {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
       <div class="post-preview-wrapper">
         <img src="/assets/img/posts/{{ page_name }}/{{ num_str }}.webp">
+        {% if captions %}
+          <div class="carousel-item-label">
+            {% assign j = i | minus: 1 %}
+            {{ captions[j] }}
+          </div>
+        {% endif %}
       </div>
     </div>
   {% endfor %}
