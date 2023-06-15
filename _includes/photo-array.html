@@ -10,7 +10,7 @@
   {% assign page_name = namesplit[0] %}
 
   {% assign num_str = photo_index | prepend: '00' | slice: -2, 2 %}
-  {% capture img_src %}film/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
+  {% capture img_src %}posts/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
 
   <div class="photo-container">
     <img src="/assets/img/{{ img_src }}" name="{{ img_src }}"/>
