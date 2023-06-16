@@ -1,7 +1,7 @@
 ---
 role: feature
 layout: gallery
-order: 1
+order: 2
 n_photos: 5
 key_photo: 1
 title: Architecture
