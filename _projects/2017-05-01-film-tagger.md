@@ -12,5 +12,3 @@ captions: [
   "Board and camera"
 ]
 ---
-
-{% include carousel.html id="carousel" captions=page.captions class="project-carousel" %}

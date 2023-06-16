@@ -6,5 +6,3 @@ type: physical
 order: 5
 n_photos: 17
 ---
-
-{% include carousel.html id="carousel" class="project-carousel" %}

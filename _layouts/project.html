@@ -13,7 +13,12 @@ no_wrapper: true
   <span class="post-date">{{ page.date | date: "%B %Y" }}</span>
   {% endunless %}
 
-  {{ content }}
+  <div class="project-wrapper">
+    <div class="project-text">
+      {{ content }}
+    </div>
+    {% include carousel.html id="carousel" captions=page.captions class="project-carousel" %}
+  </div>
 
   {% assign pathsplit = page.path | split: '/' %}
   {% assign name_ext = pathsplit[-1] %}

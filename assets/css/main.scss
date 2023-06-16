@@ -91,14 +91,17 @@ a {
   margin: 0;
   padding: 0;
 
+  font-size: 4vh;
+
   transition: opacity 600ms;
 
   color: var(--bg-color);
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.3);
   opacity: 0;
   transition: opacity 800ms;
 
   .gallery-label-text {
+    font-family: Futura;
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
@@ -379,13 +382,25 @@ footer {
 
 // carousel
 
+.project-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-text {
+  flex: 1 0 20rem;
+}
+
 .carousel-wrapper {
+  flex: 0 0 30rem;
   &.project-carousel {
     float: right;
 
     .carousel {
       height: 50vh;
-      width: 50vw;
+      // width: 50vw;
       object-fit: contain;
       .carousel-item {
         .post-preview-wrapper {
