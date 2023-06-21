@@ -1,8 +1,8 @@
 ---
 layout: project
 title: Analog Metadata
-link: ""
 type: physical
+status: complete
 order: 1
 n_photos: 4
 captions: [
