@@ -10,7 +10,14 @@
       {% assign namesplit = spage.name | split: '.' %}
       {% assign name = namesplit[0] %}
       <div class="nav-item {% if name == pagename %}active{% endif %}">
-        <a href="/{{ name }}">{{ spage.title }}</a>
+        <a href="/{{ name }}">
+          <div class="nav-item-text">
+            {{ spage.title }}
+          </div>
+          <div class="nav-item-bg">
+            {{ spage.title }}
+          </div>
+        </a>
       </div>
     {% endif %}
   {% endfor %}

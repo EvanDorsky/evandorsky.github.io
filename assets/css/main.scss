@@ -859,6 +859,16 @@ footer {
     text-align: center;
 
     font-weight: 500;
+
+    position: relative;
+    .nav-item-text {
+      position: absolute;
+    }
+    .nav-item-bg {
+      font-weight: bold;
+      opacity: 0;
+    }
+
     a {
       &:hover, {
         font-weight: bold;
