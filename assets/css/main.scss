@@ -523,7 +523,9 @@ footer {
     bottom: 0;
     left: 1rem;
 
-    font-size: 5rem;
+    // font-size: 5rem;
+    // font-size: Max(3rem, Min(6rem,7vw));
+    font-size: Max(3rem, Min(6rem,7vw));
     font-family: Anton;
     color: var(--bg-color);
   }
