@@ -122,11 +122,23 @@ a {
 //
 
 .feed {
+  width: 30rem;
+  max-width: 100%;
+  padding: 1rem;
+
+
+  flex-direction: column;
   .post {
+    width: 100%;
+
     display: flex;
 
     .inner {
-      flex: 0 1 auto;
+      flex: 0 0 auto;
+
+      &.left {
+        flex: 1 1 auto;
+      }
     }
 
     img.preview-image {
@@ -140,7 +152,8 @@ a {
       opacity: 0.4;
     }
     .date {
-      
+      font-weight: 200;
+      opacity: 0.4;
     }
   }
 }
