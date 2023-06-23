@@ -228,7 +228,7 @@ class htmlparser(HTMLParser):
         "date": int(datetime.timestamp(pub_date)),
         "description": "",
         "img": "https://static.observableusercontent.com/thumbnail/%s.jpg" % i["thumbnail"],
-        "link": "https://observablehq.com/@dorskyee/@%s/%s" % (author, i["slug"])
+        "link": "https://observablehq.com/@%s/%s" % (author, i["slug"])
       }]
 
     self.data = feed
