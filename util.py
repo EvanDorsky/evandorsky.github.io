@@ -11,8 +11,10 @@ import shutil
 import yaml
 from collections import OrderedDict
 import json
+
 from rss_parser import Parser as RSSParser
 import requests
+from html.parser import HTMLParser
 
 from datetime import date, datetime
 
@@ -155,8 +157,6 @@ def printables():
 
   if response.ok:
     data = response.json()
-    # Process the response data here
-    pprint(data)
   else:
     print("Request failed with status code:", response.status_code)
 
@@ -203,11 +203,50 @@ def rss_factory(url):
 
   return rss_to_feeddict
 
+class htmlparser(HTMLParser):
+  def handle_data(self, data):
+    try:
+      res = json.loads(data)
+    except Exception as e:
+      return
+
+    try:
+      iter(res)
+    except TypeError as te:
+      return
+
+    feed = []
+
+    for i in res["props"]["pageProps"]["fallback"]["/user/documents?sort=edited&direction=desc&page=1&document_type=notebook"]["results"]:
+
+      pub_date = datetime.fromisoformat(i["update_time"])
+
+      author = i["creator"]["login"]
+
+      feed += [{
+        "title": i["title"],
+        "date": int(datetime.timestamp(pub_date)),
+        "description": "",
+        "img": "https://static.observableusercontent.com/thumbnail/%s.jpg" % i["thumbnail"],
+        "link": "https://observablehq.com/@dorskyee/@%s/%s" % (author, i["slug"])
+      }]
+
+    self.data = feed
+
+def observable():
+  with open("observable.html") as f:
+    page = f.read()
+
+  parser = htmlparser()
+  parser.feed(page)
+  return parser.data
+
 def run_get_feed(args):
   feeds = {
     "luckybox": rss_factory("https://luckybox.substack.com/feed"),
     "mariner": rss_factory("https://mariner.substack.com/feed"),
-    "printables": printables
+    "printables": printables,
+    "observable": observable
   }
 
   for feedname in feeds:
