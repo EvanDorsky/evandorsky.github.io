@@ -11,6 +11,8 @@ import shutil
 import yaml
 from collections import OrderedDict
 import json
+from rss_parser import Parser as RSSParser
+import requests
 
 import sqlite3 as sl
 import stripe
@@ -122,6 +124,47 @@ def get_info_dict(exif):
       res[key] = kw_parts[1]
 
   return res
+
+def run_get_feed(args):
+  feeds = {
+    "luckybox": "https://luckybox.substack.com/feed",
+    "mariner": "https://mariner.substack.com/feed"
+  }
+
+  for feedname in feeds:
+    feed = []
+
+    url = feeds[feedname]
+    try:
+      res = requests.get(url)
+    except Exception as e:
+      print("Failed to get feed %s: %s" % (url, e))
+      return
+    rss = RSSParser.parse(res.text)
+    rssdict = rss.dict()
+
+    print("wrote %s" % feedname)
+
+    # for i in rss.channel.items:
+    #   post = {
+    #     "title": i.title.content,
+    #     "date": i.pub_date.content,
+    #     "link": i.link.content
+    #   }
+    #   pprint(post)
+    # exit()
+
+    for item in rssdict["channel"]["content"]["items"]:
+      i = item["content"]
+      feed += [{
+        "title": i["title"]["content"],
+        "date": i["pub_date"]["content"],
+        "description": i["description"]["content"],
+        "img": i["enclosure"]["attributes"]["url"]
+      }]
+
+    with open("_data/feeds/%s.json" % feedname, 'w') as f:
+      json.dump(feed, f)
 
 def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
@@ -560,6 +603,11 @@ if __name__ == '__main__':
           'type': int,
           'default': 1500
         }
+      }
+    },
+    'feed': {
+      'func': run_get_feed,
+      'args': {
       }
     },
     'series': {

@@ -117,6 +117,31 @@ a {
   padding-left: 2rem;
 }
 
+//
+// feed
+//
+
+.feed {
+  .post {
+    display: flex;
+
+    .preview-image {
+      img {
+        width: 5rem;
+      }
+    }
+    .title {
+
+    }
+    .description {
+
+    }
+    .date {
+
+    }
+  }
+}
+
 // 
 // index.md elements
 // 

@@ -1,0 +1,25 @@
+
+<!-- { % assign include %} -->
+
+{% assign feed = site.data["feeds"]["luckybox"] %}
+
+<div class="feed">
+  {% for post in feed %}
+  <a href="{{ post.link }}">
+    <div class="post">
+      <div class="preview-image">
+        <img src="{{ post.img }}"/>
+      </div>
+      <div class="title">
+        {{ post.title }}
+      </div>
+      <div class="description">
+        {{ post.description }}
+      </div>
+      <div class="date">
+        {{ post.date }}
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
