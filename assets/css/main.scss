@@ -125,19 +125,22 @@ a {
   .post {
     display: flex;
 
-    .preview-image {
-      img {
-        width: 5rem;
-      }
+    .inner {
+      flex: 0 1 auto;
+    }
+
+    img.preview-image {
+      height: 5rem;
     }
     .title {
-
+      font-weight: 400;
     }
     .description {
-
+      font-weight: 200;
+      opacity: 0.4;
     }
     .date {
-
+      
     }
   }
 }

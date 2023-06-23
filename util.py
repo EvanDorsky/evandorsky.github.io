@@ -14,6 +14,8 @@ import json
 from rss_parser import Parser as RSSParser
 import requests
 
+from datetime import date, datetime
+
 import sqlite3 as sl
 import stripe
 stripe.api_key = "sk_test_51Mgj2BEhyRPhN5qgaRf5BPVYAMFjyNGvBXK8l5LAsuAH2l10rjbw6XXYXxc01zvFlQGkBfcaraOrfp19mOnRw6d600hPBFQDaP"
@@ -156,11 +158,16 @@ def run_get_feed(args):
 
     for item in rssdict["channel"]["content"]["items"]:
       i = item["content"]
+
+      dformat = "%a, %d %b %Y %H:%M:%S %Z"
+      pub_date = datetime.strptime(i["pub_date"]["content"], dformat)
+
       feed += [{
         "title": i["title"]["content"],
-        "date": i["pub_date"]["content"],
+        "date": int(datetime.timestamp(pub_date)),
         "description": i["description"]["content"],
-        "img": i["enclosure"]["attributes"]["url"]
+        "img": i["enclosure"]["attributes"]["url"],
+        "link": i["link"]["content"]
       }]
 
     with open("_data/feeds/%s.json" % feedname, 'w') as f:

@@ -2,24 +2,30 @@
 <!-- { % assign include %} -->
 
 {% assign feed = site.data["feeds"]["luckybox"] %}
+{% assign max_posts = 3 %}
 
 <div class="feed">
-  {% for post in feed %}
-  <a href="{{ post.link }}">
+{% for post in feed %}
+
+  {% unless forloop.index > max_posts %}
+  <a href="{{ post.link }}" target="blank">
     <div class="post">
-      <div class="preview-image">
-        <img src="{{ post.img }}"/>
+      <div class="inner left">
+        <div class="title">
+          {{ post.title }}
+        </div>
+        <div class="description">
+          {{ post.description }}
+        </div>
+        <div class="date">
+          {{ post.date | date: "%b %d" }}
+        </div>
       </div>
-      <div class="title">
-        {{ post.title }}
-      </div>
-      <div class="description">
-        {{ post.description }}
-      </div>
-      <div class="date">
-        {{ post.date }}
+      <div class="inner right">
+        <img class="preview-image" src="{{ post.img }}"/>
       </div>
     </div>
   </a>
-  {% endfor %}
+  {% endunless %}
+{% endfor %}
 </div>
