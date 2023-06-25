@@ -8,22 +8,20 @@
 {% for post in feed %}
 
   {% unless forloop.index > max_posts %}
-  <a href="{{ post.link }}" target="blank">
-    <div class="post">
-      <div class="inner left">
-        <div class="title">
-          {{ post.title }}
-        </div>
-        <div class="description">
-          {{ post.description }}
-        </div>
-        <div class="date">
-          {{ post.date | date: "%b %d" }}
-        </div>
+  <a href="{{ post.link }}" class="post" target="blank">
+    <div class="inner left">
+      <div class="title">
+        {{ post.title }}
       </div>
-      <div class="inner right">
-        <img class="preview-image" src="{{ post.img }}"/>
+      <div class="description">
+        {{ post.description }}
       </div>
+      <div class="date">
+        {{ post.date | date: "%b %d" }}
+      </div>
+    </div>
+    <div class="inner right">
+      <img class="preview-image" src="{{ post.img }}"/>
     </div>
   </a>
   {% endunless %}
