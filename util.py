@@ -136,12 +136,13 @@ def printables():
     "Accept": "application/json, text/plain, */*",
     "Accept-Language": "en",
     "apollographql-client-version": "v2.62.0",
-    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOjExMjAzNDgsImV4cCI6MTY4NzU2NDY5Nywic2hhcmVkX3Nlc3Npb25fa2V5IjoiMDBmZmIzNzEtNTE5OC00YTIyLWIyYWYtM2RiZGMxYzBjZmIyIiwidHlwZSI6ImFjY2VzcyJ9.t2gFT3g7BO86gH1jJbRb9EoQkfu2NbkKAtT96Km7UTQ",
     "Client-Uid": "ab256d74-436b-4cf7-bc58-227642fd8e30",
     "Content-Type": "application/json",
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
   }
 
+  with open('assets/util/printables.graphql') as f:
+    query = f.read()
   payload = {
     "operationName": "UserModels",
     "variables": {
@@ -150,7 +151,7 @@ def printables():
         "premium": False,
         "limit": 3
     },
-    "query": "query UserModels($userId: ID!, $ordering: String, $query: String, $premium: Boolean!, $limit: Int!, $cursor: String, $excludedIds: [ID]) {\n  userModels(\n    userId: $userId\n    ordering: $ordering\n    query: $query\n    premium: $premium\n    limit: $limit\n    cursor: $cursor\n    excludedIds: $excludedIds\n  ) {\n    cursor\n    items {\n      ...PrintListFragment\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment PrintListFragment on PrintType {\n  id\n  name\n  slug\n  ratingAvg\n  likesCount\n  liked\n  datePublished\n  dateFeatured\n  firstPublish\n  downloadCount\n  category {\n    id\n    path {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n  modified\n  image {\n    ...ImageSimpleFragment\n    __typename\n  }\n  nsfw\n  premium\n  user {\n    ...AvatarUserFragment\n    __typename\n  }\n  ...LatestCompetitionResult\n  __typename\n}\n\nfragment AvatarUserFragment on UserType {\n  id\n  publicUsername\n  avatarFilePath\n  handle\n  company\n  verified\n  badgesProfileLevel {\n    profileLevel\n    __typename\n  }\n  __typename\n}\n\nfragment LatestCompetitionResult on PrintType {\n  latestCompetitionResult {\n    placement\n    competitionId\n    __typename\n  }\n  __typename\n}\n\nfragment ImageSimpleFragment on PrintImageType {\n  id\n  filePath\n  rotation\n  __typename\n}"
+    "query": query
   }
 
   response = requests.post(url, headers=headers, json=payload)
@@ -168,7 +169,8 @@ def printables():
       "title": i["name"],
       "date": int(datetime.timestamp(pub_date)),
       "description": "",
-      "img": "https://media.printables.com/%s" % i["image"]["filePath"],
+      "img": "https://media.printables.com/%s" % i["stls"][0]["filePreviewPath"],
+      # "img": "https://media.printables.com/%s" % i["image"]["filePath"],
       "link": "https://www.printables.com/model/%s-%s" % (i["id"], i["slug"])
     }]
 

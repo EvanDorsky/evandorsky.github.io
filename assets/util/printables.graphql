@@ -1,0 +1,95 @@
+query UserModels(
+  $userId: ID!
+  $ordering: String
+  $query: String
+  $premium: Boolean!
+  $limit: Int!
+  $cursor: String
+  $excludedIds: [ID]
+) {
+  userModels(
+    userId: $userId
+    ordering: $ordering
+    query: $query
+    premium: $premium
+    limit: $limit
+    cursor: $cursor
+    excludedIds: $excludedIds
+  ) {
+    cursor
+    items {
+      ...PrintListFragment
+      __typename
+    }
+    __typename
+  }
+}
+fragment PrintListFragment on PrintType {
+  id
+  name
+  slug
+  ratingAvg
+  likesCount
+  liked
+  datePublished
+  dateFeatured
+  firstPublish
+  downloadCount
+  category {
+    id
+    path {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+  modified
+  image {
+    ...ImageSimpleFragment
+    __typename
+  }
+  stls {
+    id
+    name
+    filePath
+    fileSize
+    filePreviewPath
+    __typename
+  }
+  nsfw
+  premium
+  user {
+    ...AvatarUserFragment
+    __typename
+  }
+  ...LatestCompetitionResult
+  __typename
+}
+fragment AvatarUserFragment on UserType {
+  id
+  publicUsername
+  avatarFilePath
+  handle
+  company
+  verified
+  badgesProfileLevel {
+    profileLevel
+    __typename
+  }
+  __typename
+}
+fragment LatestCompetitionResult on PrintType {
+  latestCompetitionResult {
+    placement
+    competitionId
+    __typename
+  }
+  __typename
+}
+fragment ImageSimpleFragment on PrintImageType {
+  id
+  filePath
+  rotation
+  __typename
+}
