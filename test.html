@@ -7,8 +7,25 @@ navbar-order: 0
 show-banner: false
 ---
 
-<div class="feed-container">
-  {% include feed.html feed="printables" %}
-  {% include feed.html feed="luckybox" %}
-  {% include feed.html feed="observable" %}
+{% assign proj_phys = site.projects | where: 'type', 'physical' | sort: 'order' %}
+{% assign post0 = proj_phys[0] %}
+
+{% assign feeds = site.data["feeds"] %}
+
+<div class="flex-horiz">
+  {% include post-pre-generic.html post=post0 %}
+
+  <div class="flex-vert">
+    {% for spec in post0.posts %}
+      {% assign pfeed=spec[0] %}
+      {% assign pkey=spec[1] %}
+
+      {% assign notionpost=feeds[pfeed] | where: "key", pkey %}
+
+      {% include feed.html feed=notionpost title="Guides" feedname="notion" %}
+    {% endfor %}
+
+    {% assign luckyboxfeed = site.data["feeds"]["luckybox"] %}
+    {% include feed.html feed=luckyboxfeed title="Blog" feedname="luckybox" %}
+  </div>
 </div>

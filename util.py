@@ -243,17 +243,72 @@ def observable():
   parser.feed(page)
   return parser.data
 
+def notion():
+  pages = {
+    "dslr": "35f0b6216c064928a0c4849b2ad71e4f",
+    "tokyo": "4ecc1ceb6c1d47adb702bc0607f1795b",
+    "reading": "0b0313d881a94612bf6bbc344b7e07ec"
+  }
+
+  feed = []
+
+  notion_secret = os.getenv("NOTION_API_KEY")
+  headers = {
+    'Notion-Version': '2022-06-28',
+    'Authorization': "Bearer %s" % notion_secret
+  }
+
+  base_url = "https://api.notion.com/v1/pages/"
+  for page_name in pages:
+    page = pages[page_name]
+    try:
+      res = requests.get(base_url+page, headers=headers)
+    except Exception as e:
+      print("Failed to get feed %s: %s" % (url, e))
+      return []
+
+    i = res.json()
+
+    pub_date = datetime.fromisoformat(i["last_edited_time"])
+
+    feed += [{
+      "title": i["properties"]["title"]["title"][0]["plain_text"],
+      "date": int(datetime.timestamp(pub_date)),
+      "description": "",
+      "img": "",
+      "link": i["public_url"],
+      "key": page_name
+    }]
+
+  return feed
+
 def run_get_feed(args):
   feeds = {
-    "luckybox": rss_factory("https://luckybox.substack.com/feed"),
-    "mariner": rss_factory("https://mariner.substack.com/feed"),
-    "printables": printables,
-    "observable": observable
+    "luckybox": {
+      "title": "Lucky Box",
+      "factory": rss_factory("https://luckybox.substack.com/feed")
+    },
+    "mariner": {
+      "title": "The Mariner",
+      "factory": rss_factory("https://mariner.substack.com/feed")
+    },
+    "printables": {
+      "title": "3D Printing",
+      "factory": printables
+    },
+    "observable": {
+      "title": "Observable",
+      "factory": observable
+    },
+    "notion": {
+      "title": "Docs",
+      "factory": notion
+    }
   }
 
   for feedname in feeds:
     try:
-      feed = feeds[feedname]()
+      feed = feeds[feedname]["factory"]()
       
       with open("_data/feeds/%s.json" % feedname, 'w') as f:
         json.dump(feed, f)
