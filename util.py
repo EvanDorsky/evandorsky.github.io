@@ -170,7 +170,6 @@ def printables():
       "date": int(datetime.timestamp(pub_date)),
       "description": "",
       "img": "https://media.printables.com/%s" % i["stls"][0]["filePreviewPath"],
-      # "img": "https://media.printables.com/%s" % i["image"]["filePath"],
       "link": "https://www.printables.com/model/%s-%s" % (i["id"], i["slug"])
     }]
 
@@ -244,10 +243,8 @@ def observable():
   return parser.data
 
 def notion():
-  pages = {
-    "dslr": "35f0b6216c064928a0c4849b2ad71e4f",
-    "tokyo": "4ecc1ceb6c1d47adb702bc0607f1795b",
-    "reading": "0b0313d881a94612bf6bbc344b7e07ec"
+  databases = {
+    "shared": "18ed5a7b7ba3410692566f811fe69509"
   }
 
   feed = []
@@ -255,30 +252,40 @@ def notion():
   notion_secret = os.getenv("NOTION_API_KEY")
   headers = {
     'Notion-Version': '2022-06-28',
-    'Authorization': "Bearer %s" % notion_secret
+    'Authorization': "Bearer %s" % notion_secret,
+    "Content-Type": "application/json"
+  }
+  dbfilt = {
+    "filter": {
+      "and": []
+    }
   }
 
-  base_url = "https://api.notion.com/v1/pages/"
-  for page_name in pages:
-    page = pages[page_name]
+  base_url = "https://api.notion.com/v1/databases/"
+  for dbname in databases:
+    page = databases[dbname]
     try:
-      res = requests.get(base_url+page, headers=headers)
+      res = requests.post(base_url+page+"/query", headers=headers, data=json.dumps(dbfilt))
     except Exception as e:
       print("Failed to get feed %s: %s" % (url, e))
       return []
 
-    i = res.json()
+    res_data = res.json()
 
-    pub_date = datetime.fromisoformat(i["last_edited_time"])
+    pages = res_data["results"]
+    for page in pages:
+      pub_date = datetime.fromisoformat(page["last_edited_time"])
 
-    feed += [{
-      "title": i["properties"]["title"]["title"][0]["plain_text"],
-      "date": int(datetime.timestamp(pub_date)),
-      "description": "",
-      "img": "",
-      "link": i["public_url"],
-      "key": page_name
-    }]
+      page_name = "".join(page["properties"]["Name"]["title"][0]["plain_text"])
+
+      feed += [{
+        "title": page_name,
+        "date": int(datetime.timestamp(pub_date)),
+        "description": "",
+        "img": "",
+        "link": page["public_url"],
+        "key": page_name
+      }]
 
   return feed
 
@@ -311,7 +318,7 @@ def run_get_feed(args):
       feed = feeds[feedname]["factory"]()
       
       with open("_data/feeds/%s.json" % feedname, 'w') as f:
-        json.dump(feed, f)
+        json.dump(feed, f, indent=4)
 
       print("wrote %s" % feedname)
     except Exception as e:

@@ -13,6 +13,10 @@ show-banner: false
 {% assign feeds = site.data["feeds"] %}
 
 <div class="flex-horiz">
+  {% assign observablefeed = site.data["feeds"]["observable"] %}
+  {% include feed.html feed=observablefeed title="Explorables" feedname="observable" %}
+</div>
+<div class="flex-horiz">
   {% include post-pre-generic.html post=post0 %}
 
   <div class="flex-vert">
