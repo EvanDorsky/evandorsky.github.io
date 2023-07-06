@@ -29,6 +29,9 @@ show-banner: false
       {% include feed.html feed=notionpost title="Guides" feedname="notion" %}
     {% endfor %}
 
+    {% assign printablesfeed = site.data["feeds"]["printables"] %}
+    {% include feed.html feed=printablesfeed title="Objects" feedname="printables" %}
+
     {% assign luckyboxfeed = site.data["feeds"]["luckybox"] %}
     {% include feed.html feed=luckyboxfeed title="Blog" feedname="luckybox" %}
   </div>
