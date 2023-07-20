@@ -10,11 +10,13 @@ show-banner: false
 {% assign proj_phys = site.projects | where: 'type', 'physical' | sort: 'order' %}
 {% assign post0 = proj_phys[0] %}
 
-{% assign feeds = site.data["feeds"] %}
+{% assign posts = site.data["feeds"]["posts"] %}
+
+{% include feed.html feed=posts title="All posts" feedname="observable" %}
 
 <div class="flex-horiz">
-  {% assign observablefeed = site.data["feeds"]["observable"] %}
-  {% include feed.html feed=observablefeed title="Explorables" feedname="observable" %}
+  {% assign observablefeed = posts | where: "type", "observable" %}
+  {% include feed.html feed=observablefeed title="Interactive Notebooks" feedname="observable" %}
 </div>
 <div class="flex-horiz">
   {% include post-pre-generic.html post=post0 %}
@@ -24,15 +26,15 @@ show-banner: false
       {% assign pfeed=spec[0] %}
       {% assign pkey=spec[1] %}
 
-      {% assign notionpost=feeds[pfeed] | where: "key", pkey %}
+      {% assign notionpost = posts | where: "key", pkey %}
 
-      {% include feed.html feed=notionpost title="Guides" feedname="notion" %}
+      {% include feed.html feed = notionpost title="Living Docs" feedname="notion" %}
     {% endfor %}
 
-    {% assign printablesfeed = site.data["feeds"]["printables"] %}
+    {% assign printablesfeed = posts | where: "type", "printable" %}
     {% include feed.html feed=printablesfeed title="Objects" feedname="printables" %}
 
-    {% assign luckyboxfeed = site.data["feeds"]["luckybox"] %}
+    {% assign luckyboxfeed = posts | where: "type", "luckybox"] %}
     {% include feed.html feed=luckyboxfeed title="Blog" feedname="luckybox" %}
   </div>
 </div>

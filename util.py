@@ -166,6 +166,7 @@ def printables():
     pub_date = datetime.fromisoformat(i["datePublished"])
 
     feed += [{
+      "type": "printable",
       "title": i["name"],
       "date": int(datetime.timestamp(pub_date)),
       "description": "",
@@ -175,7 +176,7 @@ def printables():
 
   return feed
 
-def rss_factory(url):
+def rss_factory(url, blogname):
   def rss_to_feeddict():
     try:
       res = requests.get(url)
@@ -193,6 +194,7 @@ def rss_factory(url):
       pub_date = datetime.strptime(i["pub_date"]["content"], dformat)
 
       feed += [{
+        "type": blogname,
         "title": i["title"]["content"],
         "date": int(datetime.timestamp(pub_date)),
         "description": i["description"]["content"],
@@ -225,6 +227,7 @@ class htmlparser(HTMLParser):
       author = i["creator"]["login"]
 
       feed += [{
+        "type": "observable",
         "title": i["title"],
         "date": int(datetime.timestamp(pub_date)),
         "description": "",
@@ -279,6 +282,7 @@ def notion():
       page_name = "".join(page["properties"]["Name"]["title"][0]["plain_text"])
 
       feed += [{
+        "type": "notion",
         "title": page_name,
         "date": int(datetime.timestamp(pub_date)),
         "description": "",
@@ -293,11 +297,11 @@ def run_get_feed(args):
   feeds = {
     "luckybox": {
       "title": "Lucky Box",
-      "factory": rss_factory("https://luckybox.substack.com/feed")
+      "factory": rss_factory("https://luckybox.substack.com/feed", "luckybox")
     },
     "mariner": {
       "title": "The Mariner",
-      "factory": rss_factory("https://mariner.substack.com/feed")
+      "factory": rss_factory("https://mariner.substack.com/feed", "mariner")
     },
     "printables": {
       "title": "3D Printing",
@@ -313,9 +317,12 @@ def run_get_feed(args):
     }
   }
 
+  posts = []
   for feedname in feeds:
     try:
       feed = feeds[feedname]["factory"]()
+
+      posts += feed
       
       with open("_data/feeds/%s.json" % feedname, 'w') as f:
         json.dump(feed, f, indent=4)
@@ -323,6 +330,16 @@ def run_get_feed(args):
       print("wrote %s" % feedname)
     except Exception as e:
       print("Failed to save feed %s: %s" % (feedname, e))
+
+  posts.sort(key=lambda p: p["date"], reverse=True)
+
+  try:
+    with open("_data/feeds/posts.json", 'w') as f:
+      json.dump(posts, f, indent=4)
+
+    print("wrote %s" % feedname)
+  except Exception as e:
+    print("Failed to save feed %s: %s" % (feedname, e))
 
 def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
