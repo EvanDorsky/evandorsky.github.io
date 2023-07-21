@@ -9,30 +9,26 @@ show-banner: false
 
 {% assign posts = site.data["feeds"]["posts"] %}
 
-{% assign series = site.photojournal | reverse %}
+{% assign posts_pj = site.photojournal | reverse %}
+{% assign posts_proj = site.projects | reverse %}
 
-<div class="flex-horiz">
-  <div class="flex-vert">
-    <div class="feed" id="feed-photos">
+<div class="grid">
+    <div class="feed grid-item" id="feed-photos">
       <div class="post title">
         Photojournal
       </div>
-      {% assign post = series[1] %}
+      {% assign post = posts_pj[1] %}
       {% include post-home-preview.html post=post %}
     </div>
 
-    <div class="feed" id="feed-photos">
+    <div class="feed grid-item" id="feed-photos">
       <div class="post title">
-        Wallpaper Packs
+        Full-Spectrum Wallpaper
       </div>
-      {% assign post = series | where: "slug", "full-spectrum" %}
+      {% assign post = posts_pj | where: "slug", "full-spectrum" %}
       {% assign post = post[0] %}
       {% include post-home-preview.html post=post %}
     </div>
-
-
-  </div>
-  <div class="flex-vert">
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
@@ -40,10 +36,23 @@ show-banner: false
     {% assign feed = posts | where: "type", "notion" %}
     {% include feed.html feed=feed title="Living Docs" feedname="notion" %}
 
-  </div>
-  <div class="flex-vert">
-
     {% assign feed = posts | where: "type", "luckybox" %}
     {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
-  </div>
+
+    <div class="feed grid-item" id="feed-photos">
+      <div class="post title">
+        Analog Metadata
+      </div>
+      {% assign post = posts_proj | where: "slug", "film-tagger" %}
+      {% assign post = post[0] %}
+      {% include post-home-preview.html post=post %}
+    </div>
+    <div class="feed grid-item" id="feed-photos">
+      <div class="post title">
+        Analog QR
+      </div>
+      {% assign post = posts_proj | where: "slug", "cyanotype-qr" %}
+      {% assign post = post[0] %}
+      {% include post-home-preview.html post=post %}
+    </div>
 </div>

@@ -121,6 +121,19 @@ a {
 // feed
 //
 
+.grid {
+  padding: 0 20px 0 20px;
+}
+
+.grid-item {
+  margin: 10px 0 10px 0;
+  width: 300px;
+  overflow: visible;
+  img {
+    max-width: 100%;
+  }
+}
+
 .feed-container {
   display: flex;
   flex-direction: column;
@@ -135,8 +148,8 @@ a {
 .feed {
   flex: 0 0 auto;
 
-  // width: 30rem;
   max-width: 100%;
+  padding: 0.5rem;
 
   height: fit-content;
 
@@ -650,7 +663,6 @@ footer {
 }
 
 .picture-preview {
-  height: 20rem;
   img {
     max-height: 100%;
   }
