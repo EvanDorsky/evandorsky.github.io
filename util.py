@@ -309,16 +309,16 @@ def run_get_feed(args):
       "title": "The Mariner",
       "factory": rss_factory("https://mariner.substack.com/feed", "mariner")
     },
-    "printables": {
-      "title": "3D Printing",
+    "printable": {
+      "title": "Objects",
       "factory": printables
     },
     "observable": {
-      "title": "Observable",
+      "title": "Interactive Notebooks",
       "factory": observable
     },
     "notion": {
-      "title": "Docs",
+      "title": "Living Docs",
       "factory": notion
     }
   }
