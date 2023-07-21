@@ -330,13 +330,17 @@ function main(event) {
   d3.select('body')
     .on("keydown", bodyKeydown)
 
-  // masonry
+  // masonry setup
   var grid = document.querySelector('.grid')
   var msnry = new Masonry(grid, {
-    itemSelector: '.grid-item',
-    columnWidth: 300,
-    gutter: 20,
-    horizontalOrder: true
+      itemSelector: '.grid-item',
+      columnWidth: 300,
+      gutter: 20,
+      horizontalOrder: true
+    })
+
+  imagesLoaded(grid, function() {
+    msnry.layout()
   })
 
   // gallery setup
