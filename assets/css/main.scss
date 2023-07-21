@@ -172,14 +172,15 @@ a {
       padding-bottom: 0.5rem;
       padding: 0 0 0.5rem 0;
       &:hover {
-        background-color: inherit;
+        opacity: inherit;
       }
     }
 
-    transition: background 100ms linear;
+    transition: opacity 200ms linear;
     &:hover {
       text-decoration: none;
-      background-color: rgba(0,0,0,0.05);
+      opacity: 0.7;
+      // background-color: rgba(0,0,0,0.05);
     }
 
     .inner {
