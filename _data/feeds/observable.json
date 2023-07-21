@@ -1,0 +1,26 @@
+[
+    {
+        "type": "observable",
+        "title": "Speaking in Emoji",
+        "date": 1689898202,
+        "description": "",
+        "img": "https://static.observableusercontent.com/thumbnail/8b638e58197511275b54c2e4aab2294942cfcc04dae56e94bdf4336f1b134ba5.jpg",
+        "link": "https://observablehq.com/@dorskyee/emoji-entry"
+    },
+    {
+        "type": "observable",
+        "title": "Making Film Scanning Easier* with OpenCV",
+        "date": 1687802257,
+        "description": "",
+        "img": "https://static.observableusercontent.com/thumbnail/952cbcee61b183f4b5f7d96131d9e392a96c93e9907a101aa6d78293406de91a.jpg",
+        "link": "https://observablehq.com/@dorskyee/digitizing-110-film"
+    },
+    {
+        "type": "observable",
+        "title": "Why is Color Negative Film Orange?",
+        "date": 1688624331,
+        "description": "",
+        "img": "https://static.observableusercontent.com/thumbnail/83ab7b752968f6d9b3dda2416e08a9966ce62025e8de5a39ead6c4a0606d0f3c.jpg",
+        "link": "https://observablehq.com/@dorskyee/understanding-color-film"
+    }
+]

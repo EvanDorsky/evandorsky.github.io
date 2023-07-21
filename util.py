@@ -220,7 +220,9 @@ class htmlparser(HTMLParser):
 
     feed = []
 
-    for i in res["props"]["pageProps"]["fallback"]["/user/documents?sort=edited&direction=desc&page=1&document_type=notebook"]["results"]:
+    for i in res["props"]["pageProps"]["fallback"]["/documents/@dorskyee?page=1\u0026sort=published\u0026direction=desc"]["results"]:
+      if i["collection_count"] < 1:
+        continue
 
       pub_date = datetime.fromisoformat(i["update_time"])
 
@@ -238,8 +240,12 @@ class htmlparser(HTMLParser):
     self.data = feed
 
 def observable():
-  with open("observable.html") as f:
-    page = f.read()
+  try:
+    res = requests.get("https://observablehq.com/@dorskyee?tab=notebooks")
+  except Exception as e:
+    print("Failed to get page: %s" % e)
+
+  page = res.content.decode("utf-8")
 
   parser = htmlparser()
   parser.feed(page)

@@ -12,15 +12,11 @@ show-banner: false
 
 {% assign posts = site.data["feeds"]["posts"] %}
 
-{% include feed.html feed=posts title="All posts" feedname="observable" %}
-
 <div class="flex-horiz">
   {% assign observablefeed = posts | where: "type", "observable" %}
   {% include feed.html feed=observablefeed title="Interactive Notebooks" feedname="observable" %}
 </div>
 <div class="flex-horiz">
-  {% include post-pre-generic.html post=post0 %}
-
   <div class="flex-vert">
     {% for spec in post0.posts %}
       {% assign pfeed=spec[0] %}

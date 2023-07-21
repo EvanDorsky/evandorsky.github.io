@@ -163,9 +163,9 @@ a {
       opacity: 0.4;
       padding-top: 0.25rem;
       padding-bottom: 0;
-      // &:hover {
-      //   background-color: inherit;
-      // }
+      &:hover {
+        background-color: inherit;
+      }
     }
 
     // &:first-child {
