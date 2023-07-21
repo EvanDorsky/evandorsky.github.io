@@ -336,7 +336,7 @@ function main(event) {
     itemSelector: '.grid-item',
     columnWidth: 300,
     gutter: 20,
-    horizontalOrdeR: true
+    horizontalOrder: true
   })
 
   // gallery setup

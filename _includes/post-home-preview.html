@@ -5,6 +5,11 @@
 {% assign namesplit = name_ext | split: '.' %}
 {% assign series_name = namesplit[0] %}
 
-<a class="post picture-preview" href="{{ include.post.link }}">
+{% assign l = include.post.link | default: "" %}
+{% if l == "" %}
+  {% assign l = include.post.url %}
+{% endif %}
+
+<a class="post picture-preview" href="{{ l }}">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
 </a>
