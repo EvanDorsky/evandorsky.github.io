@@ -132,17 +132,10 @@ a {
   gap: 1rem;
 }
 
-#feed-luckybox, #feed-notion {
-  img {
-    display: none;
-  }
-}
-
 .feed {
   flex: 0 0 auto;
-  border-radius: var(--feed-border-radius);
 
-  width: 30rem;
+  // width: 30rem;
   max-width: 100%;
 
   height: fit-content;
@@ -151,8 +144,9 @@ a {
 
   flex-direction: column;
   .post {
+    line-height: 1.3;
     position: relative;
-    padding: 0.5rem;
+    padding: 0 0 0.4rem 0.6rem;
 
     display: flex;
 
@@ -160,39 +154,14 @@ a {
       font-family: ui-sans-serif;
       text-transform: uppercase;
       font-size: 0.9rem;
-      opacity: 0.4;
-      padding-top: 0.25rem;
-      padding-bottom: 0;
+      font-weight: bold;
+      opacity: 0.8;
+      padding-bottom: 0.5rem;
+      padding: 0 0 0.5rem 0;
       &:hover {
         background-color: inherit;
       }
     }
-
-    // &:first-child {
-    //   border-top-right-radius: var(--feed-border-radius);
-    //   border-top-left-radius: var(--feed-border-radius);
-    // }
-
-    // &:last-child {
-    //   border-bottom: none;
-    //   border-bottom-right-radius: var(--feed-border-radius);
-    //   border-bottom-left-radius: var(--feed-border-radius);
-    //   div:after {
-    //     display: none;
-    //   }
-    // }
-
-    // bottom border
-    // div:after {
-    //   content: "";
-    //   background: black;
-    //   opacity: 0.05;
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 1rem;
-    //   width: calc(100% - 2rem);
-    //   height: 0.5px;
-    // }
 
     transition: background 100ms linear;
     &:hover {
@@ -211,9 +180,11 @@ a {
 
     img.preview-image {
       height: 4.5rem;
+      display: none;
     }
     .title {
       font-weight: 400;
+      font-size: 1rem;
     }
     .description {
       display: none;
@@ -227,6 +198,18 @@ a {
       font-size: 0.9rem;
       opacity: 0.4;
     }
+  }
+}
+
+#feed-printable {
+  img {
+    display: block;
+  }
+}
+
+#feed-luckybox, #feed-notion {
+  img {
+    display: none;
   }
 }
 
@@ -642,17 +625,16 @@ footer {
     font-family: Anton;
     color: var(--bg-color);
   }
-
 }
 
 .flex-horiz {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 1rem;
   gap: 1rem;
   * {
-    flex: 0 1 30rem;
+    flex: 0 1 auto;
   }
 }
 
@@ -664,6 +646,13 @@ footer {
   gap: 1rem;
   * {
     flex: 0 1 auto;
+  }
+}
+
+.picture-preview {
+  height: 20rem;
+  img {
+    max-height: 100%;
   }
 }
 
