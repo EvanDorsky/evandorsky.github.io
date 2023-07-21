@@ -7,8 +7,26 @@ navbar-order: 0
 show-banner: false
 ---
 
-{% assign proj_phys = site.projects | where: 'type', 'physical' | sort: 'order' %}
-{% include series-gallery.html preview="post-pre-generic" collection=proj_phys id="projects-physical" gutter=0 row_height=400 %}
+{% assign posts = site.data["feeds"]["posts"] %}
 
-<!-- { % assign proj_dig = site.projects | where: 'type', 'digital' %} -->
-<!-- { % include series-gallery.html preview="post-pre-generic" collection=proj_dig id="projects-digital" gutter=0 row_height=400 %} -->
+{% assign posts_pj = site.photojournal | reverse %}
+{% assign posts_proj = site.projects | reverse %}
+
+<div class="grid">
+    {% include grid-post.html name="tokyo-morning" posts=posts_pj title="Photojournal" %}
+
+    {% include grid-post.html name="full-spectrum" posts=posts_pj title="Full-Spectrum Wallpaper" %}
+
+    {% assign feed = posts | where: "type", "observable" %}
+    {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
+    
+    {% assign feed = posts | where: "type", "notion" %}
+    {% include feed.html feed=feed title="Living Docs" feedname="notion" %}
+
+    {% assign feed = posts | where: "type", "luckybox" %}
+    {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
+
+    {% include grid-post.html name="film-tagger" posts=posts_proj title="Analog Metadata" %}
+
+    {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="Analog QR" %}
+</div>
