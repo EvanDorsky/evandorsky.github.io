@@ -13,22 +13,9 @@ show-banner: false
 {% assign posts_proj = site.projects | reverse %}
 
 <div class="grid">
-    <div class="feed grid-item" id="feed-photos">
-      <div class="post title">
-        Photojournal
-      </div>
-      {% assign post = posts_pj[1] %}
-      {% include post-home-preview.html post=post %}
-    </div>
+    {% include grid-post.html name="tokyo-morning" posts=posts_pj title="Photojournal" %}
 
-    <div class="feed grid-item" id="feed-photos">
-      <div class="post title">
-        Full-Spectrum Wallpaper
-      </div>
-      {% assign post = posts_pj | where: "slug", "full-spectrum" %}
-      {% assign post = post[0] %}
-      {% include post-home-preview.html post=post %}
-    </div>
+    {% include grid-post.html name="full-spectrum" posts=posts_pj title="Full-Spectrum Wallpaper" %}
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
@@ -39,20 +26,7 @@ show-banner: false
     {% assign feed = posts | where: "type", "luckybox" %}
     {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
 
-    <div class="feed grid-item" id="feed-photos">
-      <div class="post title">
-        Analog Metadata
-      </div>
-      {% assign post = posts_proj | where: "slug", "film-tagger" %}
-      {% assign post = post[0] %}
-      {% include post-home-preview.html post=post %}
-    </div>
-    <div class="feed grid-item" id="feed-photos">
-      <div class="post title">
-        Analog QR
-      </div>
-      {% assign post = posts_proj | where: "slug", "cyanotype-qr" %}
-      {% assign post = post[0] %}
-      {% include post-home-preview.html post=post %}
-    </div>
+    {% include grid-post.html name="film-tagger" posts=posts_proj title="Analog Metadata" %}
+
+    {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="Analog QR" %}
 </div>

@@ -1,0 +1,8 @@
+<div class="feed grid-item" id={{ include.name }}>
+  <div class="post title">
+    {{ include.title }}
+  </div>
+  {% assign post = include.posts | where: "slug", include.name %}
+  {% assign post = post[0] %}
+  {% include post-home-preview.html post=post %}
+</div>
