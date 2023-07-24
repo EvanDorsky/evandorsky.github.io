@@ -5,7 +5,7 @@ n_photos: 9
 key_photo: 6
 title: Full Spectrum
 subtitle: 
-location: San Francisco
+location: San Francisco Bay
 link: "/assets/file/Wallpaper_Full_Spectrum.zip"
 ---
 
