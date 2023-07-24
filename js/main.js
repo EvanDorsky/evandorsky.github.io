@@ -335,7 +335,7 @@ function main(event) {
   var msnry = new Masonry(grid, {
       itemSelector: '.grid-item',
       columnWidth: 300,
-      gutter: 20,
+      gutter: 30,
       horizontalOrder: true
     })
 

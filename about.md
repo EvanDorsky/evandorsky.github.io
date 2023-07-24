@@ -13,7 +13,7 @@ navbar-order: 3
   <div markdown="1" id="about-left">
   <img src="/assets/img/about/me_tn.jpg"/>
   <div markdown="1" class="caption">
-  Photo by [@eco_genome](https://www.instagram.com/eco_genome/)
+  [@hawnfawn](https://www.instagram.com/hawnfawn/)
   </div>
   </div>
 

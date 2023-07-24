@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: default
 jumbotron: false
 title: Store
 thumb: /assets/img/posts/2022-12-28-street/03.webp
