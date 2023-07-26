@@ -185,6 +185,18 @@ def rss_factory(url, blogname):
     except Exception as e:
       print("Failed to get feed %s: %s" % (url, e))
       return
+    pprint("===================================")
+    pprint("===================================")
+    pprint("===================================")
+    pprint("RSS %s" % blogname)
+    pprint("res:")
+    pprint(dir(res))
+    pprint("type: %s" % type(res))
+    pprint("type of text: %s" % type(res.text))
+    pprint("===================================")
+    pprint("===================================")
+    pprint("===================================")
+    pprint(res.text)
     rss = RSSParser.parse(res.text)
     rssdict = rss.dict()
 
