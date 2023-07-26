@@ -6,19 +6,21 @@ from subprocess import call, run
 from multiprocessing.pool import Pool
 import functools
 import argparse
-import os
 import shutil
 import yaml
 from collections import OrderedDict
 import json
 
-from rss_parser import Parser as RSSParser
 import requests
 from html.parser import HTMLParser
 
 from datetime import date, datetime
 
 import sqlite3 as sl
+
+# external dependencies
+from rss_parser import Parser as RSSParser
+
 import stripe
 stripe.api_key = "sk_test_51Mgj2BEhyRPhN5qgaRf5BPVYAMFjyNGvBXK8l5LAsuAH2l10rjbw6XXYXxc01zvFlQGkBfcaraOrfp19mOnRw6d600hPBFQDaP"
 
