@@ -10,7 +10,6 @@ import shutil
 from collections import OrderedDict
 import json
 
-import requests
 from html.parser import HTMLParser
 
 from datetime import date, datetime
@@ -19,6 +18,7 @@ import sqlite3 as sl
 
 # external dependencies
 import yaml
+import requests
 from rss_parser import Parser as RSSParser
 
 import stripe
