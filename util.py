@@ -2,7 +2,7 @@
 
 import sys, os
 from pprint import pprint
-from subprocess import call, run
+from subprocess import call, check_output
 from multiprocessing.pool import Pool
 import functools
 import argparse
@@ -47,7 +47,8 @@ IM_EXTS = [
 
 def exif_text_to_dict(text):
   exif = {}
-  for line in text.split('\n'):
+  for line in text.split(b'\n'):
+    line = line.decode()
     for i, char in enumerate(line):
       if char == ':':
         break
@@ -61,8 +62,8 @@ def load_info_dict(path):
   return get_info_dict(exif)
 
 def load_photo_meta(path):
-  res = run(['exiftool', path], capture_output=True, text=True)
-  return exif_text_to_dict(res.stdout)
+  res = check_output(['exiftool', path])
+  return exif_text_to_dict(res)
 
 # get NLP-formatted metadata from exif data
 def get_info_dict(exif):
