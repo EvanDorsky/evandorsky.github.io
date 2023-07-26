@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - bundle install
-        - pip install -r requirements.txt
+        - python -m pip install -r requirements.txt
     # IMPORTANT - Please verify your build commands
     build:
       commands: 
