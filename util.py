@@ -7,7 +7,6 @@ from multiprocessing.pool import Pool
 import functools
 import argparse
 import shutil
-import yaml
 from collections import OrderedDict
 import json
 
@@ -19,6 +18,7 @@ from datetime import date, datetime
 import sqlite3 as sl
 
 # external dependencies
+import yaml
 from rss_parser import Parser as RSSParser
 
 import stripe
