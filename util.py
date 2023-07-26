@@ -15,7 +15,7 @@ from datetime import date, datetime
 import sqlite3 as sl
 
 # external dependencies
-from html.parser import HTMLParser
+from html import parser
 import yaml
 import requests
 from rss_parser import Parser as RSSParser
@@ -208,7 +208,7 @@ def rss_factory(url, blogname):
 
   return rss_to_feeddict
 
-class htmlparser(HTMLParser):
+class htmlparser(parser.HTMLParser):
   def handle_data(self, data):
     try:
       res = json.loads(data)
