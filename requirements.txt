@@ -1,3 +1,1 @@
-rss-parser
 pyyaml
-requests
