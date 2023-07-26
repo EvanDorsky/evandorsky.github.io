@@ -1,1 +1,4 @@
+rss-parser
 pyyaml
+requests
+html
