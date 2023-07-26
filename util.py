@@ -20,8 +20,8 @@ import requests
 from rss_parser import Parser as RSSParser
 # from html import parser
 
-import stripe
-stripe.api_key = "sk_test_51Mgj2BEhyRPhN5qgaRf5BPVYAMFjyNGvBXK8l5LAsuAH2l10rjbw6XXYXxc01zvFlQGkBfcaraOrfp19mOnRw6d600hPBFQDaP"
+# import stripe
+# stripe.api_key = "sk_test_51Mgj2BEhyRPhN5qgaRf5BPVYAMFjyNGvBXK8l5LAsuAH2l10rjbw6XXYXxc01zvFlQGkBfcaraOrfp19mOnRw6d600hPBFQDaP"
 
 def valid_path(path):
   try:
