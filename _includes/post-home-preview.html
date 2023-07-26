@@ -12,4 +12,7 @@
 
 <a class="post picture-preview" href="{{ l }}">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
+  <div class="date">
+    {{ post.date | date: "%b %d" }}
+  </div>
 </a>
