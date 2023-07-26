@@ -10,13 +10,12 @@ import shutil
 from collections import OrderedDict
 import json
 
-from html.parser import HTMLParser
-
 from datetime import date, datetime
 
 import sqlite3 as sl
 
 # external dependencies
+from html.parser import HTMLParser
 import yaml
 import requests
 from rss_parser import Parser as RSSParser
