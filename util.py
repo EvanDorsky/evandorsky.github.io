@@ -121,7 +121,7 @@ def get_info_dict(exif):
     'format': film_format
   }
 
-  # another hack – "lrk:" prefix to pass unbounded info along instead of relying on empty fields
+  # another hack - "lrk:" prefix to pass unbounded info along instead of relying on empty fields
   for keyword in keywords_split:
     if 'lrk:' in keyword:
       kw_parts = keyword[4:].split(':')
