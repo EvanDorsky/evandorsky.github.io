@@ -15,6 +15,7 @@ from datetime import date, datetime
 import sqlite3 as sl
 
 # external dependencies
+from bs4 import BeautifulSoup
 import yaml
 import requests
 from rss_parser import Parser as RSSParser
@@ -185,36 +186,20 @@ def rss_factory(url, blogname):
     except Exception as e:
       print("Failed to get feed %s: %s" % (url, e))
       return
-    pprint("===================================")
-    pprint("===================================")
-    pprint("===================================")
-    pprint("RSS %s" % blogname)
-    pprint("res:")
-    pprint(dir(res))
-    pprint("type: %s" % type(res))
-    pprint("type of text: %s" % type(res.text))
-    pprint("===================================")
-    pprint("===================================")
-    pprint("===================================")
-    pprint(res.text)
-    rss = RSSParser.parse(res.text)
-    rssdict = rss.dict()
 
     feed = []
-    for item in rssdict["channel"]["content"]["items"]:
-      i = item["content"]
-
+    for i in items:
       dformat = "%a, %d %b %Y %H:%M:%S %Z"
-      pub_date = datetime.strptime(i["pub_date"]["content"], dformat)
+      pub_date = datetime.strptime(i.find('pubDate').text, dformat)
 
-      feed += [{
-        "type": blogname,
-        "title": i["title"]["content"],
-        "date": int(datetime.timestamp(pub_date)),
-        "description": i["description"]["content"],
-        "img": i["enclosure"]["attributes"]["url"],
-        "link": i["link"]["content"]
-      }]
+      feed.append({
+          "type": blogname,
+          "title": i.find('title').text,
+          "date": int(datetime.timestamp(pub_date)),
+          "description": i.find('description').text,
+          "img": i.find('enclosure').get('url'),
+          "link": i.find('link').text
+      })
 
     return feed
 
