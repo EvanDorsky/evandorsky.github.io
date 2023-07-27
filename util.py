@@ -165,7 +165,8 @@ def printables():
 
   feed = []
   for i in data["data"]["userModels"]["items"]:
-    pub_date = datetime.fromisoformat(i["datePublished"])
+    isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
+    pub_date = datetime.strptime(i["datePublished"], isoformat)
 
     feed += [{
       "type": "printable",
@@ -344,9 +345,9 @@ def run_get_feed(args):
     with open("_data/feeds/posts.json", 'w') as f:
       json.dump(posts, f, indent=4)
 
-    print("wrote %s" % feedname)
+    print("wrote combined posts")
   except Exception as e:
-    print("Failed to save feed %s: %s" % (feedname, e))
+    print("Failed to save combined posts: %s" % e)
 
 def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
