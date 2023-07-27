@@ -283,8 +283,6 @@ def notion():
       return []
 
     res_data = res.json()
-    print("NOTION API CALL RESPONSE")
-    pprint(res_data)
 
     pages = res_data["results"]
     for page in pages:
