@@ -18,6 +18,7 @@ import sqlite3 as sl
 from bs4 import BeautifulSoup
 import yaml
 import requests
+from rss_parser import Parser as RSSParser
 from html import parser
 
 # import stripe
@@ -185,6 +186,9 @@ def rss_factory(url, blogname):
     except Exception as e:
       print("Failed to get feed %s: %s" % (url, e))
       return
+
+    rss_soup = BeautifulSoup(res.text, 'xml')
+    items = rss_soup.find_all('item')
 
     feed = []
     for i in items:
