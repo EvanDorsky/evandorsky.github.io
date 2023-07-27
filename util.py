@@ -226,7 +226,7 @@ class htmlparser(parser.HTMLParser):
       if i["collection_count"] < 1:
         continue
 
-      pub_date = datetime.fromisoformat(i["update_time"])
+      pub_date = datetime.fromisoformat(str(i["update_time"]))
 
       author = i["creator"]["login"]
 
