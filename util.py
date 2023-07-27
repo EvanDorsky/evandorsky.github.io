@@ -226,7 +226,8 @@ class htmlparser(parser.HTMLParser):
       if i["collection_count"] < 1:
         continue
 
-      pub_date = datetime.fromisoformat(str(i["update_time"]))
+      isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
+      pub_date = datetime.strptime(i["update_time"], isoformat)
 
       author = i["creator"]["login"]
 
@@ -285,7 +286,8 @@ def notion():
 
     pages = res_data["results"]
     for page in pages:
-      pub_date = datetime.fromisoformat(page["last_edited_time"])
+      isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
+      pub_date = datetime.strptime(page["last_edited_time"], isoformat)
 
       page_name = "".join(page["properties"]["Name"]["title"][0]["plain_text"])
 
