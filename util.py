@@ -18,7 +18,6 @@ import sqlite3 as sl
 from bs4 import BeautifulSoup
 import yaml
 import requests
-from rss_parser import Parser as RSSParser
 from html import parser
 
 # import stripe
