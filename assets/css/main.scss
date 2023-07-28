@@ -519,12 +519,13 @@ footer {
     float: right;
 
     .carousel {
-      height: 50vh;
+      position: relative;
+      // height: 50vh;
       // width: 50vw;
       object-fit: contain;
       .carousel-item {
+        position: absolute;
         .post-preview-wrapper {
-          position: relative;
           max-width: 100%;
           img {
             max-width: 100%;
@@ -623,11 +624,12 @@ footer {
   max-width: 0px;
   align-items: center;
 
-  transition: visibility 800ms, opacity 800ms linear;
+  transition: visibility 500ms, opacity 500ms linear;
   &.transition-all {
-    transition: visibility 800ms, opacity 800ms linear, max-width 800ms ease-in-out, width 800ms ease-in-out;
+    transition: visibility 500ms, opacity 500ms linear, max-width 500ms ease-in-out, width 500ms ease-in-out;
   }
 
+  // transition management
   visibility: hidden;
   opacity: 0;
   display: flex;
@@ -637,6 +639,10 @@ footer {
     max-width: 100%;
     opacity: 1;
     visibility: visible;
+  }
+
+  &.hiding {
+    opacity: 0;
   }
 
   .carousel-label {

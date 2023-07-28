@@ -208,7 +208,9 @@ function selectorOpen(sel, id, openTo) {
 
 function carouselButtonClick(cn, e) {
   var c = window.carousels[cn]
-  clearInterval(window.carousels[cn].carouselInterval)
+  if (window.carousels[cn].carouselInterval) {
+    clearInterval(window.carousels[cn].carouselInterval)
+  }
 
   var el = d3.select(e.target)
   var dir = el.attr("dir")
@@ -226,11 +228,30 @@ function carouselSelect(cn, idx) {
   var items = el.selectAll('.carousel-item')
   var item = items.nodes()[idx]
 
+  // fade out the current item
+  // console.log(d3.select(items).classed('active'))
+
+  var activeItems = d3.selectAll(".carousel-item.active")
+  if (activeItems) {
+    activeItems.classed('hiding', true)
+  }
+  console.log('hide these')
+  console.log(activeItems)
+
+  setTimeout(function () {
+    activeItems.classed('hiding', false)
+    activeItems.classed('active', false)
+    // items.classed('active', false)
+  }, 500)
+  console.log('show this one')
+  console.log(item)
+  d3.select(item).classed('active', true)
   // deselect all items
-  items.classed('active', false)
+  // items.classed('active', false)
 
   // select the desired one
-  d3.select(item).classed('active', true)
+  // d3.select(item).classed('active', true)
+
 
   window.carousels[cn].idx = idx
 }

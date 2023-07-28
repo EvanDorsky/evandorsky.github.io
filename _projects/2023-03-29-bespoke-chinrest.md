@@ -3,12 +3,12 @@ layout: project
 title: "Bespoke Violin Chinrest"
 type: physical
 status: ongoing
-key_photo: 12
+key_photo: 13
 order: 3
-n_photos: 13
+n_photos: 17
 ---
 
-The violin is not built to adapt nicely to the human body. So most modern violinists use adapters to ease the transition between body and instrument:
+The violin is not built to adapt nicely to the human body. So most violinists today use adapters to ease the transition between body and instrument:
 - a chinrest between the chin and the top of the instrument, and
 - a shoulder rest between the bottom of the instrument and the shoulder.
 
@@ -18,8 +18,6 @@ Over two decades playing violin, I've used countless chinrests. Storebought ones
 
 Nothing has really worked for me. So I thought I'd make my own.
 
-I made a scan of myself holding my violin in playing position with my head in a natural, comfortable position. I took the mesh into Blender, pulled out the vertices I needed, and brought those into Onshape, a CAD program. In Onshape, I angled the mesh and adapted it to a post that would fit into a chinrest mount I already had. I exported an STL, sliced it with PrusaSlicer, and printed the design on my Prusa MINI+ 3D printer.
+I made a scan of myself holding my violin in playing position with my head in a natural, comfortable position. I cleaned up the mesh in Blender and brought it into Onshape, a CAD program. In Onshape, built a part to fit into the space between my body and my instrument. I exported an STL, sliced it with PrusaSlicer, and printed the design on my Prusa MINI+ 3D printer.
 
-The resulting object, printed in translucent green, adapts to the instrument.
-
-It is not a very good chinrest right now... but this is just iteration one.
+The resulting object, printed in translucent green, becomes part of the instrument.
