@@ -235,23 +235,12 @@ function carouselSelect(cn, idx) {
   if (activeItems) {
     activeItems.classed('hiding', true)
   }
-  console.log('hide these')
-  console.log(activeItems)
 
   setTimeout(function () {
     activeItems.classed('hiding', false)
     activeItems.classed('active', false)
-    // items.classed('active', false)
   }, 500)
-  console.log('show this one')
-  console.log(item)
   d3.select(item).classed('active', true)
-  // deselect all items
-  // items.classed('active', false)
-
-  // select the desired one
-  // d3.select(item).classed('active', true)
-
 
   window.carousels[cn].idx = idx
 }
