@@ -334,12 +334,9 @@ def run_get_feed(args):
 
       posts += feed
       
-      with open("_data/feeds/%s.json" % feedname, 'w') as f:
-        json.dump(feed, f, indent=4)
-
-      print("wrote %s" % feedname)
+      print("loaded %s" % feedname)
     except Exception as e:
-      print("Failed to save feed %s: %s" % (feedname, e))
+      print("Failed to load feed %s: %s" % (feedname, e))
 
   posts.sort(key=lambda p: p["date"], reverse=True)
 

@@ -7,7 +7,8 @@
   }
   window.carousels["{{ id }}"] = {
     idx: 0,
-    len: {{ include.collection | size }}
+    len: {{ include.collection | size }},
+    auto_advance: true
   }
 </script>
 
