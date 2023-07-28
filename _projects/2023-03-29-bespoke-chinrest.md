@@ -5,7 +5,7 @@ type: physical
 status: ongoing
 key_photo: 13
 order: 3
-n_photos: 17
+n_photos: 20
 ---
 
 The violin is not built to adapt nicely to the human body. So most violinists today use adapters to ease the transition between body and instrument:
