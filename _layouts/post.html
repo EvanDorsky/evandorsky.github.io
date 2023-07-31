@@ -3,13 +3,18 @@ layout: page
 no_wrapper: true
 ---
 
+{% assign page_title = page.subtitle %}
+{% unless page_title %}
+  {% assign page_title = page.title %}
+{% endunless %}
+
 {% include meta-thumbnail.html %}
 
 <link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
 <div class="article-container">
   {% unless page.hide_metadata %}
-  <h3>{{ page.subtitle }}</h3>
+  <h3>{{ page_title }}</h3>
   <span class="post-date">{{ page.date | date: "%A, %B %d" }}</span>
   {% endunless %}
 
