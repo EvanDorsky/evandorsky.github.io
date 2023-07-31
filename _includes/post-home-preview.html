@@ -13,6 +13,6 @@
 <a class="post home-preview" href="{{ l }}">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
   <div class="date">
-    {{ post.date | gallerydate: "%b %d" }}
+    {{ post.date | date: "%b %d" }}
   </div>
 </a>

@@ -1,8 +1,19 @@
-<div class="feed grid-item" id={{ include.name }}>
+
+{% assign name = include.name | default: "null" %}
+{% assign idx = include.idx | number %}
+
+{% if name == "null" %}
+<!-- if no name is provided, idx must be provided -->
+  {% assign post = include.posts[idx] %}
+  {% assign name = post.slug %}
+{% else %}
+  {% assign post = include.posts | where: "slug", name %}
+  {% assign post = post[0] %}
+{% endif %}
+
+<div class="feed grid-item" id={{ name }}>
   <div class="post title">
     {{ include.title }}
   </div>
-  {% assign post = include.posts | where: "slug", include.name %}
-  {% assign post = post[0] %}
   {% include post-home-preview.html post=post %}
 </div>
