@@ -3,7 +3,8 @@ layout: post
 order: 0
 n_photos: 9
 key_photo: 5
-title: Mt Tamalpais
+title: Golden Hour to Blue Hour
+location: Mount Tamalpais
 ---
 
 {% assign photo_index = 1 %}

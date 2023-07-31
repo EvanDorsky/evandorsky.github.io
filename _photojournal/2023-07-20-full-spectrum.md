@@ -3,9 +3,8 @@ layout: post
 order: 0
 n_photos: 9
 key_photo: 6
-title: Full Spectrum
+title: Noe Valley
 subtitle: 
-location: San Francisco Bay
 link: "/assets/file/Wallpaper_Full_Spectrum.zip"
 ---
 
