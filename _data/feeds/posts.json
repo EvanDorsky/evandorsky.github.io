@@ -1,20 +1,20 @@
 [
     {
+        "type": "notion",
+        "title": "Media + Tech + Ethics Reading List",
+        "date": 1690783200,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Media-Tech-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec",
+        "key": "Media + Tech + Ethics Reading List"
+    },
+    {
         "type": "observable",
         "title": "Speaking in Emoji",
         "date": 1689898202,
         "description": "",
         "img": "https://static.observableusercontent.com/thumbnail/8b638e58197511275b54c2e4aab2294942cfcc04dae56e94bdf4336f1b134ba5.jpg",
         "link": "https://observablehq.com/@dorskyee/emoji-entry"
-    },
-    {
-        "type": "notion",
-        "title": "Media + Tech + Ethics Reading List",
-        "date": 1689895380,
-        "description": "",
-        "img": "",
-        "link": "https://evandorsky.notion.site/Media-Tech-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec",
-        "key": "Media + Tech + Ethics Reading List"
     },
     {
         "type": "notion",
