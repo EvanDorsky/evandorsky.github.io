@@ -1,6 +1,15 @@
 [
     {
         "type": "notion",
+        "title": "San Francisco Spots",
+        "date": 1690918920,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/San-Francisco-Spots-44e5421851b646bfb90e241dba092e3c",
+        "key": "San Francisco Spots"
+    },
+    {
+        "type": "notion",
         "title": "Media + Tech + Ethics Reading List",
         "date": 1690783200,
         "description": "",

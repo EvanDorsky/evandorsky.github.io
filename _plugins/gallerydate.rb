@@ -10,7 +10,7 @@ module Jekyll
       date = datetime.to_date
       days_elapsed = (today - date).to_i
 
-      if datetime.day == today
+      if days_elapsed == 0
         "Today"
       elsif days_elapsed == 1
         "Yesterday"
