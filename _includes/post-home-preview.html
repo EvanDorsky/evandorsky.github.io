@@ -1,18 +1,8 @@
-{% assign num_str = include.post.key_photo | prepend: '00' | slice: -2, 2 %}
 
-{% assign pathsplit = include.post.path | split: '/' %}
-{% assign name_ext = pathsplit[-1] %}
-{% assign namesplit = name_ext | split: '.' %}
-{% assign series_name = namesplit[0] %}
 
-{% assign l = include.post.link | default: "" %}
-{% if l == "" %}
-  {% assign l = include.post.url %}
-{% endif %}
-
-<a class="post home-preview" href="{{ l }}">
-  <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
+<a class="post home-preview" href="{{ include.url }}">
+  <img src={{ include.img }} >
   <div class="date">
-    {{ post.date | gallerydate: "%b %-d" }}
+    {{ include.date | gallerydate: "%b %-d" }}
   </div>
 </a>

@@ -303,6 +303,51 @@ def notion():
 
   return feed
 
+def instagram():
+  user = "dorskyee"
+
+  feed = []
+  url = "https://www.instagram.com/%s/?__a=1" % user
+
+  res = requests.get(url)
+  res.raise_for_status()
+
+  soup = BeautifulSoup(res.content, 'html.parser')
+
+  target_script_tag = None
+  for script_tag in soup.find_all('script', type="application/ld+json"):
+    try:
+      data = json.loads(script_tag.string)
+      if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
+        target_script_tag = script_tag
+        break
+    except json.JSONDecodeError:
+      continue
+
+  pprint(data[0])
+
+  postidx = 0
+  for post in data:
+    dateformat = "%Y-%m-%dT%H:%M:%S%z"
+
+    pub_date = datetime.strptime(post["dateCreated"], dateformat)
+    desc = post["articleBody"]
+
+    feed += [{
+      "type": "instagram",
+      "title": "Post",
+      "date": int(datetime.timestamp(pub_date)),
+      "description": desc.split('\n')[0],
+      "description_full": desc,
+      "img": post["image"][0]["url"],
+      "link": post["url"],
+      "key": "insta%i" % postidx
+    }]
+
+    postidx+=1
+
+  return feed
+
 def run_get_feed(args):
   feeds = {
     "luckybox": {
@@ -324,6 +369,10 @@ def run_get_feed(args):
     "notion": {
       "title": "Living Docs",
       "factory": notion
+    },
+    "instagram": {
+      "title": "Instagram",
+      "factory": instagram
     }
   }
 
@@ -342,7 +391,7 @@ def run_get_feed(args):
 
   try:
     with open("_data/feeds/posts.json", 'w') as f:
-      json.dump(posts, f, indent=4)
+      json.dump(posts, f, indent=4, ensure_ascii=False)
 
     print("wrote combined posts")
   except Exception as e:

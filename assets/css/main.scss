@@ -226,6 +226,26 @@ a {
   }
 }
 
+#feed-instagram {
+  .post {
+    .inner.left {
+      display: none;
+    }
+    .inner.right {
+      display: block;
+    }
+    .title {
+      display: none;
+    }
+    .description {
+      display: block;
+    }
+    img {
+      display: block;
+    }
+  }
+}
+
 #feed-printable {
   img {
     display: block;

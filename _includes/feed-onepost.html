@@ -10,9 +10,6 @@
     {{ include.title }}
   </div>
 
-{% for post in feed %}
-  {% unless forloop.index > max_posts %}
-    {% include post.html post=post %}
-  {% endunless %}
-{% endfor %}
+  {% assign post = feed[0] %}
+  {% include post-home-preview.html img=post.img url=post.link date=post.date %}
 </div>
