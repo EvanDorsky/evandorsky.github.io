@@ -11,7 +11,7 @@ navbar-order: 3
 
 <div markdown="1" id="about-container">
   <div markdown="1" id="about-left">
-  <img src="/assets/img/about/me_tn.jpg"/>
+  <img src="/assets/img/about/me_tn.jpg">
   <div markdown="1" class="caption">
   [@hawnfawn](https://www.instagram.com/hawnfawn/)
   </div>
