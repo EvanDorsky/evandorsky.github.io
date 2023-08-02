@@ -309,22 +309,23 @@ def instagram():
   feed = []
   url = "https://www.instagram.com/%s/?__a=1" % user
 
-  res = requests.get(url)
-  res.raise_for_status()
+  try:
+    res = requests.get(url)
+  except Exception as e:
+    raise
 
   soup = BeautifulSoup(res.content, 'html.parser')
 
-  target_script_tag = None
   for script_tag in soup.find_all('script', type="application/ld+json"):
     try:
       data = json.loads(script_tag.string)
       if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
-        target_script_tag = script_tag
         break
     except json.JSONDecodeError:
+      print("Failed to load json")
       continue
 
-  pprint(data[0])
+  # pprint(data[0])
 
   postidx = 0
   for post in data:
