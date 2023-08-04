@@ -11,6 +11,7 @@ from collections import OrderedDict
 import json
 
 from datetime import date, datetime
+import time
 
 import sqlite3 as sl
 
@@ -309,21 +310,42 @@ def instagram():
   feed = []
   url = "https://www.instagram.com/%s/?__a=1" % user
 
-  try:
-    res = requests.get(url)
-  except Exception as e:
-    raise
-
-  soup = BeautifulSoup(res.content, 'html.parser')
-
-  for script_tag in soup.find_all('script', type="application/ld+json"):
+  retries_left = 3
+  success = False
+  while not success and retries_left > 0:
     try:
-      data = json.loads(script_tag.string)
-      if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
-        break
-    except json.JSONDecodeError:
-      print("Failed to load json")
+      res = requests.get(url)
+    except Exception as e:
+      print("BOOPS")
+      print("instagram request failed: %s" % e)
+      print("Retries remaining: %i" % retries_left)
+      retries_left-=1
+      print("Waiting 5 seconds, then trying again...")
+      time.sleep(5)
       continue
+
+    soup = BeautifulSoup(res.content, 'html.parser')
+
+    data = None
+    for script_tag in soup.find_all('script', type="application/ld+json"):
+      try:
+        data = json.loads(script_tag.string)
+        if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
+          break
+      except json.JSONDecodeError:
+        print("Failed to load json")
+        continue
+
+    if data == None:
+      print("Retries remaining: %i" % retries_left)
+      retries_left-=1
+      print("Waiting 5 seconds, then trying again...")
+      time.sleep(5)
+    else:
+      success = True
+
+  if not success:
+    raise
 
   # pprint(data[0])
 
