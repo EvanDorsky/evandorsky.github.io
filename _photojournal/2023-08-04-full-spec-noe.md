@@ -7,6 +7,7 @@ title: Noe Valley
 location: San Francisco
 ---
 
+
 {% assign photo_index = 1 %}
 
 {% include series-photo.html %}
