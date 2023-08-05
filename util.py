@@ -324,14 +324,17 @@ def instagram():
       time.sleep(5)
       continue
 
-    soup = BeautifulSoup(res.content, 'html.parser')
+    content = res.content
+    print("Response content len: %s" % len(content))
+    soup = BeautifulSoup(content, 'html.parser')
 
     data = None
     for script_tag in soup.find_all('script'):
-      pprint(script_tag)
+      print("Script tag len: %s" % len(script_tag.string))
       try:
         data = json.loads(script_tag.string)
         if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
+          print("Chose script tag")
           break
       except json.JSONDecodeError:
         print("Failed to load json")
@@ -347,8 +350,6 @@ def instagram():
 
   if not success:
     raise
-
-  # pprint(data[0])
 
   postidx = 0
   for post in data:
@@ -393,11 +394,11 @@ def run_get_feed(args):
     "notion": {
       "title": "Living Docs",
       "factory": notion
+    },
+    "instagram": {
+      "title": "Instagram",
+      "factory": instagram
     }
-    # "instagram": {
-    #   "title": "Instagram",
-    #   "factory": instagram
-    # }
   }
 
   posts = []
