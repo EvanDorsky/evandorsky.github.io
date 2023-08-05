@@ -13,8 +13,8 @@ show-banner: false
 {% assign posts_proj = site.projects | reverse %}
 
 <div class="grid">
-    {% assign feed = posts | where: "type", "instagram" %}
-    {% include feed-onepost.html feed=feed title="Instagram" feedname="instagram" %}
+    <!-- { % assign feed = posts | where: "type", "instagram" %} -->
+    <!-- { % include feed-onepost.html feed=feed title="Instagram" feedname="instagram" %} -->
 
     {% include grid-post.html posts=posts_pj idx=0 title="Photojournal" %}
 
