@@ -327,7 +327,8 @@ def instagram():
     soup = BeautifulSoup(res.content, 'html.parser')
 
     data = None
-    for script_tag in soup.find_all('script', type="application/ld+json"):
+    for script_tag in soup.find_all('script'):
+      pprint(script_tag)
       try:
         data = json.loads(script_tag.string)
         if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
