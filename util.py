@@ -308,7 +308,7 @@ def instagram():
   user = "dorskyee"
 
   feed = []
-  url = "https://www.instagram.com/%s/?__a=1" % user
+  url = "https://www.instagram.com/%s/?" % user
 
   retries_left = 3
   success = False
