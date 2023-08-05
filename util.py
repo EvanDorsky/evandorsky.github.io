@@ -393,11 +393,11 @@ def run_get_feed(args):
     "notion": {
       "title": "Living Docs",
       "factory": notion
-    },
-    "instagram": {
-      "title": "Instagram",
-      "factory": instagram
     }
+    # "instagram": {
+    #   "title": "Instagram",
+    #   "factory": instagram
+    # }
   }
 
   posts = []
