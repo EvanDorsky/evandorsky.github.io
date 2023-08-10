@@ -375,6 +375,41 @@ def instagram():
 
   return feed
 
+def github():
+  user = "EvanDorsky"
+
+  feed = []
+  url = "https://api.github.com/users/%s/repos" % user
+
+  try:
+    res = requests.get(url)
+    pass
+  except Exception as e:
+    print("github request failed: %s" % e)
+
+  data = res.json()
+
+  postidx = 0
+  for i in data:
+    name = i["name"]
+
+    dateformat = "%Y-%m-%dT%H:%M:%S%z"
+    pub_date = datetime.strptime(i["updated_at"], dateformat)
+
+    feed += [{
+      "type": "github",
+      "title": name,
+      "date": int(datetime.timestamp(pub_date)),
+      "description": i["description"],
+      "img": i["owner"]["avatar_url"],
+      "link": i["html_url"],
+      "key": i["full_name"]
+    }]
+
+    postidx+=1
+
+  return feed
+
 def run_get_feed(args):
   feeds = {
     "luckybox": {
@@ -400,6 +435,10 @@ def run_get_feed(args):
     "instagram": {
       "title": "Instagram",
       "factory": instagram
+    },
+    "github": {
+      "title": "GitHub",
+      "factory": github
     }
   }
 
