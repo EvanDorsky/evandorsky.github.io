@@ -221,6 +221,7 @@ function carouselButtonClick(cn, e) {
 
 function carouselSelect(cn, idx) {
   console.log(`Select idx ${idx}`)
+  console.log('=============')
   var c = window.carousels[cn]
 
   var el = d3.select(`.carousel#${cn}`)
@@ -232,14 +233,21 @@ function carouselSelect(cn, idx) {
   // console.log(d3.select(items).classed('active'))
 
   var activeItems = d3.selectAll(".carousel-item.active")
+  console.log('1. select activeItems')
+  console.log(activeItems._groups[0])
   if (activeItems) {
+    console.log('2.   set activeItems hiding')
     activeItems.classed('hiding', true)
   }
 
   setTimeout(function () {
+    console.log('4. unset activeItems hiding')
+    console.log(activeItems)
     activeItems.classed('hiding', false)
     activeItems.classed('active', false)
   }, 500)
+  console.log('3. set new item active')
+  console.log(item)
   d3.select(item).classed('active', true)
 
   window.carousels[cn].idx = idx
