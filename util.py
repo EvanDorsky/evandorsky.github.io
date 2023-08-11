@@ -394,7 +394,7 @@ def github():
     name = i["name"]
 
     dateformat = "%Y-%m-%dT%H:%M:%S%z"
-    pub_date = datetime.strptime(i["updated_at"], dateformat)
+    pub_date = datetime.strptime(i["pushed_at"], dateformat)
 
     feed += [{
       "type": "github",
