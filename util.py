@@ -325,8 +325,6 @@ def instagram():
       continue
 
     content = res.content
-    with open ("res.html", "wb") as f:
-      f.write(res.content)
     print("Response content len: %s" % len(content))
     soup = BeautifulSoup(content, 'html.parser')
 
