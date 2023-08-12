@@ -11,4 +11,4 @@
 {% endif %}
 
 {% capture img_url %}"/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"{% endcapture %}
-{% include post-home-preview.html img=img_url url=l date=post.date %}
+{% include post-home-preview.html showtitle=include.showtitle  post=include.post img=img_url url=l date=post.date %}

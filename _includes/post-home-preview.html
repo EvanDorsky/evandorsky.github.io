@@ -3,6 +3,6 @@
 <a class="post home-preview" href="{{ include.url }}">
   <img src={{ include.img }} >
   <div class="date">
-    {{ include.date | gallerydate: "%b %-d" }}
+    {{ include.date | gallerydate: "%b %-d" }}{% if include.showtitle %} – {{ include.post.title }} {% endif %}
   </div>
 </a>
