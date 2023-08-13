@@ -11,7 +11,7 @@
 {% assign name = include.name | default: name_num %}
 {% assign container = include.container | default: "photo-list" %}
 
-<div class="{{ container }}">
+<div class="{{ container }}" id="{{name}}">
   <img src="/assets/img/posts/{{ page_name }}/{{ name }}.webp">
 </div>
 {% assign photo_index = photo_index | plus: 1 %}
