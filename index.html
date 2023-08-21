@@ -29,6 +29,9 @@ show-banner: false
     {% assign feed = posts | where: "type", "github" %}
     {% include feed.html feed=feed title="GitHub" feedname="github" %}
 
+    {% assign feed = posts | where: "type", "printable" %}
+    {% include feed.html feed=feed title="Printables" feedname="printable" %}
+
     {% assign feed = posts | where: "type", "luckybox" %}
     {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
 

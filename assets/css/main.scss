@@ -226,6 +226,25 @@ a {
   }
 }
 
+#feed-printable {
+  .inner.left {
+    white-space: nowrap;
+    height: 2rem;
+    // flex: 0 0 200px;
+    width: 60%;
+  }
+  .title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .inner.right {
+    width: 40%;
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
 #feed-instagram {
   .post {
     .inner.left {
