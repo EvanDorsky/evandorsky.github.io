@@ -16,9 +16,9 @@
       <div class="title">{% if s.link != "" %}<a href="{{ s.link }}" target="blank">{% endif %}{{ s.title }}{% if s.link != "" %}</a>{% endif %}</div>
     {% endif %}
     <div class="details">
-      <div class="role">{{ s.rep }}, {{ s.role }}</div>
+      <div class="role">{{ s.rep }}</div>
       <div class="venue">{{ s.venue }}</div>
-      <div class="venue-container left-line-border-min">
+      <div class="venue-container left-line-border-min-justpadding">
     {% if happened %}
       {% if include.hidefeature == nil and s.feature %}
         {% assign rec = s.recordings[0] %}
