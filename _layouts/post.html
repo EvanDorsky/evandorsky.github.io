@@ -15,7 +15,7 @@ no_wrapper: true
 <div class="article-container">
   {% unless page.hide_metadata %}
   <h3>{{ page_title }}</h3>
-  <span class="post-date">{{ page.date | date: "%A, %B %d" }}</span>
+  <span class="post-date">{{ page.date | date: "%A, %B %-d" }}</span>
   {% endunless %}
 
   {{ content }}

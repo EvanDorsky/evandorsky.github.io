@@ -418,6 +418,14 @@ h2#gallery {
   }
 }
 
+hr {
+  border: none;
+  border-top: 1.5px solid var(--text-color);
+  opacity: 0.6;
+  border-radius: 1px;
+  margin: 0 25%;
+}
+
 .photo-list {
   display: flex;
   flex-wrap: wrap;
@@ -836,7 +844,7 @@ footer {
 
 .left-line-border {
   margin-left: 1.1rem;
-  border-left: 1px solid black;
+  border-left: 1px solid var(--text-color);
   padding-left: 1.1rem;
   padding-right: 1.1rem;
   margin-right: 1.1rem;
@@ -844,7 +852,7 @@ footer {
 
 .left-line-border-min {
   margin-left: 0.55rem;
-  border-left: 1px solid black;
+  border-left: 1px solid var(--text-color);
   padding-left: 0.55rem;
   padding-right: 0.55rem;
   margin-right: 0.55rem;
