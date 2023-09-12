@@ -21,7 +21,7 @@ show-banner: false
 
     {% include grid-post.html name="full-spectrum" showtitle=true posts=posts_pj title="Full-Spectrum Wallpaper" %}
 
-    {% include grid-post.html posts=posts_work idx=0 showtitle=true title="In Print" %}
+    {% include feed.html feed=posts_work title="In Print" feedname="print" max_posts=10 feature_first=true %}
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
