@@ -1,8 +1,9 @@
 
+{% assign title = include.post.title %}
 
 <a class="post home-preview" href="{{ include.url }}">
   <img src={{ include.img }} >
   <div class="date">
-    {{ include.date | gallerydate: "%b %-d" }}{% if include.showtitle %} – {{ include.post.title }} {% endif %}
+    {{ include.date | gallerydate: "%b %-d" }}{% if include.showtitle %} – {{ title }} {% endif %}
   </div>
 </a>

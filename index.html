@@ -11,6 +11,7 @@ show-banner: false
 
 {% assign posts_pj = site.photojournal | reverse %}
 {% assign posts_proj = site.projects | reverse %}
+{% assign posts_work = site.photowork | reverse %}
 
 <div class="grid">
     <!-- { % assign feed = posts | where: "type", "instagram" %} -->
@@ -19,6 +20,8 @@ show-banner: false
     {% include grid-post.html posts=posts_pj idx=0 showtitle=true title="Photojournal" %}
 
     {% include grid-post.html name="full-spectrum" showtitle=true posts=posts_pj title="Full-Spectrum Wallpaper" %}
+
+    {% include grid-post.html posts=posts_work idx=0 showtitle=true title="In Print" %}
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
