@@ -468,7 +468,7 @@ def create_webp(im, webp, dim):
   return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
 
 def get_series_path(name):
-  series_folders = ['_photojournal', '_portfolio', '_projects']
+  series_folders = ['_photojournal', '_portfolio', '_projects', '_photowork']
   for folder in series_folders:
     test_path = os.path.join(folder, name+".md")
 
