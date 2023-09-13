@@ -2,8 +2,10 @@
 ---
 <div class="feature-{{ page.key }} feature {{ page.key }} left-border-indent">
   <div class="img-box">
-    <img src="/assets/img/features/{{ page.key }}/hero.{{ page.img-fmt }}">
-    <div class="caption">{{ page.caption }}</div>
+    {% unless page.img-fmt == "none" %}
+      <img src="/assets/img/features/{{ page.key }}/hero.{{ page.img-fmt }}">
+      <div class="caption">{{ page.caption }}</div>
+    {% endunless %}
   </div>
   {{ content }}
 </div>
