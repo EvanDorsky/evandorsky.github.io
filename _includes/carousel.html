@@ -26,6 +26,17 @@
 
 <div class="carousel-wrapper {{ class }}">
   <div class="carousel" id="{{ id }}">
+    <div class="carousel-item placeholder">
+      <div class="post-preview-wrapper">
+        <img src="/assets/img/posts/{{ series_name }}/01.webp">
+        {% if captions %}
+          <div class="carousel-item-label">
+            {% assign j = i | minus: 1 %}
+            {{ captions[j] }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
   {% for i in ( 1.. n_photos ) %}
     <div class="carousel-item">
       {% assign num_str = i | prepend: '00' | slice: -2, 2 %}

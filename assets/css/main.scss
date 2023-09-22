@@ -539,12 +539,25 @@ footer {
 
 .text-mask {
   font-family: Anton;
+  white-space: nowrap;
 
   font-weight: 800;
   // font-size: Min(18vh, 18vw);
   font-size: Min(13vw, 17vh);
 
   color: rgba(0,0,0,0);
+
+  position: relative;
+
+  .text-mask-mask {
+    position: absolute;
+    left: 99.6%;
+    right: 0;
+    background-color: var(--bg-color);
+    // background-color: red;
+    width: 5px;
+    height: 100%;
+  }
 }
 
 // carousel
@@ -560,6 +573,10 @@ footer {
   flex: 1 0 20rem;
 }
 
+.post-preview {
+  margin: 0 auto;
+}
+
 .carousel-wrapper {
   flex: 0 1 50rem;
   &.carousel-standalone {
@@ -567,7 +584,11 @@ footer {
       height: auto;
 
       .carousel-item {
+        top: 0;
         .post-preview-wrapper {
+          top: 0;
+          left: 0;
+          transform: none;
           max-width: 100%;
           img {
             max-width: 100%;
@@ -658,24 +679,28 @@ footer {
 .carousel {
   position: relative;
 
-  overflow-y: scroll;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   height: 100vh;
 }
 
 .carousel-item {
   height: 100%;
   overflow: hidden;
+
   img {
     display: block;
     max-width: 90vw;
     max-height: 80vh;
     object-fit: contain;
+  }
+
+  &.placeholder {
+    visibility: hidden !important;
+    position: relative !important;
+    z-index: -999 !important;
+
+    .post-preview-wrapper {
+      position: relative;
+    }
   }
 
   a:hover {
@@ -686,9 +711,9 @@ footer {
   // max-width: 0px;
   align-items: center;
 
-  transition: visibility 1000ms, opacity 1000ms linear;
+  transition: visibility 500ms, opacity 500ms linear;
   &.transition-all {
-    transition: visibility 1000ms, opacity 1000ms linear, max-width 1000ms ease-in-out, width 1000ms ease-in-out;
+    transition: visibility 500ms, opacity 500ms linear, max-width 500ms ease-in-out, width 500ms ease-in-out;
   }
 
   position: absolute;
@@ -696,7 +721,6 @@ footer {
   visibility: hidden;
   opacity: 0;
   width: 100%;
-  max-width: 100%;
 
   &.activating {
     // width: 100%;
@@ -759,11 +783,16 @@ footer {
 }
 
 .post-preview-wrapper {
-  flex: 0 0 auto;
   max-width: 90vw;
-  position: relative;
   // width: fit-content;
-  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.post-preview {
+
 }
 
 .fj-gallery {

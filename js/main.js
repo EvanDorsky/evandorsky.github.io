@@ -226,7 +226,7 @@ function carouselSelect(cn, idx) {
 
   var el = d3.select(`.carousel#${cn}`)
 
-  var items = el.selectAll('.carousel-item')
+  var items = el.selectAll('.carousel-item:not(.placeholder)')
   var item = items.nodes()[idx]
 
   // fade out the current item
@@ -255,7 +255,7 @@ function carouselSelect(cn, idx) {
     console.log(activeItems)
     activeItems.classed('hiding', false)
     activeItems.classed('active', false)
-  }, 1000)
+  }, 500)
   
 
   window.carousels[cn].idx = idx
