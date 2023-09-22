@@ -11,13 +11,6 @@ navbar-order: 2
 
 {% assign shows = site.shows %}
 
-{% assign pathsplit = shows[-1].path | split: '/' %}
-{% assign name_ext = pathsplit[-1] %}
-{% assign namesplit = name_ext | split: '.' %}
-{% assign page_name = namesplit[0] %}
-
-{% include show-meta-preview.html %}
-
 <!-- create list of upcoming shows -->
 <!-- this is how we create an empty array in liquid -->
 {% assign shows_u = '' | split: '' %}
@@ -33,6 +26,23 @@ navbar-order: 2
 {% endfor %}
 
 {% assign shows_p = shows_p | reverse %}
+
+<!--
+  use soonest upcoming show for thumbnail, or 
+  most recent show if there are no upcoming shows
+-->
+{% if shows_u.size > 0 %}
+  {% assign thumb_show = shows_u[0] %}
+{% else %}
+  {% assign thumb_show = shows_p[0] %}
+{% endif %}
+
+{% assign pathsplit = thumb_show.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign show_name = namesplit[0] %}
+
+<meta property="og:image" content="/{{ show_name }}.html.png" />
 
 <!-- upcoming shows (time flows down) -->
 {% if shows_u.size > 0 %}
