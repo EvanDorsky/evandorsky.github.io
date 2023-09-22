@@ -656,7 +656,7 @@ footer {
 }
 
 .carousel {
-  display: flex;
+  position: relative;
 
   overflow-y: scroll;
   scrollbar-width: none;
@@ -669,7 +669,6 @@ footer {
 }
 
 .carousel-item {
-  flex: 0 0 100%;
   height: 100%;
   overflow: hidden;
   img {
@@ -683,8 +682,8 @@ footer {
     text-decoration: inherit;
   }
 
-  width: 0px;
-  max-width: 0px;
+  // width: 0px;
+  // max-width: 0px;
   align-items: center;
 
   transition: visibility 1000ms, opacity 1000ms linear;
@@ -692,21 +691,23 @@ footer {
     transition: visibility 1000ms, opacity 1000ms linear, max-width 1000ms ease-in-out, width 1000ms ease-in-out;
   }
 
+  position: absolute;
   // transition management
   visibility: hidden;
   opacity: 0;
-  display: flex;
+  width: 100%;
+  max-width: 100%;
 
   &.activating {
-    width: 100%;
-    max-width: 100%;
+    // width: 100%;
+    // max-width: 100%;
     opacity: 0;
     visibility: hidden;
   }
 
   &.active {
-    width: 100%;
-    max-width: 100%;
+    // width: 100%;
+    // max-width: 100%;
     opacity: 1;
     visibility: visible;
   }

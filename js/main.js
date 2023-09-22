@@ -248,7 +248,7 @@ function carouselSelect(cn, idx) {
     console.log(item)
     d3.select(item).classed('activating', false)
     d3.select(item).classed('active', true)
-  }, 1000)
+  }, 0)
 
   setTimeout(function () {
     console.log('4. unset activeItems hiding')
