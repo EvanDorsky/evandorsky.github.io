@@ -239,16 +239,24 @@ function carouselSelect(cn, idx) {
     console.log('2.   set activeItems hiding')
     activeItems.classed('hiding', true)
   }
+  console.log('3. set new item activating')
+  console.log(item)
+  d3.select(item).classed('activating', true)
+
+  setTimeout(function () {
+    console.log('5. set new item active')
+    console.log(item)
+    d3.select(item).classed('activating', false)
+    d3.select(item).classed('active', true)
+  }, 1000)
 
   setTimeout(function () {
     console.log('4. unset activeItems hiding')
     console.log(activeItems)
     activeItems.classed('hiding', false)
     activeItems.classed('active', false)
-  }, 500)
-  console.log('3. set new item active')
-  console.log(item)
-  d3.select(item).classed('active', true)
+  }, 1000)
+  
 
   window.carousels[cn].idx = idx
 }

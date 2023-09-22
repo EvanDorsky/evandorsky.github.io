@@ -562,6 +562,22 @@ footer {
 
 .carousel-wrapper {
   flex: 0 1 50rem;
+  &.carousel-standalone {
+    .carousel {
+      height: auto;
+
+      .carousel-item {
+        .post-preview-wrapper {
+          max-width: 100%;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+      }
+    }
+  }
+
   &.project-carousel {
     float: right;
 
@@ -671,15 +687,22 @@ footer {
   max-width: 0px;
   align-items: center;
 
-  transition: visibility 500ms, opacity 500ms linear;
+  transition: visibility 1000ms, opacity 1000ms linear;
   &.transition-all {
-    transition: visibility 500ms, opacity 500ms linear, max-width 500ms ease-in-out, width 500ms ease-in-out;
+    transition: visibility 1000ms, opacity 1000ms linear, max-width 1000ms ease-in-out, width 1000ms ease-in-out;
   }
 
   // transition management
   visibility: hidden;
   opacity: 0;
   display: flex;
+
+  &.activating {
+    width: 100%;
+    max-width: 100%;
+    opacity: 0;
+    visibility: hidden;
+  }
 
   &.active {
     width: 100%;

@@ -6,8 +6,12 @@
 {% assign pathsplit = page.path | split: '/' %}
 {% assign name_ext = pathsplit[-1] %}
 {% assign namesplit = name_ext | split: '.' %}
-{% assign page_name = namesplit[0] %}
 
+{% assign n_photos = include.n_photos | default: page.n_photos %}
+
+{% assign series_name = include.series_name | default: namesplit[0] %}
+
+{% assign auto_advance = include.auto_advance | default: false %}
 
 <script type="text/javascript">
   if (!window.carousels) {
@@ -15,18 +19,18 @@
   }
   window.carousels["{{ id }}"] = {
     idx: 0,
-    len: {{ page.n_photos }},
-    auto_advance: false
+    len: {{ n_photos }},
+    auto_advance: {{ auto_advance }}
   }
 </script>
 
 <div class="carousel-wrapper {{ class }}">
   <div class="carousel" id="{{ id }}">
-  {% for i in ( 1.. page.n_photos ) %}
+  {% for i in ( 1.. n_photos ) %}
     <div class="carousel-item">
       {% assign num_str = i | prepend: '00' | slice: -2, 2 %}
       <div class="post-preview-wrapper">
-        <img src="/assets/img/posts/{{ page_name }}/{{ num_str }}.webp">
+        <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
         {% if captions %}
           <div class="carousel-item-label">
             {% assign j = i | minus: 1 %}
