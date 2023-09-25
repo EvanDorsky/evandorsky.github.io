@@ -256,6 +256,7 @@ def observable():
   return parser.data
 
 def notion():
+  pprint("Notion start")
   databases = {
     "shared": "18ed5a7b7ba3410692566f811fe69509"
   }
@@ -263,6 +264,7 @@ def notion():
   feed = []
 
   notion_secret = os.getenv("NOTION_API_KEY")
+  pprint("Notion secret: %s" % notion_secret)
   headers = {
     'Notion-Version': '2022-06-28',
     'Authorization': "Bearer %s" % notion_secret,
@@ -284,8 +286,10 @@ def notion():
       return []
 
     res_data = res.json()
+    pprint("Notion response len: %i" % len(res.text))
 
     pages = res_data["results"]
+    pprint("Notion got results from res_data")
     for page in pages:
       isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
       pub_date = datetime.strptime(page["last_edited_time"], isoformat)
@@ -325,12 +329,12 @@ def instagram():
       continue
 
     content = res.content
-    print("Response content len: %s" % len(content))
+    print("Instagram response content len: %s" % len(content))
     soup = BeautifulSoup(content, 'html.parser')
 
     data = None
     for script_tag in soup.find_all('script'):
-      print("Script tag len: %s" % len(script_tag.string))
+      print("Instagram script tag len: %s" % len(script_tag.string))
       try:
         data = json.loads(script_tag.string)
         if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict) and "articleBody" in data[0]:
