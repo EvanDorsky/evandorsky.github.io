@@ -946,6 +946,14 @@ footer {
   .title {
     font-size: 136%;
   }
+  a {
+    transition: all 200ms linear;
+    text-decoration: none;
+    &:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+    }
+  }
   .details {
     padding-left: 1.1rem;
     .role {
@@ -957,7 +965,6 @@ footer {
     }
     .link a {
       font-weight: 600;
-      text-decoration: underline;
     }
     .address {
       font-size: 90%;
