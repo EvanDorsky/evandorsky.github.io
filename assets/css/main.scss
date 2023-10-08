@@ -167,26 +167,26 @@ a {
   // box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
 
   flex-direction: column;
+  .feed-title {
+    font-family: Public Sans;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    padding: 0 0 0.5rem 0;
+
+    line-height: 1.3;
+    position: relative;
+    display: flex;
+  }
+
   .post {
     line-height: 1.3;
     position: relative;
     padding: 0 0 0.4rem 0.6rem;
 
     display: flex;
-
-    &.title {
-      font-family: Public Sans;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      font-weight: bold;
-      opacity: 0.8;
-      padding-bottom: 0.5rem;
-      padding: 0 0 0.5rem 0;
-      &:hover {
-        opacity: inherit;
-      }
-    }
-
+    
     transition: opacity 200ms linear;
     &:hover {
       text-decoration: none;
