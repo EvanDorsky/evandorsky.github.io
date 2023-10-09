@@ -623,7 +623,7 @@ footer {
 
             background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
             width: calc(100% - 1rem);
-            color: var(--bg-color);
+            color: white;
             padding: 0.2rem 0.5rem;
           }
 
@@ -643,11 +643,11 @@ footer {
     top: 0;
 
     &.left {
-      background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      background: linear-gradient(to right, rgba(var(--bg-color),0.1), rgba(var(--bg-color),0));
       left: 0;
     }
     &.right {
-      background: linear-gradient(to left, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      background: linear-gradient(to left, rgba(var(--bg-color),0.1), rgba(var(--bg-color),0));
       right: 0;
     }
 
@@ -749,7 +749,7 @@ footer {
     // font-size: Max(3rem, Min(6rem,7vw));
     font-size: Max(3rem, Min(6rem,7vw));
     font-family: Anton;
-    color: var(--bg-color);
+    color: white;
   }
 }
 

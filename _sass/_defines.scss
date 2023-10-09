@@ -1,18 +1,30 @@
 
 :root {
-  // light theme
+  --feed-border-radius: 10px;
+
+  // light theme (b&w)
   // --bg-color: #fff;
   // --bg-color-rgb: 255, 255, 255;
   // --text-color: #000;
   // --text-color-rgb: 0, 0, 0;
 
-  --feed-border-radius: 10px;
+  // colors
+  --dark-color: #0f1419;
+  --dark-color-rgb: 15, 20, 25;
+  --light-color: #e0dcd4;
+  --light-color-rgb: 224, 220, 212;
 
   // dark theme
-  --bg-color: #000;
-  --bg-color-rgb: 0, 0, 0;
-  --text-color: #fff;
-  --text-color-rgb: 255, 255, 255;
+  --bg-color: var(--dark-color);
+  --bg-color-rgb: var(--dark-color-rgb);
+  --text-color: var(--light-color);
+  --text-color-rgb: var(--light-color-rgb);
+
+  // light theme
+  // --text-color: var(--dark-color);
+  // --text-color-rgb: var(--dark-color-rgb);
+  // --bg-color: var(--light-color);
+  // --bg-color-rgb: var(--light-color-rgb);
 
   // old theme
   // --bg-color: #0d2857;
