@@ -386,7 +386,7 @@ function main(event) {
     fjGallery(document.querySelectorAll(`#${id}`), {
       itemSelector: '.fj-gallery-item',
       transitionDuration: 0,
-      gutter: info.gutter,
+      gutter: parseInt(info.gutter),
       rowHeight: info.row_height,
       rowHeightTolerance: galleryRowTol,
       lastRow: galleryLastRow,
