@@ -111,6 +111,7 @@ function dismissModal(event, complete=false) {
 function keyphraseOpen(id, doScroll=true, openTo=-1) {
   var sel_detailBox = "."+id
   var sel_keyline   = sel_detailBox+"-line"
+  var sel_keyphrase = "#"+id
 
   var wasSelected = d3.select(sel_detailBox).classed("selected")
 
@@ -129,12 +130,12 @@ function keyphraseOpen(id, doScroll=true, openTo=-1) {
   selectorClose(".feature", id)
 
   // 3. deselect any selected lines
-  selectorDeselect(".key-line")
+  selectorDeselect(".key-phrase")
 
   // 4. open the feature, if it wasn't already open
   if (!wasSelected) {
     selectorOpen(sel_detailBox, id, openTo)
-    selectorSelect(sel_keyline)
+    selectorSelect(sel_keyphrase)
   }
 }
 
