@@ -1,6 +1,6 @@
 ---
 role: feature
-layout: gallery
+layout: selected
 order: 2
 n_photos: 5
 key_photo: 1
