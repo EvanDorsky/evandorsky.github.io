@@ -21,13 +21,13 @@ show-banner: false
 
     {% include grid-post.html name="full-spectrum" showtitle=true posts=posts_pj title="Full-Spectrum Wallpaper" %}
 
-    {% include feed.html feed=posts_work title="In Print" feedname="print" max_posts=10 feature_first=true %}
+    {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=10 feature_first=true %}
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
     
     {% assign feed = posts | where: "type", "notion" %}
-    {% include feed.html feed=feed title="Living Docs" feedname="notion" %}
+    {% include feed.html feed=feed title="Living Docs" max_posts=99 feedname="notion" %}
     
     {% assign feed = posts | where: "type", "github" %}
     {% include feed.html feed=feed title="GitHub" feedname="github" %}
