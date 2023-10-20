@@ -598,9 +598,22 @@ def get_valid_series_name(name):
   print('exiting')
   exit()
 
+JPEG_EXTS = [
+".JPG",
+".JPEG",
+".jpg",
+".jpeg"
+]
+
+def get_input_files(path):
+  all_files = os.listdir(path)
+  files = [f for f in all_files if os.path.splitext(f)[1] in JPEG_EXTS]
+
+  return files
+
 def run_update(args):
   input_path = os.path.expanduser(args.input_path)
-  input_files = os.listdir(input_path)
+  input_files = get_input_files(input_path)
 
   series = {}
   for file in input_files:
@@ -622,7 +635,7 @@ def run_series(args):
   md_path = '_photojournal/%s.md' % args.name
 
   input_path = os.path.expanduser(args.input_path)
-  input_files = os.listdir(input_path)
+  input_files = get_input_files(input_path)
   # if we're just refreshing and there are no input images,
   # don't delete the existing images
   if len(input_files) == 0 and args.action == "refresh":

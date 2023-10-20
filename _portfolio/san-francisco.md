@@ -1,7 +1,7 @@
 ---
 role: feature
 layout: selected
-order: 0
+order: 1
 n_photos: 11
 key_photo: 6
 title: San Francisco

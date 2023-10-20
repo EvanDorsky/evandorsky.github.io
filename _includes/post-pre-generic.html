@@ -16,7 +16,7 @@
 {% assign cover = covers[0] %}
 
 <div class="{{ class }} {{ include.type }} generic">
-  <div class="post-preview-wrapper">
+  <!-- <div class="post-preview-wrapper"> -->
   <a class="post-preview" href="{{ l }}">
   {% if cover %}
     {{ cover.content }}
@@ -29,5 +29,5 @@
     <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"/>
   {% endif %}
   </a>
-  </div>
+  <!-- </div> -->
 </div>

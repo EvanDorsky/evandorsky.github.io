@@ -92,6 +92,7 @@ a {
 .fj-gallery-item {
   transition: opacity 600ms;
   overflow: hidden;
+  position: relative;
 }
 
 .gallery-label {
@@ -104,7 +105,7 @@ a {
 
   transition: opacity 600ms;
 
-  color: var(--bg-color);
+  color: white;
   background-color: rgba(0,0,0,0.3);
   opacity: 0;
   transition: opacity 800ms;
