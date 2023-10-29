@@ -1,9 +1,9 @@
 ---
 layout: show
 title: "Chamber Music @ Ground Floor"
-date: "3/11/2023 7pm PST"
+date: "3/11/2023 7pm PDT"
 venue: "Ground Floor"
-address: "1270 Sanchez St, San Francisco"
+address: ""
 ensemble: "String Quartet"
 role: "Viola"
 rep: "Beethoven String Quartet no. 12"
