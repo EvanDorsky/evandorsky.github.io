@@ -1,6 +1,6 @@
 ---
 layout: show
-title: "Chamber Music @ Ground Floor"
+title: "Classic, Vol. 1 @ Groundfloor"
 date: "3/11/2023 7pm PDT"
 venue: "Ground Floor"
 address: ""
