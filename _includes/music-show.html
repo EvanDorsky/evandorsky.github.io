@@ -28,7 +28,13 @@
       {% endif %}
     {% else %}
       <div class="address">{{ s.address }}</div>
-      <div class="link">{% if s.link != "" %}Free: <a href="{{ s.link }}" target="blank">RSVP</a>{% endif %}</div>
+      <div class="link">
+        {% if s.tickets %}
+        Tickets:
+        {% else %}
+        Free:
+        {% endif %}
+      {% if s.link != "" %} <a href="{{ s.link }}" target="blank">RSVP</a>{% endif %}</div>
       {% if s.stream %}<div class="link"><a href="{{ s.stream }}" target="blank">Livestream</a></div>{% endif %}
     {% endif %}
   </div>
