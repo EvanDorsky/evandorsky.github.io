@@ -1,7 +1,7 @@
 ---
 layout: show
 title: "Classic, Vol. 1 @ Groundfloor"
-date: "3/11/2023 7pm PDT"
+date: "3/11/2023 7:30pm PDT"
 venue: "Ground Floor"
 address: ""
 ensemble: "String Quartet"
