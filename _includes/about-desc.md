@@ -2,7 +2,7 @@ Hi! I'm Evan.
 
 I'm an [engineer, artist, educator] based in San Francisco.
 
-I'm a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, an emerging community darkroom.
+I'm currently a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, violist in the [Cable Car Quartet](/music){:target="_blank" .key-phrase}, and a cohort leader for the Fall 2023 offering of Stanford's [ Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase}.
 
 I study how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my study in an understanding of how technology works, and how it actually gets built in industry.
 
