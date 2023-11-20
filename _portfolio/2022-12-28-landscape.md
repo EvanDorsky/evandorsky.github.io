@@ -1,8 +1,8 @@
 ---
 role: feature
 layout: selected
-order: 3
-n_photos: 4
+order: 0
+n_photos: 6
 key_photo: 1
 title: Landscape
 ---
