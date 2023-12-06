@@ -35,6 +35,8 @@ show-banner: false
     {% assign feed = posts | where: "type", "printable" %}
     {% include feed.html feed=feed title="Printables" feedname="printable" %}
 
+    {% include grid-post.html name="3d-print" posts=posts_proj title="Analog Cameras / Digital Parts" %}
+
     {% assign feed = posts | where: "type", "luckybox" %}
     {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
 
@@ -43,5 +45,7 @@ show-banner: false
     {% include grid-post.html name="bespoke-chinrest" posts=posts_proj title="Bespoke Violin Chinrest" %}
 
     {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="Analog QR" %}
+
+    {% include grid-post.html name="picture-frame" posts=posts_proj title="Redwood Frame" %}
 
 </div>
