@@ -208,9 +208,6 @@ function selectorOpen(sel, id, openTo) {
 // carousel functions
 
 function carouselButtonClick(cn, e) {
-  console.log('button clicked!')
-  console.log('cn')
-  console.log(cn)
   var c = window.carousels[cn]
   if (window.carousels[cn].carouselInterval) {
     clearInterval(window.carousels[cn].carouselInterval)

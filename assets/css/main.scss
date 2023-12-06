@@ -551,15 +551,15 @@ footer {
 
   position: relative;
 
-  .text-mask-mask {
-    position: absolute;
-    left: 99.6%;
-    right: 0;
-    background-color: var(--bg-color);
-    // background-color: red;
-    width: 5px;
-    height: 100%;
-  }
+  // .text-mask-mask {
+  //   position: absolute;
+  //   left: 99.6%;
+  //   right: 0;
+  //   background-color: var(--bg-color);
+  //   // background-color: red;
+  //   width: 5px;
+  //   height: 100%;
+  // }
 }
 
 // scroller
@@ -578,6 +578,10 @@ footer {
     background-color: yellow;
 
     position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     // transition management
     visibility: hidden;
@@ -601,18 +605,54 @@ footer {
     &.hiding {
       opacity: 0;
     }
+
+    transition: visibility 500ms, opacity 500ms linear;
+    &.transition-all {
+      transition: visibility 500ms, opacity 500ms linear, max-width 500ms ease-in-out, width 500ms ease-in-out;
+    }
   }
 }
 
-.collection-post-preview,
-.post-post-preview {
-  height: 100%;
-  width: 100%;
+.scroller#jumbotron {
+  height: 90vh;
+  width: auto;
+}
+
+.scroller-item-inner {
+  flex: 0 1 auto;
+  position: relative;
   img {
+    display: block;
     object-fit: contain;
+  }
+}
+
+.collection-post-preview {
+  background-color: green;
+
+  img {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+}
+
+.post-post-preview {
+  img {
     max-width: 100%;
     max-height: 100%;
   }
+}
+
+.scroller-label {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+
+  // font-size: 5rem;
+  // font-size: Max(3rem, Min(6rem,7vw));
+  font-size: Max(3rem, Min(6rem,7vw));
+  font-family: Anton;
+  color: white;
 }
 
 .button-wrapper {
@@ -797,18 +837,6 @@ footer {
   }
 }
 
-
-.carousel-label {
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-
-  // font-size: 5rem;
-  // font-size: Max(3rem, Min(6rem,7vw));
-  font-size: Max(3rem, Min(6rem,7vw));
-  font-family: Anton;
-  color: white;
-}
 
 .flex-horiz {
   display: flex;

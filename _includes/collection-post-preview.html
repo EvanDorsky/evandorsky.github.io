@@ -15,11 +15,11 @@
 {% assign covers = site.covers | where: "slug", include.item.slug %}
 {% assign cover = covers[0] %}
 
-<a class="collection-post-preview" href="{{ l }}">
+<a class="scroller-item-inner collection-post-preview" href="{{ l }}">
 {% if cover %}
   {{ cover.content }}
 {% else %}
-  <div class="carousel-label">
+  <div class="scroller-label">
     {{ include.item.title }}
   </div>
   <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">

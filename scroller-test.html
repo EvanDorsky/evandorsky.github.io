@@ -11,14 +11,8 @@ row_height: 350
 show-banner: false
 ---
 
-<script type="text/javascript">
-  window.galleryRowHeight = {{ page.row_height }}
-  window.galleryLastRow = "left"
-</script>
-
-
 {% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include scroller.html id="scroller1" template="collection-post-preview" items=portfolio %}
+{% include scroller.html id="jumbotron" template="collection-post-preview" items=portfolio %}
 
 {% assign post = site.projects | where: "slug", "film-tagger" %}
 {% assign post = post[0]%}

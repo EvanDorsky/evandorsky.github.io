@@ -15,7 +15,7 @@
 {% assign covers = site.covers | where: "slug", include.collection.slug %}
 {% assign cover = covers[0] %}
 
-<div class="post-post-preview">
+<div class="scroller-item-inner post-post-preview">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
   {% if collection.captions %}
     <div class="carousel-item-label">
