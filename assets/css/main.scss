@@ -647,6 +647,16 @@ footer {
   width: 90%;
 }
 
+.carousel-item-label {
+  position: absolute;
+  bottom: 0;
+
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
+  width: calc(100% - 1rem);
+  color: white;
+  padding: 0.2rem 0.5rem;
+}
+
 .scroller-label {
   position: absolute;
   bottom: 0;

@@ -17,10 +17,10 @@
 
 <div class="scroller-item-inner post-post-preview">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
-  {% if collection.captions %}
+  {% if include.collection.captions %}
     <div class="carousel-item-label">
       {% assign j = i | minus: 1 %}
-      {{ collection.captions[j] }}
+      {{ include.collection.captions[j] }}
     </div>
   {% endif %}
 </div>
