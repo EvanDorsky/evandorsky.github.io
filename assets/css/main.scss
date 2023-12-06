@@ -562,6 +562,36 @@ footer {
   }
 }
 
+// scroller
+.scroller {
+  height: 50rem;
+  width: 40rem;
+
+  margin-top: 20rem;
+
+  background-color: red;
+
+  position: relative;
+  .scroller-item {
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+
+    position: absolute;
+  }
+}
+
+.collection-post-preview,
+.post-post-preview {
+  height: 100%;
+  width: 100%;
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 // carousel
 
 .project-wrapper {
@@ -741,18 +771,19 @@ footer {
   &.hiding {
     opacity: 0;
   }
+}
 
-  .carousel-label {
-    position: absolute;
-    bottom: 0;
-    left: 1rem;
 
-    // font-size: 5rem;
-    // font-size: Max(3rem, Min(6rem,7vw));
-    font-size: Max(3rem, Min(6rem,7vw));
-    font-family: Anton;
-    color: white;
-  }
+.carousel-label {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+
+  // font-size: 5rem;
+  // font-size: Max(3rem, Min(6rem,7vw));
+  font-size: Max(3rem, Min(6rem,7vw));
+  font-family: Anton;
+  color: white;
 }
 
 .flex-horiz {

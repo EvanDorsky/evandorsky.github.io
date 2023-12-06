@@ -1,0 +1,26 @@
+
+<!-- sets a bunch of variables -->
+{% assign num_str = include.item | prepend: '00' | slice: -2, 2 %}
+
+{% assign pathsplit = include.collection.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign series_name = namesplit[0] %}
+
+{% assign l = include.collection.link | default: "" %}
+{% if l == "" %}
+  {% assign l = include.collection.url %}
+{% endif %}
+
+{% assign covers = site.covers | where: "slug", include.collection.slug %}
+{% assign cover = covers[0] %}
+
+<div class="post-post-preview">
+  <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
+  {% if collection.captions %}
+    <div class="carousel-item-label">
+      {% assign j = i | minus: 1 %}
+      {{ collection.captions[j] }}
+    </div>
+  {% endif %}
+</div>

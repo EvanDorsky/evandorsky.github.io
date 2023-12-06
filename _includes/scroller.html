@@ -1,0 +1,21 @@
+
+{% assign items = include.items %}
+{% assign n_items = include.n_items %}
+{% assign item_tmpl = include.template %}
+
+<div class="scroller">
+  {% if n_items %}
+    {% for i in ( 1.. n_items ) %}
+    <div class="scroller-item">
+      {% include {{ item_tmpl }}.html collection=items item=i %}
+    </div>
+    {% endfor %}
+  {% else %}
+    {% for i in items %}
+    <div class="scroller-item">
+      {% include {{ item_tmpl }}.html item=i %}
+    </div>
+    {% endfor %}
+  {% endif %}
+  
+</div>

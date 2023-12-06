@@ -1,0 +1,29 @@
+---
+layout: page-wide
+jumbotron: false
+title: Scroller
+# thumb: /assets/img/posts/2022-12-28-street/03.webp
+thumb: /assets/img/thumb.png
+
+navbar: true
+navbar-order: 1
+row_height: 350
+show-banner: false
+---
+
+<script type="text/javascript">
+  window.galleryRowHeight = {{ page.row_height }}
+  window.galleryLastRow = "left"
+</script>
+
+
+{% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
+{% include scroller.html template="collection-post-preview" items=portfolio %}
+
+{% assign post = site.projects | where: "slug", "film-tagger" %}
+{% assign post = post[0]%}
+{% include scroller.html template="post-post-preview" items=post n_items=post.n_photos %}
+
+{% assign post = site.projects | where: "slug", "bespoke-chinrest" %}
+{% assign post = post[0]%}
+{% include scroller.html template="post-post-preview" items=post n_items=post.n_photos %}
