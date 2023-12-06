@@ -614,6 +614,10 @@ footer {
 }
 
 .scroller-item-inner {
+  &:hover {
+    text-decoration: none;
+  }
+
   flex: 0 1 auto;
   position: relative;
   img {
@@ -628,6 +632,9 @@ footer {
 .collection-post-preview {
   max-width: 90vw;
   max-height: 80vh;
+  img {
+    max-height: 80vh;
+  }
 }
 
 .post-post-preview {

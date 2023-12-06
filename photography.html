@@ -25,7 +25,7 @@ show-banner: false
 <!-- Selected -->
 
 {% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include feature-gallery.html preview="carousel-item" collection=portfolio id="carousel" %}
+{% include scroller.html id="jumbotron" template="collection-post-preview" items=portfolio %}
 
 <!-- Work -->
 
