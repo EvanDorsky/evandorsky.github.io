@@ -1,0 +1,14 @@
+{% assign num_str = include.post.key_photo | prepend: '00' | slice: -2, 2 %}
+
+{% assign pathsplit = include.post.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign series_name = namesplit[0] %}
+
+{% assign l = include.post.link | default: "" %}
+{% if l == "" %}
+  {% assign l = include.post.url %}
+{% endif %}
+
+{% assign covers = site.covers | where: "slug", include.post.slug %}
+{% assign cover = covers[0] %}
