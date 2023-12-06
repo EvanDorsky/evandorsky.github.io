@@ -5,6 +5,11 @@ no_wrapper: true
 
 {% include meta-thumbnail.html %}
 
+{% assign pathsplit = page.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign page_name = namesplit[0] %}
+
 <link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
 <div class="article-container">
@@ -14,23 +19,14 @@ no_wrapper: true
   {% endunless %}
 
   <div class="project-wrapper">
+
     <div class="project-text">
       {{ content }}
     </div>
-    {% include carousel.html id="carousel" captions=page.captions class="project-carousel" %}
-  </div>
 
-  {% assign pathsplit = page.path | split: '/' %}
-  {% assign name_ext = pathsplit[-1] %}
-  {% assign namesplit = name_ext | split: '.' %}
-  {% assign page_name = namesplit[0] %}
+    {% assign post = site.projects | where: "slug", page.slug %}
+    {% assign post = post[0]%}
+    {% include scroller.html id="project" template="post-post-preview" items=post n_items=post.n_photos %}
 
-  {% assign series_meta = site.data[page_name]['series'] %}
-  {% unless page.hide_metadata %}
-  <div class="photo-details">
-    <div class="camera">{{ series_meta.camera_summary }}</div>
-    <div class="lens">{{ series_meta.lens_summary }}</div>
-    <div class="stock">{{ series_meta.stock_summary }}</div>
   </div>
-  {% endunless %}
 </div>

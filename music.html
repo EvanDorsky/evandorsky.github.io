@@ -29,7 +29,12 @@ navbar-order: 2
 
 <!-- <img class="music-banner" src="/assets/img/about/quartet.webp"> -->
 
-{% include carousel.html auto_advance=true n_photos=5 series_name="2023-09-22-string-quartet" id="carousel" class="carousel-standalone" %}
+<!-- { % include carousel.html auto_advance=true n_photos=5 series_name="2023-09-22-string-quartet" id="carousel" class="carousel-standalone" %} -->
+
+{% assign post = site.photojournal | where: "slug", "string-quartet" %}
+{% assign post = post[0]%}
+{% include scroller.html id="quartet" template="post-post-preview" items=post n_items=post.n_photos %}
+
 <br>
 
 <!--

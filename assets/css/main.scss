@@ -564,8 +564,9 @@ footer {
 
 // scroller
 .scroller {
-  height: 50rem;
-  width: 40rem;
+  // width and height should be defined for each instance
+  height: 40rem;
+  width: auto;
 
   position: relative;
   .scroller-item {
@@ -611,6 +612,11 @@ footer {
 .scroller#jumbotron {
   height: 90vh;
   width: auto;
+}
+
+.scroller#project {
+  flex: 0 1 50rem;
+  height: 70rem;
 }
 
 .scroller-item-inner {
