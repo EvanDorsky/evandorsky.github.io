@@ -696,8 +696,6 @@ footer {
   }
 }
 
-// carousel
-
 .project-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -712,133 +710,6 @@ footer {
 .post-preview {
   margin: 0 auto;
 }
-
-.carousel-wrapper {
-  flex: 0 1 50rem;
-  &.carousel-standalone {
-    .carousel {
-      height: auto;
-
-      .carousel-item {
-        top: 0;
-        .post-preview-wrapper {
-          top: 0;
-          left: 0;
-          transform: none;
-          max-width: 100%;
-          img {
-            max-width: 100%;
-            max-height: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  &.project-carousel {
-    float: right;
-
-    .carousel {
-      position: relative;
-      // height: 50vh;
-      // width: 50vw;
-      object-fit: contain;
-      .carousel-item {
-        position: absolute;
-        .post-preview-wrapper {
-          max-width: 100%;
-          img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-          }
-
-          .carousel-item-label {
-            position: absolute;
-            bottom: 0;
-
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
-            width: calc(100% - 1rem);
-            color: white;
-            padding: 0.2rem 0.5rem;
-          }
-
-        }
-        // height: fit-content;
-      }
-      // height: fit-content;
-      // height: auto;
-    }
-  }
-
-  position: relative;
-}
-
-.carousel {
-  position: relative;
-
-  height: 100vh;
-}
-
-.carousel-item {
-  height: 100%;
-  overflow: hidden;
-
-  img {
-    display: block;
-    max-width: 90vw;
-    max-height: 80vh;
-    object-fit: contain;
-  }
-
-  &.placeholder {
-    visibility: hidden !important;
-    position: relative !important;
-    z-index: -999 !important;
-
-    .post-preview-wrapper {
-      position: relative;
-    }
-  }
-
-  a:hover {
-    text-decoration: inherit;
-  }
-
-  // width: 0px;
-  // max-width: 0px;
-  align-items: center;
-
-  transition: visibility 500ms, opacity 500ms linear;
-  &.transition-all {
-    transition: visibility 500ms, opacity 500ms linear, max-width 500ms ease-in-out, width 500ms ease-in-out;
-  }
-
-  position: absolute;
-  // transition management
-  visibility: hidden;
-  opacity: 0;
-  width: 100%;
-
-  &.activating {
-    // width: 100%;
-    // max-width: 100%;
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &.active {
-    // width: 100%;
-    // max-width: 100%;
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &.hiding {
-    opacity: 0;
-  }
-}
-
 
 .flex-horiz {
   display: flex;
@@ -876,10 +747,6 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-}
-
-.post-preview {
-
 }
 
 .fj-gallery {
