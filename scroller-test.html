@@ -18,12 +18,12 @@ show-banner: false
 
 
 {% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include scroller.html template="collection-post-preview" items=portfolio %}
+{% include scroller.html id="scroller1" template="collection-post-preview" items=portfolio %}
 
 {% assign post = site.projects | where: "slug", "film-tagger" %}
 {% assign post = post[0]%}
-{% include scroller.html template="post-post-preview" items=post n_items=post.n_photos %}
+{% include scroller.html id="scroller2"  template="post-post-preview" items=post n_items=post.n_photos %}
 
 {% assign post = site.projects | where: "slug", "bespoke-chinrest" %}
 {% assign post = post[0]%}
-{% include scroller.html template="post-post-preview" items=post n_items=post.n_photos %}
+{% include scroller.html id="scroller3"  template="post-post-preview" items=post n_items=post.n_photos %}

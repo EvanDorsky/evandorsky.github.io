@@ -1,9 +1,26 @@
 
+{% assign id = include.id %}
 {% assign items = include.items %}
 {% assign n_items = include.n_items %}
 {% assign item_tmpl = include.template %}
 
-<div class="scroller">
+
+<script type="text/javascript">
+  if (!window.carousels) {
+    window.carousels = {}
+  }
+  window.carousels["{{ id }}"] = {
+    idx: 0,
+    {% if n_items %}
+      len: {{ n_items }},
+    {% else %}
+      len: {{ include.items | size }},
+    {% endif %}
+    auto_advance: false
+  }
+</script>
+
+<div class="scroller" id="{{ id }}">
   {% if n_items %}
     {% for i in ( 1.. n_items ) %}
     <div class="scroller-item">
@@ -17,5 +34,11 @@
     </div>
     {% endfor %}
   {% endif %}
-  
+
+  <div class="button-wrapper left" dir="-1">
+    <div class="button left" dir="-1"></div>
+  </div>
+  <div class="button-wrapper right" dir="-1">
+    <div class="button right" dir="1"></div>
+  </div>
 </div>

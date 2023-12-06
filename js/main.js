@@ -208,6 +208,9 @@ function selectorOpen(sel, id, openTo) {
 // carousel functions
 
 function carouselButtonClick(cn, e) {
+  console.log('button clicked!')
+  console.log('cn')
+  console.log(cn)
   var c = window.carousels[cn]
   if (window.carousels[cn].carouselInterval) {
     clearInterval(window.carousels[cn].carouselInterval)
@@ -225,15 +228,15 @@ function carouselSelect(cn, idx) {
   console.log('=============')
   var c = window.carousels[cn]
 
-  var el = d3.select(`.carousel#${cn}`)
+  var el = d3.select(`.scroller#${cn}`)
 
-  var items = el.selectAll('.carousel-item:not(.placeholder)')
+  var items = el.selectAll('.scroller-item:not(.placeholder)')
   var item = items.nodes()[idx]
 
   // fade out the current item
   // console.log(d3.select(items).classed('active'))
 
-  var activeItems = d3.selectAll(".carousel-item.active")
+  var activeItems = el.selectAll(".scroller-item.active")
   console.log('1. select activeItems')
   console.log(activeItems._groups[0])
   if (activeItems) {
@@ -397,14 +400,14 @@ function main(event) {
 
   // carousel setup
   for (let cn in window.carousels) {
-    var el = d3.select(`.carousel#${cn}`)
+    var el = d3.select(`.scroller#${cn}`)
 
-    d3.select(el.node().parentNode).selectAll('.button')
+    d3.select(el.node()).selectAll('.button')
       .on("click", (e) => carouselButtonClick(cn, e))
 
     carouselSelect(cn, 0)
 
-    // setTimeout(() => el.selectAll('.carousel-item').classed('transition-all', true), 800)
+    // setTimeout(() => el.selectAll('.scroller-item').classed('transition-all', true), 800)
 
     if (window.carousels[cn].auto_advance) {
       window.carousels[cn].carouselInterval = setInterval(() => carouselSelect(cn, ((window.carousels[cn].idx+1).mod(window.carousels[cn].len))), 6000)
