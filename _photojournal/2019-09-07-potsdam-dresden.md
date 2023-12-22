@@ -2,7 +2,7 @@
 layout: post
 order: 0
 n_photos: 10
-key_photo: 9
+key_photo: 10
 title: Potsdam, Dresden
 subtitle: 
 location: Germany

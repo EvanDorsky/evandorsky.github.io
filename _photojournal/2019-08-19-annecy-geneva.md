@@ -2,7 +2,7 @@
 layout: post
 order: 0
 n_photos: 3
-key_photo: 1
+key_photo: 3
 title: Annecy
 subtitle: 
 location: France
