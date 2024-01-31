@@ -2,7 +2,7 @@
 layout: post
 order: 0
 n_photos: 11
-key_photo: 1
+key_photo: 5
 title: Grandview Park
 subtitle: 
 ---

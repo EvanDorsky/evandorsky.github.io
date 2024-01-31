@@ -1,20 +1,55 @@
 [
     {
-        "type": "printable",
-        "title": "Paterson Reel for 4x5 Sheet Film (6 Sheets)",
-        "date": 1702158886,
-        "description": "",
-        "img": "https://media.printables.com/media/prints/675499/stls/5309976_6c6deb62-2723-4240-8be7-9ec0a6483825_19e738e6-1087-4758-9b4f-4c3753e9313a/reel_top_preview.png",
-        "link": "https://www.printables.com/model/675499-paterson-reel-for-4x5-sheet-film-6-sheets"
-    },
-    {
         "type": "github",
         "title": "evandorsky.github.io",
-        "date": 1701976273,
+        "date": 1706651766,
         "description": null,
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/evandorsky.github.io",
         "key": "EvanDorsky/evandorsky.github.io"
+    },
+    {
+        "type": "printable",
+        "title": "Paterson Reel for 3x4 Sheet Film (6 Sheets)",
+        "date": 1704426523,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/701607/stls/5507335_f7e20505-635b-49ef-bb7f-61ca1268e85b_ca1b8bdd-1c45-421f-b448-f8ea48765298/bottom3x4_preview.png",
+        "link": "https://www.printables.com/model/701607-paterson-reel-for-3x4-sheet-film-6-sheets"
+    },
+    {
+        "type": "printable",
+        "title": "Paterson Reel for 4x5 Sheet Film (6 Sheets)",
+        "date": 1704077531,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/675499/stls/5439207_887232e7-df70-4a23-9b39-da87af4bdd1e_4196017e-3b94-4430-8d86-94e2a6184112/reel_bottom_4x5_preview.png",
+        "link": "https://www.printables.com/model/675499-paterson-reel-for-4x5-sheet-film-6-sheets"
+    },
+    {
+        "type": "notion",
+        "title": "Home Color Film Development",
+        "date": 1703741400,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Home-Color-Film-Development-0dbfa8ab3a354437b2ff6e8dd14b8885",
+        "key": "Home Color Film Development"
+    },
+    {
+        "type": "notion",
+        "title": "Generative AI Research",
+        "date": 1703739720,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Generative-AI-Research-b917399fbe6b4187aac753fed6fa1995",
+        "key": "Generative AI Research"
+    },
+    {
+        "type": "notion",
+        "title": "Japan Travel",
+        "date": 1703739720,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Japan-Travel-4ecc1ceb6c1d47adb702bc0607f1795b",
+        "key": "Japan Travel"
     },
     {
         "type": "github",
@@ -33,23 +68,6 @@
         "img": "",
         "link": "https://evandorsky.notion.site/Media-Tech-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec",
         "key": "Media + Tech + Ethics Reading List"
-    },
-    {
-        "type": "printable",
-        "title": "35mm Film Adapter for 120 Medium Format Cameras",
-        "date": 1697830246,
-        "description": "",
-        "img": "https://media.printables.com/media/prints/620773/stls/4925658_ee9cf784-5965-4ada-91c9-4ead05d6a1c1_2f94eba7-6f8f-4d6e-bc35-7d794c8fd428/top_preview.png",
-        "link": "https://www.printables.com/model/620773-35mm-film-adapter-for-120-medium-format-cameras"
-    },
-    {
-        "type": "notion",
-        "title": "Meta AI and Prompt Injection",
-        "date": 1697749920,
-        "description": "",
-        "img": "",
-        "link": "https://evandorsky.notion.site/Meta-AI-and-Prompt-Injection-b917399fbe6b4187aac753fed6fa1995",
-        "key": "Meta AI and Prompt Injection"
     },
     {
         "type": "notion",
@@ -119,15 +137,6 @@
         "img": "",
         "link": "https://evandorsky.notion.site/Low-Impact-Sourdough-7406212c514447089faa8578858f7c1d",
         "key": "Low Impact Sourdough"
-    },
-    {
-        "type": "notion",
-        "title": "Tokyo Travel",
-        "date": 1688619960,
-        "description": "",
-        "img": "",
-        "link": "https://evandorsky.notion.site/Tokyo-Travel-4ecc1ceb6c1d47adb702bc0607f1795b",
-        "key": "Tokyo Travel"
     },
     {
         "type": "observable",

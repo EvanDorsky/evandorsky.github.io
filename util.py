@@ -209,51 +209,37 @@ def rss_factory(url, blogname):
 
   return rss_to_feeddict
 
-class htmlparser(parser.HTMLParser):
-  def handle_data(self, data):
-    try:
-      res = json.loads(data)
-    except Exception as e:
-      return
-
-    try:
-      iter(res)
-    except TypeError as te:
-      return
-
-    feed = []
-
-    for i in res["props"]["pageProps"]["fallback"]["/documents/@dorskyee?page=1\u0026sort=published\u0026direction=desc"]["results"]:
-      if i["collection_count"] < 1:
-        continue
-
-      isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
-      pub_date = datetime.strptime(i["update_time"], isoformat)
-
-      author = i["creator"]["login"]
-
-      feed += [{
-        "type": "observable",
-        "title": i["title"],
-        "date": int(datetime.timestamp(pub_date)),
-        "description": "",
-        "img": "https://static.observableusercontent.com/thumbnail/%s.jpg" % i["thumbnail"],
-        "link": "https://observablehq.com/@%s/%s" % (author, i["slug"])
-      }]
-
-    self.data = feed
 
 def observable():
   try:
-    res = requests.get("https://observablehq.com/@dorskyee?tab=notebooks")
+    res = requests.get("https://observablehq.com/@dorskyee")
   except Exception as e:
     print("Failed to get page: %s" % e)
 
-  page = res.content.decode("utf-8")
+  soup = BeautifulSoup(res.text, 'html.parser')
 
-  parser = htmlparser()
-  parser.feed(page)
-  return parser.data
+  data = json.loads(soup.find(id="__NEXT_DATA__").string)
+
+  feed = []
+  for i in data["props"]["pageProps"]["fallback"]["/documents/@dorskyee?page=1\u0026sort=published\u0026direction=desc"]["results"]:
+    if i["collection_count"] < 1:
+      continue
+
+    isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
+    pub_date = datetime.strptime(i["update_time"], isoformat)
+
+    author = i["creator"]["login"]
+
+    feed += [{
+      "type": "observable",
+      "title": i["title"],
+      "date": int(datetime.timestamp(pub_date)),
+      "description": "",
+      "img": "https://static.observableusercontent.com/thumbnail/%s.jpg" % i["thumbnail"],
+      "link": "https://observablehq.com/@%s/%s" % (author, i["slug"])
+    }]
+
+  return feed
 
 def notion():
   pprint("Notion start")
@@ -434,10 +420,10 @@ def run_get_feed(args):
       "title": "Living Docs",
       "factory": notion
     },
-    "instagram": {
-      "title": "Instagram",
-      "factory": instagram
-    },
+    # "instagram": {
+    #   "title": "Instagram",
+    #   "factory": instagram
+    # },
     "github": {
       "title": "GitHub",
       "factory": github
