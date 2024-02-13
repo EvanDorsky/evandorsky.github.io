@@ -1,6 +1,6 @@
 Hi! I'm Evan.
 
-I'm an [engineer, artist, educator] based in San Francisco.
+I'm a [photographer, musician, technologist] based in San Francisco.
 
 I'm currently a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, violist in the [Cable Car Quartet](/music){:target="_blank" .key-phrase}, and a cohort leader for the Fall 2023 offering of Stanford's [ Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase}.
 
