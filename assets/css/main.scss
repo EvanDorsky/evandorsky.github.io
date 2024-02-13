@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: Public Sans;
+  font-family: Inter, sans-serif;
   font-weight: normal;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -169,7 +169,7 @@ a {
 
   flex-direction: column;
   .feed-title {
-    font-family: Public Sans;
+    font-family: Inter, san-serif;
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: bold;
@@ -218,7 +218,7 @@ a {
       opacity: 0.4;
     }
     .date {
-      font-family: Public Sans;
+      font-family: Inter, san-serif;
       text-transform: uppercase;
       font-weight: 300;
       font-size: 0.9rem;
@@ -472,7 +472,7 @@ hr {
 
 .post-date {
   font-weight: 200;
-  font-family: Public Sans;
+  font-family: Inter, san-serif;
   opacity: 50%;
 }
 
@@ -813,7 +813,7 @@ footer {
     z-index: 100;
     transition: background-color 0.5s;
     display: flex;
-    font-family: Public Sans;
+    font-family: Inter, san-serif;
     font-weight: 200;
   }
   .title { 
@@ -1066,7 +1066,7 @@ footer {
   padding: 0.5rem;
   font-family: 'Noto Sans Mono', sans-serif;
   .photo-caption {
-    font-family: Public Sans;
+    font-family: Inter, san-serif;
     font-weight: 100;
     font-size: 1.3rem;
   }
