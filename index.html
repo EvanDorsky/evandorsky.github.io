@@ -10,6 +10,7 @@ show-banner: false
 {% assign posts = site.data["feeds"]["posts"] %}
 
 {% assign posts_pj = site.photojournal | reverse %}
+{% assign posts_music = site.shows | reverse %}
 {% assign posts_proj = site.projects | reverse %}
 {% assign posts_work = site.photowork | reverse %}
 
@@ -17,11 +18,13 @@ show-banner: false
     <!-- { % assign feed = posts | where: "type", "instagram" %} -->
     <!-- { % include feed-onepost.html feed=feed title="Instagram" feedname="instagram" %} -->
 
+    {% include feed.html feed=posts_music title="Music" feedname="music" max_posts=1 feature_first=true %}
+
     {% include grid-post.html posts=posts_pj idx=0 showtitle=true title="Photojournal" %}
 
     {% include grid-post.html name="full-spectrum-noe" showtitle=true posts=posts_pj title="Wallpaper Pack" %}
 
-    {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=10 feature_first=true %}
+    {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
 
     {% assign feed = posts | where: "type", "observable" %}
     {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
