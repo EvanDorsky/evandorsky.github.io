@@ -18,37 +18,37 @@ show-banner: false
     <!-- { % assign feed = posts | where: "type", "instagram" %} -->
     <!-- { % include feed-onepost.html feed=feed title="Instagram" feedname="instagram" %} -->
 
-    {% include feed.html feed=posts_music title="Music" feedname="music" max_posts=1 feature_first=true %}
-
-    {% include grid-post.html posts=posts_pj idx=0 showtitle=true title="Photojournal" %}
-
-    {% include grid-post.html name="full-spectrum-noe" showtitle=true posts=posts_pj title="Wallpaper Pack" %}
-
-    {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
-
-    {% assign feed = posts | where: "type", "observable" %}
-    {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
-    
-    {% assign feed = posts | where: "type", "notion" %}
-    {% include feed.html feed=feed title="Living Docs" max_posts=99 feedname="notion" %}
-    
-    {% assign feed = posts | where: "type", "github" %}
-    {% include feed.html feed=feed title="GitHub" feedname="github" %}
-
-    {% assign feed = posts | where: "type", "printable" %}
-    {% include feed.html feed=feed title="Printables" feedname="printable" %}
-
-    {% include grid-post.html name="3d-print" posts=posts_proj title="Analog Cameras / Digital Parts" %}
-
-    {% assign feed = posts | where: "type", "luckybox" %}
-    {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
-
     {% include grid-post.html name="film-tagger" posts=posts_proj title="Analog Metadata" %}
 
     {% include grid-post.html name="bespoke-chinrest" posts=posts_proj title="Bespoke Violin Chinrest" %}
 
     {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="QR Code Cyanotype" %}
 
+    {% assign feed = posts | where: "type", "observable" %}
+    {% include feed.html feed=feed title="Interactive Notebooks" feedname="observable" %}
+    
+    {% assign feed = posts | where: "type", "notion" %}
+    {% include feed.html feed=feed title="Living Docs" max_posts=99 feedname="notion" %}
+
+    {% assign feed = posts | where: "type", "luckybox" %}
+    {% include feed.html feed=feed title="Lucky Box" feedname="luckybox" %}
+
+    {% include feed.html feed=posts_music title="Concerts" feedname="music" max_posts=1 feature_first=true %}
+
+    {% include grid-post.html posts=posts_pj idx=0 showtitle=true title="Photojournal" %}
+
+    <!-- { % include grid-post.html name="full-spectrum-noe" showtitle=true posts=posts_pj title="Infrared Wallpaper Pack" %} -->
+
+    {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
+
+    {% assign feed = posts | where: "type", "printable" %}
+    {% include feed.html feed=feed title="Printables" feedname="printable" %}
+
+    {% include grid-post.html name="3d-print" posts=posts_proj title="Analog Cameras / Digital Parts" %}
+
     {% include grid-post.html name="picture-frame" posts=posts_proj title="Redwood Frame" %}
+    
+    {% assign feed = posts | where: "type", "github" %}
+    {% include feed.html feed=feed title="GitHub" feedname="github" %}
 
 </div>
