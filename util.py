@@ -144,10 +144,10 @@ def printables():
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
   }
 
-  with open('assets/util/printables.graphql') as f:
+  with open('assets/util/printables_v2.graphql') as f:
     query = f.read()
   payload = {
-    "operationName": "UserModels",
+    "operationName": "PrintsAndMakes",
     "variables": {
         "userId": "977475",
         "ordering": "-likes_count",
@@ -163,9 +163,10 @@ def printables():
     data = response.json()
   else:
     print("Request failed with status code:", response.status_code)
+    pprint(response.content)
 
   feed = []
-  for i in data["data"]["userModels"]["items"]:
+  for i in data["data"]["prints"]:
     isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
     pub_date = datetime.strptime(i["datePublished"], isoformat)
 

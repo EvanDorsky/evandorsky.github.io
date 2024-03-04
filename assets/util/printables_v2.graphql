@@ -1,0 +1,118 @@
+query PrintsAndMakes($userId: ID!) {
+  prints(userId: $userId, limit: 4, ordering: "-first_publish") {
+    ...PrintListFragment
+    __typename
+  }
+  printComments(
+    userId: $userId
+    limit: 4
+    makesOnly: true
+    ordering: {orderBy: newest_parent, sortOrder: descending}
+  ) {
+    ...MakeCardFragment
+    __typename
+  }
+}
+
+fragment PrintListFragment on PrintType {
+  id
+  name
+  slug
+  ratingAvg
+  likesCount
+  liked
+  datePublished
+  dateFeatured
+  firstPublish
+  downloadCount
+  category {
+    id
+    path {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+  modified
+  image {
+    ...ImageSimpleFragment
+    __typename
+  }
+  stls {
+    id
+    name
+    filePath
+    fileSize
+    filePreviewPath
+    __typename
+  }
+  nsfw
+  premium
+  price
+  user {
+    ...AvatarUserFragment
+    __typename
+  }
+  ...LatestCompetitionResult
+  __typename
+}
+
+fragment AvatarUserFragment on UserType {
+  id
+  publicUsername
+  avatarFilePath
+  handle
+  company
+  verified
+  badgesProfileLevel {
+    profileLevel
+    __typename
+  }
+  __typename
+}
+
+fragment LatestCompetitionResult on PrintType {
+  latestCompetitionResult {
+    placement
+    competitionId
+    __typename
+  }
+  __typename
+}
+
+fragment ImageSimpleFragment on PrintImageType {
+  id
+  filePath
+  rotation
+  __typename
+}
+
+fragment MakeCardFragment on PrintCommentType {
+  id
+  created
+  print {
+    id
+    slug
+    name
+    eduProject {
+      id
+      __typename
+    }
+    nsfw
+    premium
+    __typename
+  }
+  images {
+    ...ImageCommentFragment
+    __typename
+  }
+  __typename
+}
+
+fragment ImageCommentFragment on CommentImageType {
+  id
+  filePath
+  rotation
+  __typename
+}
