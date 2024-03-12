@@ -42,7 +42,6 @@ fragment PrintListFragment on PrintType {
   stls {
     id
     name
-    filePath
     fileSize
     filePreviewPath
     __typename

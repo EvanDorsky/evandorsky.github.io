@@ -1,20 +1,20 @@
 [
     {
+        "type": "github",
+        "title": "evandorsky.github.io",
+        "date": 1710211878,
+        "description": null,
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/evandorsky.github.io",
+        "key": "EvanDorsky/evandorsky.github.io"
+    },
+    {
         "type": "observable",
         "title": "Writing in Emoji",
         "date": 1709522287,
         "description": "",
         "img": "https://static.observableusercontent.com/thumbnail/31049badf823e2a2556c942dfad346514d77e6e0fe66b4345843b4a642ab6c41.jpg",
         "link": "https://observablehq.com/@dorskyee/emoji-entry"
-    },
-    {
-        "type": "github",
-        "title": "evandorsky.github.io",
-        "date": 1709110273,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/evandorsky.github.io",
-        "key": "EvanDorsky/evandorsky.github.io"
     },
     {
         "type": "printable",
