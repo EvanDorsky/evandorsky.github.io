@@ -1,19 +1,14 @@
 ---
 layout: post
 order: 0
-n_photos: 15
+n_photos: 11
 key_photo: 1
 title: 
 subtitle: 
-location: Japan
 ---
 
 {% assign photo_index = 1 %}
 
-{% include series-photo.html %}
-{% include series-photo.html %}
-{% include series-photo.html %}
-{% include series-photo.html %}
 {% include series-photo.html %}
 {% include series-photo.html %}
 {% include series-photo.html %}
