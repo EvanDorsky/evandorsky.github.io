@@ -1,0 +1,67 @@
+---
+layout: page
+no_wrapper: true
+---
+
+{% assign page_title = page.subtitle %}
+{% unless page_title %}
+  {% assign page_title = page.title %}
+{% endunless %}
+
+{% include meta-thumbnail.html %}
+
+<link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
+
+{% assign metadata = site.data[page_name]['metadata'] %}
+<script type="text/javascript">
+  var meta_json = '{{ metadata | json }}'.replace(/=>/g, ':')
+  window.photo_metadata = JSON.parse(meta_json)
+</script>
+<script type="text/javascript" src="/js/imageBrowser.js"></script>
+
+
+<div class="article-container">
+  {% unless page.hide_metadata %}
+  <h3>{{ page_title }}</h3>
+  <span class="post-date">{{ page.date | date: "%A, %B %-d" }}</span>
+  {% endunless %}
+
+  {{ content }}
+
+  {% assign cats = site.data[page_name]['detect_types'] %}
+  {% for cat in cats %}
+  <div class="detect-button">
+    {{ cat }}
+  </div>
+  {% endfor %}
+
+  {% assign pathsplit = page.path | split: '/' %}
+  {% assign name_ext = pathsplit[-1] %}
+  {% assign namesplit = name_ext | split: '.' %}
+  {% assign page_name = namesplit[0] %}
+  {% for d in metadata %}
+    {% assign collection = include.collection | default: 'film' %}
+
+    {% assign pathsplit = page.path | split: '/' %}
+    {% assign name_ext = pathsplit[-1] %}
+    {% assign namesplit = name_ext | split: '.' %}
+    {% assign page_name = namesplit[0] %}
+
+    {% assign name_num = photo_index | prepend: '00' | slice: -2, 2 %}
+
+    {% assign name = include.name | default: name_num %}
+    {% assign container = include.container | default: "photo-list" %}
+
+    <div class="{{ container }}" id="{{name}}">
+      <img
+        src="/assets/img/posts/{{ page_name }}/{{ d[0] }}.webp"
+        {% for det in d[1].detections %}
+        "det_{{ det[0] }}"="{{ det[1] }}"
+        {% endfor %}
+      >
+    </div>
+    {% assign photo_index = photo_index | plus: 1 %}
+  {% endfor %}
+</div>
+
+{% include post-footer.html %}

@@ -1,0 +1,50 @@
+{
+  "1709197223": {
+    "detections": {
+      "car": 1,
+      "person": 3,
+      "traffic light": 1
+    },
+    "img": "/Users/evan/src/image-classification/img/01.jpg"
+  },
+  "1709197236": {
+    "detections": {},
+    "img": "/Users/evan/src/image-classification/img/02.jpg"
+  },
+  "1709197295": {
+    "detections": {
+      "person": 9,
+      "train": 1
+    },
+    "img": "/Users/evan/src/image-classification/img/03.jpg"
+  },
+  "1709197445": {
+    "detections": {
+      "bicycle": 1,
+      "car": 1,
+      "person": 1
+    },
+    "img": "/Users/evan/src/image-classification/img/04.jpg"
+  },
+  "1709197494": {
+    "detections": {
+      "bicycle": 1
+    },
+    "img": "/Users/evan/src/image-classification/img/05.jpg"
+  },
+  "1709197598": {
+    "detections": {
+      "car": 1,
+      "motorbike": 1,
+      "person": 2
+    },
+    "img": "/Users/evan/src/image-classification/img/06.jpg"
+  },
+  "1709200800": {
+    "detections": {
+      "bicycle": 1,
+      "person": 1
+    },
+    "img": "/Users/evan/src/image-classification/img/07.jpg"
+  }
+}
