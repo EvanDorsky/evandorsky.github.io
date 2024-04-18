@@ -53,6 +53,7 @@ no_wrapper: true
         {% for det in d[1].detections %}
         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
         {% endfor %}
+        style="display:none;"
     >
       <img
         src="/assets/img/posts/{{ page_name }}/{{ d[0] }}.webp"

@@ -27,9 +27,11 @@ function catButtonClick(e) {
 
 window.galleryHistory = []
 
-function randomID(photos) {
-  let sel_id_num = randomEl(photos)
-  return sel_id = `id${sel_id_num}`
+function displayOneImg(imgID) {
+  let res = d3.select("#id"+imgID)
+
+  d3.selectAll(".photo-list").style("display", "none")
+  res.style("display", "flex")
 }
 
 function click(e) {
@@ -53,20 +55,30 @@ function click(e) {
   let n_tries = 0
   let max_tries = 50
   do {
-    sel_id = randomID(all_candidates)
+    sel_id = randomEl(all_candidates)
     n_tries++
-  } while (((sel_id == "") || (window.galleryHistory.includes(sel_id))) && (n_tries < max_tries))
+  } while (((sel_id == "") || (window.galleryHistory.includes("id"+sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
 
-  let res = d3.select("#"+sel_id)
-
-  d3.selectAll(".photo-list").style("display", "none")
-  res.style("display", "flex")
+  displayOneImg(sel_id)
 }
 
 function main(event) {
+  let imgs = Object.keys(window.photo_metadata)
+
+  let img = null
+  do {
+    img = randomEl(imgs)
+    console.log('img')
+    console.log(img)
+    console.log('window.photo_metadata[img]')
+    console.log(window.photo_metadata[img])
+  } while (!window.photo_metadata[img].detections)
+
+  displayOneImg(img)
+
   d3.selectAll('.photo-list')
     .on("click", (e) => click(e))
 }
