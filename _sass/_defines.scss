@@ -11,16 +11,16 @@
   --light-mid-color-rgb: 182, 177, 172;
 
   // dark theme
-  --bg-color: var(--dark-color);
-  --bg-color-rgb: var(--dark-color-rgb);
-  --text-color: var(--light-mid-color);
-  --text-color-rgb: var(--light-mid-color-rgb);
+  // --bg-color: var(--dark-color);
+  // --bg-color-rgb: var(--dark-color-rgb);
+  // --text-color: var(--light-mid-color);
+  // --text-color-rgb: var(--light-mid-color-rgb);
 
   // light theme
-  @media (prefers-color-scheme: light) {
+  // @media (prefers-color-scheme: light) {
     --text-color: var(--dark-color);
     --text-color-rgb: var(--dark-color-rgb);
     --bg-color: var(--light-color);
     --bg-color-rgb: var(--light-color-rgb);
-  }
+  // }
 }
