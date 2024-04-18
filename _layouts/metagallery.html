@@ -17,23 +17,20 @@ no_wrapper: true
   var meta_json = '{{ metadata | json }}'.replace(/=>/g, ':')
   window.photo_metadata = JSON.parse(meta_json)
 </script>
-<script type="text/javascript" src="/js/imageBrowser.js"></script>
 
+{% assign meta_byobj = site.data[page_name]['metadata_by_obj'] %}
+<script type="text/javascript">
+  var meta_json = '{{ meta_byobj | json }}'.replace(/=>/g, ':')
+  window.photo_metadata_byobj = JSON.parse(meta_json)
+</script>
+
+<script type="text/javascript" src="/js/imageBrowser.js"></script>
 
 <div class="article-container">
   {% unless page.hide_metadata %}
   <h3>{{ page_title }}</h3>
   <span class="post-date">{{ page.date | date: "%A, %B %-d" }}</span>
   {% endunless %}
-
-  {{ content }}
-
-  {% assign cats = site.data[page_name]['detect_types'] %}
-  {% for cat in cats %}
-  <div class="detect-button">
-    {{ cat }}
-  </div>
-  {% endfor %}
 
   {% assign pathsplit = page.path | split: '/' %}
   {% assign name_ext = pathsplit[-1] %}
@@ -52,12 +49,13 @@ no_wrapper: true
     {% assign name = include.name | default: name_num %}
     {% assign container = include.container | default: "photo-list" %}
 
-    <div class="{{ container }}" id="{{name}}">
+    <div class="{{ container }}" id="id{{ d[0] }}" 
+        {% for det in d[1].detections %}
+        "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
+        {% endfor %}
+    >
       <img
         src="/assets/img/posts/{{ page_name }}/{{ d[0] }}.webp"
-        {% for det in d[1].detections %}
-        "det_{{ det[0] }}"="{{ det[1] }}"
-        {% endfor %}
       >
     </div>
     {% assign photo_index = photo_index | plus: 1 %}

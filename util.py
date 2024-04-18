@@ -887,6 +887,25 @@ def run_upload(args):
           print('---------')
           print("%s: %s" % (paymentlink['id'], paymentlink['url']))
 
+def run_photochain(args):
+  path = args.path
+  dirpath, _ = os.path.split(path)
+
+  with open(path, 'r') as f:
+    meta = json.load(f)
+
+  photos_by_obj = {}
+  for photo in meta:
+    el = meta[photo]
+    dets = el['detections']
+    for obj in dets:
+      if obj not in photos_by_obj:
+        photos_by_obj[obj] = []
+
+      photos_by_obj[obj] += [photo]
+
+  with open(os.path.join(dirpath, "metadata_by_obj.json"), "w") as f:
+    json.dump(photos_by_obj, f, indent=2, sort_keys=True)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -945,6 +964,12 @@ if __name__ == '__main__':
         '--dryrun': {
           'action': 'store_true'
         }
+      }
+    },
+    'photo-chain': {
+      'func': run_photochain,
+      'args': {
+        'path': {}
       }
     }
   }
