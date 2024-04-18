@@ -41,9 +41,38 @@ series_info = OrderedDict([
   ("subtitle", "")
 ])
 
+# Do I look like I know what a jay-peg is?
+# https://www.youtube.com/watch?v=QwucZK1BCj4
 IM_EXTS = [
-  '.jpg'
+  ".jpg",
+  ".jpeg",
+  ".JPG",
+  ".JPEG"
 ]
+
+def is_valid_impath(path):
+  p, ext = os.path.splitext(path)
+
+  # maybe not great to call os.path.exists on EVERY path
+  return ext in IM_EXTS and os.path.exists(path)
+
+# check the first argument (supposed to be path to image)
+# and make sure it's a path to an image
+def img_process(func):
+  def wrapper(*args, **kwargs):
+    if is_valid_impath(args[0]):
+      return func(*args, **kwargs)
+    else:
+      return None
+
+  return wrapper
+
+@img_process
+def get_exifstamp(path):
+  res = check_output(["exiftool", "-DateTimeOriginal", path], text=True)
+  datetime_str = res.split(': ')[1].strip()
+  dt_obj = datetime.strptime(datetime_str, '%Y:%m:%d %H:%M:%S')
+  return int(dt_obj.timestamp())
 
 def exif_text_to_dict(text):
   exif = {}
@@ -651,6 +680,13 @@ def run_series(args):
       os.remove(res_path)
     shutil.move(os.path.join(input_path, photo), im_out_path)
 
+    # rename the images based on their exif timestamp, if requested
+    if args.exif_rename:
+      timestamp = get_exifstamp(res_path)
+      shutil.move(res_path,
+        os.path.join(im_out_path, str(timestamp)+os.path.splitext(res_path)[1])
+      )
+
   if args.action == "create":
     # fill series info
     series_info["n_photos"] = len(input_files)
@@ -938,6 +974,9 @@ if __name__ == '__main__':
         '--action': {
           'type': str,
           'default': 'create'
+        },
+        '--exif-rename': {
+          'action': 'store_true'
         }
       }
     },
