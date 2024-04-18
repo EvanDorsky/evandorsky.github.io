@@ -28,10 +28,13 @@ function catButtonClick(e) {
 window.galleryHistory = []
 
 function displayOneImg(imgID) {
-  let res = d3.select("#id"+imgID)
+  let img = d3.select(".photo-list").select("img")
 
-  d3.selectAll(".photo-list").style("display", "none")
-  res.style("display", "flex")
+  let img_src = img.attr("src")
+  let src_split = img_src.split("/")
+  let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
+
+  img.attr("src", new_src)
 }
 
 function click(e) {
