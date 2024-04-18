@@ -66,16 +66,13 @@ function click(e) {
 }
 
 function main(event) {
+  console.log('Image Browser')
   let imgs = Object.keys(window.photo_metadata)
-
-  let img = null
+  
+  let img = null;
   do {
-    img = randomEl(imgs)
-    console.log('img')
-    console.log(img)
-    console.log('window.photo_metadata[img]')
-    console.log(window.photo_metadata[img])
-  } while (!window.photo_metadata[img].detections)
+    img = randomEl(imgs);
+  } while (Object.keys(window.photo_metadata[img].detections).length === 0);
 
   displayOneImg(img)
 

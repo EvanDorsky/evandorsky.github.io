@@ -47,9 +47,8 @@ no_wrapper: true
     {% assign name_num = photo_index | prepend: '00' | slice: -2, 2 %}
 
     {% assign name = include.name | default: name_num %}
-    {% assign container = include.container | default: "photo-list" %}
 
-    <div class="{{ container }}" id="id{{ d[0] }}" 
+    <div class="photo-list fill-space" id="id{{ d[0] }}" 
         {% for det in d[1].detections %}
         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
         {% endfor %}
@@ -62,5 +61,3 @@ no_wrapper: true
     {% assign photo_index = photo_index | plus: 1 %}
   {% endfor %}
 </div>
-
-{% include post-footer.html %}
