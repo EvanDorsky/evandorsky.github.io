@@ -7,3 +7,5 @@ Gemfile.lock
 node_modules
 .DS_Store
 **/original/*
+detectors
+classifiers
