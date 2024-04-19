@@ -30,7 +30,10 @@ function catButtonClick(e) {
 //         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
 //         {% endfor %}
 
-window.galleryHistory = []
+// the ID we chose
+window.galleryHistoryID = []
+// the reason we chose it
+window.galleryHistoryReason = []
 
 function displayOneImg(imgID) {
   let imgContainer = d3.select(".photo-list")
@@ -64,32 +67,37 @@ function click(e) {
   let attrs = el.node().attributes
 
   let el_id = el.attr("id")
-  window.galleryHistory.push(el_id)
+  window.galleryHistoryID.push(el_id)
 
   let det_prefix = 'det_'
 
-  let all_candidates = []
+  let all_candidates = {}
+
   let catnames = []
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
-      let catname = attr.name.slice(det_prefix.length)
+      let catname = attr.name.slice(det_prefix.length).replace('_', ' ')
 
       catnames.push(catname)
     }
   }
   for (let i in catnames) {
-    all_candidates = all_candidates.concat(window.photo_metadata_byobj[catnames[i]])
+    all_candidates[catnames[i]] = window.photo_metadata_byobj[catnames[i]]
   }
   let sel_id = ""
+  let sel_cat = null
   let n_tries = 0
   let max_tries = 100
   do {
-    sel_id = randomEl(all_candidates)
+    sel_cat = randomEl(Object.keys(all_candidates))
+    sel_id = randomEl(all_candidates[sel_cat])
     n_tries++
-  } while (((sel_id == "") || (window.galleryHistory.includes("id"+sel_id))) && (n_tries < max_tries))
+  } while (((sel_id == "") || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
+
+  window.galleryHistoryReason.push(sel_cat)
 
   displayOneImg(sel_id)
 }
