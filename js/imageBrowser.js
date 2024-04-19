@@ -47,7 +47,7 @@ function displayOneImg(imgID) {
       imgContainer.attr(attributes[i].name, null);
     }
   }
-  
+
   let dets = window.photo_metadata[imgID].detections
   for (let det in dets) {
     imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
@@ -69,16 +69,20 @@ function click(e) {
   let det_prefix = 'det_'
 
   let all_candidates = []
+  let catnames = []
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
       let catname = attr.name.slice(det_prefix.length)
 
-      all_candidates = all_candidates.concat(window.photo_metadata_byobj[catname])
+      catnames.push(catname)
     }
+  }
+  for (let i in catnames) {
+    all_candidates = all_candidates.concat(window.photo_metadata_byobj[catnames[i]])
   }
   let sel_id = ""
   let n_tries = 0
-  let max_tries = 50
+  let max_tries = 100
   do {
     sel_id = randomEl(all_candidates)
     n_tries++
