@@ -485,7 +485,8 @@ def is_im(path):
   return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
 
 def create_webp(im, webp, dim):
-  return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
+  # return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
+  return call(['magick', im, '-quality', '90', webp])
 
 def get_series_path(name):
   series_folders = ['_photojournal', '_portfolio', '_projects', '_photowork']

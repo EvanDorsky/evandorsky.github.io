@@ -48,14 +48,8 @@ no_wrapper: true
 
     {% assign name = include.name | default: name_num %}
 
-    <div class="photo-list fill-space" id="id{{ d[0] }}" 
-        {% for det in d[1].detections %}
-        "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
-        {% endfor %}
-    >
-      <img
-        src="/assets/img/posts/{{ page_name }}/{{ d[0] }}.webp"
-      >
+    <div class="photo-list fill-space">
+      <img src="/assets/img/posts/{{ page_name }}/{{ d[0] }}.webp">
     </div>
     {% break %}
     {% assign photo_index = photo_index | plus: 1 %}

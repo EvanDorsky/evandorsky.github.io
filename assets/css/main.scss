@@ -429,6 +429,9 @@ hr {
 }
 
 .photo-list {
+  user-select: none;
+  -webkit-user-select: none;
+
   display: flex;
   flex-wrap: wrap;
 

@@ -25,15 +25,37 @@ function catButtonClick(e) {
   }
 }
 
+// id="id{{ d[0] }}" 
+//         {% for det in d[1].detections %}
+//         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
+//         {% endfor %}
+
 window.galleryHistory = []
 
 function displayOneImg(imgID) {
-  let img = d3.select(".photo-list").select("img")
+  let imgContainer = d3.select(".photo-list")
+  let img = imgContainer.select("img")
 
   let img_src = img.attr("src")
   let src_split = img_src.split("/")
   let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
 
+  // change the detection attributes
+  var attributes = imgContainer.node().attributes;
+  for (let i = attributes.length - 1; i >= 0; i--) {
+    if (attributes[i].name.startsWith('det_')) {
+      imgContainer.attr(attributes[i].name, null);
+    }
+  }
+  
+  let dets = window.photo_metadata[imgID].detections
+  for (let det in dets) {
+    imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
+  }
+  // change the id
+  imgContainer.attr("id", `id${imgID}`)
+
+  // change the img src
   img.attr("src", new_src)
 }
 
@@ -44,12 +66,12 @@ function click(e) {
   let el_id = el.attr("id")
   window.galleryHistory.push(el_id)
 
-  let det_prefix = '"det_'
+  let det_prefix = 'det_'
 
   let all_candidates = []
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
-      let catname = attr.name.slice(det_prefix.length).slice(0, -1)
+      let catname = attr.name.slice(det_prefix.length)
 
       all_candidates = all_candidates.concat(window.photo_metadata_byobj[catname])
     }
