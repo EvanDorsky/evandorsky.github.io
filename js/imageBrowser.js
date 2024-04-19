@@ -71,26 +71,31 @@ function click(e) {
 
   let det_prefix = 'det_'
 
-  let all_candidates = {}
+  let allCandidates = {}
+  let catNames = []
+  let catLens = []
 
-  let catnames = []
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
-      let catname = attr.name.slice(det_prefix.length).replace('_', ' ')
+      let catName = attr.name.slice(det_prefix.length).replace('_', ' ')
 
-      catnames.push(catname)
+      catNames.push(catName)
     }
   }
-  for (let i in catnames) {
-    all_candidates[catnames[i]] = window.photo_metadata_byobj[catnames[i]]
+  for (let i in catNames) {
+    let catName = catNames[i]
+    let catCandidates = window.photo_metadata_byobj[catName]
+    catLens[catName] = catCandidates.length
+    allCandidates[catNames[i]] = catCandidates
   }
+
   let sel_id = ""
   let sel_cat = null
   let n_tries = 0
   let max_tries = 100
   do {
-    sel_cat = randomEl(Object.keys(all_candidates))
-    sel_id = randomEl(all_candidates[sel_cat])
+    sel_cat = randomEl(Object.keys(allCandidates))
+    sel_id = randomEl(allCandidates[sel_cat])
     n_tries++
   } while (((sel_id == "") || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
