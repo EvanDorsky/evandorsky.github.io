@@ -73,7 +73,6 @@ function click(e) {
 
   let allCandidates = {}
   let catNames = []
-  let catLens = []
 
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
@@ -82,27 +81,58 @@ function click(e) {
       catNames.push(catName)
     }
   }
+
+  // assemble candidates and calculate length of each set
+  let nCandidates = 0
   for (let i in catNames) {
     let catName = catNames[i]
     let catCandidates = window.photo_metadata_byobj[catName]
-    catLens[catName] = catCandidates.length
-    allCandidates[catNames[i]] = catCandidates
+    allCandidates[catNames[i]] = []
+    catCandidates.forEach(c => {
+      if (!(window.galleryHistoryID.includes(c))) {
+        allCandidates[catNames[i]].push(c)
+      }
+    })
+
+    nCandidates += catCandidates.length
+  }
+
+  // calculate proportion that each category contributes to the set
+  let catProps = {}
+  for (let i in catNames) {
+    let catName = catNames[i]
+
+    catProps[catName] = window.photo_metadata_byobj[catName].length / nCandidates
+  }
+
+  // create weighted list of keys based on "uncommon-ness" of each key
+  let weightedKeys = [];
+  console.log(catProps)
+  if (catNames.length > 1) {
+    catNames.forEach(catName => {
+      let uncommon = (1 - catProps[catName]) * 100
+      for (let i = 0; i < uncommon; i++) {
+        weightedKeys.push(catName);
+      }
+    });
+  } else {
+    weightedKeys = catNames
   }
 
   let sel_id = ""
-  let sel_cat = null
+  let selCat = null
   let n_tries = 0
   let max_tries = 100
   do {
-    sel_cat = randomEl(Object.keys(allCandidates))
-    sel_id = randomEl(allCandidates[sel_cat])
+    selCat = randomEl(weightedKeys)
+    sel_id = randomEl(allCandidates[selCat])
     n_tries++
   } while (((sel_id == "") || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
 
-  window.galleryHistoryReason.push(sel_cat)
+  window.galleryHistoryReason.push(selCat)
 
   displayOneImg(sel_id)
 }
