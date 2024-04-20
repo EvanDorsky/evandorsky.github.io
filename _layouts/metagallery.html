@@ -12,16 +12,25 @@ no_wrapper: true
 
 <link rel="stylesheet" href="{{ "/assets/css/film.css" | prepend: full_base_url }}">
 
-{% assign metadata = site.data[page_name]['metadata'] %}
+<!-- dict from filenames to detects -->
+{% assign photo_metadata = site.data[page_name]['metadata'] %}
 <script type="text/javascript">
-  var meta_json = '{{ metadata | json }}'.replace(/=>/g, ':')
+  var meta_json = '{{ photo_metadata | json }}'.replace(/=>/g, ':')
   window.photo_metadata = JSON.parse(meta_json)
 </script>
 
-{% assign meta_byobj = site.data[page_name]['metadata_by_obj'] %}
+<!-- dict from detect classes to filenames -->
+{% assign photo_metadata_byobj = site.data[page_name]['metadata_by_obj'] %}
 <script type="text/javascript">
-  var meta_json = '{{ meta_byobj | json }}'.replace(/=>/g, ':')
+  var meta_json = '{{ photo_metadata_byobj | json }}'.replace(/=>/g, ':')
   window.photo_metadata_byobj = JSON.parse(meta_json)
+</script>
+
+<!-- dict from detect classes to filenames -->
+{% assign photo_info = site.data[page_name]['photo_info'] %}
+<script type="text/javascript">
+  var meta_json = '{{ photo_info | json }}'.replace(/=>/g, ':')
+  window.photo_info = JSON.parse(meta_json)
 </script>
 
 <script type="text/javascript" src="/js/imageBrowser.js"></script>
@@ -36,7 +45,7 @@ no_wrapper: true
   {% assign name_ext = pathsplit[-1] %}
   {% assign namesplit = name_ext | split: '.' %}
   {% assign page_name = namesplit[0] %}
-  {% for d in metadata %}
+  {% for d in photo_metadata %}
     {% assign collection = include.collection | default: 'film' %}
 
     {% assign pathsplit = page.path | split: '/' %}

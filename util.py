@@ -106,7 +106,7 @@ def get_info_dict(exif):
   desc_split = list(map(str.strip, str(desc).split('|')))
   keywords_split = list(map(str.strip, str(keywords).split(',')))
 
-  keywords_hier = None
+  keywords_hier = []
   if 'Hierarchical Subject' in exif:
     print("some of them have it")
     keywords_hier = exif['Hierarchical Subject']
