@@ -57,7 +57,7 @@ function keywordsGetLocation(keywords) {
 }
 
 function displayOneImg(imgID) {
-  let imgContainer = d3.select(".photo-list")
+  let imgContainer = d3.select(".main-photo")
   let img = imgContainer.select("img")
 
   let img_src = img.attr("src")
@@ -172,6 +172,6 @@ function main(event) {
 
   displayOneImg(img)
 
-  d3.selectAll('.photo-list')
+  d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
 }

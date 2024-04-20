@@ -1176,7 +1176,33 @@ footer {
 
 // experimental image browser
 
-.detect-button {
+.metagallery {
+  overflow: auto;
+
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.main-photo {
+  align-self: center;
+  user-select: none;
+  -webkit-user-select: none;
+  flex: 0 1 auto;
+
+  img {
+    max-height: 90vh;
+    max-width: 90vw;
+
+    display: block;
+    margin: 5vh 0;
+    text-align: center;
+  }
+}
+
+.photo-subtitle {
+  align-self: flex-end;
+  flex: 0 1 10rem;
 }
 
 // spotify theme
