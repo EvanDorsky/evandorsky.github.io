@@ -52,8 +52,20 @@ function keywordsGetLocation(keywords) {
   }, 0)
 
   let location = candidates[idx]
-  console.log('location')
-  console.log(location)
+  let locDict = {
+    "country": location[1],
+    "city": location[2],
+    "neighborhood": "",
+    "subneighborhood": ""
+  }
+  if (location.length >= 4) {
+    locDict.neighborhood = location[3]
+  }
+  if (location.length >= 5) {
+    locDict.subneighborhood = location[4]
+  }
+
+  return locDict
 }
 
 function displayOneImg(imgID) {
@@ -76,11 +88,16 @@ function displayOneImg(imgID) {
   for (let det in dets) {
     imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
   }
+
   // change the id
   imgContainer.attr("id", `id${imgID}`)
-
   // change the img src
   img.attr("src", new_src)
+
+  // update the location
+  let loc = metadataGetLocation(window.photo_info[imgID])
+  d3.select("div.neighborhood").text(`${loc.neighborhood} ${loc.subneighborhood}`)
+  d3.select("div.city").text(`${loc.city}`)
 }
 
 function click(e) {
@@ -151,10 +168,6 @@ function click(e) {
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
-
-  console.log('window.photo_info[sel_id]')
-  console.log(window.photo_info[sel_id])
-  metadataGetLocation(window.photo_info[sel_id])
 
   window.galleryHistoryReason.push(selCat)
 
