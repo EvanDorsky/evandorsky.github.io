@@ -96,6 +96,7 @@ function displayOneImg(imgID) {
 
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
+  d3.select("div.reason").text(`${window.galleryHistoryReason[window.galleryHistoryReason.length-1]}`)
   d3.select("div.neighborhood").text(`${loc.neighborhood} ${loc.subneighborhood}`)
   d3.select("div.city").text(`${loc.city}`)
 }

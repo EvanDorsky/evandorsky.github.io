@@ -1188,14 +1188,14 @@ footer {
   align-self: center;
   user-select: none;
   -webkit-user-select: none;
-  flex: 0 1 auto;
+  flex: 1 0 auto;
 
   img {
     max-height: 90vh;
     max-width: 90vw;
 
     display: block;
-    margin: 5vh 0;
+    margin: 5vh auto;
     text-align: center;
   }
 }
@@ -1203,6 +1203,7 @@ footer {
 .photo-subtitle {
   align-self: flex-end;
   flex: 0 0 14rem;
+  padding: 5vh;
 }
 
 // spotify theme
