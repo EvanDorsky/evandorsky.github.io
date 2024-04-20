@@ -35,6 +35,27 @@ window.galleryHistoryID = []
 // the reason we chose it
 window.galleryHistoryReason = []
 
+function metadataGetLocation(metadata) {
+  return keywordsGetLocation(metadata.keywords)
+}
+
+function keywordsGetLocation(keywords) {
+  let candidates = []
+  keywords.forEach(keyArr => {
+    if (keyArr[0] == "Location") {
+      candidates.push(keyArr)
+    }
+  })
+
+  let idx = candidates.reduce((longestIndex, currentArray, currentIndex, array) => {
+    return currentArray.length > array[longestIndex].length ? currentIndex : longestIndex
+  }, 0)
+
+  let location = candidates[idx]
+  console.log('location')
+  console.log(location)
+}
+
 function displayOneImg(imgID) {
   let imgContainer = d3.select(".photo-list")
   let img = imgContainer.select("img")
@@ -107,7 +128,6 @@ function click(e) {
 
   // create weighted list of keys based on "uncommon-ness" of each key
   let weightedKeys = [];
-  console.log(catProps)
   if (catNames.length > 1) {
     catNames.forEach(catName => {
       let uncommon = (1 - catProps[catName]) * 100
@@ -131,6 +151,10 @@ function click(e) {
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
+
+  console.log('window.photo_info[sel_id]')
+  console.log(window.photo_info[sel_id])
+  metadataGetLocation(window.photo_info[sel_id])
 
   window.galleryHistoryReason.push(selCat)
 
