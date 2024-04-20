@@ -99,11 +99,19 @@ def get_info_dict(exif):
   try:
     desc = exif['Description']
     keywords = exif['Keywords']
-  except KeyError:
+  except KeyError as e:
+    print("KeyError: %s" % e)
     return {}
 
   desc_split = list(map(str.strip, str(desc).split('|')))
   keywords_split = list(map(str.strip, str(keywords).split(',')))
+
+  keywords_hier = None
+  if 'Hierarchical Subject' in exif:
+    print("some of them have it")
+    keywords_hier = exif['Hierarchical Subject']
+    # hierarchical keywords are split by commas, then pipes
+    keywords_hier = [[inner.strip() for inner in str(outer).split('|')] for outer in str(keywords_hier).split(',')]
 
   # look for "Caption" (field name in Lightroom) -- metadata that the Stripe integration uses
   # this is the primary key for the product in the Products database
@@ -148,7 +156,8 @@ def get_info_dict(exif):
     'stock': stock,
     'speed': speed,
     'category': '',
-    'format': film_format
+    'format': film_format,
+    'keywords': keywords_hier
   }
 
   # another hack - "lrk:" prefix to pass unbounded info along instead of relying on empty fields
@@ -521,6 +530,7 @@ def run_process_img(args):
   # for each folder containing images...
   for im_dir in im_dirs:
     series_name = os.path.split(im_dir)[-1]
+    print("Checking series: %s..." % series_name)
 
     series_file = get_series_path(series_name)
 
@@ -540,7 +550,7 @@ def run_process_img(args):
         except Exception as e:
           raise
 
-  # 1. if the "original" folder doesn't exist, create it and move all the images there
+    # 1. if the "original" folder doesn't exist, create it and move all the images there
     orig_path = os.path.join(im_dir, 'original')
     if not os.path.exists(orig_path):
       os.mkdir(orig_path)
@@ -578,6 +588,7 @@ def run_process_img(args):
 
         # 3. if the webp is stale, or missing, update it
         if make_webp:
+          print("Creating new webp: %s..." % webp_path)
           create_webp(im_orig_path, webp_path, im_dim)
 
 def info_tostr(info):
@@ -710,12 +721,17 @@ def run_series(args):
   # then collect the metadata
   series_meta = []
   if args.action in ["create", "refresh", "read"]:
+    print("Recreating metadata...")
     jpg_path = os.path.join(im_out_path, 'original')
     contents = os.listdir(jpg_path)
     for dirpath, dirs, files in os.walk(jpg_path):
       for file in sorted(files):
+        print(os.path.join(dirpath, file))
         meta = load_photo_meta(os.path.join(dirpath, file))
-        series_meta += [get_info_dict(meta)]
+        info_dict = get_info_dict(meta)
+        info_dict["filename"] = os.path.splitext(file)[0]
+
+        series_meta += [info_dict]
 
     # create metadata summary
     meta_summary = {}
@@ -726,7 +742,10 @@ def run_series(args):
         key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
       }
       if meta_summary != {}:
-        meta_valid = True
+        if 'lens_make' not in meta_summary:
+          meta_valid = False
+        else:
+          meta_valid = True
     except Exception as e:
       print("Metadata summary creation failed: %s" % e)
 
@@ -752,7 +771,6 @@ def run_series(args):
       meta_summary['stock_summary'] = ', '.join(meta_summary['stock'])
 
   # metadata now lives in series_meta
-
   for i, photo in enumerate(series_meta):
     filename = "%02i.jpg" % (i+1)
     if args.action == "read":
@@ -765,7 +783,16 @@ def run_series(args):
         json.dump(photo, f)
 
       with open('_data/%s/series.json' % args.name, 'w') as f:
-        json.dump(meta_summary, f)
+        json.dump(meta_summary, f, indent=4)
+
+  # also write the same data all together into one file,
+  # but as a dictionary keyed by filename
+  series_meta_dict = {}
+  for photo in series_meta:
+    series_meta_dict[photo['filename']] = photo
+
+  with open('_data/%s/photo_info.json' % args.name, 'w') as f:
+    json.dump(series_meta_dict, f, indent=4, sort_keys=True)
 
 
 def get_prefixes(labels):
