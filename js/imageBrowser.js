@@ -54,15 +54,20 @@ function keywordsGetLocation(keywords) {
   let location = candidates[idx]
   let locDict = {
     "country": location[1],
-    "city": location[2],
+    "region": location[2],
+    "prefecture": location[3],
+    "city": "",
     "neighborhood": "",
     "subneighborhood": ""
   }
-  if (location.length >= 4) {
-    locDict.neighborhood = location[3]
-  }
   if (location.length >= 5) {
-    locDict.subneighborhood = location[4]
+    locDict.city = location[4]
+  }
+  if (location.length >= 6) {
+    locDict.neighborhood = location[5]
+  }
+  if (location.length >= 7) {
+    locDict.subneighborhood = location[6]
   }
 
   return locDict

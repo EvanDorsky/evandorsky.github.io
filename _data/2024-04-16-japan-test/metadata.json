@@ -26,11 +26,26 @@
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1709197445.jpg"
   },
+  "1709197476": {
+    "detections": {
+      "bicycle": 1,
+      "person": 1
+    },
+    "img": "assets/img/posts/2024-04-16-japan-test/original/1709197476.jpg"
+  },
   "1709197494": {
     "detections": {
       "bicycle": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1709197494.jpg"
+  },
+  "1709197503": {
+    "detections": {
+      "handbag": 1,
+      "person": 3,
+      "truck": 1
+    },
+    "img": "assets/img/posts/2024-04-16-japan-test/original/1709197503.jpg"
   },
   "1709197598": {
     "detections": {
@@ -39,11 +54,28 @@
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1709197598.jpg"
   },
+  "1709197633": {
+    "detections": {
+      "person": 8
+    },
+    "img": "assets/img/posts/2024-04-16-japan-test/original/1709197633.jpg"
+  },
+  "1709197669": {
+    "detections": {},
+    "img": "assets/img/posts/2024-04-16-japan-test/original/1709197669.jpg"
+  },
   "1709197768": {
     "detections": {
       "tvmonitor": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1709197768.jpg"
+  },
+  "1709197817": {
+    "detections": {
+      "backpack": 1,
+      "person": 13
+    },
+    "img": "assets/img/posts/2024-04-16-japan-test/original/1709197817.jpg"
   },
   "1709200800": {
     "detections": {
@@ -103,7 +135,10 @@
   },
   "1709289286": {
     "detections": {
-      "person": 1
+      "car": 4,
+      "cup": 1,
+      "person": 4,
+      "truck": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1709289286.jpg"
   },
@@ -1003,19 +1038,14 @@
   },
   "1710489782": {
     "detections": {
-      "bottle": 11
+      "bottle": 9
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710489782.jpg"
   },
-  "1710489864": {
-    "detections": {
-      "person": 2
-    },
-    "img": "assets/img/posts/2024-04-16-japan-test/original/1710489864.jpg"
-  },
   "1710490371": {
     "detections": {
-      "bench": 1
+      "bench": 1,
+      "truck": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710490371.jpg"
   },
@@ -1296,6 +1326,7 @@
   },
   "1710669960": {
     "detections": {
+      "bicycle": 1,
       "person": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710669960.jpg"
@@ -1312,8 +1343,8 @@
   },
   "1710670200": {
     "detections": {
-      "car": 1,
-      "person": 3
+      "person": 3,
+      "truck": 1
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710670200.jpg"
   },
@@ -1335,7 +1366,7 @@
   },
   "1710670680": {
     "detections": {
-      "person": 13
+      "person": 12
     },
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710670680.jpg"
   },
@@ -1424,9 +1455,7 @@
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710750600.jpg"
   },
   "1710750660": {
-    "detections": {
-      "bench": 1
-    },
+    "detections": {},
     "img": "assets/img/posts/2024-04-16-japan-test/original/1710750660.jpg"
   },
   "1710750780": {
