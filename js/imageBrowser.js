@@ -102,8 +102,22 @@ function displayOneImg(imgID) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
   d3.select("div.reason").text(`${window.galleryHistoryReason[window.galleryHistoryReason.length-1]}`)
-  d3.select("div.neighborhood").text(`${loc.neighborhood} ${loc.subneighborhood}`)
-  d3.select("div.city").text(`${loc.city}`)
+  d3.select("span.region").text(`${loc.region}`)
+  d3.select("span.prefecture").text(`${loc.prefecture}`)
+  let neighborhood_text = loc.neighborhood
+
+  if (loc.subneighborhood) {
+    neighborhood_text += ' ' + subneighborhood
+  }
+
+  d3.select("span.neighborhood").text(`${loc.neighborhood}`)
+
+  let city_text = loc.city
+
+  if (neighborhood_text) {
+    city_text = ', '+city_text
+  }
+  d3.select("span.city").text(city_text)
 }
 
 function click(e) {
