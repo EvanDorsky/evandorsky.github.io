@@ -74,12 +74,12 @@ function keywordsGetLocation(keywords) {
 }
 
 function displayOneImg(imgID) {
+  // console.log('display image')
+  // console.log(imgID)
   let imgContainer = d3.select(".main-photo")
   let img = imgContainer.select("img")
-
-  let img_src = img.attr("src")
-  let src_split = img_src.split("/")
-  let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
+  let lastimgContainer = d3.select(".last-photo")
+  let lastimg = lastimgContainer.select("img")
 
   // change the detection attributes
   var attributes = imgContainer.node().attributes;
@@ -90,18 +90,39 @@ function displayOneImg(imgID) {
   }
 
   let dets = window.photo_metadata[imgID].detections
+  // console.log('dets')
+  // console.log(dets)
   for (let det in dets) {
     imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
   }
+
+  let img_src = img.attr("src")
+  let src_split = img_src.split("/")
+  let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
+
+  let lastimgID = window.galleryHistoryID[window.galleryHistoryID.length-1]
+  if (lastimgID) {
+    lastimgID = lastimgID.slice(2)
+  }
+  let last_src = src_split.slice(0, -1).join("/")+"/"+lastimgID+".webp"
 
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
   img.attr("src", new_src)
 
+  // change the id
+  lastimgContainer.attr("id", `id${lastimgID}`)
+  // change the img src
+  lastimg.attr("src", last_src)
+
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  d3.select("div.reason").text(`${window.galleryHistoryReason[window.galleryHistoryReason.length-1]}`)
+  let reason = window.galleryHistoryReason[window.galleryHistoryReason.length-1]
+  if (reason) {
+    reason = reason.charAt(0).toUpperCase() + reason.substring(1)
+  }
+  d3.select("div.reason").text(`${reason}`)
   d3.select("span.region").text(`${loc.region}`)
   d3.select("span.prefecture").text(`${loc.prefecture}`)
   let neighborhood_text = loc.neighborhood
@@ -120,7 +141,12 @@ function displayOneImg(imgID) {
   d3.select("span.city").text(city_text)
 }
 
+function checkHistory(imgID) {
+  return window.galleryHistoryID.includes("id"+imgID)
+}
+
 function click(e) {
+  console.log('=================== CLICK ===================')
   let el = d3.select(e.target.parentElement)
   let attrs = el.node().attributes
 
@@ -147,7 +173,7 @@ function click(e) {
     let catCandidates = window.photo_metadata_byobj[catName]
     allCandidates[catNames[i]] = []
     catCandidates.forEach(c => {
-      if (!(window.galleryHistoryID.includes(c))) {
+      if (!(checkHistory(c))) {
         allCandidates[catNames[i]].push(c)
       }
     })
@@ -160,14 +186,26 @@ function click(e) {
   for (let i in catNames) {
     let catName = catNames[i]
 
-    catProps[catName] = window.photo_metadata_byobj[catName].length / nCandidates
+    // console.log('catName')
+    // console.log(catName)
+    // console.log('allCandidates[catName].length')
+    // console.log(allCandidates[catName].length)
+    if (allCandidates[catName].length > 1) {
+      catProps[catName] = allCandidates[catName].length / nCandidates
+    }
   }
 
   // create weighted list of keys based on "uncommon-ness" of each key
   let weightedKeys = [];
+  console.log('catNames')
+  console.log(catNames)
   if (catNames.length > 1) {
     catNames.forEach(catName => {
       let uncommon = (1 - catProps[catName]) * 100
+      // console.log('catName')
+      // console.log(catName)
+      // console.log('uncommon')
+      // console.log(uncommon)
       for (let i = 0; i < uncommon; i++) {
         weightedKeys.push(catName);
       }
@@ -175,16 +213,30 @@ function click(e) {
   } else {
     weightedKeys = catNames
   }
+  // console.log('weightedKeys')
+  // console.log(weightedKeys)
 
   let sel_id = ""
   let selCat = null
   let n_tries = 0
   let max_tries = 100
   do {
+    // todo: fix this.
+    // this fails if the selected category is empty
+    // instead, it should preemptively ignore empty categories
+    // and just pick the next best one
+
+    // console.log('weightedKeys')
+    // console.log(weightedKeys)
     selCat = randomEl(weightedKeys)
+    // console.log('selCat')
+    // console.log(selCat)
+    // console.log('allCandidates[selCat].length')
+    // console.log(allCandidates[selCat].length)
     sel_id = randomEl(allCandidates[selCat])
+
     n_tries++
-  } while (((sel_id == "") || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
+  } while (((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
     alert('i am defeated')
   }

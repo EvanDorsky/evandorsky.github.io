@@ -1178,35 +1178,59 @@ footer {
 
 .metagallery {
   overflow: auto;
-
-  display: flex;
   width: 100%;
   height: 100vh;
+
+  display: flex;
 }
 
 .main-photo {
   align-self: center;
   user-select: none;
   -webkit-user-select: none;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  padding: 3rem;
+  padding-left: 0;
 
   img {
+    margin: 0 auto;
     max-height: 90vh;
-    max-width: 90vw;
+    max-width: calc(100vw - 14rem - 3rem - 6rem);
 
     display: block;
-    margin: 5vh auto;
     text-align: center;
   }
 }
 
-.photo-subtitle {
-  align-self: flex-end;
-  flex: 0 0 14rem;
-  padding: 5vh;
+.sidebar {
+  max-height: 100%;
 
-  div {
-    height: 1.5rem;
+  flex: 0 0 14rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 3rem;
+
+  .last-photo {
+    flex: 0 1 auto;
+    img {
+      opacity: 50%;
+      max-height: 100%;
+      max-width: 100%;
+
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .subtitle {
+    flex: 0 1 auto;
+
+    div {
+      height: 1.5rem;
+    }
   }
 }
 
