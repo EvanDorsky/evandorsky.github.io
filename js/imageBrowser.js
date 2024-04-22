@@ -52,8 +52,8 @@ function keywordsGetLocation(keywords) {
   }, 0)
 
   let location = candidates[idx]
-  console.log('location')
-  console.log(location)
+
+  // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
   let locDict = {
     "country": location[1],
     "region": location[2].normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
@@ -124,23 +124,23 @@ function displayOneImg(imgID) {
   if (reason) {
     reason = reason.charAt(0).toUpperCase() + reason.substring(1)
   }
-  d3.select("div.reason").text(`${reason}`)
-  d3.select("span.region").text(`${loc.region}`)
-  d3.select("span.prefecture").text(`${loc.prefecture}`)
+  d3.select(".reason").text(`${reason}`)
+  d3.select(".region").text(`${loc.region}`)
+  d3.select(".prefecture").text(`${loc.prefecture}`)
   let neighborhood_text = loc.neighborhood
 
   if (loc.subneighborhood) {
     neighborhood_text += ' ' + loc.subneighborhood
   }
 
-  d3.select("span.neighborhood").text(`${neighborhood_text}`)
+  d3.select(".neighborhood").text(`${neighborhood_text}`)
 
   let city_text = loc.city
 
-  if (neighborhood_text) {
-    city_text = ', '+city_text
-  }
-  d3.select("span.city").text(city_text)
+  // if (neighborhood_text) {
+  //   city_text = ', '+city_text
+  // }
+  d3.select(".city").text(city_text)
 }
 
 function checkHistory(imgID) {

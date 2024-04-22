@@ -1234,8 +1234,18 @@ footer {
   .subtitle {
     flex: 0 1 auto;
 
-    div {
-      height: 1.5rem;
+    .neighborhood {
+      height: 1.65rem; // 1.1 * 1.5
+    }
+    .city {
+      font-size: 2rem;
+    }
+    .region-container {
+      margin-top: 2rem;
+    }
+
+    .label {
+      opacity: 50%;
     }
   }
 }
