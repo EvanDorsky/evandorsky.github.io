@@ -52,22 +52,24 @@ function keywordsGetLocation(keywords) {
   }, 0)
 
   let location = candidates[idx]
+  console.log('location')
+  console.log(location)
   let locDict = {
     "country": location[1],
-    "region": location[2],
-    "prefecture": location[3],
+    "region": location[2].normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+    "prefecture": location[3].normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
     "city": "",
     "neighborhood": "",
     "subneighborhood": ""
   }
   if (location.length >= 5) {
-    locDict.city = location[4]
+    locDict.city = location[4].normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   }
   if (location.length >= 6) {
-    locDict.neighborhood = location[5]
+    locDict.neighborhood = location[5].normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   }
   if (location.length >= 7) {
-    locDict.subneighborhood = location[6]
+    locDict.subneighborhood = location[6].normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   }
 
   return locDict
@@ -128,10 +130,10 @@ function displayOneImg(imgID) {
   let neighborhood_text = loc.neighborhood
 
   if (loc.subneighborhood) {
-    neighborhood_text += ' ' + subneighborhood
+    neighborhood_text += ' ' + loc.subneighborhood
   }
 
-  d3.select("span.neighborhood").text(`${loc.neighborhood}`)
+  d3.select("span.neighborhood").text(`${neighborhood_text}`)
 
   let city_text = loc.city
 
