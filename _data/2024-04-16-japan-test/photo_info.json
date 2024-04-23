@@ -468,7 +468,16 @@
         "filename": "1709283600",
         "format": "35mm",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Ochanomizu"
+            ]
+        ],
         "lens": "Olympus 35mm f/3.5",
         "lens_make": "Olympus",
         "speed": "400",
@@ -481,7 +490,16 @@
         "filename": "1709284020",
         "format": "35mm",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Akihabara"
+            ]
+        ],
         "lens": "Olympus 35mm f/3.5",
         "lens_make": "Olympus",
         "speed": "400",
@@ -494,7 +512,16 @@
         "filename": "1709284260",
         "format": "35mm",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Akihabara"
+            ]
+        ],
         "lens": "Olympus 35mm f/3.5",
         "lens_make": "Olympus",
         "speed": "400",
@@ -507,7 +534,16 @@
         "filename": "1709284320",
         "format": "35mm",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Akihabara"
+            ]
+        ],
         "lens": "Olympus 35mm f/3.5",
         "lens_make": "Olympus",
         "speed": "400",
@@ -1835,6 +1871,28 @@
         "stock": "CineStill 800T",
         "title": ""
     },
+    "1709629269": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1709629269",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Roppongi"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "800",
+        "stock": "CineStill 800T",
+        "title": ""
+    },
     "1709629279": {
         "camera": "Leitz-Minolta CL",
         "category": "",
@@ -1849,6 +1907,35 @@
                 "T\u014dky\u014d",
                 "T\u014dky\u014d",
                 "Roppongi"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "800",
+        "stock": "CineStill 800T",
+        "title": ""
+    },
+    "1709629288": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1709629288",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kansai",
+                "\u014csaka",
+                "\u014csaka"
+            ],
+            [
+                "Location",
+                "Japan",
+                "Kansai",
+                "\u014csaka",
+                "\u014csaka",
+                "Namba"
             ]
         ],
         "lens": "M-Rokkor 40mm f/2",
@@ -2057,6 +2144,28 @@
         "camera": "Mamiya 645 Pro TL",
         "category": "",
         "filename": "1709802000",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kansai",
+                "\u014csaka",
+                "\u014csaka",
+                "Namba"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "speed": "400",
+        "stock": "Kodak Portra 400",
+        "title": ""
+    },
+    "1709802208": {
+        "camera": "Mamiya 645 Pro TL",
+        "category": "",
+        "filename": "1709802208",
         "format": "645",
         "id": "",
         "keywords": [
@@ -2310,6 +2419,27 @@
         "stock": "Kodak Portra 400",
         "title": ""
     },
+    "1710061503": {
+        "camera": "Mamiya 645 Pro TL",
+        "category": "",
+        "filename": "1710061503",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Ky\u016bsh\u016b",
+                "Fukuoka",
+                "Fukuoka"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "speed": "400",
+        "stock": "Kodak Portra 400",
+        "title": ""
+    },
     "1710061609": {
         "camera": "Mamiya 645 Pro TL",
         "category": "",
@@ -2427,6 +2557,50 @@
         "camera": "Leitz-Minolta CL",
         "category": "",
         "filename": "1710317384",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "800",
+        "stock": "CineStill 800T",
+        "title": ""
+    },
+    "1710317403": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1710317403",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "800",
+        "stock": "CineStill 800T",
+        "title": ""
+    },
+    "1710317416": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1710317416",
         "format": "35mm",
         "id": "",
         "keywords": [
@@ -2868,6 +3042,28 @@
         "stock": "Fuji Superia 100",
         "title": ""
     },
+    "1710321654": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1710321654",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "100",
+        "stock": "Fuji Superia 100",
+        "title": ""
+    },
     "1710321662": {
         "camera": "Leitz-Minolta CL",
         "category": "",
@@ -2938,6 +3134,28 @@
         "camera": "Leitz-Minolta CL",
         "category": "",
         "filename": "1710321732",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku"
+            ]
+        ],
+        "lens": "M-Rokkor 40mm f/2",
+        "lens_make": "M-Rokkor",
+        "speed": "100",
+        "stock": "Fuji Superia 100",
+        "title": ""
+    },
+    "1710321778": {
+        "camera": "Leitz-Minolta CL",
+        "category": "",
+        "filename": "1710321778",
         "format": "35mm",
         "id": "",
         "keywords": [
@@ -4673,6 +4891,28 @@
         "stock": "Kodak Portra 400",
         "title": ""
     },
+    "1710662561": {
+        "camera": "Mamiya 645 Pro TL",
+        "category": "",
+        "filename": "1710662561",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Ch\u016bbu",
+                "Shizuoka",
+                "Mishima",
+                "Mishima Skywalk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "speed": "400",
+        "stock": "Kodak Portra 400",
+        "title": ""
+    },
     "1710663352": {
         "camera": "Fuji Cardia Tiara",
         "category": "",
@@ -5023,14 +5263,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5052,7 +5292,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5074,7 +5314,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5096,7 +5336,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5118,7 +5358,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5140,7 +5380,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5162,7 +5402,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5184,7 +5424,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5206,7 +5446,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5228,7 +5468,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5250,7 +5490,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5272,14 +5512,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5301,14 +5541,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5330,14 +5570,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5359,14 +5599,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5388,14 +5628,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5417,14 +5657,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5446,14 +5686,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5475,14 +5715,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5504,14 +5744,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5533,14 +5773,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5562,14 +5802,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5591,14 +5831,14 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ],
             [
                 "Location",
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko",
+                "Fujikawaguchiko",
                 "Chureito Pagoda"
             ]
         ],
@@ -5620,7 +5860,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5641,7 +5881,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 55mm f/2.8 N",
@@ -5662,7 +5902,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 55mm f/2.8 N",
@@ -5683,7 +5923,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5704,7 +5944,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5725,7 +5965,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5746,7 +5986,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5767,7 +6007,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5788,7 +6028,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5809,7 +6049,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5830,7 +6070,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5851,7 +6091,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5872,7 +6112,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5893,7 +6133,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5914,28 +6154,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
-            ]
-        ],
-        "lens": "Super EBC Fujinon 28mm f/3.5",
-        "lens_make": "Super EBC Fujinon",
-        "speed": "400",
-        "stock": "Kodak Portra 400",
-        "title": ""
-    },
-    "1710757081": {
-        "camera": "Fuji Cardia Tiara",
-        "category": "",
-        "filename": "1710757081",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Ch\u016bbu",
-                "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5956,7 +6175,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
@@ -5977,7 +6196,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -5998,7 +6217,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -6019,7 +6238,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Super EBC Fujinon 28mm f/3.5",
@@ -6172,7 +6391,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
@@ -6193,7 +6412,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 55mm f/2.8 N",
@@ -6214,7 +6433,7 @@
                 "Japan",
                 "Ch\u016bbu",
                 "Yamanashi",
-                "FujiKawaguchiko"
+                "Fujikawaguchiko"
             ]
         ],
         "lens": "Mamiya Sekor C 55mm f/2.8 N",
