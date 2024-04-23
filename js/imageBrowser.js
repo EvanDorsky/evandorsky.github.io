@@ -5,6 +5,8 @@
 )()
 
 function randomEl(arr) {
+  console.log('arr')
+  console.log(arr)
   if (arr.length === 0) return undefined;
 
   var index = Math.floor(Math.random() * arr.length);
@@ -75,13 +77,17 @@ function keywordsGetLocation(keywords) {
   return locDict
 }
 
-function displayOneImg(imgID) {
+function displayImg(imgID, containerSel) {
   // console.log('display image')
   // console.log(imgID)
-  let imgContainer = d3.select(".main-photo")
+  console.log('containerSel')
+  console.log(containerSel)
+  let imgContainer = d3.select(containerSel)
   let img = imgContainer.select("img")
-  let lastimgContainer = d3.select(".last-photo")
-  let lastimg = lastimgContainer.select("img")
+  console.log('img')
+  console.log(img)
+  // let lastimgContainer = d3.select(".last-photo")
+  // let lastimg = lastimgContainer.select("img")
 
   // change the detection attributes
   var attributes = imgContainer.node().attributes;
@@ -102,11 +108,11 @@ function displayOneImg(imgID) {
   let src_split = img_src.split("/")
   let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
 
-  let lastimgID = window.galleryHistoryID[window.galleryHistoryID.length-1]
-  if (lastimgID) {
-    lastimgID = lastimgID.slice(2)
-  }
-  let last_src = src_split.slice(0, -1).join("/")+"/"+lastimgID+".webp"
+  // let lastimgID = window.galleryHistoryID[window.galleryHistoryID.length-1]
+  // if (lastimgID) {
+  //   lastimgID = lastimgID.slice(2)
+  // }
+  // let last_src = src_split.slice(0, -1).join("/")+"/"+lastimgID+".webp"
 
   // change the id
   imgContainer.attr("id", `id${imgID}`)
@@ -114,10 +120,36 @@ function displayOneImg(imgID) {
   img.attr("src", new_src)
 
   // change the id
-  lastimgContainer.attr("id", `id${lastimgID}`)
+  // lastimgContainer.attr("id", `id${lastimgID}`)
   // change the img src
-  lastimg.attr("src", last_src)
+  // lastimg.attr("src", last_src)
 
+  // update the location
+  // let loc = metadataGetLocation(window.photo_info[imgID])
+  // let reason = window.galleryHistoryReason[window.galleryHistoryReason.length-1]
+  // if (reason) {
+  //   reason = reason.charAt(0).toUpperCase() + reason.substring(1)
+  // }
+  // d3.select(".reason").text(`${reason}`)
+  // d3.select(".region").text(`${loc.region}`)
+  // d3.select(".prefecture").text(`${loc.prefecture}`)
+  // let neighborhood_text = loc.neighborhood
+
+  // if (loc.subneighborhood) {
+  //   neighborhood_text += ' ' + loc.subneighborhood
+  // }
+
+  // d3.select(".neighborhood").text(`${neighborhood_text}`)
+
+  // let city_text = loc.city
+
+  // // if (neighborhood_text) {
+  // //   city_text = ', '+city_text
+  // // }
+  // d3.select(".city").text(city_text)
+}
+
+function displayLocation(imgID) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
   let reason = window.galleryHistoryReason[window.galleryHistoryReason.length-1]
@@ -143,17 +175,13 @@ function displayOneImg(imgID) {
   d3.select(".city").text(city_text)
 }
 
-function checkHistory(imgID) {
-  return window.galleryHistoryID.includes("id"+imgID)
-}
-
 function click(e) {
   console.log('=================== CLICK ===================')
   let el = d3.select(e.target.parentElement)
   let attrs = el.node().attributes
 
   let el_id = el.attr("id")
-  window.galleryHistoryID.push(el_id)
+  window.galleryHistoryID.push(el_id.slice(2))
 
   let det_prefix = 'det_'
 
@@ -164,7 +192,9 @@ function click(e) {
     if (attr.name.startsWith(det_prefix)) {
       let catName = attr.name.slice(det_prefix.length).replace('_', ' ')
 
-      catNames.push(catName)
+      if (catName != "person") {
+        catNames.push(catName)
+      }
     }
   }
 
@@ -175,7 +205,7 @@ function click(e) {
     let catCandidates = window.photo_metadata_byobj[catName]
     allCandidates[catNames[i]] = []
     catCandidates.forEach(c => {
-      if (!(checkHistory(c))) {
+      if (!(window.galleryHistoryID.includes(c))) {
         allCandidates[catNames[i]].push(c)
       }
     })
@@ -238,14 +268,18 @@ function click(e) {
     sel_id = randomEl(allCandidates[selCat])
 
     n_tries++
-  } while (((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes("id"+sel_id))) && (n_tries < max_tries))
+  } while (((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes(sel_id))) && (n_tries < max_tries))
   if (n_tries == max_tries) {
     alert('i am defeated')
   }
 
   window.galleryHistoryReason.push(selCat)
 
-  displayOneImg(sel_id)
+  displayImg(sel_id, ".main-photo")
+  displayLocation(sel_id)
+
+  let last_photo = window.galleryHistoryID[window.galleryHistoryID.length - 1]
+  displayImg(last_photo, ".last-photo")
 }
 
 function main(event) {
@@ -257,7 +291,8 @@ function main(event) {
     img = randomEl(imgs);
   } while (Object.keys(window.photo_metadata[img].detections).length === 0);
 
-  displayOneImg(img)
+  displayImg(img, ".main-photo")
+  displayLocation(img)
 
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
