@@ -96,14 +96,14 @@ def load_photo_meta(path):
 
 # get NLP-formatted metadata from exif data
 def get_info_dict(exif):
-  try:
+  desc = ''
+  if 'Description' in exif:
     desc = exif['Description']
-    keywords = exif['Keywords']
-  except KeyError as e:
-    print("KeyError: %s" % e)
-    return {}
-
   desc_split = list(map(str.strip, str(desc).split('|')))
+
+  keywords = ''
+  if 'Keywords' in exif:
+    keywords = exif['Keywords']
   keywords_split = list(map(str.strip, str(keywords).split(',')))
 
   keywords_hier = []
