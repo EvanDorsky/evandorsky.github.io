@@ -5,10 +5,11 @@
     <img class="fullsize" src="/assets/img/{{ include.src }}"/>
     {% assign meta = site.data[include.folder][include.num_str] %}
     <div class="photo-details">
-      <div class="photo-caption">{{ meta.title }}</div>
-      <div class="camera">{{ meta.camera }}</div>
-      <div class="lens">{{ meta.lens }}</div>
-      <div class="stock">{{ meta.stock }}</div>
+      <div class="photo-title">{{ meta.title }}</div>
+      <div class="photo-caption">{{ meta.caption }}</div>
+      <!-- <div class="camera">{{ meta.camera }}</div> -->
+      <!-- <div class="lens">{{ meta.lens }}</div> -->
+      <!-- <div class="stock">{{ meta.stock }}</div> -->
     </div>
   </div>
 </div>

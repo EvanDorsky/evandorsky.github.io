@@ -108,16 +108,15 @@ def get_info_dict(exif):
 
   keywords_hier = []
   if 'Hierarchical Subject' in exif:
-    print("some of them have it")
     keywords_hier = exif['Hierarchical Subject']
     # hierarchical keywords are split by commas, then pipes
     keywords_hier = [[inner.strip() for inner in str(outer).split('|')] for outer in str(keywords_hier).split(',')]
 
   # look for "Caption" (field name in Lightroom) -- metadata that the Stripe integration uses
   # this is the primary key for the product in the Products database
-  photo_id = ''
+  caption = ''
   if '..' in desc_split[0]:
-    photo_id = desc_split[0].split('..')[0]
+    caption = desc_split[0].split('..')[0]
 
   try:
     stock_speed = desc_split[2].split('..')[0]
@@ -148,8 +147,9 @@ def get_info_dict(exif):
       exif[key] = ''
 
   res = {
-    'id': photo_id,
+    'id': caption,
     'title': exif['Title'],
+    'caption': caption,
     'camera': exif['Camera Model Name'],
     'lens': exif['Lens Make'] + ' ' + exif['Lens'],
     'lens_make': exif['Lens Make'],
