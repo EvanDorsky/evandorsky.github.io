@@ -1,0 +1,387 @@
+{
+    "01": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "01",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {},
+        "speed": "100",
+        "stock": "Fuji Superia 100",
+        "title": "Dongdaemun"
+    },
+    "02": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "02",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "03": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "03",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "04": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "04",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kansai",
+                "\u014csaka",
+                "\u014csaka",
+                "Namba"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "Namba",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
+        "speed": "400",
+        "stock": "Kodak Portra 400",
+        "title": ""
+    },
+    "05": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "itaewon-ro",
+        "category": "",
+        "filename": "05",
+        "format": "645",
+        "id": "itaewon-ro",
+        "keywords": [
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {},
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "Itaewon-ro"
+    },
+    "06": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "06",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Ueno"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Ueno",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "07": {
+        "camera": "Yashica-Mat 124G",
+        "caption": "",
+        "category": "",
+        "filename": "07",
+        "format": "6x6",
+        "id": "",
+        "keywords": [],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {},
+        "speed": "400",
+        "stock": "Kodak Portra 400",
+        "title": ""
+    },
+    "08": {
+        "camera": "Yashica-Mat EM",
+        "caption": "la-taq",
+        "category": "",
+        "filename": "08",
+        "format": "6x6",
+        "id": "la-taq",
+        "keywords": [
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {},
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "La Taqueria"
+    },
+    "09": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "24th-st",
+        "category": "",
+        "filename": "09",
+        "format": "645",
+        "id": "24th-st",
+        "keywords": [
+            [
+                "San Franciscod\\"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {},
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "24th Street"
+    },
+    "10": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "ginza-woman",
+        "category": "",
+        "filename": "10",
+        "format": "645",
+        "id": "ginza-woman",
+        "keywords": [
+            [
+                "Location",
+                "Japan"
+            ],
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d"
+            ],
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Ginza"
+            ],
+            [
+                "Time",
+                "Night"
+            ],
+            [
+                "Travel"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Ginza",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
+        "speed": "1600",
+        "stock": "Ilford HP5+ 400",
+        "title": "Ginza"
+    },
+    "11": {
+        "camera": "Yashica-Mat EM",
+        "caption": "",
+        "category": "",
+        "filename": "11",
+        "format": "6x6",
+        "id": "",
+        "keywords": [],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {},
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "Bangalore TV Crew"
+    },
+    "12": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "12",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Ueno"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Ueno",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "13": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "13",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "14": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "14",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    }
+}
