@@ -154,12 +154,27 @@
         "id": "itaewon-ro",
         "keywords": [
             [
+                "Location",
+                "South Korea",
+                "Region",
+                "State",
+                "Seoul",
+                "Itaewon"
+            ],
+            [
                 "_lrk"
             ]
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
-        "location": {},
+        "location": {
+            "city": "Seoul",
+            "country": "South Korea",
+            "neighborhood": "Itaewon",
+            "prefecture": "State",
+            "region": "Region",
+            "subneighborhood": ""
+        },
         "speed": "100",
         "stock": "Kodak Ektar 100",
         "title": "Itaewon-ro"
