@@ -1059,32 +1059,37 @@ footer {
 
   img.fullsize {
     display: block;
-    width: auto;
     max-width: 95vw;
-    max-height: 80vh;
+    max-height: calc(100vh - 8rem);
     border-radius: 0;
   }
   .photo-details {
     color: var(--text-color);
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0;
   }
 }
 
 .photo-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   padding: 0.5rem;
-  font-family: 'Noto Sans Mono', sans-serif;
+  font-family: Inter, san-serif;
+  font-size: 1rem;
   .photo-caption {
-    font-family: Inter, san-serif;
+    flex: 0 1 auto;
+
     font-weight: 300;
-    font-size: 1rem;
-    width: 15rem;
   }
   .photo-title {
-    font-family: Inter, san-serif;
-    font-weight: 400;
-    font-size: 1rem;
-  }
+    flex: 0 1 auto;
 
-  font-size: 0.7rem;
+    font-weight: 400;
+  }
 }
 
 #navbar {

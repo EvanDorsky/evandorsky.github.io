@@ -10,6 +10,8 @@ import shutil
 from collections import OrderedDict
 import json
 
+import unicodedata
+
 from datetime import date, datetime
 import time
 
@@ -94,6 +96,12 @@ def load_photo_meta(path):
   res = check_output(['exiftool', path])
   return exif_text_to_dict(res)
 
+def norm_japanese(s):
+  s = s.replace("ō", "o")
+  s = s.replace("Ō", "O")
+
+  return s
+
 # get NLP-formatted metadata from exif data
 def get_info_dict(exif):
   desc = ''
@@ -111,6 +119,44 @@ def get_info_dict(exif):
     keywords_hier = exif['Hierarchical Subject']
     # hierarchical keywords are split by commas, then pipes
     keywords_hier = [[inner.strip() for inner in str(outer).split('|')] for outer in str(keywords_hier).split(',')]
+
+  # pull location out of hierarchical metadata
+  running_max_len = 0
+  location = []
+  for el in keywords_hier:
+    if "Location" in el:
+      el_len = len(el)
+      if el_len > running_max_len:
+        running_max_len = el_len
+        location = el
+
+  location = [norm_japanese(s) for s in location]
+
+  loc_dict = {}
+  if location:
+    loc_dict = {
+      "country": location[1],
+      "region": location[2],
+      "prefecture": location[3],
+      "city": "",
+      "neighborhood": "",
+      "subneighborhood": ""
+    }
+    if len(location) >= 5:
+      loc_dict["city"] = location[4]
+
+    if len(location) >= 6:
+      loc_dict["neighborhood"] = location[5]
+
+    if len(location) >= 7:
+      loc_dict["subneighborhood"] = location[6]
+
+  '''
+
+  Osaka, Osaka Prefecture, Kansai Region, Japan
+  San Francisco, San Francisco County, California, United States
+
+  '''
 
   # look for "Caption" (field name in Lightroom) -- metadata that the Stripe integration uses
   # this is the primary key for the product in the Products database
@@ -157,7 +203,8 @@ def get_info_dict(exif):
     'speed': speed,
     'category': '',
     'format': film_format,
-    'keywords': keywords_hier
+    'keywords': keywords_hier,
+    'location': loc_dict
   }
 
   # another hack - "lrk:" prefix to pass unbounded info along instead of relying on empty fields

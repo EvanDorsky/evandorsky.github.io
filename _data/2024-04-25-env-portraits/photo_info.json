@@ -17,6 +17,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -39,6 +47,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -61,6 +77,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -83,6 +107,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -105,6 +137,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -127,6 +167,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -149,6 +197,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "2nd Bonta Okonomiyaki"
@@ -171,6 +227,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Coffee Roaster"
@@ -193,6 +257,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Coffee Roaster"
@@ -215,6 +287,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Coffee Roaster"
@@ -237,6 +317,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Ueroku Camera"
@@ -260,6 +348,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Osaka",
+            "country": "Japan",
+            "neighborhood": "Namba",
+            "prefecture": "Osaka",
+            "region": "Kansai",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Missile Bar"
@@ -292,9 +388,17 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shibuya",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Nonbei Yokocho"
+        },
         "speed": "",
         "stock": "",
-        "title": ""
+        "title": "Nonbei Yokocho"
     },
     "14": {
         "camera": "",
@@ -315,6 +419,14 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Nishi-Ogikubo",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Clop Clop"
@@ -338,44 +450,23 @@
         ],
         "lens": " ",
         "lens_make": "",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Nishi-Ogikubo",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
         "speed": "",
         "stock": "",
         "title": "Clop Clop"
     },
     "16": {
-        "camera": "Mamiya 645 Pro TL",
-        "caption": "Darren",
-        "category": "",
-        "filename": "16",
-        "format": "645",
-        "id": "Darren",
-        "keywords": [
-            [
-                "120"
-            ],
-            [
-                "Location",
-                "United States",
-                "California",
-                "San Francisco",
-                "Mission Bernal",
-                "Chisai Sushi Club"
-            ],
-            [
-                "Portrait"
-            ]
-        ],
-        "lens": "Mamiya Sekor C 80mm f/2.8 N",
-        "lens_make": "Mamiya Sekor C",
-        "speed": "3200",
-        "stock": "Kodak TMAX 400",
-        "title": "Chisai Sushi Club"
-    },
-    "17": {
         "camera": "Leitz-Minolta CL",
         "caption": "",
         "category": "",
-        "filename": "17",
+        "filename": "16",
         "format": "35mm",
         "id": "",
         "keywords": [
@@ -398,6 +489,7 @@
                 "United States",
                 "California",
                 "San Francisco",
+                "San Francisco",
                 "SOMA"
             ],
             [
@@ -406,6 +498,14 @@
         ],
         "lens": "Rokkor 40mm f/2",
         "lens_make": "Rokkor",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "SOMA",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
         "speed": "800",
         "stock": "CineStill 800T",
         "title": "SOON Headquarters"
