@@ -1,0 +1,388 @@
+{
+    "01": {
+        "camera": "Yashica-Mat EM",
+        "caption": "la-taq",
+        "category": "",
+        "filename": "01",
+        "format": "6x6",
+        "id": "la-taq",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco",
+                "Mission"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "Mission",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "La Taqueria"
+    },
+    "02": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "02",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco",
+                "Mission"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "Mission",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "Cotton Candy House"
+    },
+    "03": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "24th-st",
+        "category": "",
+        "filename": "03",
+        "format": "645",
+        "id": "24th-st",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "San Franciscod\\"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "24th Street"
+    },
+    "04": {
+        "camera": "Yashica-Mat EM",
+        "caption": "",
+        "category": "",
+        "filename": "04",
+        "format": "6x6",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk",
+                "lrk:series:san-francisco"
+            ]
+        ],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "san-francisco",
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "05": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "05",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "One Way"
+    },
+    "06": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "06",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ],
+            [
+                "_lrk",
+                "lrk:series:28-street"
+            ],
+            [
+                "_lrk",
+                "lrk:series:san-francisco"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "san-francisco",
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "Living Boundary"
+    },
+    "07": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "potrero",
+        "category": "",
+        "filename": "07",
+        "format": "645",
+        "id": "potrero",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "Negative Lab Pro"
+            ],
+            [
+                "_lrk"
+            ],
+            [
+                "_lrk",
+                "lrk:series:28-street"
+            ],
+            [
+                "_lrk",
+                "lrk:series:san-francisco"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "san-francisco",
+        "speed": "20",
+        "stock": "Kodak Vericolor 160 VPS",
+        "title": "Potrero Hill"
+    },
+    "08": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "08",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "_lrk",
+                "lrk:series:nature"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "nature",
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "Ceanothus"
+    },
+    "09": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "09",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk",
+                "lrk:series:san-francisco"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "san-francisco",
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": ""
+    },
+    "10": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "10",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk",
+                "lrk:series:san-francisco"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "series": "san-francisco",
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    }
+}

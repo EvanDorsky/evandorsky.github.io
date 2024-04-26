@@ -1,0 +1,328 @@
+{
+    "01": {
+        "camera": "Yashica-Mat EM",
+        "caption": "moon-tower",
+        "category": "architecture",
+        "filename": "01",
+        "format": "6x6",
+        "id": "moon-tower",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Akasaka"
+            ],
+            [
+                "_lrk",
+                "lrk:category:architecture"
+            ]
+        ],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Akasaka",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Fuji Velvia 100",
+        "title": "Tokyo"
+    },
+    "02": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "getty-west",
+        "category": "architecture",
+        "filename": "02",
+        "format": "645",
+        "id": "getty-west",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "Los Angelos County",
+                "Los Angelos"
+            ],
+            [
+                "_lrk",
+                "lrk:category:architecture"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Los Angelos",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "Los Angelos County",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Fuji Provia 100F",
+        "title": "Getty Museum West Pavilion"
+    },
+    "03": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "getty-research",
+        "category": "architecture",
+        "filename": "03",
+        "format": "645",
+        "id": "getty-research",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "Los Angelos County",
+                "Los Angelos"
+            ],
+            [
+                "_lrk",
+                "lrk:category:architecture"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Los Angelos",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "Los Angelos County",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "400",
+        "stock": "CineStill 400D",
+        "title": "Getty Research Institute"
+    },
+    "04": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "04",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "Los Angelos County",
+                "Los Angelos"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Los Angelos",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "Los Angelos County",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "Los Angeles"
+    },
+    "05": {
+        "camera": "Yashica-Mat 124G",
+        "caption": "",
+        "category": "",
+        "filename": "05",
+        "format": "35mm",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco",
+                "Sunset"
+            ]
+        ],
+        "lens": "Yashinon 80mm f/3.5",
+        "lens_make": "Yashinon",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "Sunset",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "12",
+        "stock": "Kodak ProImage 100",
+        "title": "San Francisco"
+    },
+    "06": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "06",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco",
+                "SOMA"
+            ],
+            [
+                "San Francisco"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "SOMA",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": "San Francisco"
+    },
+    "07": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "30-hudson",
+        "category": "architecture",
+        "filename": "07",
+        "format": "645",
+        "id": "30-hudson",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "New York",
+                "New York City",
+                "Manhattan"
+            ],
+            [
+                "_lrk",
+                "lrk:category:architecture"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Manhattan",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "New York City",
+            "region": "New York",
+            "subneighborhood": ""
+        },
+        "speed": "100",
+        "stock": "Kodak TMAX 100",
+        "title": "30 Hudson Yards"
+    },
+    "08": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "kencho-ji",
+        "category": "architecture",
+        "filename": "08",
+        "format": "645",
+        "id": "kencho-ji",
+        "keywords": [
+            [
+                "Location",
+                "Japan"
+            ],
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "Kanagawa",
+                "Kamakura"
+            ],
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d"
+            ],
+            [
+                "Time",
+                "Day"
+            ],
+            [
+                "Travel"
+            ],
+            [
+                "_lrk",
+                "lrk:category:architecture"
+            ],
+            [
+                "_lrk",
+                "lrk:series:tokyo"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 150mm f/3.5 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Kamakura",
+            "country": "Japan",
+            "neighborhood": "",
+            "prefecture": "Kanagawa",
+            "region": "Kanto",
+            "subneighborhood": ""
+        },
+        "series": "tokyo",
+        "speed": "100",
+        "stock": "Fuji Neopan Acros II",
+        "title": "Kencho-ji"
+    },
+    "09": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "09",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco",
+                "Mission"
+            ],
+            [
+                "San Francisco"
+            ],
+            [
+                "_lrk"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "Mission",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
+        "speed": "200",
+        "stock": "Kodak Gold 200",
+        "title": "Cotton Candy House"
+    }
+}
