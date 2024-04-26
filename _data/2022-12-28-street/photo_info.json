@@ -115,9 +115,41 @@
     },
     "05": {
         "camera": "Mamiya 645 Pro TL",
-        "caption": "itaewon-ro",
+        "caption": "",
         "category": "",
         "filename": "05",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    },
+    "06": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "itaewon-ro",
+        "category": "",
+        "filename": "06",
         "format": "645",
         "id": "itaewon-ro",
         "keywords": [
@@ -132,11 +164,11 @@
         "stock": "Kodak Ektar 100",
         "title": "Itaewon-ro"
     },
-    "06": {
+    "07": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "06",
+        "filename": "07",
         "format": "645",
         "id": "",
         "keywords": [
@@ -163,29 +195,62 @@
         "stock": "Kodak Ektar 100",
         "title": ""
     },
-    "07": {
+    "08": {
         "camera": "Yashica-Mat 124G",
         "caption": "",
         "category": "",
-        "filename": "07",
+        "filename": "08",
         "format": "6x6",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location",
+                "United States",
+                "Washington"
+            ],
+            [
+                "Location",
+                "United States",
+                "Washington",
+                "King County"
+            ],
+            [
+                "Location",
+                "United States",
+                "Washington",
+                "King County",
+                "Seattle"
+            ]
+        ],
         "lens": "Yashinon 80mm f/3.5",
         "lens_make": "Yashinon",
-        "location": {},
+        "location": {
+            "city": "Seattle",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "King County",
+            "region": "Washington",
+            "subneighborhood": ""
+        },
         "speed": "400",
         "stock": "Kodak Portra 400",
         "title": ""
     },
-    "08": {
+    "09": {
         "camera": "Yashica-Mat EM",
         "caption": "la-taq",
         "category": "",
-        "filename": "08",
+        "filename": "09",
         "format": "6x6",
         "id": "la-taq",
         "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
             [
                 "San Francisco"
             ],
@@ -195,19 +260,33 @@
         ],
         "lens": "Yashinon 80mm f/3.5",
         "lens_make": "Yashinon",
-        "location": {},
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
         "speed": "200",
         "stock": "Kodak Gold 200",
         "title": "La Taqueria"
     },
-    "09": {
+    "10": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "24th-st",
         "category": "",
-        "filename": "09",
+        "filename": "10",
         "format": "645",
         "id": "24th-st",
         "keywords": [
+            [
+                "Location",
+                "United States",
+                "California",
+                "San Francisco",
+                "San Francisco"
+            ],
             [
                 "San Franciscod\\"
             ],
@@ -217,16 +296,23 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
-        "location": {},
+        "location": {
+            "city": "San Francisco",
+            "country": "United States",
+            "neighborhood": "",
+            "prefecture": "San Francisco",
+            "region": "California",
+            "subneighborhood": ""
+        },
         "speed": "100",
         "stock": "Kodak Ektar 100",
         "title": "24th Street"
     },
-    "10": {
+    "11": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "ginza-woman",
         "category": "",
-        "filename": "10",
+        "filename": "11",
         "format": "645",
         "id": "ginza-woman",
         "keywords": [
@@ -274,26 +360,59 @@
         "stock": "Ilford HP5+ 400",
         "title": "Ginza"
     },
-    "11": {
+    "12": {
         "camera": "Yashica-Mat EM",
         "caption": "",
         "category": "",
-        "filename": "11",
+        "filename": "12",
         "format": "6x6",
         "id": "",
-        "keywords": [],
+        "keywords": [
+            [
+                "Location"
+            ],
+            [
+                "Location",
+                "India"
+            ],
+            [
+                "Location",
+                "India",
+                "Region"
+            ],
+            [
+                "Location",
+                "India",
+                "Region",
+                "County"
+            ],
+            [
+                "Location",
+                "India",
+                "Region",
+                "County",
+                "Bangalore"
+            ]
+        ],
         "lens": "Yashinon 80mm f/3.5",
         "lens_make": "Yashinon",
-        "location": {},
+        "location": {
+            "city": "Bangalore",
+            "country": "India",
+            "neighborhood": "",
+            "prefecture": "County",
+            "region": "Region",
+            "subneighborhood": ""
+        },
         "speed": "200",
         "stock": "Kodak Gold 200",
         "title": "Bangalore TV Crew"
     },
-    "12": {
+    "13": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "12",
+        "filename": "13",
         "format": "645",
         "id": "",
         "keywords": [
@@ -315,38 +434,6 @@
             "prefecture": "Tokyo",
             "region": "Kanto",
             "subneighborhood": ""
-        },
-        "speed": "100",
-        "stock": "Kodak Ektar 100",
-        "title": ""
-    },
-    "13": {
-        "camera": "Mamiya 645 Pro TL",
-        "caption": "",
-        "category": "",
-        "filename": "13",
-        "format": "645",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d",
-                "Shinjuku",
-                "Gyoenmae"
-            ]
-        ],
-        "lens": "Mamiya Sekor C 80mm f/2.8 N",
-        "lens_make": "Mamiya Sekor C",
-        "location": {
-            "city": "Tokyo",
-            "country": "Japan",
-            "neighborhood": "Shinjuku",
-            "prefecture": "Tokyo",
-            "region": "Kanto",
-            "subneighborhood": "Gyoenmae"
         },
         "speed": "100",
         "stock": "Kodak Ektar 100",
