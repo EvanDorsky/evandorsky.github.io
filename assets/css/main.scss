@@ -907,6 +907,12 @@ footer {
   width: 100%;
 }
 
+.feed {
+  .music-show {
+    font-size: 85%;
+  }
+}
+
 .music-show {
   &:not(.upcoming) {
     font-size: 90%;

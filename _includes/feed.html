@@ -3,7 +3,8 @@
 
 {% assign feed = include.feed %}
 
-{% assign max_posts = include.max_posts | default: 4%}
+{% assign max_posts = include.max_posts | default: 4 %}
+{% assign custom_layout = include.customlayout | default: "none" %}
 
 <div class="feed grid-item" id="feed-{{ include.feedname }}">
   <div class="feed-title">
@@ -13,7 +14,11 @@
 {% for post in feed %}
   {% unless forloop.index > max_posts %}
     {% if forloop.index == 1 and include.feature_first %}
-      {% include series-post-home-preview.html post=post showtitle=true %}
+      {% unless custom_layout == "none" %}
+        {% include {{custom_layout}} show=post %}
+      {% else %}
+        {% include series-post-home-preview.html post=post showtitle=true %}
+      {% endunless %}
     {% else %}
       {% include post.html post=post %}
     {% endif %}
