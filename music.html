@@ -12,6 +12,14 @@ navbar-order: 2
   <label for="email">Concert Mailing List</label><br>
   <input type="text" id="email" name="email" placeholder="Your Email Address"><button type="submit" id="email-submit">Join</button>
 </form> 
+<div class="disclaimer">
+  <div class="disclaimer-toggle active">
+    I will never share or sell your data.
+  </div>
+  <div class="disclaimer-text">
+    I will never share or sell your data. When you submit your email address, it is handled by AWS and stored in a private Notion database. If you would like your email address to be removed, please contact me <a href="mailto:evan.dorsky@gmail.com">here</a>.
+  </div>
+</div>
 
 {% assign now = "now" | date: "%s" %}
 

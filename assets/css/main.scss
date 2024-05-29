@@ -1318,6 +1318,7 @@ form#email {
 
   button#email-submit {
     margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
     border-left: none;
     border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
     background-color: var(--bg-color);
@@ -1329,6 +1330,31 @@ form#email {
   }
 }
 
+.disclaimer {
+  font-size: 0.8rem;
+
+  div {
+    transition: opacity 300ms;
+
+    height: 0px;
+    opacity: 0;
+
+    &.active {
+      display: block;
+      height: 1.6rem;
+      opacity: 1;
+    }
+  }
+
+  .disclaimer-toggle {
+    cursor: pointer;
+    opacity: 0.5 !important;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
 
 // spotify theme
 

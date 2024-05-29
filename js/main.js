@@ -350,8 +350,19 @@ async function emailFormSubmit(e) {
   inputEl.attr("placeholder", "Thank you!")
 }
 
+function disclaimerSetup() {
+  d3.select(".disclaimer-toggle").on("click", disclaimerShow)
+}
+
+function disclaimerShow() {
+  d3.select(".disclaimer-text").classed("active", true)
+  d3.select(".disclaimer-toggle").classed("active", false)
+}
+
 function main(event) {
   d3.select("form#email").on("submit", emailFormSubmit)
+
+  disclaimerSetup()
 
   window.mode = Mode.default
   window.modal = ""
