@@ -327,7 +327,32 @@ function bodyKeydown(event) {
   }
 }
 
+async function emailFormSubmit(e) {
+  e.preventDefault()
+
+  const endpoint = "https://5bifdqvhuf.execute-api.us-east-2.amazonaws.com/default/emailListAdd"
+
+  const inputEl = d3.select(e.target).select("input#email")
+  const email = inputEl.property("value")
+
+  inputEl.property("value", "")
+  inputEl.attr("placeholder", "Submitting...")
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    mode: 'no-cors',
+    body: JSON.stringify({email: email})
+  })
+
+  console.log(`Add email address: ${email}`)
+  console.log(response)
+
+  inputEl.attr("placeholder", "Thank you!")
+}
+
 function main(event) {
+  d3.select("form#email").on("submit", emailFormSubmit)
+
   window.mode = Mode.default
   window.modal = ""
   // restore display: flex
