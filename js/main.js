@@ -356,7 +356,7 @@ function disclaimerSetup() {
 
 function disclaimerShow() {
   d3.select(".disclaimer-text").classed("active", true)
-  d3.select(".disclaimer-toggle").classed("active", false)
+  d3.select(".disclaimer-toggle").classed("active", true)
 }
 
 function main(event) {

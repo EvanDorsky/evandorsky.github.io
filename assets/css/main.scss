@@ -1333,25 +1333,23 @@ form#email {
 .disclaimer {
   font-size: 0.8rem;
 
-  div {
-    transition: opacity 300ms;
-
-    height: 0px;
+  span {
     opacity: 0;
 
+    transition: opacity 300ms;
+    
     &.active {
-      display: block;
-      height: 1.6rem;
+      // display: block;
       opacity: 1;
     }
   }
 
   .disclaimer-toggle {
     cursor: pointer;
-    opacity: 0.5 !important;
+    opacity: 0.5;
 
     &:hover {
-      opacity: 1 !important;
+      opacity: 1;
     }
   }
 }
