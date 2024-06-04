@@ -1,0 +1,34 @@
+{
+    "01": {
+        "camera": "Mamiya 645 Pro TL",
+        "caption": "",
+        "category": "",
+        "filename": "01",
+        "format": "645",
+        "id": "",
+        "keywords": [
+            [
+                "Location",
+                "Japan",
+                "Kant\u014d",
+                "T\u014dky\u014d",
+                "T\u014dky\u014d",
+                "Shinjuku",
+                "Gyoenmae"
+            ]
+        ],
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
+        "location": {
+            "city": "Tokyo",
+            "country": "Japan",
+            "neighborhood": "Shinjuku",
+            "prefecture": "Tokyo",
+            "region": "Kanto",
+            "subneighborhood": "Gyoenmae"
+        },
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
+        "title": ""
+    }
+}

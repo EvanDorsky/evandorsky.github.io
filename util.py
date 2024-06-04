@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import typing
 import sys, os
 from pprint import pprint
 from subprocess import call, check_output
@@ -171,7 +172,7 @@ def get_info_dict(exif):
   stock_speed = stock_speed.split(' ')
 
   stock = ' '.join(stock_speed[:-1])
-  speed = stock_speed[-1]
+  speed = stock_speed[-2]
 
   # pick the film format out of the keywords
   # this is where NLP shoves the film format, it's not ideal
@@ -786,8 +787,9 @@ def run_series(args):
     meta_valid = False
     try:
       meta_summary = {
-        key: sorted(list(set([el[key] for el in series_meta]))) for key in series_meta[0]
+        key: sorted(list(set([el[key] for el in series_meta if isinstance(el[key], typing.Hashable)]))) for key in series_meta[0]
       }
+      pprint(meta_summary)
       if meta_summary != {}:
         if 'lens_make' not in meta_summary:
           meta_valid = False

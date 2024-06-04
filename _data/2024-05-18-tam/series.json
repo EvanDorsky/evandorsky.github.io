@@ -1,0 +1,60 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Ricoh GR10",
+        "Yashica-Mat 124G"
+    ],
+    "lens": [
+        "GR Lens 28mm f/2.8",
+        "Yashinon 80mm f/3.5"
+    ],
+    "lens_make": [
+        "GR Lens",
+        "Yashinon"
+    ],
+    "stock": [
+        "Fujicolor 400",
+        "Kodak Portra 400"
+    ],
+    "speed": [
+        "400"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm",
+        "6x6"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+    ],
+    "lens_dict": {
+        "GR Lens": [
+            "28mm f/2.8"
+        ],
+        "Yashinon": [
+            "80mm f/3.5"
+        ]
+    },
+    "lens_summary": "GR Lens 28mm f/2.8, Yashinon 80mm f/3.5",
+    "camera_summary": "Ricoh GR10, Yashica-Mat 124G",
+    "stock_summary": "Fujicolor 400, Kodak Portra 400"
+}

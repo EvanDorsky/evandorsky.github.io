@@ -1,0 +1,61 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Ricoh GR10"
+    ],
+    "lens": [
+        "GR Lens 28mm f/2.8"
+    ],
+    "lens_make": [
+        "GR Lens"
+    ],
+    "stock": [
+        "Fujicolor 400"
+    ],
+    "speed": [
+        "400"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+    ],
+    "lens_dict": {
+        "GR Lens": [
+            "28mm f/2.8"
+        ]
+    },
+    "lens_summary": "GR Lens 28mm f/2.8",
+    "camera_summary": "Ricoh GR10",
+    "stock_summary": "Fujicolor 400"
+}
