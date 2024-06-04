@@ -172,7 +172,10 @@ def get_info_dict(exif):
   stock_speed = stock_speed.split(' ')
 
   stock = ' '.join(stock_speed[:-1])
-  speed = stock_speed[-2]
+  try:
+    speed = stock_speed[-2]
+  except IndexError:
+    speed = ''
 
   # pick the film format out of the keywords
   # this is where NLP shoves the film format, it's not ideal
