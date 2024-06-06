@@ -5,8 +5,8 @@
 )()
 
 function randomEl(arr) {
-  console.log('arr')
-  console.log(arr)
+  // console.log('arr')
+  // console.log(arr)
   if (arr.length === 0) return undefined;
 
   var index = Math.floor(Math.random() * arr.length);
@@ -169,10 +169,12 @@ function displayLocation(imgID) {
 
   let city_text = loc.city
 
+  mapSelect(loc.prefecture)
+
   // if (neighborhood_text) {
   //   city_text = ', '+city_text
   // }
-  d3.select(".city").text(city_text)
+  // d3.select(".city").text(city_text)
 }
 
 function click(e) {
@@ -282,8 +284,77 @@ function click(e) {
   displayImg(last_photo, ".last-photo")
 }
 
+function mapSelect(ken) {
+  console.log('mapSelect')
+  const kens = window.japan.objects.japan.geometries
+
+  const searchNam = (array, name) => {
+    return array.find(item => item.properties.nam.toLowerCase().includes(name.toLowerCase()));
+  };
+  const res = searchNam(kens, ken)
+
+  d3.selectAll(".ken").classed("active", false)
+  d3.select(`.${ken}`).classed("active", true)
+
+  console.log('res')
+  console.log(res)
+}
+
+function mapSetup() {
+  console.log('do map setup!')
+  // TODO: "window.japan" is embedded in the page by jekyll
+  //       maybe better to load it async
+
+  // indebted to this: https://gist.github.com/nebuta/8515744
+  var width = 500
+  var height = 500
+
+  var svg = d3.select("#japan-map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  var proj = d3.geoMercator()
+    .precision(0.1)
+    .center([138, 35])
+    //  .parallels([50, 60])
+    .rotate([0,0,0])
+    .scale(1200)
+    .translate([width / 2, height / 2]);
+
+    var path;
+    var paths;
+    var info = svg.append('text')
+      .attr('width',80)
+      .attr('height',20)
+      .attr('y',10)
+      .attr('fill','black');
+
+  var subunits = topojson.feature(window.japan, window.japan.objects.japan);
+  console.log('subunits.features')
+  console.log(subunits.features)
+  path = d3.geoPath().projection(proj);
+
+  g = svg.append('g');
+  var cities = g.selectAll(".city")
+    .data(subunits.features)
+    .enter().append("path")
+    .attr("class", function(d) {
+      console.log('HEY IM WALKIN HERE')
+      console.log(d.properties.nam)
+      return `ken ${d.properties.nam.split(" ")[0]}`;
+    })
+    .attr("d", path);
+
+  console.log('cities')
+  var res = g.selectAll(".city")
+  console.log(res)
+}
+
 function main(event) {
   console.log('Image Browser')
+
+  mapSetup()
+
   let imgs = Object.keys(window.photo_metadata)
   
   let img = null;
