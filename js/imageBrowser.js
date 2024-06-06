@@ -306,8 +306,8 @@ function mapSetup() {
   //       maybe better to load it async
 
   // indebted to this: https://gist.github.com/nebuta/8515744
-  var width = 500
-  var height = 500
+  var width = 300
+  var height = 300
 
   var svg = d3.select("#japan-map").append("svg")
     .attr("width", width)
@@ -318,16 +318,11 @@ function mapSetup() {
     .center([138, 35])
     //  .parallels([50, 60])
     .rotate([0,0,0])
-    .scale(1200)
+    .scale(2*width)
     .translate([width / 2, height / 2]);
 
-    var path;
-    var paths;
-    var info = svg.append('text')
-      .attr('width',80)
-      .attr('height',20)
-      .attr('y',10)
-      .attr('fill','black');
+  var path;
+  var paths;
 
   var subunits = topojson.feature(window.japan, window.japan.objects.japan);
   console.log('subunits.features')

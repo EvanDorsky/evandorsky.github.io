@@ -1201,6 +1201,26 @@ footer {
   display: flex;
 }
 
+
+#japan-map {
+  svg {
+    shape-rendering: auto;
+  }
+
+  g {
+    stroke-width: 0.5px;
+  }
+
+  path {
+    stroke: rgba(0,0,0,0.2);
+    fill: none;
+  }
+
+  path.active {
+    fill: black;
+  }
+}
+
 .main-photo {
   align-self: center;
   user-select: none;
@@ -1233,6 +1253,8 @@ footer {
   flex-direction: column;
   justify-content: space-between;
 
+  height: 100%;
+
   padding: 2rem;
   // padding-top: 15vh;
   // padding-bottom: 15vh;
@@ -1254,6 +1276,9 @@ footer {
   }
 
   .subtitle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     // flex: 0 1 auto;
 
     .neighborhood {
