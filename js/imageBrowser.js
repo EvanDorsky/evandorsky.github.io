@@ -4,6 +4,72 @@
   }
 )()
 
+window.japanRegions = {
+  "Hokkaido": [
+    "Hokkaido"
+  ],
+  "Tohoku": [
+    "Aomori",
+    "Akita",
+    "Fukushima",
+    "Iwate",
+    "Miyagi",
+    "Yamagata"
+  ],
+  "Kanto": [
+    "Chiba",
+    "Gunma",
+    "Ibaraki",
+    "Kanagawa",
+    "Saitama",
+    "Tochigi",
+    "Tokyo"
+  ],
+  "Chubu": [
+    "Aichi",
+    "Fukui",
+    "Gifu",
+    "Ishikawa",
+    "Nagano",
+    "Niigata",
+    "Shizuoka",
+    "Toyama",
+    "Yamanashi"
+  ],
+  "Kansai": [
+    "Hyogo",
+    "Kyoto",
+    "Mie",
+    "Nara",
+    "Osaka",
+    "Shiga",
+    "Wakayama"
+  ],
+  "Chugoku": [
+    "Hiroshima",
+    "Okayama",
+    "Shimane",
+    "Tottori",
+    "Yamaguchi"
+  ],
+  "Shikoku": [
+    "Ehime",
+    "Kagawa",
+    "Kochi",
+    "Tokushima"
+  ],
+  "Kyushu": [
+    "Fukuoka",
+    "Kagoshima",
+    "Kumamoto",
+    "Miyazaki",
+    "Nagasaki",
+    "Oita",
+    "Saga",
+    "Okinawa"
+  ]
+}
+
 function randomEl(arr) {
   // console.log('arr')
   // console.log(arr)
@@ -169,12 +235,23 @@ function displayLocation(imgID) {
 
   let city_text = loc.city
 
-  mapSelect(loc.prefecture)
+  mapDeselectAll()
+  mapSelectRegion(mapRegion(loc.prefecture))
+  mapSelectKen(loc.prefecture)
 
   // if (neighborhood_text) {
   //   city_text = ', '+city_text
   // }
   // d3.select(".city").text(city_text)
+}
+
+function mapRegion(ken) {
+  for (const [region, kens] of Object.entries(window.japanRegions)) {
+    if (kens.includes(ken)) {
+      return region
+    }
+  }
+  return null
 }
 
 function click(e) {
@@ -284,20 +361,26 @@ function click(e) {
   displayImg(last_photo, ".last-photo")
 }
 
-function mapSelect(ken) {
-  console.log('mapSelect')
-  const kens = window.japan.objects.japan.geometries
+function searchNam(array, name) {
+  return array.find(item => item.properties.nam.toLowerCase().includes(name.toLowerCase()));
+}
 
-  const searchNam = (array, name) => {
-    return array.find(item => item.properties.nam.toLowerCase().includes(name.toLowerCase()));
-  };
-  const res = searchNam(kens, ken)
+function mapDeselectAll() {
+  // deselect all
+  d3.selectAll(".ken").classed("activeKen", false)
+  d3.selectAll(".ken").classed("activeRegion", false)
+}
 
-  d3.selectAll(".ken").classed("active", false)
-  d3.select(`.${ken}`).classed("active", true)
+function mapSelectKen(ken) {
+  d3.select(`.${ken}`).classed("activeKen", true)
+}
 
-  console.log('res')
-  console.log(res)
+function mapSelectRegion(region) {
+  const kens = window.japanRegions[region]
+
+  kens.forEach(ken => {
+    d3.select(`.${ken}`).classed("activeRegion", true)
+  })
 }
 
 function mapSetup() {
@@ -316,39 +399,42 @@ function mapSetup() {
   var proj = d3.geoMercator()
     .precision(0.1)
     .center([138, 35])
-    //  .parallels([50, 60])
     .rotate([0,0,0])
     .scale(2*width)
     .translate([width / 2, height / 2]);
 
-  var path;
-  var paths;
+  var path = d3.geoPath().projection(proj);
 
-  var subunits = topojson.feature(window.japan, window.japan.objects.japan);
-  console.log('subunits.features')
-  console.log(subunits.features)
-  path = d3.geoPath().projection(proj);
+  // simplify the map
+  var japanPre = topojson.presimplify(window.japan)
+  window.japanSimp = topojson.simplify(japanPre, 8e-3)
+  window.japanSimp = topojson.filter(window.japanSimp, topojson.filterAttachedWeight(window.japanSimp, 1))
 
-  g = svg.append('g');
-  var cities = g.selectAll(".city")
+  var subunits = topojson.feature(window.japanSimp, window.japanSimp.objects.japan);
+
+  var g = svg.append('g');
+
+  // country
+  g.append("path")
+    .datum(topojson.merge(window.japanSimp, window.japanSimp.objects.japan.geometries))
+    .attr("d", path)
+    .attr("class", "country")
+
+  // prefectures
+  g.selectAll(".ken")
     .data(subunits.features)
     .enter().append("path")
     .attr("class", function(d) {
-      console.log('HEY IM WALKIN HERE')
-      console.log(d.properties.nam)
       return `ken ${d.properties.nam.split(" ")[0]}`;
     })
     .attr("d", path);
-
-  console.log('cities')
-  var res = g.selectAll(".city")
-  console.log(res)
 }
 
 function main(event) {
   console.log('Image Browser')
 
   mapSetup()
+  // svgJapan({ element: "#japan-map" })
 
   let imgs = Object.keys(window.photo_metadata)
   

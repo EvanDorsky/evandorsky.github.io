@@ -57,7 +57,9 @@ no_wrapper: true
 {% assign name = include.name | default: name_num %}
 
 <!-- actual page start -->
-<script src="http://d3js.org/topojson.v1.min.js"></script>
+<!-- TODO: don't rely on CDNs -->
+<script src="https://unpkg.com/topojson@3"></script>
+<script src="https://unpkg.com/topojson-simplify@3"></script>
 <script type="text/javascript" src="/js/imageBrowser.js"></script>
 
 <div class="metagallery">
