@@ -318,7 +318,7 @@ function click(e) {
     selID = randomEl(allCandidates[selCat])
   }
   else {
-    alert('i am defeated')
+    return walkEnd()
   }
 
   displayImg(selID, ".main-photo")
@@ -328,6 +328,38 @@ function click(e) {
   let lastPhotoID = galleryHistoryGetOffset(1).id
   d3.select(".last-photo").classed("inactive", false)
   displayImg(lastPhotoID, ".last-photo")
+}
+
+function walkEnd() {
+  let gh = window.galleryHistory
+
+  // objects used as transitions
+  let objects = gh.map(e => e.reason)
+  let objsByFreq = {}
+  for (let obj of objects) {
+    if (obj == "NONE") {
+      continue
+    }
+    if (obj in objsByFreq) {
+      objsByFreq[obj] += 1
+    } else {
+      objsByFreq[obj] = 1
+    }
+  }
+
+  console.log('objsByFreq')
+  console.log(objsByFreq)
+
+  // locations
+  let locs = gh.map(e => e.location)
+  let locSet = new Set(locs)
+
+  let locSets = {}
+  for (let key in locs[0]) {
+    locSets[key] = new Set(locs.map(l => l[key]))
+  }
+  console.log('locSets')
+  console.log(locSets)
 }
 
 function mapGetKen(array, name) {
@@ -462,7 +494,7 @@ function main(event) {
   } while (Object.keys(window.photo_metadata[img].detections).length === 0);
 
   displayImg(img, ".main-photo")
-  displayLocation(img, "START")
+  displayLocation(img, "NONE")
 
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
