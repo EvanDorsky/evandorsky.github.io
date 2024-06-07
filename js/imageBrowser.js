@@ -89,7 +89,7 @@ function catButtonClick(e) {
     let dets = img.detections
 
     if (!(cat in dets)) {
-      console.log(img)
+      // console.log(img)
     }
   }
 }
@@ -147,12 +147,12 @@ function keywordsGetLocation(keywords) {
 function displayImg(imgID, containerSel) {
   // console.log('display image')
   // console.log(imgID)
-  console.log('containerSel')
-  console.log(containerSel)
+  // console.log('containerSel')
+  // console.log(containerSel)
   let imgContainer = d3.select(containerSel)
   let img = imgContainer.select("img")
-  console.log('img')
-  console.log(img)
+  // console.log('img')
+  // console.log(img)
   // let lastimgContainer = d3.select(".last-photo")
   // let lastimg = lastimgContainer.select("img")
 
@@ -265,28 +265,27 @@ function click(e) {
 
   let det_prefix = 'det_'
 
-  let allCandidates = {}
-  let catNames = []
-
+  let catNamesPre = []
   for (attr of attrs) {
     if (attr.name.startsWith(det_prefix)) {
       let catName = attr.name.slice(det_prefix.length).replace('_', ' ')
 
       if (catName != "person") {
-        catNames.push(catName)
+        catNamesPre.push(catName)
       }
     }
   }
 
+  let allCandidates = {}
   // assemble candidates and calculate length of each set
   let nCandidates = 0
-  for (let i in catNames) {
-    let catName = catNames[i]
+  for (let i in catNamesPre) {
+    let catName = catNamesPre[i]
     let catCandidates = window.photo_metadata_byobj[catName]
-    allCandidates[catNames[i]] = []
+    allCandidates[catNamesPre[i]] = []
     catCandidates.forEach(c => {
       if (!(window.galleryHistoryID.includes(c))) {
-        allCandidates[catNames[i]].push(c)
+        allCandidates[catNamesPre[i]].push(c)
       }
     })
 
@@ -294,16 +293,19 @@ function click(e) {
   }
 
   // calculate proportion that each category contributes to the set
+  // if there are no candidates for a given category, remove it at this point
+  let catNames = []
   let catProps = {}
-  for (let i in catNames) {
-    let catName = catNames[i]
+  for (let i in catNamesPre) {
+    let catName = catNamesPre[i]
 
     // console.log('catName')
     // console.log(catName)
     // console.log('allCandidates[catName].length')
     // console.log(allCandidates[catName].length)
-    if (allCandidates[catName].length > 1) {
+    if (allCandidates[catName].length > 0) {
       catProps[catName] = allCandidates[catName].length / nCandidates
+      catNames.push(catName)
     }
   }
 
@@ -311,6 +313,8 @@ function click(e) {
   let weightedKeys = [];
   console.log('catNames')
   console.log(catNames)
+
+  let transitionPossible = true;
   if (catNames.length > 1) {
     catNames.forEach(catName => {
       let uncommon = (1 - catProps[catName]) * 100
@@ -322,7 +326,8 @@ function click(e) {
         weightedKeys.push(catName);
       }
     });
-  } else {
+  }
+  else {
     weightedKeys = catNames
   }
   // console.log('weightedKeys')
@@ -332,7 +337,8 @@ function click(e) {
   let selCat = null
   let n_tries = 0
   let max_tries = 100
-  do {
+  if (weightedKeys.length > 0) {
+  // do {
     // todo: fix this.
     // this fails if the selected category is empty
     // instead, it should preemptively ignore empty categories
@@ -341,17 +347,23 @@ function click(e) {
     // console.log('weightedKeys')
     // console.log(weightedKeys)
     selCat = randomEl(weightedKeys)
-    // console.log('selCat')
-    // console.log(selCat)
+    console.log('selCat')
+    console.log(selCat)
     // console.log('allCandidates[selCat].length')
     // console.log(allCandidates[selCat].length)
     sel_id = randomEl(allCandidates[selCat])
+    console.log('sel_id')
+    console.log(sel_id)
+  }
 
-    n_tries++
-  } while (((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes(sel_id))) && (n_tries < max_tries))
-  if (n_tries == max_tries) {
+    // n_tries++
+  // } while ( ((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes(sel_id)) ) && (n_tries < max_tries))
+
+  // if (n_tries == max_tries) {
+  else {
     alert('i am defeated')
   }
+  // }
 
   window.galleryHistoryReason.push(selCat)
 
