@@ -1194,22 +1194,56 @@ footer {
 // experimental image browser
 
 .metagallery {
+  // background-color: green;
+
   user-select: none;
   -webkit-user-select: none;
-  overflow: auto;
   width: 100%;
   height: 100vh;
-
-  background-color: blue;
 
   display: flex;
 }
 
+// layout – more styling below
+.sidebar {
+  // background-color: red;
+
+  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+
+  flex: 0 0 10rem;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  .last-photo {
+    // background-color: orange;
+  }
+
+  .subtitle {
+    flex: 0 1 auto;
+  }
+}
 
 #japan-map {
+  // background-color: orange;
+}
+
+.main-photo {
+  // background-color: blue;
+
+  align-self: center;
+  flex: 1 1 auto;
+}
+
+#japan-map {
+  width: 100%;
   svg {
     shape-rendering: auto;
-    background-color: red;
+    display: block;
   }
 
   g {
@@ -1242,18 +1276,15 @@ footer {
 }
 
 .main-photo {
-  z-index: 999;
-  align-self: center;
   user-select: none;
   -webkit-user-select: none;
-  flex: 1 1 auto;
 
   img {
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
 
-    max-width: calc(100% - 2rem - 2rem);
-    max-height: calc(100vh - 2rem - 2rem);
+    max-width: calc(100% - 1rem - 1rem);
+    max-height: calc(100vh - 1rem - 1rem);
 
     display: block;
     text-align: center;
@@ -1261,35 +1292,15 @@ footer {
 }
 
 .sidebar {
-  max-height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 8rem;
-
-  background-color: green;
-
-  // flex: 0 0 14rem;
-
-  // display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  height: 100%;
-
-  padding: 2rem;
-  // padding-top: 15vh;
-  // padding-bottom: 15vh;
-
   .last-photo {
     // flex: 0 1 auto;
     img {
       opacity: 70%;
-      max-height: 8rem;
-      max-width: 100%;
+      width: 100%;
+      height: 10rem;
 
       display: block;
+      object-fit: contain;
     }
 
     div {
@@ -1299,11 +1310,6 @@ footer {
   }
 
   .subtitle {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    // flex: 0 1 auto;
-
     .neighborhood {
       height: 1.65rem; // 1.1 * 1.5
     }

@@ -407,7 +407,7 @@ function mapSetup() {
     .precision(0.1)
     .center([137.9, 38.4])
     .rotate([0,0,0])
-    .scale(2.8*width)
+    .scale(2.7*width)
     .translate([width / 2, height / 2]);
 
   var path = d3.geoPath().projection(proj);
