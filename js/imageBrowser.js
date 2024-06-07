@@ -390,18 +390,24 @@ function mapSetup() {
   //       maybe better to load it async
 
   // indebted to this: https://gist.github.com/nebuta/8515744
-  var width = 300
-  var height = 300
+  // var width = 300
+  // var height = 300
 
   var svg = d3.select("#japan-map").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", "100%")
+    .attr("height", "100%");
+
+  var size = svg.node().getBoundingClientRect()
+  var width = size.width
+  var height = size.height
+  console.log('size')
+  console.log(size)
 
   var proj = d3.geoMercator()
     .precision(0.1)
-    .center([138, 35])
+    .center([137.9, 38.4])
     .rotate([0,0,0])
-    .scale(2*width)
+    .scale(2.8*width)
     .translate([width / 2, height / 2]);
 
   var path = d3.geoPath().projection(proj);

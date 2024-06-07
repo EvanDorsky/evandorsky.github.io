@@ -1194,9 +1194,13 @@ footer {
 // experimental image browser
 
 .metagallery {
+  user-select: none;
+  -webkit-user-select: none;
   overflow: auto;
   width: 100%;
   height: 100vh;
+
+  background-color: blue;
 
   display: flex;
 }
@@ -1205,6 +1209,7 @@ footer {
 #japan-map {
   svg {
     shape-rendering: auto;
+    background-color: red;
   }
 
   g {
@@ -1237,6 +1242,7 @@ footer {
 }
 
 .main-photo {
+  z-index: 999;
   align-self: center;
   user-select: none;
   -webkit-user-select: none;
@@ -1261,6 +1267,8 @@ footer {
   left: 0;
 
   width: 8rem;
+
+  background-color: green;
 
   // flex: 0 0 14rem;
 
