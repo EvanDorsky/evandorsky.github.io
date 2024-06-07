@@ -109,15 +109,15 @@ function shuffleArray(arr) {
 
 
 window.galleryHistory = []
-// the ID we chose
-window.galleryHistoryID = []
-// the reason we chose it
-window.galleryHistoryReason = []
 
-function galleryHistoryGetLast() {
+function galleryHistoryGetOffset(offset=0) {
   let len = window.galleryHistory.length
 
-  return window.galleryHistory[len-1]
+  return window.galleryHistory[len-1-offset]
+}
+
+function galleryHistoryIncludes(id) {
+  return window.galleryHistory.map(i => i.id).includes(id)
 }
 
 function metadataGetLocation(metadata) {
@@ -220,7 +220,7 @@ function displayLocation(imgID, reason=null) {
 
   if (reason != null) {
     window.galleryHistory.push({
-      id: imgID.slice(2),
+      id: imgID,
       reason: reason,
       location: loc
     })
@@ -248,8 +248,6 @@ function click(e) {
 
   let el_id = el.attr("id")
 
-  window.galleryHistoryID.push(el_id.slice(2))
-
   let det_prefix = 'det_'
 
   let catNamesPre = []
@@ -271,7 +269,7 @@ function click(e) {
     let catCandidates = window.photo_metadata_byobj[catName]
     allCandidates[catNamesPre[i]] = []
     catCandidates.forEach(c => {
-      if (!(window.galleryHistoryID.includes(c))) {
+      if (!galleryHistoryIncludes(c)) {
         allCandidates[catNamesPre[i]].push(c)
       }
     })
@@ -313,28 +311,23 @@ function click(e) {
   console.log('weightedKeys')
   console.log(weightedKeys)
 
-  let sel_id = ""
+  let selID = ""
   let selCat = null
   if (weightedKeys.length > 0) {
     selCat = randomEl(weightedKeys)
-    sel_id = randomEl(allCandidates[selCat])
+    selID = randomEl(allCandidates[selCat])
   }
   else {
     alert('i am defeated')
   }
 
-  window.galleryHistoryReason.push(selCat)
-
-  displayImg(sel_id, ".main-photo")
+  displayImg(selID, ".main-photo")
   // required to update the history
-  displayLocation(sel_id, selCat)
+  displayLocation(selID, selCat)
 
-  let last_photo = window.galleryHistoryID[window.galleryHistoryID.length - 1]
+  let lastPhotoID = galleryHistoryGetOffset(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(last_photo, ".last-photo")
-
-  console.log('galleryHistory')
-  console.log(window.galleryHistory)
+  displayImg(lastPhotoID, ".last-photo")
 }
 
 function mapGetKen(array, name) {
