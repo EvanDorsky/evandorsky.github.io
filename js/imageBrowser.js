@@ -107,10 +107,18 @@ function shuffleArray(arr) {
 //         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
 //         {% endfor %}
 
+
+window.galleryHistory = []
 // the ID we chose
 window.galleryHistoryID = []
 // the reason we chose it
 window.galleryHistoryReason = []
+
+function galleryHistoryGetLast() {
+  let len = window.galleryHistory.length
+
+  return window.galleryHistory[len-1]
+}
 
 function metadataGetLocation(metadata) {
   return keywordsGetLocation(metadata.keywords)
@@ -173,8 +181,6 @@ function displayImg(imgID, containerSel) {
   }
 
   let dets = window.photo_metadata[imgID].detections
-  // console.log('dets')
-  // console.log(dets)
   for (let det in dets) {
     imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
   }
@@ -183,51 +189,15 @@ function displayImg(imgID, containerSel) {
   let src_split = img_src.split("/")
   let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
 
-  // let lastimgID = window.galleryHistoryID[window.galleryHistoryID.length-1]
-  // if (lastimgID) {
-  //   lastimgID = lastimgID.slice(2)
-  // }
-  // let last_src = src_split.slice(0, -1).join("/")+"/"+lastimgID+".webp"
-
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
   img.attr("src", new_src)
-
-  // change the id
-  // lastimgContainer.attr("id", `id${lastimgID}`)
-  // change the img src
-  // lastimg.attr("src", last_src)
-
-  // update the location
-  // let loc = metadataGetLocation(window.photo_info[imgID])
-  // let reason = window.galleryHistoryReason[window.galleryHistoryReason.length-1]
-  // if (reason) {
-  //   reason = reason.charAt(0).toUpperCase() + reason.substring(1)
-  // }
-  // d3.select(".reason").text(`${reason}`)
-  // d3.select(".region").text(`${loc.region}`)
-  // d3.select(".prefecture").text(`${loc.prefecture}`)
-  // let neighborhood_text = loc.neighborhood
-
-  // if (loc.subneighborhood) {
-  //   neighborhood_text += ' ' + loc.subneighborhood
-  // }
-
-  // d3.select(".neighborhood").text(`${neighborhood_text}`)
-
-  // let city_text = loc.city
-
-  // // if (neighborhood_text) {
-  // //   city_text = ', '+city_text
-  // // }
-  // d3.select(".city").text(city_text)
 }
 
-function displayLocation(imgID) {
+function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  let reason = window.galleryHistoryReason[window.galleryHistoryReason.length-1]
   if (reason) {
     reason = reason.charAt(0).toUpperCase() + reason.substring(1)
   }
@@ -247,6 +217,14 @@ function displayLocation(imgID) {
   mapDeselectAll()
   mapSelectRegion(mapRegion(loc.prefecture))
   mapSelectKen(loc.prefecture)
+
+  if (reason != null) {
+    window.galleryHistory.push({
+      id: imgID.slice(2),
+      reason: reason,
+      location: loc
+    })
+  }
 
   // if (neighborhood_text) {
   //   city_text = ', '+city_text
@@ -269,6 +247,7 @@ function click(e) {
   let attrs = el.node().attributes
 
   let el_id = el.attr("id")
+
   window.galleryHistoryID.push(el_id.slice(2))
 
   let det_prefix = 'det_'
@@ -344,17 +323,18 @@ function click(e) {
     alert('i am defeated')
   }
 
-  console.log('from possible categories:')
-  console.log(catProps)
-  console.log(`chose ${selCat}`)
   window.galleryHistoryReason.push(selCat)
 
   displayImg(sel_id, ".main-photo")
-  displayLocation(sel_id)
+  // required to update the history
+  displayLocation(sel_id, selCat)
 
   let last_photo = window.galleryHistoryID[window.galleryHistoryID.length - 1]
   d3.select(".last-photo").classed("inactive", false)
   displayImg(last_photo, ".last-photo")
+
+  console.log('galleryHistory')
+  console.log(window.galleryHistory)
 }
 
 function mapGetKen(array, name) {
@@ -489,7 +469,7 @@ function main(event) {
   } while (Object.keys(window.photo_metadata[img].detections).length === 0);
 
   displayImg(img, ".main-photo")
-  displayLocation(img)
+  displayLocation(img, "START")
 
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
