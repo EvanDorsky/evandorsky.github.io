@@ -1208,11 +1208,15 @@ footer {
   }
 
   g {
-    stroke-width: 0.2px;
+    stroke-width: 1px;
   }
 
   path {
     fill: none;
+  }
+
+  path.region {
+    stroke: rgba(0,0,0,0.25);
   }
 
   path.activeKen {
@@ -1221,12 +1225,14 @@ footer {
   }
 
   path.activeRegion {
-    stroke: #aaa;
-    fill: #aaa;
+    stroke: black !important;
+    fill: black !important;
+    // stroke: #aaa;
+    // fill: #aaa;
   }
 
   .country {
-    stroke: rgba(0,0,0,0.5);
+    stroke: rgba(0,0,0,0.25);
   }
 }
 

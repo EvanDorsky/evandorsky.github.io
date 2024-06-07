@@ -6,7 +6,7 @@
 
 window.japanRegions = {
   "Hokkaido": [
-    "Hokkaido"
+    "Hokkai"
   ],
   "Tohoku": [
     "Aomori",
@@ -66,7 +66,8 @@ window.japanRegions = {
     "Nagasaki",
     "Oita",
     "Saga",
-    "Okinawa"
+    // (sorry, Okinawa got excluded)
+    // "Okinawa"
   ]
 }
 
@@ -361,7 +362,7 @@ function click(e) {
   displayImg(last_photo, ".last-photo")
 }
 
-function searchNam(array, name) {
+function mapGetKen(array, name) {
   return array.find(item => item.properties.nam.toLowerCase().includes(name.toLowerCase()));
 }
 
@@ -407,18 +408,61 @@ function mapSetup() {
 
   // simplify the map
   var japanPre = topojson.presimplify(window.japan)
-  window.japanSimp = topojson.simplify(japanPre, 8e-3)
-  window.japanSimp = topojson.filter(window.japanSimp, topojson.filterAttachedWeight(window.japanSimp, 1))
+  window.mapJapanSimp = topojson.simplify(japanPre, 4e-3)
+  window.mapJapanSimp = topojson.filter(window.mapJapanSimp, topojson.filterAttachedWeight(window.mapJapanSimp, 1))
 
-  var subunits = topojson.feature(window.japanSimp, window.japanSimp.objects.japan);
+  var subunits = topojson.feature(window.mapJapanSimp, window.mapJapanSimp.objects.japan);
 
   var g = svg.append('g');
 
+  var mapMergeCountry = topojson.merge(window.mapJapanSimp, window.mapJapanSimp.objects.japan.geometries)
+
   // country
   g.append("path")
-    .datum(topojson.merge(window.japanSimp, window.japanSimp.objects.japan.geometries))
+    .datum(mapMergeCountry)
     .attr("d", path)
     .attr("class", "country")
+
+  const regions = []
+  for (const r in window.japanRegions) {
+    let region = topojson.merge(window.mapJapanSimp, window.japanRegions[r].map(k => {
+      return mapGetKen(window.mapJapanSimp.objects.japan.geometries, k)
+    }))
+
+    region["properties"] = {
+      nam: r
+    }
+    regions.push(region)
+  }
+  console.log('regions')
+  console.log(regions)
+  console.log('subunits.features')
+  console.log(subunits.features)
+  // for (const r in regions) {
+  //   console.log('r')
+  //   console.log(r)
+  //   let res = topojson.merge(window.mapJapanSimp, regions[r])
+  //   console.log('res')
+  //   console.log(res)
+  // }
+  // for region in regions
+  // grab all the geometries for that region
+  // merge them, stick them into an array
+
+  // regions
+  g.append("path")
+    .datum(mapMergeCountry)
+    .attr("d", path)
+    .attr("class", "country")
+
+  // regions
+  g.selectAll(".region")
+    .data(regions)
+    .enter().append("path")
+    .attr("class", function(d) {
+      return `region ${d.properties.nam.split(" ")[0]}`;
+    })
+    .attr("d", path);
 
   // prefectures
   g.selectAll(".ken")
