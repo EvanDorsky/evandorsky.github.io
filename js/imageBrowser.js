@@ -94,6 +94,14 @@ function catButtonClick(e) {
   }
 }
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
 // id="id{{ d[0] }}" 
 //         {% for det in d[1].detections %}
 //         "det_{{ det[0] | replace: ' ', '_' }}"="{{ det[1] }}"
@@ -289,7 +297,7 @@ function click(e) {
       }
     })
 
-    nCandidates += catCandidates.length
+    nCandidates += allCandidates[catNamesPre[i]].length
   }
 
   // calculate proportion that each category contributes to the set
@@ -299,10 +307,6 @@ function click(e) {
   for (let i in catNamesPre) {
     let catName = catNamesPre[i]
 
-    // console.log('catName')
-    // console.log(catName)
-    // console.log('allCandidates[catName].length')
-    // console.log(allCandidates[catName].length)
     if (allCandidates[catName].length > 0) {
       catProps[catName] = allCandidates[catName].length / nCandidates
       catNames.push(catName)
@@ -311,17 +315,12 @@ function click(e) {
 
   // create weighted list of keys based on "uncommon-ness" of each key
   let weightedKeys = [];
-  console.log('catNames')
-  console.log(catNames)
 
   let transitionPossible = true;
   if (catNames.length > 1) {
     catNames.forEach(catName => {
       let uncommon = (1 - catProps[catName]) * 100
-      // console.log('catName')
-      // console.log(catName)
-      // console.log('uncommon')
-      // console.log(uncommon)
+      console.log(`${catName} uncommon: ${uncommon}`)
       for (let i = 0; i < uncommon; i++) {
         weightedKeys.push(catName);
       }
@@ -330,47 +329,31 @@ function click(e) {
   else {
     weightedKeys = catNames
   }
-  // console.log('weightedKeys')
-  // console.log(weightedKeys)
+  // "shuffle" keys (I feel like this shouldn't matter)
+  shuffleArray(weightedKeys)
+  console.log('weightedKeys')
+  console.log(weightedKeys)
 
   let sel_id = ""
   let selCat = null
-  let n_tries = 0
-  let max_tries = 100
   if (weightedKeys.length > 0) {
-  // do {
-    // todo: fix this.
-    // this fails if the selected category is empty
-    // instead, it should preemptively ignore empty categories
-    // and just pick the next best one
-
-    // console.log('weightedKeys')
-    // console.log(weightedKeys)
     selCat = randomEl(weightedKeys)
-    console.log('selCat')
-    console.log(selCat)
-    // console.log('allCandidates[selCat].length')
-    // console.log(allCandidates[selCat].length)
     sel_id = randomEl(allCandidates[selCat])
-    console.log('sel_id')
-    console.log(sel_id)
   }
-
-    // n_tries++
-  // } while ( ((sel_id == "") || (sel_id == undefined) || (window.galleryHistoryID.includes(sel_id)) ) && (n_tries < max_tries))
-
-  // if (n_tries == max_tries) {
   else {
     alert('i am defeated')
   }
-  // }
 
+  console.log('from possible categories:')
+  console.log(catProps)
+  console.log(`chose ${selCat}`)
   window.galleryHistoryReason.push(selCat)
 
   displayImg(sel_id, ".main-photo")
   displayLocation(sel_id)
 
   let last_photo = window.galleryHistoryID[window.galleryHistoryID.length - 1]
+  d3.select(".last-photo").classed("inactive", false)
   displayImg(last_photo, ".last-photo")
 }
 

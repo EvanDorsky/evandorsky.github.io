@@ -1295,6 +1295,9 @@ footer {
 
 .sidebar {
   .last-photo {
+    &.inactive {
+      opacity: 0;
+    }
     // flex: 0 1 auto;
     img {
       opacity: 70%;
