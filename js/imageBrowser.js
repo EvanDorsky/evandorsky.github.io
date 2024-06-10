@@ -4,6 +4,8 @@
   }
 )()
 
+window. finishSequence = "[{\"id\":\"1710320471\",\"reason\":\"NONE\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}},{\"id\":\"1710321440\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709370520\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710317416\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710321662\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709284320\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Akihabara\",\"subneighborhood\":\"\"}},{\"id\":\"1709629155\",\"reason\":\"Car\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Roppongi\",\"subneighborhood\":\"\"}},{\"id\":\"1710494222\",\"reason\":\"Car\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Kanagawa\",\"city\":\"Yokohama\",\"neighborhood\":\"\",\"subneighborhood\":\"\"}},{\"id\":\"1709370092\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710406861\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709289286\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Akihabara\",\"subneighborhood\":\"\"}},{\"id\":\"1710321689\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710837234\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Koenji\",\"subneighborhood\":\"\"}},{\"id\":\"1710490913\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}},{\"id\":\"1709629295\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kansai\",\"prefecture\":\"Osaka\",\"city\":\"Osaka\",\"neighborhood\":\"Namba\",\"subneighborhood\":\"\"}},{\"id\":\"1710493409\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Monzen-Nakacho\",\"subneighborhood\":\"\"}},{\"id\":\"1710061609\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kyushu\",\"prefecture\":\"Fukuoka\",\"city\":\"Fukuoka\",\"neighborhood\":\"\",\"subneighborhood\":\"\"}},{\"id\":\"1709374077\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710406941\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}}]"
+
 window.japanRegions = {
   "Hokkaido": [
     "Hokkai"
@@ -110,7 +112,7 @@ function shuffleArray(arr) {
 
 window.galleryHistory = []
 
-function galleryHistoryGetOffset(offset=0) {
+function galleryHistoryGetFromEnd(offset=0) {
   let len = window.galleryHistory.length
 
   return window.galleryHistory[len-1-offset]
@@ -325,12 +327,13 @@ function click(e) {
   // required to update the history
   displayLocation(selID, selCat)
 
-  let lastPhotoID = galleryHistoryGetOffset(1).id
+  let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
   displayImg(lastPhotoID, ".last-photo")
 }
 
 function walkEnd() {
+  console.log('=============WALK COMPLETE============')
   let gh = window.galleryHistory
 
   // objects used as transitions
@@ -358,8 +361,34 @@ function walkEnd() {
   for (let key in locs[0]) {
     locSets[key] = new Set(locs.map(l => l[key]))
   }
+
   console.log('locSets')
-  console.log(locSets)
+  console.log(Object.entries(locSets))
+
+  let locDataDisplay = Object.entries(locSets)
+      .filter(d => [
+        "region",
+        "prefecture",
+        "city"
+      ].includes(d[0]))
+
+  d3.select(".main-photo").select("img").style("display", "none")
+  d3.select(".last-photo").classed("inactive", true)
+
+  let s = d3.select(".summary")
+  s.select(".location")
+    .selectAll("div").data(locDataDisplay)
+    .enter()
+    .append("div")
+    .text(d => Array.from(d[1].values()).join(", "))
+    var res = d3.select(".summary").select(".location")
+
+  let ghO = Object.entries(gh)
+  s.select(".gallery")
+  .selectAll("img").data(ghO)
+  .enter()
+  .append("img")
+  .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
 }
 
 function mapGetKen(array, name) {
@@ -480,6 +509,21 @@ function mapSetup() {
     .attr("d", path);
 }
 
+function mockFinish() {
+  window.galleryHistory = JSON.parse(window.finishSequence)
+
+  var selID = galleryHistoryGetFromEnd(0).id
+  var selCat = galleryHistoryGetFromEnd(0).reason
+
+  displayImg(selID, ".main-photo")
+  // required to update the history
+  displayLocation(selID)
+
+  let lastPhotoID = galleryHistoryGetFromEnd(1).id
+  d3.select(".last-photo").classed("inactive", false)
+  displayImg(lastPhotoID, ".last-photo")
+}
+
 function main(event) {
   console.log('Image Browser')
 
@@ -498,4 +542,6 @@ function main(event) {
 
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
+
+  mockFinish()
 }
