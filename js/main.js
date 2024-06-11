@@ -407,28 +407,32 @@ function main(event) {
   })
 
   // gallery setup
+  if (!window.galleriesHandledElsewhere) {
 
-  // window.galleryRowHeight = 250
-  var galleryRowTol = 0.3
-  if (window.galleryRowTol) {
-    galleryRowTol = window.galleryRowTol
-  }
-  var galleryLastRow = "left"
-  if (window.galleryLastRow) {
-    galleryLastRow = window.galleryLastRow
-  }
+    // window.galleryRowHeight = 250
+    var galleryRowTol = 0.3
+    if (window.galleryRowTol) {
+      galleryRowTol = window.galleryRowTol
+    }
+    var galleryLastRow = "left"
+    if (window.galleryLastRow) {
+      galleryLastRow = window.galleryLastRow
+    }
 
-  for (let id in window.galleries) {
-    let info = window.galleries[id]
-    fjGallery(document.querySelectorAll(`#${id}`), {
-      itemSelector: '.fj-gallery-item',
-      transitionDuration: 0,
-      gutter: parseInt(info.gutter),
-      rowHeight: info.row_height,
-      rowHeightTolerance: galleryRowTol,
-      lastRow: galleryLastRow,
-      calculateItemsHeight: true
-    });
+    for (let id in window.galleries) {
+      let info = window.galleries[id]
+      var res = fjGallery(document.querySelectorAll(`#${id}`), {
+        itemSelector: '.fj-gallery-item',
+        transitionDuration: 0,
+        gutter: parseInt(info.gutter),
+        rowHeight: info.row_height,
+        rowHeightTolerance: galleryRowTol,
+        lastRow: galleryLastRow,
+        calculateItemsHeight: true
+      });
+      console.log('res')
+      console.log(res)
+    }
   }
 
   // carousel setup

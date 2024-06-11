@@ -1237,7 +1237,7 @@ footer {
 .main-photo {
   // background-color: blue;
 
-  align-self: center;
+  // align-self: center;
   flex: 1 1 auto;
 }
 
@@ -1281,7 +1281,7 @@ footer {
   user-select: none;
   -webkit-user-select: none;
 
-  img {
+  #featured-image {
     padding: 1rem;
     margin: 0 auto;
 

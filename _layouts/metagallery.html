@@ -63,6 +63,26 @@ no_wrapper: true
 <script src="https://unpkg.com/topojson-simplify@3"></script>
 <script type="text/javascript" src="/js/imageBrowser.js"></script>
 
+<div class="photo-template" style="display: none;">
+  {% include photo.html src="SRC" folder="FOLDER" num_str="NUMBER" %}
+</div>
+
+{% assign id = include.id | default: "fjgallery" %}
+{% assign row_height = include.row_height | default: 300 %}
+{% assign row_tol = include.row_tol | default: 0.3 %}
+{% assign gutter = include.gutter | default: 10 %}
+
+<script type="text/javascript">
+  if (!window.galleries) {
+    window.galleries = {}
+  }
+  window.galleries["{{ id }}"] = {
+    row_height: {{ row_height }},
+    row_tol: {{ row_tol }},
+    gutter: {{ gutter }}
+  }
+</script>
+
 <div class="metagallery">
   <div class="sidebar">
     <div class="last-photo inactive">
@@ -79,13 +99,14 @@ no_wrapper: true
     </div>
   </div>
   <div class="main-photo">
-    <img src="/assets/img/posts/{{ page_name }}/{{ photo_metadata[0][0] }}.webp">
+    <img id="featured-image" src="/assets/img/posts/{{ page_name }}/{{ photo_metadata[0][0] }}.webp">
     <div class="summary">
       <div class="location">
       </div>
       <div class="objects">
       </div>
-      <div class="gallery">
+      <!-- { % include gallery.html %} -->
+      <div class="fj-gallery" id="{{ id }}">
       </div>
     </div>
   </div>

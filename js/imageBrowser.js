@@ -4,6 +4,8 @@
   }
 )()
 
+window.galleriesHandledElsewhere = true
+
 window. finishSequence = "[{\"id\":\"1710320471\",\"reason\":\"NONE\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}},{\"id\":\"1710321440\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709370520\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710317416\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710321662\",\"reason\":\"Backpack\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709284320\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Akihabara\",\"subneighborhood\":\"\"}},{\"id\":\"1709629155\",\"reason\":\"Car\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Roppongi\",\"subneighborhood\":\"\"}},{\"id\":\"1710494222\",\"reason\":\"Car\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Kanagawa\",\"city\":\"Yokohama\",\"neighborhood\":\"\",\"subneighborhood\":\"\"}},{\"id\":\"1709370092\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710406861\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1709289286\",\"reason\":\"Truck\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Akihabara\",\"subneighborhood\":\"\"}},{\"id\":\"1710321689\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710837234\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Koenji\",\"subneighborhood\":\"\"}},{\"id\":\"1710490913\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}},{\"id\":\"1709629295\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kansai\",\"prefecture\":\"Osaka\",\"city\":\"Osaka\",\"neighborhood\":\"Namba\",\"subneighborhood\":\"\"}},{\"id\":\"1710493409\",\"reason\":\"Bicycle\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Monzen-Nakacho\",\"subneighborhood\":\"\"}},{\"id\":\"1710061609\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kyushu\",\"prefecture\":\"Fukuoka\",\"city\":\"Fukuoka\",\"neighborhood\":\"\",\"subneighborhood\":\"\"}},{\"id\":\"1709374077\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"\"}},{\"id\":\"1710406941\",\"reason\":\"Pottedplant\",\"location\":{\"country\":\"Japan\",\"region\":\"Kanto\",\"prefecture\":\"Tokyo\",\"city\":\"Tokyo\",\"neighborhood\":\"Shinjuku\",\"subneighborhood\":\"Gyoenmae\"}}]"
 
 window.japanRegions = {
@@ -353,7 +355,7 @@ function walkEnd() {
   console.log('objsByFreq')
   console.log(objsByFreq)
 
-  // locations
+  // populate locations
   let locs = gh.map(e => e.location)
   let locSet = new Set(locs)
 
@@ -383,12 +385,72 @@ function walkEnd() {
     .text(d => Array.from(d[1].values()).join(", "))
     var res = d3.select(".summary").select(".location")
 
+  // populate gallery
   let ghO = Object.entries(gh)
-  s.select(".gallery")
-  .selectAll("img").data(ghO)
+  // s.select(".gallery")
+  // .selectAll("img").data(ghO)
+  // .enter()
+  // .append("img")
+  // .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
+
+  let node = d3.select(".photo-template").node()
+  console.log('node')
+  console.log(node)
+
+  let divs = s.select(".fj-gallery")
+  .selectAll("div").data(ghO)
   .enter()
-  .append("img")
-  .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
+
+  // divs.append("photo-modal-bg")
+  divs.insert("div")
+    .attr("class", "fj-gallery-item")
+    .append("img")
+    .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
+
+  gallerySetup()
+}
+
+function gallerySetup() {
+  var galleryRowTol = 0.3
+  if (window.galleryRowTol) {
+    galleryRowTol = window.galleryRowTol
+  }
+  var galleryLastRow = "left"
+  if (window.galleryLastRow) {
+    galleryLastRow = window.galleryLastRow
+  }
+
+  for (let id in window.galleries) {
+    console.log('do the gallery')
+    console.log('id')
+    console.log(id)
+    let info = window.galleries[id]
+    let infoObj = {
+      itemSelector: '.fj-gallery-item',
+      transitionDuration: 0,
+      gutter: parseInt(info.gutter),
+      rowHeight: info.row_height,
+      rowHeightTolerance: galleryRowTol,
+      lastRow: galleryLastRow,
+      calculateItemsHeight: true
+    }
+    console.log('infoObj')
+    console.log(infoObj)
+    console.log('document.querySelectorAll(`#${id}`)')
+    console.log(document.querySelectorAll(`#${id}`))
+    var res = fjGallery(document.querySelectorAll(`#${id}`), {
+      itemSelector: '.fj-gallery-item',
+      transitionDuration: 0,
+      gutter: parseInt(info.gutter),
+      rowHeight: info.row_height,
+      rowHeightTolerance: galleryRowTol,
+      lastRow: galleryLastRow,
+      calculateItemsHeight: true
+    });
+    console.log('res')
+    console.log(res)
+    console.log('we didnt die')
+  }
 }
 
 function mapGetKen(array, name) {
