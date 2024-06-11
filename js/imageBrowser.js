@@ -374,7 +374,7 @@ function walkEnd() {
         "city"
       ].includes(d[0]))
 
-  d3.select(".main-photo").select("img").style("display", "none")
+  d3.select(".main-photo").style("display", "none")
   d3.select(".last-photo").classed("inactive", true)
 
   let s = d3.select(".summary")
@@ -605,5 +605,5 @@ function main(event) {
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
 
-  mockFinish()
+  // mockFinish()
 }
