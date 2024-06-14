@@ -14,11 +14,16 @@ no_wrapper: true
 
 <div class="article-container">
   {% unless page.hide_metadata %}
-  <h3>{{ page_title }}</h3>
-  <span class="post-date">{{ page.date | date: "%A, %B %-d" }}</span>
+  <div class="article-title">
+    <h3>{{ page_title }}</h3>
+    <span class="post-date">{{ page.date | date: "%A, %B %-d" }}</span>
+  </div>
   {% endunless %}
 
-  {{ content }}
+  <!-- <div class="article-sidebar"></div> -->
+
+  {% include gallery.html id="post-gallery" row_height=300 row_tol=0.4 n_start=1 n_photos=page.n_photos path=page.path %}
+  <!-- { { content }} -->
 
   {% assign pathsplit = page.path | split: '/' %}
   {% assign name_ext = pathsplit[-1] %}
@@ -26,13 +31,13 @@ no_wrapper: true
   {% assign page_name = namesplit[0] %}
 
   {% assign series_meta = site.data[page_name]['series'] %}
+</div>
   {% unless page.hide_metadata %}
-  <div class="photo-details">
+  <!-- <div class="photo-details">
     <div class="camera">{{ series_meta.camera_summary }}</div>
     <div class="lens">{{ series_meta.lens_summary }}</div>
     <div class="stock">{{ series_meta.stock_summary }}</div>
-  </div>
+  </div> -->
   {% endunless %}
-</div>
 
 {% include post-footer.html %}

@@ -421,19 +421,38 @@ function main(event) {
 
     for (let id in window.galleries) {
       let info = window.galleries[id]
-      var res = fjGallery(document.querySelectorAll(`#${id}`), {
-        itemSelector: '.fj-gallery-item',
-        transitionDuration: 0,
-        gutter: parseInt(info.gutter),
-        rowHeight: info.row_height,
-        rowHeightTolerance: galleryRowTol,
-        lastRow: galleryLastRow,
-        calculateItemsHeight: true
-      });
-      console.log('res')
-      console.log(res)
+      // var res = fjGallery(document.querySelectorAll(`#${id}`), {
+      //   itemSelector: '.fj-gallery-item',
+      //   transitionDuration: 0,
+      //   gutter: parseInt(info.gutter),
+      //   rowHeight: info.row_height,
+      //   rowHeightTolerance: galleryRowTol,
+      //   lastRow: galleryLastRow,
+      //   calculateItemsHeight: true
+      // });
+
+
+      // masonry setup
+      var grid = document.querySelector(`#${id}`)
+      console.log('grid')
+      console.log(grid)
+      var msnry = new Masonry(grid, {
+          itemSelector: '.fj-gallery-item',
+          columnWidth: '.fj-gallery-item',
+          gutter: 10,
+          transitionDuration: 0
+          // horizontalOrder: true
+        })
+
+      imagesLoaded(grid, function() {
+        msnry.layout()
+      })
     }
   }
+
+  window.addEventListener("resize", e => {
+    msnry.layout()
+  })
 
   // carousel setup
   for (let cn in window.carousels) {

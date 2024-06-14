@@ -408,6 +408,14 @@ h2#gallery {
   h2 {
     text-align: center;
   }
+  .article-title {
+    margin-bottom: 2rem;
+
+    h3 {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
   h4 {
     margin: 0;
     padding: 10px 0;
@@ -418,6 +426,17 @@ h2#gallery {
   p {
     max-width: Min(100%, 40rem);
   }
+}
+
+.article-sidebar {
+  width: 20%;
+  height: 100vh;
+
+  flex: 0 1 15%;
+}
+
+#post-gallery {
+  flex: 0 0 100%;
 }
 
 hr {
@@ -770,13 +789,34 @@ footer {
   // this is half of the "gutter" set in main.js
   // which enables consecutive galleries to flow together
   padding-bottom: 10px;
+  position: relative;
 }
 
 .fj-gallery-item {
   position: relative;
+  // width: 400px;
+  margin-bottom: 10px;
+
+  max-width: 350px;
+  // 1 column
+  max-width: 100%;
+  // // 2 columns
+  @media only screen and (min-width: 700px) {
+    max-width: calc(50% - 10px);
+  }
+  // // 3 columns
+  @media only screen and (min-width: 1200px) {
+    max-width: calc(33.333% - 10px);
+  }
+  // 4 columns
+  @media only screen and (min-width: 2000) {
+    max-width: calc(25% - 10px);
+  }
+
   // "standalone" is for items that are not
   // in a gallery
   &.standalone {
+    max-width: 100%;
     margin: 1rem;
     img {
       // max-width: 40vw;
@@ -1016,12 +1056,13 @@ footer {
 
   transition: visibility 200ms, opacity 200ms linear;
 
+  background-color: var(--bg-color);
+
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: var(--bg-color);
   z-index: 70;
 
   &.active {
