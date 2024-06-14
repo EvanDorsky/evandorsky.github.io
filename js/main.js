@@ -446,13 +446,13 @@ function main(event) {
 
       imagesLoaded(grid, function() {
         msnry.layout()
+
+        window.addEventListener("resize", e => {
+          msnry.layout()
+        })
       })
     }
   }
-
-  window.addEventListener("resize", e => {
-    msnry.layout()
-  })
 
   // carousel setup
   for (let cn in window.carousels) {
