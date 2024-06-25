@@ -767,7 +767,7 @@ def run_series(args):
 
   if args.action != "read":
     # run process-img, since there are new images to process now
-    run_process_img({"dim": 1500, "force": False})
+    run_process_img({"dim": args.resolution, "force": False})
 
   # then collect the metadata
   series_meta = []
@@ -1054,6 +1054,10 @@ if __name__ == '__main__':
         '--action': {
           'type': str,
           'default': 'create'
+        },
+        '--resolution': {
+          'type': int,
+          'default': 1500
         },
         '--exif-rename': {
           'action': 'store_true'
