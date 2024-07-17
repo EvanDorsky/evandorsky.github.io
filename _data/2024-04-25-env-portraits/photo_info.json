@@ -461,53 +461,5 @@
         "speed": "",
         "stock": "",
         "title": "Clop Clop"
-    },
-    "16": {
-        "camera": "Leitz-Minolta CL",
-        "caption": "",
-        "category": "",
-        "filename": "16",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "120"
-            ],
-            [
-                "Location",
-                "Japan"
-            ],
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d"
-            ],
-            [
-                "Location",
-                "United States",
-                "California",
-                "San Francisco",
-                "San Francisco",
-                "SOMA"
-            ],
-            [
-                "Portrait"
-            ]
-        ],
-        "lens": "Rokkor 40mm f/2",
-        "lens_make": "Rokkor",
-        "location": {
-            "city": "San Francisco",
-            "country": "United States",
-            "neighborhood": "SOMA",
-            "prefecture": "San Francisco",
-            "region": "California",
-            "subneighborhood": ""
-        },
-        "speed": "800",
-        "stock": "CineStill 800T",
-        "title": "SOON Headquarters"
     }
 }
