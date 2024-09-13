@@ -1,5 +1,5 @@
 ---
-role: feature
+# role: feature
 layout: selected
 order: 3
 n_photos: 9

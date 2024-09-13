@@ -147,7 +147,7 @@
         },
         "speed": "",
         "stock": "",
-        "title": "2nd Bonta Okonomiyaki"
+        "title": "Coffee Roaster"
     },
     "06": {
         "camera": "",
@@ -177,7 +177,7 @@
         },
         "speed": "",
         "stock": "",
-        "title": "2nd Bonta Okonomiyaki"
+        "title": "Coffee Roaster"
     },
     "07": {
         "camera": "",
@@ -207,133 +207,13 @@
         },
         "speed": "",
         "stock": "",
-        "title": "2nd Bonta Okonomiyaki"
+        "title": "Ueroku Camera"
     },
     "08": {
         "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "08",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kansai",
-                "\u014csaka",
-                "\u014csaka"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Osaka",
-            "country": "Japan",
-            "neighborhood": "",
-            "prefecture": "Osaka",
-            "region": "Kansai",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Coffee Roaster"
-    },
-    "09": {
-        "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "09",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kansai",
-                "\u014csaka",
-                "\u014csaka"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Osaka",
-            "country": "Japan",
-            "neighborhood": "",
-            "prefecture": "Osaka",
-            "region": "Kansai",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Coffee Roaster"
-    },
-    "10": {
-        "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "10",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kansai",
-                "\u014csaka",
-                "\u014csaka"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Osaka",
-            "country": "Japan",
-            "neighborhood": "",
-            "prefecture": "Osaka",
-            "region": "Kansai",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Coffee Roaster"
-    },
-    "11": {
-        "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "11",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kansai",
-                "\u014csaka",
-                "\u014csaka"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Osaka",
-            "country": "Japan",
-            "neighborhood": "",
-            "prefecture": "Osaka",
-            "region": "Kansai",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Ueroku Camera"
-    },
-    "12": {
-        "camera": "",
         "caption": "Shuri",
         "category": "",
-        "filename": "12",
+        "filename": "08",
         "format": "35mm",
         "id": "Shuri",
         "keywords": [
@@ -360,11 +240,11 @@
         "stock": "",
         "title": "Missile Bar"
     },
-    "13": {
+    "09": {
         "camera": "",
         "caption": "",
         "category": "",
-        "filename": "13",
+        "filename": "09",
         "format": "35mm",
         "id": "",
         "keywords": [
@@ -399,67 +279,5 @@
         "speed": "",
         "stock": "",
         "title": "Nonbei Yokocho"
-    },
-    "14": {
-        "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "14",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d",
-                "Nishi-Ogikubo"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Tokyo",
-            "country": "Japan",
-            "neighborhood": "Nishi-Ogikubo",
-            "prefecture": "Tokyo",
-            "region": "Kanto",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Clop Clop"
-    },
-    "15": {
-        "camera": "",
-        "caption": "",
-        "category": "",
-        "filename": "15",
-        "format": "35mm",
-        "id": "",
-        "keywords": [
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d",
-                "Nishi-Ogikubo"
-            ]
-        ],
-        "lens": " ",
-        "lens_make": "",
-        "location": {
-            "city": "Tokyo",
-            "country": "Japan",
-            "neighborhood": "Nishi-Ogikubo",
-            "prefecture": "Tokyo",
-            "region": "Kanto",
-            "subneighborhood": ""
-        },
-        "speed": "",
-        "stock": "",
-        "title": "Clop Clop"
     }
 }

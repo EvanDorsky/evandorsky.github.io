@@ -1,10 +1,10 @@
 ---
 role: feature
 layout: selected
-order: 1
-n_photos: 16
+order: 2
+n_photos: 9
 key_photo: 1
-title: Interiors
+title: People
 hide_metadata: true
 ---
 

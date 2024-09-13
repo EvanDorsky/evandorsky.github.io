@@ -1049,7 +1049,7 @@ if __name__ == '__main__':
       'args': {
         'name': {},
         '--input-path': {
-          'default': '~/Film/Outbox'
+          'default': '~/Library/Mobile Documents/com~apple~CloudDocs/Outbox'
         },
         '--action': {
           'type': str,
@@ -1068,7 +1068,7 @@ if __name__ == '__main__':
       'func': run_update,
       'args': {
         '--input-path': {
-          'default': '~/Film/Outbox'
+          'default': '~/Library/Mobile Documents/com~apple~CloudDocs/Outbox'
         }
       }
     },
