@@ -23,18 +23,15 @@
         "la-taq"
     ],
     "camera": [
-        "",
         "Mamiya 645 Pro TL",
         "Yashica-Mat EM"
     ],
     "lens": [
-        " ",
         "Mamiya Sekor C 55mm f/2.8 N",
         "Mamiya Sekor C 80mm f/2.8 N",
         "Yashinon 80mm f/3.5"
     ],
     "lens_make": [
-        "",
         "Mamiya Sekor C",
         "Yashinon"
     ],
@@ -43,20 +40,17 @@
         "Fuji Velvia 100",
         "Ilford HP5+ 400",
         "Kodak Ektar 100",
-        "Kodak Gold 200",
-        "Pre-Sat:"
+        "Kodak Gold 200"
     ],
     "speed": [
         "100",
         "200",
-        "400",
-        "Pre-Sat:"
+        "400"
     ],
     "category": [
         ""
     ],
     "format": [
-        "35mm",
         "645",
         "6x6"
     ],
@@ -79,16 +73,15 @@
         "14"
     ],
     "lens_dict": {
-        "": [
-            "",
-            "amiya Sekor C 55mm f/2.8 N",
-            "amiya Sekor C 80mm f/2.8 N",
-            "ashinon 80mm f/3.5"
+        "Mamiya Sekor C": [
+            "55mm f/2.8 N",
+            "80mm f/2.8 N"
         ],
-        "Mamiya Sekor C": [],
-        "Yashinon": []
+        "Yashinon": [
+            "80mm f/3.5"
+        ]
     },
-    "lens_summary": " , amiya Sekor C 55mm f/2.8 N, amiya Sekor C 80mm f/2.8 N, ashinon 80mm f/3.5, Mamiya Sekor C , Yashinon ",
-    "camera_summary": ", Mamiya 645 Pro TL, Yashica-Mat EM",
-    "stock_summary": "Fuji Superia 100, Fuji Velvia 100, Ilford HP5+ 400, Kodak Ektar 100, Kodak Gold 200, Pre-Sat:"
+    "lens_summary": "Mamiya Sekor C 55mm f/2.8 N, 80mm f/2.8 N, Yashinon 80mm f/3.5",
+    "camera_summary": "Mamiya 645 Pro TL, Yashica-Mat EM",
+    "stock_summary": "Fuji Superia 100, Fuji Velvia 100, Ilford HP5+ 400, Kodak Ektar 100, Kodak Gold 200"
 }

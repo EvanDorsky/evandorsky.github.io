@@ -328,11 +328,11 @@
         "title": ""
     },
     "11": {
-        "camera": "",
+        "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
         "filename": "11",
-        "format": "35mm",
+        "format": "645",
         "id": "",
         "keywords": [
             [
@@ -344,8 +344,8 @@
                 "Ueno Park"
             ]
         ],
-        "lens": " ",
-        "lens_make": "",
+        "lens": "Mamiya Sekor C 80mm f/2.8 N",
+        "lens_make": "Mamiya Sekor C",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -354,8 +354,8 @@
             "region": "Kanto",
             "subneighborhood": ""
         },
-        "speed": "Pre-Sat:",
-        "stock": "Pre-Sat:",
+        "speed": "100",
+        "stock": "Kodak Ektar 100",
         "title": ""
     },
     "12": {
