@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.2.0"
+gem "jekyll", "~> 4.3.4"
 
 # manually add webrick for Ruby 3.0.0 support because jekyll still
 # hasn't gotten webrick into their own manifest
