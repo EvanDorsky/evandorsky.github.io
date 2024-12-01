@@ -35,6 +35,8 @@ def valid_path(path):
 
   return path
 
+PROCESS_IMG_DIR = './assets/img/posts'
+
 series_info = OrderedDict([
   ("layout", "post"),
   ("order", 0),
@@ -557,15 +559,13 @@ def get_series_path(name):
       return test_path
 
   print("Could not find markdown file for series: %s" % name)
-  print("Exiting")
-  exit()
 
 def run_process_img(args):
   print("Generating web images...")
   if type(args) == argparse.Namespace:
     args = vars(args)
   im_dirs = []
-  for dirpath, dirnames, filenames in os.walk('./assets/img/posts'):
+  for dirpath, dirnames, filenames in os.walk(args['dir']):
     for fname in filenames:
       # disqualify the original folders themselves...
       if os.path.split(dirpath)[-1] == 'original':
@@ -584,22 +584,26 @@ def run_process_img(args):
     print("Checking series: %s..." % series_name)
 
     series_file = get_series_path(series_name)
+    im_dim = args['dim']
 
-    with open(series_file, "r") as f:
-      docs = yaml.safe_load_all(f)
-      im_dim = args["dim"]
-      for doc in docs:
-        try:
-          if doc is not None and 'im_dim' in doc:
-            im_dim = doc['im_dim']
-          # this is kind of lazy, but we know that the first doc will be valid
-          # and the text after the doc separator won't be, so just break after
-          # yielding the first one
-          break
-        except yaml.scanner.ScannerError as e:
-          print('Warning: Could not parse series document as YAML: %s' % e)
-        except Exception as e:
-          raise
+    if series_file:
+      with open(series_file, "r") as f:
+        docs = yaml.safe_load_all(f)
+        im_dim = args["dim"]
+        for doc in docs:
+          try:
+            if doc is not None and 'im_dim' in doc:
+              im_dim = doc['im_dim']
+            # this is kind of lazy, but we know that the first doc will be valid
+            # and the text after the doc separator won't be, so just break after
+            # yielding the first one
+            break
+          except yaml.scanner.ScannerError as e:
+            print('Warning: Could not parse series document as YAML: %s' % e)
+          except Exception as e:
+            raise
+    else:
+      print("Warning: series file could not be found, proceeding anyway")
 
     # 1. if the "original" folder doesn't exist, create it and move all the images there
     orig_path = os.path.join(im_dir, 'original')
@@ -767,7 +771,7 @@ def run_series(args):
 
   if args.action != "read":
     # run process-img, since there are new images to process now
-    run_process_img({"dim": args.resolution, "force": False})
+    run_process_img({"dim": args.resolution, "force": False, "dir": PROCESS_IMG_DIR})
 
   # then collect the metadata
   series_meta = []
@@ -1030,6 +1034,9 @@ if __name__ == '__main__':
     'process-img': {
       'func': run_process_img,
       'args': {
+        '--dir': {
+          'default': './assets/img/posts'
+        },
         '--force': {
           'action': 'store_true'
         },
