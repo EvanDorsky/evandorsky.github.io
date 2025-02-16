@@ -1,6 +1,6 @@
 Hi! I'm Evan.
 
-I'm an [musician, photographer, engineer] based in San Francisco.
+I'm a [musician, photographer, engineer] based in San Francisco.
 
 I'm currently the violist in the [Cable Car Quartet](/music){:target="_blank" .key-phrase}, a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, and a senior systems integration engineer at [SPAN](https://www.span.io){:target="_blank" .key-phrase}. In 2023 I was a cohort leader for the fall offering of Stanford's [ Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase}.
 
