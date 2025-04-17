@@ -18,8 +18,15 @@ show-banner: false
 
 {% assign series_sorted = site.photojournal | reverse %}
 
-<div class="scroller-vert">
-{% for item in series_sorted %}
-  {% include collection-preview-vert-text.html item=item %}
-{% endfor %}
+<div class="sidebar-container photo-page">
+  <div class="sidebar photo-page">
+
+  </div>
+  <div class="scroller-vert">
+  {% for item in series_sorted %}
+    {% unless item.role %}
+      {% include collection-preview-vert-text.html item=item %}
+    {% endunless %}
+  {% endfor %}
+  </div>
 </div>
