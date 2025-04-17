@@ -742,10 +742,12 @@ footer {
     }
     .series-title {
       text-align: left;
-      font-weight: bold;
-      // vertical-align: top;
+      .title {
+        font-weight: bold;
+        // vertical-align: top;
 
-      font-size: 0.8rem;
+        font-size: 0.8rem;
+      }
     }
     .metadata {
       // vertical-align: bottom;

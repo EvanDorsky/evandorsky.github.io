@@ -7,6 +7,8 @@
 {% assign namesplit = name_ext | split: '.' %}
 {% assign series_name = namesplit[0] %}
 
+{% assign item_date = include.item.date | date: "%m.%y" %}
+
 {% assign l = include.item.link | default: "" %}
 {% if l == "" %}
   {% assign l = include.item.url %}
@@ -19,13 +21,15 @@
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
 
     {% assign meta = site.data[series_name][num_str] %}
+    {% assign lens_text = meta.lens | regex_replace: '^.*?(\d)', '\1' }} %}
     <div class="metadata-strip">
-      <div class="series-title">{{ include.item.title }}</div>
-      <!-- <div class="photo-caption">{{ meta.caption }}</div> -->
-      <!-- <div class="photo-title">{{ meta.title }}</div> -->
+      <div class="series-title">
+        <span class="title">{{ include.item.title }}</span>
+      </div>
 
       <div class="metadata">
-        <span class="lens">{{ meta.lens }}</span>
+        <span class="series-date">{{ item_date }}</span>
+        <span class="lens">{{ lens_text }}</span>
         <span class="camera">{{ meta.camera }}</span>
         <span class="stock">{{ meta.stock }}</span>
         <!-- <span class="photo-location">{{ meta.location.city }}, {{ meta.location.country }}</span> -->
