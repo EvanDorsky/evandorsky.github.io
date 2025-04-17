@@ -204,6 +204,7 @@ def get_info_dict(exif):
     'caption': caption,
     'camera': exif['Camera Model Name'],
     'lens': exif['Lens Make'] + ' ' + exif['Lens'],
+    'lens_specs': exif['Lens'],
     'lens_make': exif['Lens Make'],
     'stock': stock,
     'speed': speed,
@@ -708,6 +709,7 @@ def run_update(args):
         series[series_path] = []
       series[series_path] += [file]
 
+  print("series")
   print(series)
 
 def run_series(args):
@@ -796,6 +798,7 @@ def run_series(args):
       meta_summary = {
         key: sorted(list(set([el[key] for el in series_meta if isinstance(el[key], typing.Hashable)]))) for key in series_meta[0]
       }
+      print("metadata summary")
       pprint(meta_summary)
       if meta_summary != {}:
         if 'lens_make' not in meta_summary:
@@ -806,6 +809,7 @@ def run_series(args):
       print("Metadata summary creation failed: %s" % e)
 
     if meta_valid:
+      print("metadata is valid")
       # create series summary strings
       # lens summary
       meta_summary['lens_dict'] = {make: [] for make in meta_summary['lens_make']}
