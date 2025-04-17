@@ -1,0 +1,30 @@
+
+<!-- sets a bunch of variables -->
+{% assign num_str = include.item.key_photo | prepend: '00' | slice: -2, 2 %}
+
+{% assign pathsplit = include.item.path | split: '/' %}
+{% assign name_ext = pathsplit[-1] %}
+{% assign namesplit = name_ext | split: '.' %}
+{% assign series_name = namesplit[0] %}
+
+{% assign l = include.item.link | default: "" %}
+{% if l == "" %}
+  {% assign l = include.item.url %}
+{% endif %}
+
+{% assign covers = site.covers | where: "slug", include.item.slug %}
+{% assign cover = covers[0] %}
+
+<a class="scroller-item-inner collection-post-preview" href="{{ l }}">
+  <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
+
+    {% assign meta = site.data[series_name][num_str] %}
+    <div class="metadata-strip">
+      <!-- <div class="photo-caption">{{ meta.caption }}</div> -->
+      <!-- <div class="photo-title">{{ meta.title }}</div> -->
+      <span class="lens">{{ meta.lens_specs }}</span>
+      <span class="camera">{{ meta.camera }}</span>
+      <!-- <span class="stock">{{ meta.stock }}</span> -->
+      <span class="photo-location">{{ meta.location.city }}, {{ meta.location.country }}</span>
+    </div>
+</a>

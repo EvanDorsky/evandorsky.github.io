@@ -1,0 +1,25 @@
+---
+layout: page-wide
+jumbotron: false
+title: Test
+# thumb: /assets/img/posts/2022-12-28-street/03.webp
+thumb: /assets/img/thumb.png
+
+navbar: true
+navbar-order: 4
+row_height: 350
+show-banner: false
+---
+
+<script type="text/javascript">
+  window.galleryRowHeight = {{ page.row_height }}
+  window.galleryLastRow = "left"
+</script>
+
+{% assign series_sorted = site.photojournal | reverse %}
+
+<div class="scroller-vert">
+{% for item in series_sorted %}
+  {% include collection-preview-vert-text.html item=item %}
+{% endfor %}
+</div>
