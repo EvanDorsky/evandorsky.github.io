@@ -673,6 +673,14 @@ footer {
   height: 70rem;
 }
 
+.scroller-vert {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  max-width: 30rem;
+}
+
 .scroller-item-inner {
   &:hover {
     text-decoration: none;
@@ -694,6 +702,22 @@ footer {
   max-height: 80vh;
   img {
     max-height: 80vh;
+  }
+
+  display: flex;
+  flex: 0 1 auto;
+
+  .metadata-strip {
+    writing-mode: vertical-rl;
+    text-align: right;
+    padding-left:   0.4rem;
+    padding-bottom: 0.5rem;
+
+    font-size: 0.8rem;
+
+    span {
+      padding-top: 1.5rem;
+    }
   }
 }
 

@@ -21,6 +21,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Seoul",
             "country": "South Korea",
@@ -54,6 +55,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Seoul",
             "country": "South Korea",
@@ -86,6 +88,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -117,6 +120,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -149,6 +153,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -162,54 +167,10 @@
         "title": ""
     },
     "06": {
-        "camera": "Yashica-Mat EM",
-        "caption": "la-taq",
-        "category": "",
-        "filename": "06",
-        "format": "6x6",
-        "id": "la-taq",
-        "keywords": [
-            [
-                "Location",
-                "United States",
-                "California",
-                "San Francisco",
-                "San Francisco"
-            ],
-            [
-                "Location",
-                "United States",
-                "California",
-                "San Francisco",
-                "San Francisco",
-                "Mission"
-            ],
-            [
-                "San Francisco"
-            ],
-            [
-                "_lrk"
-            ]
-        ],
-        "lens": "Yashinon 80mm f/3.5",
-        "lens_make": "Yashinon",
-        "location": {
-            "city": "San Francisco",
-            "country": "United States",
-            "neighborhood": "Mission",
-            "prefecture": "San Francisco",
-            "region": "California",
-            "subneighborhood": ""
-        },
-        "speed": "200",
-        "stock": "Kodak Gold 200",
-        "title": "La Taqueria"
-    },
-    "07": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "07",
+        "filename": "06",
         "format": "645",
         "id": "",
         "keywords": [
@@ -224,6 +185,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -236,11 +198,11 @@
         "stock": "Kodak Ektar 100",
         "title": ""
     },
-    "08": {
+    "07": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "08",
+        "filename": "07",
         "format": "645",
         "id": "",
         "keywords": [
@@ -254,6 +216,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Seattle",
             "country": "United States",
@@ -266,11 +229,11 @@
         "stock": "Kodak Gold 200",
         "title": ""
     },
-    "09": {
+    "08": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "09",
+        "filename": "08",
         "format": "645",
         "id": "",
         "keywords": [
@@ -285,6 +248,7 @@
         ],
         "lens": "Mamiya Sekor C 55mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "55mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -297,11 +261,11 @@
         "stock": "Kodak Ektar 100",
         "title": ""
     },
-    "10": {
+    "09": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "10",
+        "filename": "09",
         "format": "645",
         "id": "",
         "keywords": [
@@ -315,6 +279,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Fujikawaguchiko",
             "country": "Japan",
@@ -327,11 +292,11 @@
         "stock": "Fuji Velvia 100",
         "title": ""
     },
-    "11": {
+    "10": {
         "camera": "Mamiya 645 Pro TL",
         "caption": "",
         "category": "",
-        "filename": "11",
+        "filename": "10",
         "format": "645",
         "id": "",
         "keywords": [
@@ -346,6 +311,7 @@
         ],
         "lens": "Mamiya Sekor C 80mm f/2.8 N",
         "lens_make": "Mamiya Sekor C",
+        "lens_specs": "80mm f/2.8 N",
         "location": {
             "city": "Tokyo",
             "country": "Japan",
@@ -358,99 +324,11 @@
         "stock": "Kodak Ektar 100",
         "title": ""
     },
-    "12": {
-        "camera": "Mamiya 645 Pro TL",
-        "caption": "24th-st",
-        "category": "",
-        "filename": "12",
-        "format": "645",
-        "id": "24th-st",
-        "keywords": [
-            [
-                "Location",
-                "United States",
-                "California",
-                "San Francisco",
-                "San Francisco"
-            ],
-            [
-                "San Franciscod\\"
-            ],
-            [
-                "_lrk"
-            ]
-        ],
-        "lens": "Mamiya Sekor C 80mm f/2.8 N",
-        "lens_make": "Mamiya Sekor C",
-        "location": {
-            "city": "San Francisco",
-            "country": "United States",
-            "neighborhood": "",
-            "prefecture": "San Francisco",
-            "region": "California",
-            "subneighborhood": ""
-        },
-        "speed": "100",
-        "stock": "Kodak Ektar 100",
-        "title": "24th Street"
-    },
-    "13": {
-        "camera": "Mamiya 645 Pro TL",
-        "caption": "ginza-woman",
-        "category": "",
-        "filename": "13",
-        "format": "645",
-        "id": "ginza-woman",
-        "keywords": [
-            [
-                "Location",
-                "Japan"
-            ],
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d"
-            ],
-            [
-                "Location",
-                "Japan",
-                "Kant\u014d",
-                "T\u014dky\u014d",
-                "T\u014dky\u014d",
-                "Ginza"
-            ],
-            [
-                "Time",
-                "Night"
-            ],
-            [
-                "Travel"
-            ],
-            [
-                "_lrk"
-            ]
-        ],
-        "lens": "Mamiya Sekor C 80mm f/2.8 N",
-        "lens_make": "Mamiya Sekor C",
-        "location": {
-            "city": "Tokyo",
-            "country": "Japan",
-            "neighborhood": "Ginza",
-            "prefecture": "Tokyo",
-            "region": "Kanto",
-            "subneighborhood": ""
-        },
-        "speed": "400",
-        "stock": "Ilford HP5+ 400",
-        "title": "Ginza"
-    },
-    "14": {
+    "11": {
         "camera": "Yashica-Mat EM",
         "caption": "",
         "category": "",
-        "filename": "14",
+        "filename": "11",
         "format": "6x6",
         "id": "",
         "keywords": [
@@ -482,6 +360,7 @@
         ],
         "lens": "Yashinon 80mm f/3.5",
         "lens_make": "Yashinon",
+        "lens_specs": "80mm f/3.5",
         "location": {
             "city": "Bangalore",
             "country": "India",

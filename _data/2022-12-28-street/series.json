@@ -1,26 +1,17 @@
 {
     "id": [
         "",
-        "24th-st",
-        "ginza-woman",
-        "itaewon-ro",
-        "la-taq"
+        "itaewon-ro"
     ],
     "title": [
         "",
-        "24th Street",
         "Bangalore TV Crew",
         "Dongdaemun",
-        "Ginza",
-        "Itaewon-ro",
-        "La Taqueria"
+        "Itaewon-ro"
     ],
     "caption": [
         "",
-        "24th-st",
-        "ginza-woman",
-        "itaewon-ro",
-        "la-taq"
+        "itaewon-ro"
     ],
     "camera": [
         "Mamiya 645 Pro TL",
@@ -31,6 +22,11 @@
         "Mamiya Sekor C 80mm f/2.8 N",
         "Yashinon 80mm f/3.5"
     ],
+    "lens_specs": [
+        "55mm f/2.8 N",
+        "80mm f/2.8 N",
+        "80mm f/3.5"
+    ],
     "lens_make": [
         "Mamiya Sekor C",
         "Yashinon"
@@ -38,14 +34,12 @@
     "stock": [
         "Fuji Superia 100",
         "Fuji Velvia 100",
-        "Ilford HP5+ 400",
         "Kodak Ektar 100",
         "Kodak Gold 200"
     ],
     "speed": [
         "100",
-        "200",
-        "400"
+        "200"
     ],
     "category": [
         ""
@@ -67,10 +61,7 @@
         "08",
         "09",
         "10",
-        "11",
-        "12",
-        "13",
-        "14"
+        "11"
     ],
     "lens_dict": {
         "Mamiya Sekor C": [
@@ -83,5 +74,5 @@
     },
     "lens_summary": "Mamiya Sekor C 55mm f/2.8 N, 80mm f/2.8 N, Yashinon 80mm f/3.5",
     "camera_summary": "Mamiya 645 Pro TL, Yashica-Mat EM",
-    "stock_summary": "Fuji Superia 100, Fuji Velvia 100, Ilford HP5+ 400, Kodak Ektar 100, Kodak Gold 200"
+    "stock_summary": "Fuji Superia 100, Fuji Velvia 100, Kodak Ektar 100, Kodak Gold 200"
 }
