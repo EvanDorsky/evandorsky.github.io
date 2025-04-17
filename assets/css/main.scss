@@ -700,8 +700,24 @@ footer {
 .collection-post-preview {
   max-width: 90vw;
   max-height: 80vh;
+
   img {
     max-height: 80vh;
+  }
+
+  display: flex;
+  flex: 0 1 auto;
+}
+
+.collection-post-preview-vert {
+  position: relative;
+
+  img {
+    display: block;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    object-fit: cover;
   }
 
   display: flex;
@@ -712,11 +728,31 @@ footer {
     text-align: right;
     padding-left:   0.4rem;
     padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 
-    font-size: 0.8rem;
+    font-size: 0.6rem;
 
-    span {
-      padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    div {
+      flex: 0 1 auto;
+      display: block;
+    }
+    .series-title {
+      text-align: left;
+      font-weight: bold;
+      // vertical-align: top;
+
+      font-size: 0.8rem;
+    }
+    .metadata {
+      // vertical-align: bottom;
+      transform: translateX(-0.1rem);
+      span {
+        padding-top: 1.2rem;
+      }
     }
   }
 }

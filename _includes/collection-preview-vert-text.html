@@ -15,16 +15,20 @@
 {% assign covers = site.covers | where: "slug", include.item.slug %}
 {% assign cover = covers[0] %}
 
-<a class="scroller-item-inner collection-post-preview" href="{{ l }}">
-  <img {% if cover %}style="display: none;"{% endif %} src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
+<a class="collection-post-preview-vert" href="{{ l }}">
+  <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
 
     {% assign meta = site.data[series_name][num_str] %}
     <div class="metadata-strip">
+      <div class="series-title">{{ include.item.title }}</div>
       <!-- <div class="photo-caption">{{ meta.caption }}</div> -->
       <!-- <div class="photo-title">{{ meta.title }}</div> -->
-      <span class="lens">{{ meta.lens_specs }}</span>
-      <span class="camera">{{ meta.camera }}</span>
-      <!-- <span class="stock">{{ meta.stock }}</span> -->
-      <span class="photo-location">{{ meta.location.city }}, {{ meta.location.country }}</span>
+
+      <div class="metadata">
+        <span class="lens">{{ meta.lens }}</span>
+        <span class="camera">{{ meta.camera }}</span>
+        <span class="stock">{{ meta.stock }}</span>
+        <!-- <span class="photo-location">{{ meta.location.city }}, {{ meta.location.country }}</span> -->
+      </div>
     </div>
 </a>
