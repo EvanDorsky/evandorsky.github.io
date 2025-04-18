@@ -33,6 +33,28 @@
   // }
 }
 
+// scroll lock stuff
+
+.scroller-sidebar {
+  flex: 0 0 auto;
+  width: 183px;
+}
+
+.scroll-outer-container {
+  display: flex;
+}
+
+.scroll-inner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  max-width: 30rem;
+
+  flex: 1 1 auto;
+  margin: 0 auto;
+}
+
 
 //
 // cross page styles
@@ -684,10 +706,17 @@ footer {
 
   flex: 1 1 auto;
   margin: 0 auto;
-  // background-color: red;
+  background-color: red;
 }
 
 .sidebar-container.photo-page {
+  // background-color: green;
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
   height: inherit;
 
   user-select: inherit;
@@ -695,8 +724,21 @@ footer {
   // background-color: blue;
 }
 
-.sidebar.photo-page {
-  // background-color: green;
+.test-content {
+  position: relative;
+
+  img {
+    display: block;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  display: flex;
+  flex: 0 1 auto;
+
+  // background-color: blue;
 }
 
 .pj-list {

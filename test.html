@@ -23,8 +23,8 @@ show-banner: false
 
 <script type="module" src="/js/scrollview.js"></script>
 
-<div class="sidebar-container photo-page">
-  <div class="sidebar photo-page">
+<div class="scroll-outer-container">
+  <div class="scroller-sidebar">
     <ul class="pj-list">
   {% for item in series_sorted %}
     {% unless item.role %}
@@ -34,7 +34,7 @@ show-banner: false
   {% endfor %}
     </ul>
   </div>
-  <div class="scroller-vert">
+  <div class="scroll-inner-container">
   {% for item in series_sorted %}
     {% unless item.role %}
       {% include collection-preview-vert-text.html item=item %}
