@@ -16,7 +16,9 @@ show-banner: false
   window.galleryLastRow = "left"
 </script>
 
-{% assign series_sorted = site.photojournal | reverse %}
+{% assign posts_selected = site.portfolio | sort: 'order' | where: "role", "feature" %}
+{% assign posts_photojournal = site.photojournal | reverse %}
+{% assign posts_published = site.photowork | reverse %}
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -25,20 +27,54 @@ show-banner: false
 
 <div class="scroll-outer-container">
   <div class="scroller-sidebar">
-    <ul class="pj-list">
-  {% for item in series_sorted %}
+    <div class="sidebar-inner-scroll">
+      <ul class="pj-list">
+
+  {% for item in posts_published %}
     {% unless item.role %}
       {% assign item_date = item.date | date: "%m.%y" %}
-      <li class="pj-list-item">{{ item.title }} {{ item_date }}</li>
+        <li class="pj-list-item">{{ item.title }}</li>
     {% endunless %}
   {% endfor %}
-    </ul>
+
+  {% for item in posts_selected %}
+    {% unless item.role %}
+      {% assign item_date = item.date | date: "%m.%y" %}
+        <li class="pj-list-item">{{ item.title }}</li>
+    {% endunless %}
+  {% endfor %}
+
+  {% for item in posts_photojournal %}
+    {% unless item.role %}
+      {% assign item_date = item.date | date: "%m.%y" %}
+        <li class="pj-list-item">{{ item.title }}</li>
+    {% endunless %}
+  {% endfor %}
+
+      </ul>
+    </div>
   </div>
   <div class="scroll-inner-container">
-  {% for item in series_sorted %}
+
+  <!-- Published -->
+
+  {% for item in posts_published %}
+    {% include collection-preview-vert-text.html item=item %}
+  {% endfor %}
+
+  <!-- Selected -->
+
+  {% for item in posts_selected %}
+    {% include collection-preview-vert-text.html item=item %}
+  {% endfor %}
+
+  <!-- Photojournal -->
+
+  {% for item in posts_photojournal %}
     {% unless item.role %}
       {% include collection-preview-vert-text.html item=item %}
     {% endunless %}
   {% endfor %}
+
   </div>
 </div>

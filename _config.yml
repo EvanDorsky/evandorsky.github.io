@@ -66,6 +66,16 @@ duplicate_documents:
 
   with_layout: show-stub
 
+# Attempts to speed up the build
+# 1.
+# sass:
+#   sourcemap: never
+#
+# 2.
+# plugins_exclude:
+#   - jekyll-feed
+
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

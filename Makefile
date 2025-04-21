@@ -7,6 +7,9 @@ build:
 net:
 	bundle exec jekyll serve --livereload --watch --host `ipconfig getifaddr en0`
 
+pserve:
+	JEKYLL_PROFILE=1 bundle exec jekyll serve --livereload --watch
+
 serve:
 	bundle exec jekyll serve --livereload --watch
 

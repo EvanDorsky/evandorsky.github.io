@@ -37,7 +37,13 @@
 
 .scroller-sidebar {
   flex: 0 0 auto;
-  width: 183px;
+  width: 15rem;
+}
+
+.sidebar-inner-scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .scroll-outer-container {
@@ -744,6 +750,9 @@ footer {
 .pj-list {
   .pj-list-item {
     list-style: none;
+    font-size: 0.6rem;
+
+    white-space: nowrap;
   }
 }
 
@@ -790,11 +799,16 @@ footer {
   flex: 0 1 auto;
 
   .metadata-strip {
+    position: absolute;
+    right: -1.5rem;
+
     writing-mode: vertical-rl;
     text-align: right;
     padding-left:   0.4rem;
     padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    padding-top:    0.5rem;
+
+    height: calc(100% - 1rem);
 
     font-size: 0.6rem;
 
@@ -802,11 +816,9 @@ footer {
     justify-content: space-between;
     align-items: baseline;
 
-    div {
-      flex: 0 1 auto;
-      display: block;
-    }
     .series-title {
+      // title grows
+      flex: 1 0 auto;
       text-align: left;
       .title {
         font-weight: bold;
@@ -816,11 +828,17 @@ footer {
       }
     }
     .metadata {
+      display: inline;
+      // metadata shrinks
+      flex: 0 1 auto;
       // vertical-align: bottom;
       transform: translateX(-0.1rem);
       span {
         padding-top: 1.2rem;
       }
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: nowrap;
     }
   }
 }
