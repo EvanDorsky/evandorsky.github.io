@@ -1,10 +1,15 @@
 if ENV["PROD"]
+  puts "PROD is set, enter preview gen"
   Jekyll::Hooks.register :pages, :post_write do |page|
+    puts "Enter page loop"
     if page.data["layout"] == "show-stub"
+      puts "Enter show stub"
       path = page.destination("/")
 
+      puts "Attempt to open #{ path }..."
       f = File.open(path)
       fd = f.read
+      puts "Attempt to open #{ path }..."
 
       kit = IMGKit.new(fd,
         :quality => 100,
