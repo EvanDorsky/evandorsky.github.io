@@ -28,26 +28,32 @@ show-banner: false
 <div class="scroll-outer-container">
   <div class="scroller-sidebar">
     <div class="sidebar-inner-scroll">
-      <ul class="pj-list">
 
+    <div class="pj-list-header">Published</div>
+      <ul class="pj-list">
   {% for item in posts_published %}
     {% unless item.role %}
       {% assign item_date = item.date | date: "%m.%y" %}
         <li class="pj-list-item">{{ item.title }}</li>
     {% endunless %}
   {% endfor %}
+      </ul>
 
+    <div class="pj-list-header">Collections</div>
+
+    <ul class="pj-list">
   {% for item in posts_selected %}
-    {% unless item.role %}
-      {% assign item_date = item.date | date: "%m.%y" %}
-        <li class="pj-list-item">{{ item.title }}</li>
-    {% endunless %}
+    {% assign item_date = item.date | date: "%m.%y" %}
+      <li class="pj-list-item">{{ item.title }}</li>
   {% endfor %}
+    </ul>
 
+    <li class="pj-list-header">Timeline</li>
+      <ul class="pj-list">
   {% for item in posts_photojournal %}
     {% unless item.role %}
-      {% assign item_date = item.date | date: "%m.%y" %}
-        <li class="pj-list-item">{{ item.title }}</li>
+      {% assign item_date = item.date | date: "%m-%y" %}
+        <li class="pj-list-item">{{ item_date }}&nbsp;&nbsp;{{ item.title }}</li>
     {% endunless %}
   {% endfor %}
 
