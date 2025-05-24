@@ -18,6 +18,6 @@ img-fmt: none
 
 ### Olin Learning Lab: Ethics for Engineering Practice - 2022
 
-### The Medium is the Massage Book Club - 2022
+### The Medium is the Massage Book Club @ The Commons - 2022
 
-- The Medium is the Massage
+### The Medium is the Massage Book Club @ Baukunst - 2024
