@@ -17,7 +17,7 @@
 {% assign covers = site.covers | where: "slug", include.item.slug %}
 {% assign cover = covers[0] %}
 
-<a class="collection-post-preview-vert" href="{{ l }}">
+<a class="collection-post-preview-vert" slug="{{ include.item.slug }}" href="{{ l }}">
   <img src="/assets/img/posts/{{ series_name }}/{{ num_str }}.webp">
 
     {% assign meta = site.data[series_name][num_str] %}
