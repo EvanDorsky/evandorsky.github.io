@@ -44,6 +44,8 @@
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .scroll-outer-container {
