@@ -1,0 +1,60 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Ricoh GR III"
+    ],
+    "lens": [
+        "GR Lens 18.3mm f/2.8"
+    ],
+    "lens_specs": [
+        "18.3mm f/2.8"
+    ],
+    "lens_make": [
+        "GR Lens"
+    ],
+    "stock": [
+        ""
+    ],
+    "speed": [
+        ""
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+    ],
+    "lens_dict": {
+        "GR Lens": [
+            "18.3mm f/2.8"
+        ]
+    },
+    "lens_summary": "GR Lens 18.3mm f/2.8",
+    "camera_summary": "Ricoh GR III",
+    "stock_summary": ""
+}

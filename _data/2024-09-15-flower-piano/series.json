@@ -1,0 +1,51 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Pentax 67 II"
+    ],
+    "lens": [
+        "Takumar 6x7 105mm f/2.4"
+    ],
+    "lens_specs": [
+        "105mm f/2.4"
+    ],
+    "lens_make": [
+        "Takumar 6x7"
+    ],
+    "stock": [
+        "Kodak Gold 200"
+    ],
+    "speed": [
+        "200"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04"
+    ],
+    "lens_dict": {
+        "Takumar 6x7": [
+            "105mm f/2.4"
+        ]
+    },
+    "lens_summary": "Takumar 6x7 105mm f/2.4",
+    "camera_summary": "Pentax 67 II",
+    "stock_summary": "Kodak Gold 200"
+}

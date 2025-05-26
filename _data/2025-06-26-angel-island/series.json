@@ -1,0 +1,67 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "",
+        "Mamiya 645 Pro TL"
+    ],
+    "lens": [
+        " ",
+        "Mamiya Sekor C 55mm f/2.8 N",
+        "Mamiya Sekor C 80mm f/2.8 N"
+    ],
+    "lens_specs": [
+        "",
+        "55mm f/2.8 N",
+        "80mm f/2.8 N"
+    ],
+    "lens_make": [
+        "",
+        "Mamiya Sekor C"
+    ],
+    "stock": [
+        "Kodak Ektar 100",
+        "Kodak Gold 200",
+        "Pre-Sat:"
+    ],
+    "speed": [
+        "100",
+        "200",
+        "Pre-Sat:"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm",
+        "645"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+    ],
+    "lens_dict": {
+        "": [
+            "",
+            "amiya Sekor C 55mm f/2.8 N",
+            "amiya Sekor C 80mm f/2.8 N"
+        ],
+        "Mamiya Sekor C": []
+    },
+    "lens_summary": " , amiya Sekor C 55mm f/2.8 N, amiya Sekor C 80mm f/2.8 N, Mamiya Sekor C ",
+    "camera_summary": ", Mamiya 645 Pro TL",
+    "stock_summary": "Kodak Ektar 100, Kodak Gold 200, Pre-Sat:"
+}
