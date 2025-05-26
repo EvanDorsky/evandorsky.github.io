@@ -41,11 +41,17 @@
 }
 
 .sidebar-inner-scroll {
-  overflow-x: hidden;
   overflow-y: scroll;
   height: 100vh;
+
   position: sticky;
-  top: 0;
+  top: 0px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .scroll-outer-container {
@@ -764,7 +770,7 @@ footer {
     font-size: 0.8rem;
     padding-bottom: 1rem;
 
-    white-space: nowrap;
+    // white-space: nowrap;
   }
   padding-bottom: 0.6rem;
 }
