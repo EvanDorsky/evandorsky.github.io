@@ -91,6 +91,13 @@
   @media (pointer: coarse) and (hover: none) {
     max-width: 98vw;
   }
+
+  .inner-list {
+    display: inherit;
+    flex-direction: inherit;
+    // flex: 1 1 auto;
+    gap: inherit;
+  }
 }
 
 
@@ -788,6 +795,11 @@ footer {
   padding: 0;
   padding-top: 1.5rem;
   padding-bottom: 1.2rem;
+  transition: font-weight 0.2s;
+  
+  &.active {
+    font-weight: 800;
+  }
 }
 
 .pj-list {

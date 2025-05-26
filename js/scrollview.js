@@ -14,6 +14,8 @@ function main(event) {
 
   let isScrollingToPost = false
 
+  const scrollDetectMargin = "-100px 0px -100px 0px"
+
   // highlight list based on in-view posts
   m.inView(".collection-post-preview-vert", (el, enterInfo) => {
     const slug = el.getAttribute("slug")
@@ -23,7 +25,21 @@ function main(event) {
     return (leaveInfo) => {
       title.classed("active", false)
     }
-  }, { amount: 0.6 })
+  }, {
+    amount: 0.6,
+    margin: scrollDetectMargin
+  })
+
+  // highlight header too
+  m.inView(".inner-list", (el, enterInfo) => {
+    const slug = el.getAttribute("slug")
+    const title = d3.select(`.pj-list-header[slug="${slug}"]`)
+    title.classed("active", true)
+
+    return (leaveInfo) => {
+      title.classed("active", false)
+    }
+  }, { margin: scrollDetectMargin })
 
   // document.addEventListener("scroll", () => {
   //   if (!isScrollingToPost) {
