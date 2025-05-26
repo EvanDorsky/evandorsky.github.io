@@ -834,6 +834,9 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
 
     .series-title {
       // title grows
@@ -855,9 +858,6 @@ footer {
       span {
         padding-top: 1.2rem;
       }
-      overflow: hidden;
-      text-overflow: clip;
-      white-space: nowrap;
     }
   }
 }
