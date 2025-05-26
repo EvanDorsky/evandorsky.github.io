@@ -16,67 +16,75 @@ show-banner: false
   window.galleryLastRow = "left"
 </script>
 
-<!-- Feature -->
+{% assign posts_selected = site.portfolio | sort: 'order' | where: "role", "feature" %}
+{% assign posts_photojournal = site.photojournal | reverse %}
+{% assign posts_published = site.photowork | reverse %}
 
-{% assign feature_gallery = site.portfolio | where: "title", "Feature" %}
-
-<!-- { { feature_gallery[0].content }} -->
-
-<!-- Selected -->
-
-{% assign portfolio = site.portfolio | sort: 'order' | where: "role", "feature" %}
-{% include scroller.html id="jumbotron" template="collection-post-preview" items=portfolio %}
-
-<!-- Work -->
-
-{% assign photowork = site.photowork | reverse %}
-<h3>Published</h3>
-{% include series-gallery.html preview="post-pre-generic" collection=photowork id="photowork" row_height=300 %}
-
-<!-- Photojournal -->
-
-<h3 class="pj-header" id="pj-header">Photojournal</h3>
-
-<script type="text/javascript">
-  if (!window.galleries) {
-    window.galleries = {}
-  }
-  window.galleries["photoj"] = {
-    row_height: 300,
-    row_tol: 0.3,
-    gutter: 20
-  }
+<!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script> -->
+<script type="module">
+  import * as motion from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+  window.m = motion
 </script>
 
-{% assign last_location = Nil %}
-{% assign current_location = Nil %}
-{% assign series_sorted = site.photojournal | reverse %}
-{% for series in series_sorted %}
-  {% if series.role %}
-    {% continue %}
-  {% endif %}
+<script type="module" src="/js/scrollview.js"></script>
 
-  {% if series.location %}
-    {% assign current_location = series.location %}
-  {% endif %}
-  {% if current_location != last_location %}
-  {% unless forloop.first %}
-  </div>
-  {% endunless %}
-  <div class="fj-gallery-separator">
-    <div class="sep-date">
-      {{ series.date | date: "%B %Y" }}
+<div class="scroll-outer-container">
+  <div class="scroller-sidebar">
+    <div class="sidebar-inner-scroll">
+
+    <div class="pj-list-header">Published</div>
+      <ul class="pj-list">
+  {% for item in posts_published %}
+    {% unless item.role %}
+      {% assign item_date = item.date | date: "%m.%y" %}
+        <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item.title }}</li></a>
+    {% endunless %}
+  {% endfor %}
+      </ul>
+
+    <div class="pj-list-header">Collections</div>
+
+    <ul class="pj-list">
+  {% for item in posts_selected %}
+    {% assign item_date = item.date | date: "%m.%y" %}
+      <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item.title }}</li></a>
+  {% endfor %}
+    </ul>
+
+    <li class="pj-list-header">Timeline</li>
+      <ul class="pj-list">
+  {% for item in posts_photojournal %}
+    {% unless item.role %}
+      {% assign item_date = item.date | date: "%m-%y" %}
+        <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item_date }}&nbsp;&nbsp;{{ item.title }}</li></a>
+    {% endunless %}
+  {% endfor %}
+
+      </ul>
     </div>
-    <div class="sep-loc" id="{{ current_location }}">
-      {{ current_location }}
-    </div>
   </div>
-  <div class="left-line-border fj-gallery" id="photoj">
-    <div class="grid-sizer"></div>
-  {% endif %}
+  <div class="scroll-inner-container">
 
-  {% include post-preview.html post=series %}
+  <!-- Published -->
 
-  {% assign last_location = current_location %}
-{% endfor %}
+  {% for item in posts_published %}
+    {% include collection-preview-vert-text.html item=item %}
+  {% endfor %}
+
+  <!-- Selected -->
+
+  {% for item in posts_selected %}
+    {% include collection-preview-vert-text.html item=item %}
+  {% endfor %}
+
+  <!-- Photojournal -->
+
+  {% for item in posts_photojournal %}
+    {% unless item.role %}
+      {% include collection-preview-vert-text.html item=item %}
+    {% endunless %}
+  {% endfor %}
+
+  </div>
 </div>
