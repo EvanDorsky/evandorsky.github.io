@@ -14,12 +14,24 @@ function main(event) {
 
   let isScrollingToPost = false
 
+  // highlight list based on in-view posts
+  m.inView(".collection-post-preview-vert", (el, enterInfo) => {
+    const slug = el.getAttribute("slug")
+    const title = d3.select(`.pj-list-item[slug="${slug}"]`)
+    title.classed("active", true)
+
+    return (leaveInfo) => {
+      title.classed("active", false)
+    }
+  }, { amount: 0.6 })
+
   // document.addEventListener("scroll", () => {
   //   if (!isScrollingToPost) {
   //     scrollerSide.scrollTop = scrollScale(doc.scrollTop)
   //   }
   // })
 
+  // click title to scroll to post
   d3.selectAll(".pj-list-item")
     .on("click", (e) => {
       const slug = e.target.getAttribute("slug")
