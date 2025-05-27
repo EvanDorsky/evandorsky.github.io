@@ -37,7 +37,7 @@
 
 .scroller-sidebar {
   flex: 0 0 auto;
-  width: 15rem;
+  width: 12rem;
 
   @media (pointer: coarse) and (hover: none) {
     display: none;
@@ -83,13 +83,15 @@
   gap: 2rem;
   align-items: center;
 
-  max-width: 30rem;
+  max-width: 35rem;
+  padding: 0 1rem;
 
   flex: 1 1 auto;
   margin: 0 auto;
 
   @media (pointer: coarse) and (hover: none) {
-    max-width: 98vw;
+    max-width: 90vw;
+    padding: 0;
   }
 
   .inner-list {
@@ -776,6 +778,9 @@ footer {
 .test-content {
   position: relative;
 
+  display: flex;
+  flex: 0 1 auto;
+
   img {
     display: block;
     max-width: 100%;
@@ -783,9 +788,6 @@ footer {
     overflow: hidden;
     object-fit: cover;
   }
-
-  display: flex;
-  flex: 0 1 auto;
 
   // background-color: blue;
 }
@@ -852,6 +854,9 @@ footer {
 .collection-post-preview-vert {
   position: relative;
 
+  display: flex;
+  flex: 0 1 auto;
+
   img {
     display: block;
     max-width: 100%;
@@ -863,9 +868,6 @@ footer {
   @media (pointer: coarse) and (hover: none) {
     max-width: 90%;
   }
-
-  display: flex;
-  flex: 0 1 auto;
 
   .metadata-strip {
     position: absolute;

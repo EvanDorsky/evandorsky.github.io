@@ -9,16 +9,16 @@
         ""
     ],
     "camera": [
-        "Ricoh GR10"
+        "Pentax 17"
     ],
     "lens": [
-        "GR Lens 28mm f/2.8"
+        "HD Pentax Lens HF 25mm f/3.5"
     ],
     "lens_specs": [
-        "28mm f/2.8"
+        "25mm f/3.5"
     ],
     "lens_make": [
-        "GR Lens"
+        "HD Pentax Lens HF"
     ],
     "stock": [
         "Kodak Ektachrome 100D 7294"
@@ -38,15 +38,14 @@
         "01",
         "02",
         "03",
-        "04",
-        "05"
+        "04"
     ],
     "lens_dict": {
-        "GR Lens": [
-            "28mm f/2.8"
+        "HD Pentax Lens HF": [
+            "25mm f/3.5"
         ]
     },
-    "lens_summary": "GR Lens 28mm f/2.8",
-    "camera_summary": "Ricoh GR10",
+    "lens_summary": "HD Pentax Lens HF 25mm f/3.5",
+    "camera_summary": "Pentax 17",
     "stock_summary": "Kodak Ektachrome 100D 7294"
 }

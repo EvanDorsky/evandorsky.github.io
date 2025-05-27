@@ -9,22 +9,22 @@
         ""
     ],
     "camera": [
-        "Ricoh GR10"
+        "Pentax UC-1"
     ],
     "lens": [
-        "GR Lens 28mm f/2.8"
+        "Pentax Lens 32mm f/3.5"
     ],
     "lens_specs": [
-        "28mm f/2.8"
+        "32mm f/3.5"
     ],
     "lens_make": [
-        "GR Lens"
+        "Pentax Lens"
     ],
     "stock": [
-        "Kodak Ektachrome 100D 7294"
+        "Fujicolor 400"
     ],
     "speed": [
-        "7294"
+        "400"
     ],
     "category": [
         ""
@@ -42,11 +42,11 @@
         "05"
     ],
     "lens_dict": {
-        "GR Lens": [
-            "28mm f/2.8"
+        "Pentax Lens": [
+            "32mm f/3.5"
         ]
     },
-    "lens_summary": "GR Lens 28mm f/2.8",
-    "camera_summary": "Ricoh GR10",
-    "stock_summary": "Kodak Ektachrome 100D 7294"
+    "lens_summary": "Pentax Lens 32mm f/3.5",
+    "camera_summary": "Pentax UC-1",
+    "stock_summary": "Fujicolor 400"
 }
