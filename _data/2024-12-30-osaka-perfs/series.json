@@ -1,0 +1,55 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Mamiya 645 Pro TL"
+    ],
+    "lens": [
+        "Mamiya Sekor C 80mm f/2.8 N"
+    ],
+    "lens_specs": [
+        "80mm f/2.8 N"
+    ],
+    "lens_make": [
+        "Mamiya Sekor C"
+    ],
+    "stock": [
+        "Fujicolor 400"
+    ],
+    "speed": [
+        "400"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "645"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+    ],
+    "lens_dict": {
+        "Mamiya Sekor C": [
+            "80mm f/2.8 N"
+        ]
+    },
+    "lens_summary": "Mamiya Sekor C 80mm f/2.8 N",
+    "camera_summary": "Mamiya 645 Pro TL",
+    "stock_summary": "Fujicolor 400"
+}
