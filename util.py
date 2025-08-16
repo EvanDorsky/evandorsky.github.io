@@ -242,17 +242,20 @@ def printables():
     "operationName": "PrintsAndMakes",
     "variables": {
         "userId": "977475",
-        "ordering": "-likes_count",
-        "premium": False,
+        "ordering": "",
         "limit": 5
     },
     "query": query
   }
 
+  print("Send printables request")
   response = requests.post(url, headers=headers, json=payload)
+  print(f"Get printables response: {response}")
 
   if response.ok:
     data = response.json()
+    print("Response is ok. Data:")
+    pprint(data)
   else:
     print("Request failed with status code:", response.status_code)
     pprint(response.content)
@@ -261,6 +264,7 @@ def printables():
   for i in data["data"]["prints"]:
     isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
     pub_date = datetime.strptime(i["datePublished"], isoformat)
+    print(i)
 
     feed += [{
       "type": "printable",
@@ -323,14 +327,22 @@ def observable():
 
     author = i["creator"]["login"]
 
+    if i["slug"] != "None":
+        link = "https://observablehq.com/@%s/%s" % (author, i["slug"])
+    else:
+        link = "https://observablehq.com/d/%s" % i["id"]
     feed += [{
       "type": "observable",
       "title": i["title"],
       "date": int(datetime.timestamp(pub_date)),
       "description": "",
       "img": "https://static.observableusercontent.com/thumbnail/%s.jpg" % i["thumbnail"],
-      "link": "https://observablehq.com/@%s/%s" % (author, i["slug"])
+      "link": link
     }]
+
+  print("===============")
+  print("Observable feed")
+  pprint(feed)
 
   return feed
 
@@ -529,7 +541,7 @@ def run_get_feed(args):
       feed = feeds[feedname]["factory"]()
 
       posts += feed
-      
+
       print("loaded %s" % feedname)
     except Exception as e:
       print("Failed to load feed %s: %s" % (feedname, e))
@@ -915,15 +927,15 @@ def run_productize(args):
 
 # "id": id
 # "name": title
-# "desc": 
-# "location": 
+# "desc":
+# "location":
 # "category": category
-# "date": 
+# "date":
 # "camera": camera
 # "lens": lens
 # "stock": stock
 # "active": 1
-# "image": 
+# "image":
 # "format": format
 
 def run_upload(args):
