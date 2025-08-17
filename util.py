@@ -225,10 +225,12 @@ def get_info_dict(exif):
   return res
 
 def printables():
-  url = 'https://api.printables.com/graphql/'
+  url_root = "https://www.printables.com"
+
+  url = f"{url_root}/@EvanDorsky_977475/models"
 
   headers = {
-    "Accept": "application/json, text/plain, */*",
+    "Accept": "text/html",
     "Accept-Language": "en",
     "apollographql-client-version": "v2.62.0",
     "Client-Uid": "ab256d74-436b-4cf7-bc58-227642fd8e30",
@@ -236,44 +238,74 @@ def printables():
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
   }
 
-  with open('assets/util/printables_v2.graphql') as f:
-    query = f.read()
-  payload = {
-    "operationName": "PrintsAndMakes",
-    "variables": {
-        "userId": "977475",
-        "ordering": "",
-        "limit": 5
-    },
-    "query": query
-  }
-
   print("Send printables request")
-  response = requests.post(url, headers=headers, json=payload)
+  response = requests.get(url, headers=headers)
   print(f"Get printables response: {response}")
 
   if response.ok:
-    data = response.json()
-    print("Response is ok. Data:")
-    pprint(data)
+    print("Response is ok")
   else:
     print("Request failed with status code:", response.status_code)
     pprint(response.content)
 
-  feed = []
-  for i in data["data"]["prints"]:
-    isoformat = "%Y-%m-%dT%H:%M:%S.%f%z"
-    pub_date = datetime.strptime(i["datePublished"], isoformat)
-    print(i)
+  soup = BeautifulSoup(response.text, 'html.parser')
 
-    feed += [{
-      "type": "printable",
-      "title": i["name"],
-      "date": int(datetime.timestamp(pub_date)),
-      "description": "",
-      "img": "https://media.printables.com/%s" % i["stls"][0]["filePreviewPath"],
-      "link": "https://www.printables.com/model/%s-%s" % (i["id"], i["slug"])
-    }]
+  feed = []
+
+  models = soup.find_all("article", attrs={"data-testid": "model"})
+  for m in models:
+    # parse each model listing
+    header = m.find("div", class_="card-content")
+    if header:
+      a = header.find("a", class_="h clamp-two-lines")
+      if a:
+        href = a["href"]
+        header_txt = a.get_text()
+        model_url = f"{url_root}{href}"
+
+        # then I need to go fetch the model page
+        model_page = requests.get(model_url, headers=headers)
+
+        if model_page.ok:
+          print("Model response is ok")
+        else:
+          print("Request failed with status code:", response.status_code)
+          continue
+
+        msoup = BeautifulSoup(model_page.text, 'html.parser')
+
+        res = msoup.find_all(attrs={"data-sveltekit-fetched": True})
+        model = None
+        for el in res:
+          data = json.loads(el.text)
+          body = json.loads(data["body"])
+          if "model" in body["data"]:
+            model = body["data"]["model"]
+
+        if model:
+          # possible dates are
+          # modified
+          # firstPublish
+          # datePublished
+
+          pub_date = model["modified"]
+          likesCount = model["likesCount"]
+          previewImg = model["previewFile"]["filePreviewPath"]
+
+          feed += [{
+            "type": "printable",
+            "likes": likesCount,
+            "title": header_txt,
+            "date": int(datetime.fromisoformat(pub_date).timestamp()),
+            "description": "",
+            "img": f"https://media.printables.com/{previewImg}",
+            "link": model_url
+          }]
+        else:
+          print(f"Error: no model for {header_txt}")
+
+  # sort by like count
+  # feed = sorted(feed, key=lambda m: m["likes"], reverse=True)
 
   return feed
 
@@ -355,7 +387,8 @@ def notion():
   feed = []
 
   notion_secret = os.getenv("NOTION_API_KEY")
-  pprint("Notion secret: %s" % notion_secret)
+  # maybe don't print this lol
+  # pprint("Notion secret: %s" % notion_secret)
   headers = {
     'Notion-Version': '2022-06-28',
     'Authorization': "Bearer %s" % notion_secret,
