@@ -4,7 +4,7 @@ I'm a [musician, photographer, engineer] based in San Francisco.
 
 I'm currently the violist in the [Cable Car Quartet](/music){:target="_blank" .key-phrase}, a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, and systems integration tech lead at [SPAN](https://www.span.io){:target="_blank" .key-phrase}. In the fall of 2023 I was a cohort leader for the Stanford [ Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase} course.
 
-I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my s in an understanding of how technology works, and how it gets built in industry.
+I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my exploration in an understanding of how technology works, and how it gets built in industry.
 
 {{ site.features | where:"key","industry" }}
 
