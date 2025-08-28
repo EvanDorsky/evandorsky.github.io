@@ -24,13 +24,12 @@ show-banner: false
 
     {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
 
+    {% assign feed = posts | where: "type", "printable" %}
+    {% include feed.html feed=feed title="Printables" feedname="printable" %}
+
     {% include grid-post.html name="bespoke-chinrest" posts=posts_proj title="Bespoke Violin Chinrest" %}
 
-    {% include grid-post.html name="pentax-17-teardown" posts=posts_proj title="Pentax 17 Teardown" %}
-
     {% include grid-post.html name="picture-frame" posts=posts_proj title="Redwood Frame" %}
-
-    {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="QR Code Cyanotype" %}
 
     {% include grid-post.html name="film-tagger" posts=posts_proj title="Analog Metadata" %}
 
@@ -45,12 +44,12 @@ show-banner: false
 
     <!-- { % include grid-post.html name="full-spectrum-noe" showtitle=true posts=posts_pj title="Infrared Wallpaper Pack" %} -->
 
-    {% assign feed = posts | where: "type", "printable" %}
-    {% include feed.html feed=feed title="Printables" feedname="printable" %}
-
     {% include grid-post.html name="3d-print" posts=posts_proj title="Analog Cameras / Digital Parts" %}
 
     {% assign feed = posts | where: "type", "github" %}
     {% include feed.html feed=feed title="GitHub" feedname="github" %}
+    
+    {% include grid-post.html name="cyanotype-qr" posts=posts_proj title="QR Code Cyanotype" %}
+
 
 </div>
