@@ -763,6 +763,7 @@ def run_series(args):
 
   im_out_path = 'assets/img/posts/%s' % args.name
   md_path = '_photojournal/%s.md' % args.name
+  data_path = '_data/%s' % args.name
 
   input_path = os.path.expanduser(args.input_path)
   input_files = get_input_files(input_path)
@@ -775,6 +776,7 @@ def run_series(args):
       shutil.rmtree(im_out_path)
       if args.action == "remove":
         os.remove(md_path)
+        os.remove(data_path)
     except Exception as e:
       print('Failed to remove series: %s' % e)
     if args.action == "remove":
