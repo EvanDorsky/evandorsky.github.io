@@ -1,0 +1,56 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Yashica-Mat 124G"
+    ],
+    "lens": [
+        "Yashinon 80mm f/3.5"
+    ],
+    "lens_specs": [
+        "80mm f/3.5"
+    ],
+    "lens_make": [
+        "Yashinon"
+    ],
+    "stock": [
+        "Kodak Gold 200"
+    ],
+    "speed": [
+        "200"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "6x6"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+    ],
+    "lens_dict": {
+        "Yashinon": [
+            "80mm f/3.5"
+        ]
+    },
+    "lens_summary": "Yashinon 80mm f/3.5",
+    "camera_summary": "Yashica-Mat 124G",
+    "stock_summary": "Kodak Gold 200"
+}
