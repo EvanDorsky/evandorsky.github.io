@@ -1,7 +1,7 @@
 ---
 layout: show
-title: "Beethoven in a bar (probably)"
-date: "14/11/2025 3:00pm PDT"
+title: "Beethoven in a church (probably)"
+date: "14/11/2025 7:00pm PST"
 venue: "Venue TBD"
 address: ""
 ensemble: "Lily, Alex, Daniel, Evan"

@@ -629,6 +629,13 @@ footer {
   padding: 1rem 0 2rem 0;
   font-size: 0.9rem;
   opacity: 0.5;
+
+  p {
+    margin: 0;
+    padding: 0;
+
+    padding-bottom: 1rem;
+  }
 }
 
 // print store banner
