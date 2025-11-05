@@ -1,14 +1,14 @@
 ---
 layout: show
-title: "Beethoven in a church (probably)"
+title: "Four Quarters Quartet"
 date: "14/11/2025 7:00pm PST"
-venue: "Venue TBD"
-address: ""
-ensemble: "Lily, Alex, Daniel, Evan"
+venue: "tiat"
+address: "151 Powell St, San Francisco"
+ensemble: "Four Quarters Quartet"
 role: "Viola"
 feature: false
 rep: "Beethoven String Quartet no. 15"
-link: "mailto:evan.dorsky@gmail.com?subject=Beethoven%20Concert"
+link: "https://luma.com/swmld1zy"
 tickets: false
 recordings: []
 ---
