@@ -86,7 +86,8 @@ duplicate_documents:
 include:
   - node_modules
 #
-# exclude:
+exclude:
+    - ruby
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

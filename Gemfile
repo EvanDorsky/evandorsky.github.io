@@ -1,4 +1,6 @@
 source "https://rubygems.org"
+# fyi: use Ruby ~3.5.0
+
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
 # file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
@@ -8,6 +10,9 @@ source "https://rubygems.org"
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
 gem "jekyll", "~> 4.3.4"
+
+gem "csv"
+gem "base64"
 
 # manually add webrick for Ruby 3.0.0 support because jekyll still
 # hasn't gotten webrick into their own manifest
