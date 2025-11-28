@@ -8,40 +8,49 @@
 {% endif %}
 
 <div class="music-show {% unless happened %}upcoming{% endunless %}">
-    {% if happened %}
-      <div class="date">{{ s.date | date: "%B %-d" }}</div>
-      <div class="title"><a href="{{ s.url }}">{{ s.title }}</a></div>
-    {% else %}
-      {% if s.stream %}
-        <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p %Z" }}</div>
-      {% else %}
-        <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p" }}</div>
-      {% endif %}
-      <div class="title">{% if s.link != "" %}<a href="{{ s.link }}" target="blank">{% endif %}{{ s.title }}{% if s.link != "" %}</a>{% endif %}</div>
+{% if happened %}
+  <div class="date">{{ s.date | date: "%B %-d" }}</div>
+  <div class="title"><a href="{{ s.url }}">{{ s.title }}</a></div>
+{% else %}
+  {% if s.stream %}
+  <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p %Z" }}</div>
+  {% else %}
+  <div class="date">{{ s.date | date: "%A, %B %-d at %-I:%M %p" }}</div>
+  {% endif %}
+  <div class="title">{% if s.link != "" %}<a href="{{ s.link }}" target="blank">{% endif %}{{ s.title }}{% if s.link != "" %}</a>{% endif %}</div>
+{% endif %}
+  <div class="details">
+    <!-- these detail fields show up for all shows -->
+{% if happened %}
+    <!-- this line unfortunately needs to be duplicated with how this is built right now (see below) -->
+    <div class="venue-container left-line-border-min-justpadding">
+  {% if include.hidefeature == nil and s.feature %}
+    {% assign rec = s.recordings[0] %}
+    {% include youtube.html src=rec %}
+  {% else %}
+    {% if s.recordings.size > 0 %}
+      <div class="link"><a href="{{ s.url }}">Recording</a></div>
     {% endif %}
-    <div class="details">
-      <div class="role">{{ s.rep }}</div>
-      <div class="venue">{{ s.venue }}</div>
-      <div class="venue-container left-line-border-min-justpadding">
-    {% if happened %}
-      {% if include.hidefeature == nil and s.feature %}
-        {% assign rec = s.recordings[0] %}
-        {% include youtube.html src=rec %}
-      {% else %}
-        {% if s.recordings.size > 0 %}<div class="link"><a href="{{ s.url }}">Recordings</a></div>{% endif %}
-      {% endif %}
-    {% else %}
+  {% endif %}
+{% else %} <!-- end "happened" -->
+    <div class="role">{{ s.rep }}</div>
+    <div class="venue">{{ s.venue }}</div>
+    <!-- this line unfortunately needs to be duplicated with how this is built right now (see above) -->
+    <div class="venue-container left-line-border-min-justpadding">
       <div class="address">{{ s.address }}</div>
       <div class="link">
-        
-      {% if s.link != "" %}
-      {% if s.tickets %}
+  {% if s.link != "" %}
+    {% if s.tickets %}
         Tickets:
-        {% else %}
+    {% else %}
         Free:
-        {% endif %} <a href="{{ s.link }}" target="blank">RSVP</a>{% endif %}</div>
-      {% if s.stream %}<div class="link"><a href="{{ s.stream }}" target="blank">Livestream</a></div>{% endif %}
-    {% endif %}
-  </div>
-    </div>
-</div>
+    {% endif %} <a href="{{ s.link }}" target="blank">RSVP</a>
+  {% endif %}
+      </div> <!-- link -->
+  {% if s.stream %}
+      <div class="link"><a href="{{ s.stream }}" target="blank">Livestream</a></div>
+  {% endif %}
+{% endif %}
+    </div> <!-- venue-container -->
+  </div> <!-- details -->
+</div> <!-- music-show -->
