@@ -6,7 +6,7 @@
 {% for item in posts_published %}
   {% unless item.role %}
     {% assign item_date = item.date | date: "%m.%y" %}
-      <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item.title }}</li></a>
+      <a><li class="pj-list-item" uid="{{ item.path }}">{{ item.title }}</li></a>
   {% endunless %}
 {% endfor %}
     </ul>
@@ -16,7 +16,7 @@
   <ul class="pj-list">
 {% for item in posts_selected %}
   {% assign item_date = item.date | date: "%m.%y" %}
-    <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item.title }}</li></a>
+    <a><li class="pj-list-item" uid="{{ item.path }}">{{ item.title }}</li></a>
 {% endfor %}
   </ul>
 
@@ -25,7 +25,7 @@
 {% for item in posts_photojournal %}
   {% unless item.role %}
     {% assign item_date = item.date | date: "%m-%y" %}
-      <a><li class="pj-list-item" slug="{{ item.slug }}">{{ item_date }}&nbsp;&nbsp;{{ item.title }}</li></a>
+      <a><li class="pj-list-item" uid="{{ item.path }}">{{ item_date }}&nbsp;&nbsp;{{ item.title }}</li></a>
   {% endunless %}
 {% endfor %}
 

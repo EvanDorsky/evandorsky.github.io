@@ -4,8 +4,8 @@
   }
 )()
 
-function sidebarScrollToSlug(scrollerSide, slug, duration) {
-  const title = d3.select(`.pj-list-item[slug="${slug}"]`)
+function sidebarScrollToSlug(scrollerSide, uid, duration) {
+  const title = d3.select(`.pj-list-item[uid="${uid}"]`)
   title.classed("active", true)
 
   const target = title.node()
@@ -31,12 +31,12 @@ function main(event) {
 
   // highlight list based on in-view posts
   m.inView(".collection-post-preview-vert", (el, enterInfo) => {
-    const slug = el.getAttribute("slug")
-    const title = d3.select(`.pj-list-item[slug="${slug}"]`)
+    const uid = el.getAttribute("uid")
+    const title = d3.select(`.pj-list-item[uid="${uid}"]`)
     title.classed("active", true)
 
     if (!isScrollingToPost) {
-      sidebarScrollToSlug(scrollerSide, slug, 0.2)
+      sidebarScrollToSlug(scrollerSide, uid, 0.2)
     }
 
     return (leaveInfo) => {
@@ -50,8 +50,8 @@ function main(event) {
   // highlight header too
   // I think this is doing the wrong thing
   m.inView(".inner-list", (el, enterInfo) => {
-    const slug = el.getAttribute("slug")
-    const title = d3.select(`.pj-list-header[slug="${slug}"]`)
+    const uid = el.getAttribute("uid")
+    const title = d3.select(`.pj-list-header[uid="${uid}"]`)
     title.classed("active", true)
 
     return (leaveInfo) => {
@@ -62,9 +62,9 @@ function main(event) {
   // click title to scroll to post
   d3.selectAll(".pj-list-item")
     .on("click", (e) => {
-      const slug = e.target.getAttribute("slug")
+      const uid = e.target.getAttribute("uid")
 
-      const post = d3.select(`.collection-post-preview-vert[slug="${slug}"]`)
+      const post = d3.select(`.collection-post-preview-vert[uid="${uid}"]`)
       const target = post.node()
       const targetPos = target.offsetTop - 25
 
@@ -72,7 +72,7 @@ function main(event) {
       const duration = Math.abs(1e-4 * delta)
 
       isScrollingToPost = true
-      sidebarScrollToSlug(scrollerSide, slug, duration)
+      sidebarScrollToSlug(scrollerSide, uid, duration)
       m.animate(doc.scrollTop, targetPos, {
         duration: duration,
         easing: "ease-in-out",
