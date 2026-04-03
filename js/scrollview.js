@@ -18,6 +18,8 @@ function sidebarScrollToSlug(scrollerSide, uid, duration) {
 }
 
 function main(event) {
+  const transitionDuration = 0.25
+
   const scrollerSide = d3.select(".sidebar-inner-scroll").node()
   const doc = document.documentElement
 
@@ -36,7 +38,7 @@ function main(event) {
     title.classed("active", true)
 
     if (!isScrollingToPost) {
-      sidebarScrollToSlug(scrollerSide, uid, 0.2)
+      sidebarScrollToSlug(scrollerSide, uid, transitionDuration)
     }
 
     return (leaveInfo) => {
@@ -60,6 +62,9 @@ function main(event) {
   }, { margin: scrollDetectMargin })
 
   // click title to scroll to post
+  const scrollContent = d3.select(".scroll-inner-container")
+  const fadeThreshold = 2500 // pixels
+
   d3.selectAll(".pj-list-item")
     .on("click", (e) => {
       const uid = e.target.getAttribute("uid")
@@ -69,18 +74,37 @@ function main(event) {
       const targetPos = target.offsetTop - 25
 
       const delta = doc.scrollTop - targetPos
-      const duration = Math.abs(1e-4 * delta)
 
       isScrollingToPost = true
-      sidebarScrollToSlug(scrollerSide, uid, duration)
-      m.animate(doc.scrollTop, targetPos, {
-        duration: duration,
-        easing: "ease-in-out",
-        onUpdate: latest => doc.scrollTop = latest,
-        onComplete: () => {
-          isScrollingToPost = false
-        }
-      })
+      sidebarScrollToSlug(scrollerSide, uid, transitionDuration)
+
+      if (Math.abs(delta) > fadeThreshold) {
+        // fade out, jump, fade in
+        m.animate(scrollContent.node(), { opacity: 0 }, {
+          duration: transitionDuration,
+          easing: "ease-in",
+          onComplete: () => {
+            doc.scrollTop = targetPos
+            m.animate(scrollContent.node(), { opacity: 1 }, {
+              duration: transitionDuration,
+              easing: "ease-out",
+              onComplete: () => {
+                isScrollingToPost = false
+              }
+            })
+          }
+        })
+      } else {
+        // short distance — smooth scroll as before
+        m.animate(doc.scrollTop, targetPos, {
+          duration: transitionDuration,
+          easing: "ease-in-out",
+          onUpdate: latest => doc.scrollTop = latest,
+          onComplete: () => {
+            isScrollingToPost = false
+          }
+        })
+      }
     })
 
 }
