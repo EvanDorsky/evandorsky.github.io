@@ -19,6 +19,7 @@ import time
 import sqlite3 as sl
 
 # external dependencies
+from bs4 import BeautifulSoup
 import yaml
 import requests
 from html import parser
