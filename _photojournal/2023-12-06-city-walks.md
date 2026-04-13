@@ -5,6 +5,7 @@ n_photos: 8
 key_photo: 6
 title: San Francisco
 subtitle: 
+location: San Francisco
 ---
 
 {% assign photo_index = 1 %}

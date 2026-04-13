@@ -1,10 +1,10 @@
 Hi! I'm Evan.
 
-I'm a [musician, photographer, engineer] based in San Francisco.
+I'm a [musician, photographer, engineer] based in New York.
 
-I'm currently the violist in the [Cable Car Quartet](/music){:target="_blank" .key-phrase}, a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, and systems integration tech lead at [SPAN](https://www.span.io){:target="_blank" .key-phrase}. In the fall of 2023 I was a cohort leader for the Stanford [ Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase} course.
+I'm currently a violist in [Camerata Notturna](https://camerata-notturna.org){:target="_blank" .key-phrase}, a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, and a netcode engineer at [Viam](https://www.viam.com){:target="_blank" .key-phrase}. I was a cohort leader for the Fall 2023 offering of the Stanford [Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase} course.
 
-I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **first-hand experience as an engineer at Apple and other tech companies**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my exploration in an understanding of how technology works, and how it gets built in industry.
+I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **industry experiencek**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my exploration in an understanding of how technology works and how it gets built.
 
 {{ site.features | where:"key","industry" }}
 
@@ -13,6 +13,5 @@ _I draw on my **experience as an educator**{:#teaching .key-phrase} to lead **bo
 {{ site.features | where:"key","teaching" }}
 {{ site.features | where:"key","practical-ee" }}
 
-If you are still reading this, I would love to connect! If you'd like to learn more, you can check out my **[reading list](https://www.notion.so/evandorsky/Media-Technology-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec)**{:.key-phrase}, a living document. You can also contact me [**here**](mailto:evan.dorsky@gmail.com){:.key-phrase}.
+If you are still reading this, I would love to connect! If you'd like to learn more, you can check out my **[reading list](https://www.notion.so/evandorsky/Media-Technology-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec)**{:.key-phrase}, a living document. You can also contact me [here](mailto:evan.dorsky@gmail.com){:.key-phrase}.
 
-[Resume](../assets/file/Dorsky_Resume.pdf){:.key-phrase}

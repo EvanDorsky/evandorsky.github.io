@@ -5,6 +5,7 @@ n_photos: 11
 key_photo: 5
 title: Grandview Park
 subtitle: 
+location: San Francisco
 ---
 
 {% assign photo_index = 1 %}

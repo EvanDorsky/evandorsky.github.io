@@ -8,6 +8,7 @@
 {% assign series_name = namesplit[0] %}
 
 {% assign item_date = include.item.date | date: "%m.%y" %}
+{% assign item_location = include.item.location %}
 
 {% assign l = include.item.link | default: "" %}
 {% if l == "" %}
@@ -28,6 +29,7 @@
       </div>
 
       <div class="metadata">
+        <span class="series-location">{{ item_location }}</span>
         <span class="series-date">{{ item_date }}</span>
         <span class="lens">{{ lens_text }}</span>
         <span class="camera">{{ meta.camera }}</span>
