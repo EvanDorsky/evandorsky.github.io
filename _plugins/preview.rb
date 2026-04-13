@@ -7,8 +7,7 @@ if ENV["PROD"]
       path = page.destination("/")
 
       puts "Attempt to open #{ path }..."
-      f = File.open(path)
-      fd = f.read
+      fd = File.read(path, encoding: 'utf-8')
       puts "Attempt to open #{ path }..."
 
       kit = IMGKit.new(fd,
