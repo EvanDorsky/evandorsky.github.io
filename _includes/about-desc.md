@@ -4,7 +4,7 @@ I'm a [musician, photographer, engineer] based in New York.
 
 I'm currently a violist in [Camerata Notturna](https://camerata-notturna.org){:target="_blank" .key-phrase}, a team member at [Photo Laundry](https://www.instagram.com/photolaundrysf/){:target="_blank" .key-phrase}, and a netcode engineer at [Viam](https://www.viam.com){:target="_blank" .key-phrase}. I was a cohort leader for the Fall 2023 offering of the Stanford [Ethics, Technology + Public Policy for Practitioners](https://online.stanford.edu/courses/soe-xetech0001-ethics-technology-public-policy-practitioners){:target="_blank" .key-phrase} course.
 
-I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **industry experiencek**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my exploration in an understanding of how technology works and how it gets built.
+I am interested in how technology functions as a structuring force – an environment – in the subjective experience of individuals and in society at large. _I leverage my **industry experience**{:#industry .key-phrase}_{:.industry-line .key-line} to ground my exploration in an understanding of how technology works and how it gets built.
 
 {{ site.features | where:"key","industry" }}
 
