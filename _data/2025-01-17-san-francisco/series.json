@@ -1,0 +1,72 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Leitz-Minolta CL",
+        "Ricoh GR1v"
+    ],
+    "lens": [
+        "GR Lens 28mm f/2.8",
+        "Voigtlander 50mm f/2.2 Color-Skopar"
+    ],
+    "lens_specs": [
+        "28mm f/2.8",
+        "50mm f/2.2 Color-Skopar"
+    ],
+    "lens_make": [
+        "GR Lens",
+        "Voigtlander"
+    ],
+    "stock": [
+        "Kentmere 400",
+        "Kodak Double-X",
+        "Kodak TMY"
+    ],
+    "speed": [
+        "400",
+        "Double-X",
+        "TMY"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+    ],
+    "lens_dict": {
+        "GR Lens": [
+            "28mm f/2.8"
+        ],
+        "Voigtlander": [
+            "50mm f/2.2 Color-Skopar"
+        ]
+    },
+    "lens_summary": "GR Lens 28mm f/2.8, Voigtlander 50mm f/2.2 Color-Skopar",
+    "camera_summary": "Leitz-Minolta CL, Ricoh GR1v",
+    "stock_summary": "Kentmere 400, Kodak Double-X, Kodak TMY"
+}
