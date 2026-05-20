@@ -21,6 +21,7 @@
 {% endif %}
   <div class="details">
     <!-- these detail fields show up for all shows -->
+    <div class="role">{{ s.rep }}</div>
 {% if happened %}
     <!-- this line unfortunately needs to be duplicated with how this is built right now (see below) -->
     <div class="venue-container left-line-border-min-justpadding">
@@ -33,7 +34,6 @@
     {% endif %}
   {% endif %}
 {% else %} <!-- end "happened" -->
-    <div class="role">{{ s.rep }}</div>
     <div class="venue">{{ s.venue }}</div>
     <!-- this line unfortunately needs to be duplicated with how this is built right now (see above) -->
     <div class="venue-container left-line-border-min-justpadding">
