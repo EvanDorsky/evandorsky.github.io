@@ -41,10 +41,10 @@
       <div class="link">
   {% if s.link != "" %}
     {% if s.tickets %}
-        Tickets:
+        <a href="{{ s.link }}" target="blank">Tickets</a>
     {% else %}
-        Free:
-    {% endif %} <a href="{{ s.link }}" target="blank">RSVP</a>
+        Free: <a href="{{ s.link }}" target="blank">RSVP</a>
+    {% endif %}
   {% endif %}
       </div> <!-- link -->
   {% if s.stream %}
