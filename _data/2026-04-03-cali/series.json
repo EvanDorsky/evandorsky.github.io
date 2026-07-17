@@ -1,0 +1,64 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Contax TVS II",
+        "Leitz-Minolta CL"
+    ],
+    "lens": [
+        "Carl Zeiss Vario Sonnar 28-56 f/3.5-6.5",
+        "M-Rokkor 40mm f/2"
+    ],
+    "lens_specs": [
+        "40mm f/2",
+        "Vario Sonnar 28-56 f/3.5-6.5"
+    ],
+    "lens_make": [
+        "Carl Zeiss",
+        "M-Rokkor"
+    ],
+    "stock": [
+        "Kodak Ektar 100",
+        "Kodak Portra 400"
+    ],
+    "speed": [
+        "100",
+        "400"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+    ],
+    "lens_dict": {
+        "Carl Zeiss": [
+            "Vario Sonnar 28-56 f/3.5-6.5"
+        ],
+        "M-Rokkor": [
+            "40mm f/2"
+        ]
+    },
+    "lens_summary": "Carl Zeiss Vario Sonnar 28-56 f/3.5-6.5, M-Rokkor 40mm f/2",
+    "camera_summary": "Contax TVS II, Leitz-Minolta CL",
+    "stock_summary": "Kodak Ektar 100, Kodak Portra 400"
+}
