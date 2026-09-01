@@ -3,7 +3,7 @@
 import typing
 import sys, os
 from pprint import pprint
-from subprocess import call, check_output
+from subprocess import call, check_output, run
 from multiprocessing.pool import Pool
 import functools
 import argparse
@@ -1058,6 +1058,65 @@ def run_upload(args):
           print('---------')
           print("%s: %s" % (paymentlink['id'], paymentlink['url']))
 
+def run_emails(args):
+  notion_secret = os.getenv("NOTION_API_KEY")
+  headers = {
+    'Notion-Version': '2022-06-28',
+    'Authorization': "Bearer %s" % notion_secret,
+    "Content-Type": "application/json"
+  }
+
+  # Music Mailing List database
+  db_id = "25ea29765a4d4bd7932e0a146812ca56"
+  url = "https://api.notion.com/v1/databases/%s/query" % db_id
+
+  # only keep local subscribers (Non-Local unchecked) who aren't excluded
+  payload = {
+    "filter": {
+      "and": [
+        {
+          "property": "Non-Local",
+          "checkbox": {
+            "equals": False
+          }
+        },
+        {
+          "property": "Exclude",
+          "checkbox": {
+            "equals": False
+          }
+        }
+      ]
+    }
+  }
+
+  emails = []
+  while True:
+    res = requests.post(url, headers=headers, data=json.dumps(payload))
+    data = res.json()
+    if "results" not in data:
+      print("Notion query failed: %s" % data.get("message", res.text))
+      return
+
+    for page in data["results"]:
+      email = page["properties"]["Email"]["email"]
+      if email:
+        emails.append(email)
+
+    if data.get("has_more"):
+      payload["start_cursor"] = data["next_cursor"]
+    else:
+      break
+
+  out = ", ".join(emails)
+  try:
+    run(["pbcopy"], input=out.encode(), check=True)
+    print("Copied %i emails to clipboard" % len(emails))
+  except Exception as e:
+    with open("emails.txt", "w") as f:
+      f.write(out + "\n")
+    print("Clipboard failed (%s), wrote %i emails to emails.txt" % (e, len(emails)))
+
 def run_photochain(args):
   path = args.path
   dirpath, _ = os.path.split(path)
@@ -1145,6 +1204,11 @@ if __name__ == '__main__':
         '--dryrun': {
           'action': 'store_true'
         }
+      }
+    },
+    'emails': {
+      'func': run_emails,
+      'args': {
       }
     },
     'photo-chain': {
