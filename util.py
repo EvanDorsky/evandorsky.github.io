@@ -226,20 +226,43 @@ def get_info_dict(exif):
 
 def printables():
   url_root = "https://www.printables.com"
+  api_url = "https://api.printables.com/graphql/"
 
-  url = f"{url_root}/@EvanDorsky_977475/models"
+  # the profile page is behind Cloudflare now, so ask the API the site itself uses.
+  # the numeric suffix on the @EvanDorsky_977475 handle is the user id.
+  user_id = "977475"
 
   headers = {
-    "Accept": "text/html",
+    "Accept": "application/json",
     "Accept-Language": "en",
-    "apollographql-client-version": "v2.62.0",
-    "Client-Uid": "ab256d74-436b-4cf7-bc58-227642fd8e30",
     "Content-Type": "application/json",
+    "Origin": url_root,
+    "Referer": f"{url_root}/",
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
   }
 
+  query = """
+    query UserModels($userId: ID!) {
+      userModels(userId: $userId) {
+        items {
+          id
+          name
+          slug
+          modified
+          likesCount
+          image { filePath }
+          previewFile { ... on STLType { filePreviewPath } }
+        }
+      }
+    }
+  """
+
   print("Send printables request")
-  response = requests.get(url, headers=headers)
+  response = requests.post(
+    api_url,
+    json={"query": query, "variables": {"userId": user_id}},
+    headers=headers
+  )
   print(f"Get printables response: {response}")
 
   if response.ok:
@@ -247,62 +270,45 @@ def printables():
   else:
     print("Request failed with status code:", response.status_code)
     pprint(response.content)
+    return []
 
-  soup = BeautifulSoup(response.text, 'html.parser')
+  body = response.json()
+
+  if "errors" in body:
+    print("Printables query failed:")
+    pprint(body["errors"])
+    return []
+
+  models = body["data"]["userModels"]["items"]
 
   feed = []
 
-  models = soup.find_all("article", attrs={"data-testid": "model"})
-  for m in models:
-    # parse each model listing
-    header = m.find("div", class_="card-content")
-    if header:
-      a = header.find("a", class_="h clamp-two-lines")
-      if a:
-        href = a["href"]
-        header_txt = a.get_text()
-        model_url = f"{url_root}{href}"
+  for model in models:
+    # possible dates are
+    # modified
+    # firstPublish
+    # datePublished
 
-        # then I need to go fetch the model page
-        model_page = requests.get(model_url, headers=headers)
+    pub_date = model["modified"]
+    likesCount = model["likesCount"]
 
-        if model_page.ok:
-          print("Model response is ok")
-        else:
-          print("Request failed with status code:", response.status_code)
-          continue
+    # prefer the uploaded photo, fall back to the rendered STL preview
+    img = model.get("image") or model.get("previewFile") or {}
+    img_path = img.get("filePath") or img.get("filePreviewPath")
 
-        msoup = BeautifulSoup(model_page.text, 'html.parser')
+    if not img_path:
+      print(f"Error: no image for {model['name']}")
+      continue
 
-        res = msoup.find_all(attrs={"data-sveltekit-fetched": True})
-        model = None
-        for el in res:
-          data = json.loads(el.text)
-          body = json.loads(data["body"])
-          if "model" in body["data"]:
-            model = body["data"]["model"]
-
-        if model:
-          # possible dates are
-          # modified
-          # firstPublish
-          # datePublished
-
-          pub_date = model["modified"]
-          likesCount = model["likesCount"]
-          previewImg = model["previewFile"]["filePreviewPath"]
-
-          feed += [{
-            "type": "printable",
-            "likes": likesCount,
-            "title": header_txt,
-            "date": int(datetime.fromisoformat(pub_date).timestamp()),
-            "description": "",
-            "img": f"https://media.printables.com/{previewImg}",
-            "link": model_url
-          }]
-        else:
-          print(f"Error: no model for {header_txt}")
+    feed += [{
+      "type": "printable",
+      "likes": likesCount,
+      "title": model["name"],
+      "date": int(datetime.fromisoformat(pub_date).timestamp()),
+      "description": "",
+      "img": f"https://media.printables.com/{img_path}",
+      "link": f"{url_root}/model/{model['id']}-{model['slug']}"
+    }]
 
   # sort by like count
   # feed = sorted(feed, key=lambda m: m["likes"], reverse=True)
