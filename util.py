@@ -250,8 +250,8 @@ def printables():
           slug
           modified
           likesCount
-          image { filePath }
           previewFile { ... on STLType { filePreviewPath } }
+          image { filePath }
         }
       }
     }
@@ -292,9 +292,9 @@ def printables():
     pub_date = model["modified"]
     likesCount = model["likesCount"]
 
-    # prefer the uploaded photo, fall back to the rendered STL preview
-    img = model.get("image") or model.get("previewFile") or {}
-    img_path = img.get("filePath") or img.get("filePreviewPath")
+    # want the render generated from the STL, not the uploaded photo
+    img = model.get("previewFile") or model.get("image") or {}
+    img_path = img.get("filePreviewPath") or img.get("filePath")
 
     if not img_path:
       print(f"Error: no image for {model['name']}")
@@ -346,17 +346,29 @@ def rss_factory(url, blogname):
 
 
 def observable():
+  # the profile page is behind a Vercel checkpoint now, so hit the API it used to
+  # embed in __NEXT_DATA__ - same path, same response shape.
+  url = "https://api.observablehq.com/documents/@dorskyee?page=1&sort=published&direction=desc"
+
+  headers = {
+    "Accept": "application/json",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Safari/605.1.15"
+  }
+
   try:
-    res = requests.get("https://observablehq.com/@dorskyee")
+    res = requests.get(url, headers=headers)
   except Exception as e:
     print("Failed to get page: %s" % e)
+    return []
 
-  soup = BeautifulSoup(res.text, 'html.parser')
+  if not res.ok:
+    print("Request failed with status code:", res.status_code)
+    return []
 
-  data = json.loads(soup.find(id="__NEXT_DATA__").string)
+  data = res.json()
 
   feed = []
-  for i in data["props"]["pageProps"]["fallback"]["/documents/@dorskyee?page=1\u0026sort=published\u0026direction=desc"]["results"]:
+  for i in data["results"]:
     if i["collection_count"] < 1:
       continue
 

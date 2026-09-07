@@ -10,3 +10,4 @@ node_modules
 detectors
 classifiers
 ruby
+__pycache__

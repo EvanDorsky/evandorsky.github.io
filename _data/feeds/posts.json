@@ -2,35 +2,170 @@
     {
         "type": "github",
         "title": "evandorsky.github.io",
-        "date": 1710211878,
+        "date": 1788752407,
         "description": null,
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/evandorsky.github.io",
         "key": "EvanDorsky/evandorsky.github.io"
     },
     {
+        "type": "github",
+        "title": "api",
+        "date": 1788453228,
+        "description": null,
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/api",
+        "key": "EvanDorsky/api"
+    },
+    {
+        "type": "github",
+        "title": "goutils",
+        "date": 1788453215,
+        "description": null,
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/goutils",
+        "key": "EvanDorsky/goutils"
+    },
+    {
+        "type": "github",
+        "title": "eink-transit-time",
+        "date": 1788367079,
+        "description": "Transit time + weather display, learning platformio / esp32",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/eink-transit-time",
+        "key": "EvanDorsky/eink-transit-time"
+    },
+    {
+        "type": "github",
+        "title": "dotfiles",
+        "date": 1785852199,
+        "description": ":wrench: .files, including ~/.macos — sensible hacker defaults for macOS",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/dotfiles",
+        "key": "EvanDorsky/dotfiles"
+    },
+    {
         "type": "observable",
-        "title": "Writing in Emoji",
-        "date": 1709522287,
+        "title": "Why is Color Negative Film Orange?",
+        "date": 1784409813,
         "description": "",
-        "img": "https://static.observableusercontent.com/thumbnail/31049badf823e2a2556c942dfad346514d77e6e0fe66b4345843b4a642ab6c41.jpg",
-        "link": "https://observablehq.com/@dorskyee/emoji-entry"
+        "img": "https://static.observableusercontent.com/thumbnail/82137a18dd092cfeab8f14e5bd3d63dd602b8cf7eafd40f67d2d2c7dc1ec8f84.jpg",
+        "link": "https://observablehq.com/@dorskyee/understanding-color-film"
+    },
+    {
+        "type": "github",
+        "title": "go-winio",
+        "date": 1783535937,
+        "description": "Win32 IO-related utilities for Go",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/go-winio",
+        "key": "EvanDorsky/go-winio"
+    },
+    {
+        "type": "notion",
+        "title": "Pentax 17 Repair Resources",
+        "date": 1782216180,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Pentax-17-Repair-Resources-79d89df6d6674f84b36844f67cb952f2",
+        "key": "Pentax 17 Repair Resources"
+    },
+    {
+        "type": "notion",
+        "title": "Positive Vision of AI [WIP]",
+        "date": 1780669920,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Positive-Vision-of-AI-WIP-356744e6689380e8bec1df6af4ebe6b3",
+        "key": "Positive Vision of AI [WIP]"
+    },
+    {
+        "type": "github",
+        "title": "flight-price-tracker",
+        "date": 1769449368,
+        "description": "fully vibe coded just to see what claude code can do",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/flight-price-tracker",
+        "key": "EvanDorsky/flight-price-tracker"
+    },
+    {
+        "type": "github",
+        "title": "memory-calendar",
+        "date": 1766262325,
+        "description": null,
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/memory-calendar",
+        "key": "EvanDorsky/memory-calendar"
+    },
+    {
+        "type": "github",
+        "title": "digital-negative",
+        "date": 1759642905,
+        "description": "Film effects",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/digital-negative",
+        "key": "EvanDorsky/digital-negative"
+    },
+    {
+        "type": "observable",
+        "title": "Which Tri-State Area?",
+        "date": 1754449459,
+        "description": "",
+        "img": "https://static.observableusercontent.com/thumbnail/1f96dfef8a7723b8dd35efef8ab33c80bc79e8db4089c5b803f354d050496f08.jpg",
+        "link": "https://observablehq.com/@dorskyee/which-tri-state-area"
     },
     {
         "type": "printable",
+        "likes": 136,
+        "title": "Paterson Reel for 4x5 Sheet Film (6 Sheets)",
+        "date": 1745802681,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/bf679241-c431-471a-895a-aee4e3d025a6/previews/ef4a743e00666ff7fa2ca72c2ecaf54850aab97e.png",
+        "link": "https://www.printables.com/model/675499-paterson-reel-for-4x5-sheet-film-6-sheets"
+    },
+    {
+        "type": "notion",
+        "title": "Media + Tech + Ethics Reading List",
+        "date": 1727923860,
+        "description": "",
+        "img": "",
+        "link": "https://evandorsky.notion.site/Media-Tech-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec",
+        "key": "Media + Tech + Ethics Reading List"
+    },
+    {
+        "type": "luckybox",
+        "title": "Looking inside the new Pentax 17",
+        "date": 1723767981,
+        "description": "A brand new film camera: first impressions, repairability, and the future",
+        "img": "https://substack-post-media.s3.amazonaws.com/public/images/7fa3675f-e6ad-400e-9c89-f639cbc0d1aa_3464x2309.jpeg",
+        "link": "https://luckybox.substack.com/p/looking-inside-the-new-pentax-17"
+    },
+    {
+        "type": "github",
+        "title": "image-classification",
+        "date": 1713322954,
+        "description": "Scratchpad messing with pretrained yolo models",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/image-classification",
+        "key": "EvanDorsky/image-classification"
+    },
+    {
+        "type": "printable",
+        "likes": 13,
+        "title": "Ricoh GR III/x Filter Mount",
+        "date": 1713030212,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/842668/previews/c14c452cf50062c5d65b570681c5a8b976c2d329.png",
+        "link": "https://www.printables.com/model/842668-ricoh-gr-iiix-filter-mount"
+    },
+    {
+        "type": "printable",
+        "likes": 14,
         "title": "Paterson Reel for 3x4 Sheet Film (6 Sheets)",
         "date": 1704426523,
         "description": "",
         "img": "https://media.printables.com/media/prints/701607/stls/5507335_f7e20505-635b-49ef-bb7f-61ca1268e85b_ca1b8bdd-1c45-421f-b448-f8ea48765298/bottom3x4_preview.png",
         "link": "https://www.printables.com/model/701607-paterson-reel-for-3x4-sheet-film-6-sheets"
-    },
-    {
-        "type": "printable",
-        "title": "Paterson Reel for 4x5 Sheet Film (6 Sheets)",
-        "date": 1704077531,
-        "description": "",
-        "img": "https://media.printables.com/media/prints/675499/stls/5439207_887232e7-df70-4a23-9b39-da87af4bdd1e_4196017e-3b94-4430-8d86-94e2a6184112/reel_bottom_4x5_preview.png",
-        "link": "https://www.printables.com/model/675499-paterson-reel-for-4x5-sheet-film-6-sheets"
     },
     {
         "type": "notion",
@@ -70,6 +205,7 @@
     },
     {
         "type": "printable",
+        "likes": 13,
         "title": "CS-LITE to NS Basic 120 Carrier Mk 1 for Film Scanning",
         "date": 1698605638,
         "description": "",
@@ -77,16 +213,8 @@
         "link": "https://www.printables.com/model/630725-cs-lite-to-ns-basic-120-carrier-mk-1-for-film-scan"
     },
     {
-        "type": "notion",
-        "title": "Media + Tech + Ethics Reading List",
-        "date": 1698348240,
-        "description": "",
-        "img": "",
-        "link": "https://evandorsky.notion.site/Media-Tech-Ethics-Reading-List-0b0313d881a94612bf6bbc344b7e07ec",
-        "key": "Media + Tech + Ethics Reading List"
-    },
-    {
         "type": "printable",
+        "likes": 47,
         "title": "35mm Film Adapter for 120 Medium Format Cameras",
         "date": 1697830246,
         "description": "",
@@ -112,6 +240,15 @@
         "key": "Film Camera Guide for Beginners"
     },
     {
+        "type": "printable",
+        "likes": 169,
+        "title": "35mm Film Carrier for Full Border DSLR Scanning + Riser Kit for CS-LITE Light Source",
+        "date": 1692589979,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/559272/stls/4483605_f507948b-da16-43de-b63e-5d05c1a10fef/base_preview.png",
+        "link": "https://www.printables.com/model/559272-35mm-film-carrier-for-full-border-dslr-scanning-ri"
+    },
+    {
         "type": "github",
         "title": "3dprint-gcode-speedup",
         "date": 1691876315,
@@ -128,14 +265,6 @@
         "img": "",
         "link": "https://evandorsky.notion.site/San-Francisco-Spots-44e5421851b646bfb90e241dba092e3c",
         "key": "San Francisco Spots"
-    },
-    {
-        "type": "observable",
-        "title": "Why is Color Negative Film Orange?",
-        "date": 1688624331,
-        "description": "",
-        "img": "https://static.observableusercontent.com/thumbnail/83ab7b752968f6d9b3dda2416e08a9966ce62025e8de5a39ead6c4a0606d0f3c.jpg",
-        "link": "https://observablehq.com/@dorskyee/understanding-color-film"
     },
     {
         "type": "notion",
@@ -155,6 +284,24 @@
         "link": "https://observablehq.com/@dorskyee/digitizing-110-film"
     },
     {
+        "type": "printable",
+        "likes": 80,
+        "title": "35mm Film Roll Holder",
+        "date": 1687542092,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/511758/stls/4146797_c065e80b-3952-4335-bc98-b2df33365625/35mm-roll-holder_preview.png",
+        "link": "https://www.printables.com/model/511758-35mm-film-roll-holder"
+    },
+    {
+        "type": "printable",
+        "likes": 17,
+        "title": "SR44 to PX625 Battery Adapter",
+        "date": 1687540237,
+        "description": "",
+        "img": "https://media.printables.com/media/prints/511709/stls/4146260_10a032b0-f611-44f1-863c-5ebed479333e/230623-sr44-to-625-adapter_preview.png",
+        "link": "https://www.printables.com/model/511709-sr44-to-px625-battery-adapter"
+    },
+    {
         "type": "github",
         "title": "audio-vis",
         "date": 1686627684,
@@ -164,18 +311,9 @@
         "key": "EvanDorsky/audio-vis"
     },
     {
-        "type": "github",
-        "title": "obsidian-things",
-        "date": 1681445804,
-        "description": "Obsidian theme based on the Things theme",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/obsidian-things",
-        "key": "EvanDorsky/obsidian-things"
-    },
-    {
         "type": "luckybox",
         "title": "Flat-Field Correction for DSLR Scanning",
-        "date": 1680185138,
+        "date": 1680242738,
         "description": "Improve color accuracy and reduce vignetting &#8211; even on existing scans",
         "img": "https://substack-post-media.s3.amazonaws.com/public/images/489db140-deb5-4832-b6dd-6259f3880d8a_1121x1500.jpeg",
         "link": "https://luckybox.substack.com/p/flat-field-correction-for-dslr-scanning"
@@ -183,7 +321,7 @@
     {
         "type": "luckybox",
         "title": "Mini Deep Dive: The Noritsu HS-1800",
-        "date": 1680008235,
+        "date": 1680065835,
         "description": "Entry 1.3: returning to the lab grade film scanner",
         "img": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F728c8e37-711e-44c0-b56b-191ae916dc94_1600x1200.jpeg",
         "link": "https://luckybox.substack.com/p/mini-deep-dive-the-noritsu-hs-1800"
@@ -191,15 +329,15 @@
     {
         "type": "luckybox",
         "title": "Scanning Film with the Pentax K-1",
-        "date": 1679916414,
+        "date": 1679974014,
         "description": "Lucky Box entry 1.2: how I scan medium format film at home",
-        "img": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a196919-a321-4eaf-9ab4-f3f75ef1fbd2_4032x3024.jpeg",
+        "img": "https://substackcdn.com/image/fetch/$s_!R9XO!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a196919-a321-4eaf-9ab4-f3f75ef1fbd2_4032x3024.jpeg",
         "link": "https://luckybox.substack.com/p/scanning-film-with-the-pentax-k-1"
     },
     {
         "type": "luckybox",
         "title": "Revisiting an Old Negative",
-        "date": 1679908466,
+        "date": 1679966066,
         "description": "Lucky Box entry 1, the beginning of a mini-series on scanning film at home",
         "img": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98f33168-81cb-48ff-ba10-8ec0fc4ce5f2_1103x1500.jpeg",
         "link": "https://luckybox.substack.com/p/revisiting-an-old-negative"
@@ -207,26 +345,17 @@
     {
         "type": "luckybox",
         "title": "Welcome to the Lucky Box!",
-        "date": 1677835463,
+        "date": 1677896663,
         "description": "Or &#12472;&#12515;&#12531;&#12463;&#21697; &#8211; it's up to you.",
-        "img": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b079655-44d7-4d1a-a291-8470df452aea_2542x2542.jpeg",
+        "img": "https://substackcdn.com/image/fetch/$s_!zoS9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b079655-44d7-4d1a-a291-8470df452aea_2542x2542.jpeg",
         "link": "https://luckybox.substack.com/p/coming-soon"
-    },
-    {
-        "type": "github",
-        "title": "obsidian-instagram-links",
-        "date": 1675716951,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/obsidian-instagram-links",
-        "key": "EvanDorsky/obsidian-instagram-links"
     },
     {
         "type": "mariner",
         "title": "Coming soon",
-        "date": 1672057167,
-        "description": "&#8220;The sailor in his story The Maelstrom is at first paralyzed with horror. But in his very paralysis there is another fascination which emerges, a power of detached observation which becomes a &#8220;scientific&#8221; interest in the action of the strom. And this provides the means of escape.&#8221;",
-        "img": "https://substackcdn.com/image/fetch/w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F325a9f31-d3bd-4024-9fcc-9605947fe253_498x498.png",
+        "date": 1672118367,
+        "description": "&#8220;The sailor in his story The Maelstrom is at first paralyzed with horror.",
+        "img": "https://substackcdn.com/image/fetch/$s_!yH8l!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F325a9f31-d3bd-4024-9fcc-9605947fe253_498x498.png",
         "link": "https://mariner.substack.com/p/coming-soon"
     },
     {
@@ -246,24 +375,6 @@
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/110-notebook",
         "key": "EvanDorsky/110-notebook"
-    },
-    {
-        "type": "github",
-        "title": "dotfiles",
-        "date": 1603905256,
-        "description": ":wrench: .files, including ~/.macos — sensible hacker defaults for macOS",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/dotfiles",
-        "key": "EvanDorsky/dotfiles"
-    },
-    {
-        "type": "github",
-        "title": "optics-sim",
-        "date": 1528174858,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/optics-sim",
-        "key": "EvanDorsky/optics-sim"
     },
     {
         "type": "github",
@@ -303,15 +414,6 @@
     },
     {
         "type": "github",
-        "title": "miniproject-1",
-        "date": 1453741211,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/miniproject-1",
-        "key": "EvanDorsky/miniproject-1"
-    },
-    {
-        "type": "github",
         "title": "family-tree",
         "date": 1451696228,
         "description": null,
@@ -348,30 +450,12 @@
     },
     {
         "type": "github",
-        "title": "mygithubpage",
-        "date": 1428357341,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/mygithubpage",
-        "key": "EvanDorsky/mygithubpage"
-    },
-    {
-        "type": "github",
         "title": "do-ruleof3s",
         "date": 1427258267,
         "description": null,
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/do-ruleof3s",
         "key": "EvanDorsky/do-ruleof3s"
-    },
-    {
-        "type": "github",
-        "title": "olinjs-hw6-soln",
-        "date": 1424464813,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/olinjs-hw6-soln",
-        "key": "EvanDorsky/olinjs-hw6-soln"
     },
     {
         "type": "github",
@@ -399,24 +483,6 @@
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/flaskBayes",
         "key": "EvanDorsky/flaskBayes"
-    },
-    {
-        "type": "github",
-        "title": "oCal",
-        "date": 1413865574,
-        "description": "A centralized Olin calendar for planning meetings and viewing when people are free. Pulls data from Exchange Web Services and [potentially, with authorization] Google Calendar.",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/oCal",
-        "key": "EvanDorsky/oCal"
-    },
-    {
-        "type": "github",
-        "title": "ourtubes",
-        "date": 1388622305,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/ourtubes",
-        "key": "EvanDorsky/ourtubes"
     },
     {
         "type": "github",
