@@ -14,9 +14,9 @@ captions: [
 ]
 ---
 
-I programmed an eInk display to show when the next trains and buses are coming to the stops nearest me. Now I know whether to leave now or wait for the next train, whether I have time to grab a coffee on my way to work, whether the C train is horribly delayed after the next one and so I'd better not miss it, etc.
+I programmed an eInk display to show when the next trains and buses are coming to the stops by my apartment. Now I know whether to leave now or wait for the next train, whether I have time to grab a coffee on my way to work, whether the C train is horribly delayed after the next one and so I'd better not miss it, etc.
 
-This display (which now lives next to my front door) is so useful that I was using it to time my commute from the moment it started displaying train times, while it was still sitting on my desk.
+This display (which lives next to my front door) is so useful that I was using it to time my commute from the moment it started displaying train times, while it was still sitting on my desk.
 
 Over time I've added features like weather conditions and rain indicators, "commute mode" (activates on weekday mornings and shows the next train to work in a large font so I can read it from across the room), and "flight mode" (which shows various ways to get to JFK with live estimates of how long each will take).
 
