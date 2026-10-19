@@ -1008,6 +1008,14 @@ footer {
 
 .project-text {
   flex: 1 0 40rem;
+
+  // Phones: the fixed 40rem (640px) column overflowed the screen instead of
+  // wrapping (and let iOS inflate the text), so let it shrink to fit there
+  @media (pointer: coarse) and (hover: none) {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 1rem;
+  }
 }
 
 .post-preview {
