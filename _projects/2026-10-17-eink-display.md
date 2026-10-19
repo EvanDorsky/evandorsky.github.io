@@ -29,7 +29,7 @@ The code includes hooks for receiving weather reports and alerts from Home Assis
 
 ### Background
 
-The C train is one of the [least reliable](https://howbadisthetrain.com/line/c) train lines in New York, and it runs every 10-15 minutes on a good day. I only live a two minute walk from the nearest station, so I'd rather leave the house about 5 minutes before the next train, but I don't want to pull out my phone and open an app just to see when I should leave.
+The C train is one of the [least reliable](https://howbadisthetrain.com/line/c) train lines in New York, and it runs every 10-15 minutes on a good day. I only live a 2 minute walk from the nearest station, so I'd rather leave the house about 5 minutes before the next train, but I don't want to pull out my phone and open an app just to see when I should leave.
 
 I also wanted something that would fade into the background when I didn't need it, so I chose eInk over the [bright and colorful LED signs](https://www.nytransitmuseumstore.com/small-led-countdown-clock.html) that are on the market.
 
