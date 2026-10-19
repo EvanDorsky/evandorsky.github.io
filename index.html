@@ -1,7 +1,7 @@
 ---
 layout: page-wide
 jumbotron: false
-title: Workshop
+title: Home
 navbar: true
 navbar-order: 0
 show-banner: false
@@ -23,6 +23,8 @@ show-banner: false
     {% include feed.html feed=posts_music title="Concerts" feedname="music" max_posts=1 feature_first=true customlayout="music-show.html" %}
 
     {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
+
+    {% include grid-post.html name="eink-display" posts=posts_proj title="Home Transit Display" %}
 
     {% assign feed = posts | where: "type", "printable" %}
     {% include feed.html feed=feed title="Printables" feedname="printable" %}
