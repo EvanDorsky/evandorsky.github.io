@@ -15,20 +15,20 @@ no_wrapper: true
 <div class="article-container">
   {% unless page.hide_metadata %}
   <div class="article-title">
-    <h2>{{ page.title }}</h3>
+    <h2>{{ page.title }}</h2>
     <span class="post-date">{{ page.date | date: "%B %Y" }}</span>
   </div>
   {% endunless %}
 
   <div class="project-wrapper">
 
-    <div class="project-text">
-      {{ content }}
-    </div>
-
     {% assign post = site.projects | where: "slug", page.slug %}
     {% assign post = post[0]%}
     {% include scroller.html id="project" template="post-post-preview" items=post n_items=post.n_photos %}
+
+    <div class="project-text">
+      {{ content }}
+    </div>
 
   </div>
 </div>
