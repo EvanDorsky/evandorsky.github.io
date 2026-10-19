@@ -234,6 +234,7 @@ function carouselSelect(cn, idx) {
   // console.log(d3.select(items).classed('active'))
 
   var activeItems = el.selectAll(".scroller-item.active")
+    .filter(function () { return this !== item })
   console.log('1. select activeItems')
   console.log(activeItems._groups[0])
   if (activeItems) {
@@ -242,6 +243,7 @@ function carouselSelect(cn, idx) {
   }
   console.log('3. set new item activating')
   console.log(item)
+  d3.select(item).classed('hiding', false)
   d3.select(item).classed('activating', true)
 
   setTimeout(function () {
@@ -254,8 +256,10 @@ function carouselSelect(cn, idx) {
   setTimeout(function () {
     console.log('4. unset activeItems hiding')
     console.log(activeItems)
-    activeItems.classed('hiding', false)
-    activeItems.classed('active', false)
+    var current = items.nodes()[c.idx]
+    var staleItems = activeItems.filter(function () { return this !== current })
+    staleItems.classed('hiding', false)
+    staleItems.classed('active', false)
   }, 500)
   
 
