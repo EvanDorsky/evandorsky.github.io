@@ -334,78 +334,92 @@ function click(e) {
   displayImg(lastPhotoID, ".last-photo")
 }
 
+function locationName(loc) {
+  return loc.subneighborhood || loc.neighborhood || loc.city || loc.prefecture
+}
+
+function locationCoords(loc) {
+  for (const name of [loc.subneighborhood, loc.neighborhood, loc.city]) {
+    if (name && window.japanLocations[name]) {
+      return [window.japanLocations[name].lon, window.japanLocations[name].lat]
+    }
+  }
+  let ken = mapGetKen(window.mapKenFeatures, loc.prefecture)
+  return ken ? d3.geoCentroid(ken) : null
+}
+
+function walkCities(gh) {
+  let cities = new Map()
+  for (let e of gh) {
+    let name = e.location.city || e.location.prefecture
+    let key = `${e.location.prefecture}/${name}`
+    if (!cities.has(key)) {
+      cities.set(key, {
+        name: name,
+        location: e.location
+      })
+    }
+  }
+  return Array.from(cities.values())
+}
+
+function walkDistanceKm(gh) {
+  const earthRadiusKm = 6371
+  let coords = gh.map(e => locationCoords(e.location)).filter(c => c)
+  let total = 0
+  for (let i = 1; i < coords.length; i++) {
+    total += d3.geoDistance(coords[i-1], coords[i]) * earthRadiusKm
+  }
+  return total
+}
+
 function walkEnd() {
   console.log('=============WALK COMPLETE============')
   let gh = window.galleryHistory
 
-  // objects used as transitions
-  let objects = gh.map(e => e.reason)
-  let objsByFreq = {}
-  for (let obj of objects) {
-    if (obj == "NONE") {
-      continue
-    }
-    if (obj in objsByFreq) {
-      objsByFreq[obj] += 1
-    } else {
-      objsByFreq[obj] = 1
-    }
-  }
+  d3.select(".sidebar-container").classed("walk-complete", true)
 
-  console.log('objsByFreq')
-  console.log(objsByFreq)
+  let cities = walkCities(gh)
+  let prefectures = new Set(gh.map(e => e.location.prefecture))
 
-  // populate locations
-  let locs = gh.map(e => e.location)
-  let locSet = new Set(locs)
+  let km = walkDistanceKm(gh)
+  let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
+  d3.select(".distance-km").text(fmt(km))
+  d3.select(".distance-mi").text(`(${fmt(km * 0.621371)} mi)`)
 
-  let locSets = {}
-  for (let key in locs[0]) {
-    locSets[key] = new Set(locs.map(l => l[key]))
-  }
+  d3.select(".summary-counts").text(`${gh.length} ${gh.length == 1 ? "photo" : "photos"}`)
 
-  console.log('locSets')
-  console.log(Object.entries(locSets))
+  d3.select(".summary-prefectures .prefecture-list").text(Array.from(prefectures).join(", "))
 
-  let locDataDisplay = Object.entries(locSets)
-      .filter(d => [
-        "region",
-        "prefecture",
-        "city"
-      ].includes(d[0]))
+  d3.select(".summary-stops")
+    .selectAll("li").data(cities)
+    .enter()
+    .append("li")
+    .attr("title", d => d.location.prefecture)
+    .text(d => d.name)
 
-  d3.select(".main-photo").style("display", "none")
-  d3.select(".last-photo").classed("inactive", true)
+  mapSetup("#summary-map")
+  prefectures.forEach(ken => {
+    d3.select(`#summary-map .ken.${ken}`).classed("visitedKen", true)
+  })
 
   let s = d3.select(".summary")
-  s.select(".location")
-    .selectAll("div").data(locDataDisplay)
+  let items = s.select(".fj-gallery")
+    .selectAll("div").data(gh)
     .enter()
     .append("div")
-    .text(d => Array.from(d[1].values()).join(", "))
-    var res = d3.select(".summary").select(".location")
-
-  // populate gallery
-  let ghO = Object.entries(gh)
-  // s.select(".gallery")
-  // .selectAll("img").data(ghO)
-  // .enter()
-  // .append("img")
-  // .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
-
-  let node = d3.select(".photo-template").node()
-  console.log('node')
-  console.log(node)
-
-  let divs = s.select(".fj-gallery")
-  .selectAll("div").data(ghO)
-  .enter()
-
-  // divs.append("photo-modal-bg")
-  divs.insert("div")
     .attr("class", "fj-gallery-item")
-    .append("img")
-    .attr("src", d => `/assets/img/posts/${window.pageName}/${d[1].id}.webp`)
+
+  items.append("img")
+    .attr("src", d => `/assets/img/posts/${window.pageName}/${d.id}.webp`)
+
+  items.append("div")
+    .attr("class", "summary-photo-label")
+    .text(d => {
+      let name = locationName(d.location)
+      let city = d.location.city
+      return city && city != name ? `${name}, ${city}` : name
+    })
 
   gallerySetup()
 }
@@ -459,23 +473,23 @@ function mapGetKen(array, name) {
 
 function mapDeselectAll() {
   // deselect all
-  d3.selectAll(".ken").classed("activeKen", false)
-  d3.selectAll(".ken").classed("activeRegion", false)
+  d3.selectAll("#japan-map .ken").classed("activeKen", false)
+  d3.selectAll("#japan-map .ken").classed("activeRegion", false)
 }
 
 function mapSelectKen(ken) {
-  d3.select(`.${ken}`).classed("activeKen", true)
+  d3.select(`#japan-map .ken.${ken}`).classed("activeKen", true)
 }
 
 function mapSelectRegion(region) {
   const kens = window.japanRegions[region]
 
   kens.forEach(ken => {
-    d3.select(`.${ken}`).classed("activeRegion", true)
+    d3.select(`#japan-map .ken.${ken}`).classed("activeRegion", true)
   })
 }
 
-function mapSetup() {
+function mapSetup(containerSel="#japan-map") {
   console.log('do map setup!')
   // TODO: "window.japan" is embedded in the page by jekyll
   //       maybe better to load it async
@@ -484,7 +498,7 @@ function mapSetup() {
   // var width = 300
   // var height = 300
 
-  var svg = d3.select("#japan-map").append("svg")
+  var svg = d3.select(containerSel).append("svg")
     .attr("width", "100%")
     .attr("height", "100%");
 
@@ -509,6 +523,7 @@ function mapSetup() {
   window.mapJapanSimp = topojson.filter(window.mapJapanSimp, topojson.filterAttachedWeight(window.mapJapanSimp, 1))
 
   var subunits = topojson.feature(window.mapJapanSimp, window.mapJapanSimp.objects.japan);
+  window.mapKenFeatures = subunits.features
 
   var g = svg.append('g');
 
@@ -605,5 +620,15 @@ function main(event) {
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
 
-  // mockFinish()
+  d3.select('.sidebar-container')
+    .on("mousedown", (e) => {
+      if (e.detail > 1) {
+        e.preventDefault()
+      }
+    })
+
+  if (new URLSearchParams(window.location.search).has("mock")) {
+    mockFinish()
+    walkEnd()
+  }
 }
