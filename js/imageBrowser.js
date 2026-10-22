@@ -727,16 +727,20 @@ function walkEnd() {
       img.setAttribute("width", img.naturalWidth)
       img.setAttribute("height", img.naturalHeight)
     })
-    gallerySetup()
-    d3.select(".summary-gallery").classed("ready", true)
+    let justified = false
+    gallerySetup(() => {
+      if (justified || walkID != window.walkID) return
+      justified = true
 
-    clearTimeout(panelTimer)
-    startPanel()
-    walkTransitionLand(flyers)
+      d3.select(".summary-gallery").classed("ready", true)
+      clearTimeout(panelTimer)
+      startPanel()
+      walkTransitionLand(flyers)
+    })
   })
 }
 
-function gallerySetup() {
+function gallerySetup(onJustify=null) {
   var galleryRowTol = 0.3
   if (window.galleryRowTol) {
     galleryRowTol = window.galleryRowTol
@@ -771,7 +775,8 @@ function gallerySetup() {
       rowHeight: info.row_height,
       rowHeightTolerance: galleryRowTol,
       lastRow: galleryLastRow,
-      calculateItemsHeight: true
+      calculateItemsHeight: true,
+      onJustify: onJustify
     });
     console.log('res')
     console.log(res)
