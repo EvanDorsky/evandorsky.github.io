@@ -782,6 +782,10 @@ function walkEnd() {
   let sources = walkTransitionSources()
   d3.select(".sidebar-container").classed("walk-complete", true)
 
+  let newWalk = document.querySelector(".new-walk")
+  newWalk.disabled = true
+  setTimeout(() => newWalk.disabled = false, 1000)
+
   let cities = walkCities(gh)
   let prefectures = new Set(gh.map(e => e.location.prefecture))
   let regions = new Set(gh.map(e => e.location.region))

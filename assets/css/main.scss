@@ -1882,6 +1882,11 @@ div.walk-flyer img {
   &:hover, &:focus-visible {
     color: rgba(var(--text-color-rgb), 0.5);
   }
+
+  &:disabled {
+    color: var(--text-color);
+    cursor: default;
+  }
 }
 
 .main-photo {
