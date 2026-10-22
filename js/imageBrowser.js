@@ -560,13 +560,13 @@ function walkTransitionSources() {
 
   let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
   if (!d3.select(".last-photo").classed("inactive")) {
-    photos.push({ sel: ".last-photo img", offset: 1, opacity: 0.7, fade: true })
+    photos.push({ sel: ".last-photo-frame", offset: 1, opacity: 0.7, fade: true })
   }
 
   return {
     photos: photos.map(p => {
-      let img = document.querySelector(p.sel)
-      return { ...p, src: img.getAttribute("src"), rect: imgContentRect(img) }
+      let el = document.querySelector(p.sel)
+      return { ...p, el, rect: imgContentRect(el) }
     }),
     panel: WALK_PAIRS.map(([walk, summary, align]) => ({ from: walkRect(walk), to: summary, align }))
   }
@@ -591,9 +591,9 @@ function walkTransitionPanel(sources) {
 
 function walkTransitionFlyers(sources) {
   return sources.photos.map(p => {
-    let img = document.createElement("img")
+    let img = p.fade ? p.el.cloneNode(true) : document.createElement("img")
     img.className = "walk-flyer"
-    img.src = p.src
+    if (!p.fade) img.src = p.el.getAttribute("src")
     Object.assign(img.style, rectStyle(p.rect), { opacity: p.opacity })
     document.body.appendChild(img)
     return { ...p, img }
@@ -627,6 +627,8 @@ function walkTransitionLand(flyers) {
     anim.finished.then(() => {
       item.style.visibility = ""
       f.img.remove()
+      let label = item.querySelector(".photo-label")
+      if (label) window.walkAnimations.push(label.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, easing: WALK_EASE }))
     }).catch(() => {})
   })
 }
@@ -703,7 +705,7 @@ function walkEnd() {
     .attr("src", d => `/assets/img/posts/${window.pageName}/thumb/${d.id}.webp`)
 
   items.append("div")
-    .attr("class", "summary-photo-label")
+    .attr("class", "photo-label")
     .text(d => {
       let name = locationName(d.location)
       let city = d.location.city
