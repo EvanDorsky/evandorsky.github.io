@@ -1808,6 +1808,16 @@ div.walk-flyer img {
   }
 }
 
+#japan-map path.ken {
+  fill: rgba(0, 0, 0, 0);
+  stroke: rgba(0, 0, 0, 0);
+  transition: fill var(--walk-fade), stroke var(--walk-fade);
+}
+
+.text-ghost {
+  pointer-events: none;
+}
+
 #japan-map, #summary-map {
   width: 100%;
   svg {

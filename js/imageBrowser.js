@@ -115,6 +115,9 @@ function shuffleArray(arr) {
 window.galleryHistory = []
 window.walkAnimations = []
 
+const WALK_FADE = 520
+document.documentElement.style.setProperty("--walk-fade", `${WALK_FADE}ms`)
+
 function galleryHistoryGetFromEnd(offset=0) {
   let len = window.galleryHistory.length
 
@@ -179,7 +182,7 @@ function photoSwap(el, src, fade, container) {
   next.decode().catch(() => {}).then(() => {
     if (el.photoSwapToken != token) return
 
-    container.querySelectorAll(".photo-ghost:not(.photo-date)").forEach(g => g.remove())
+    container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
     unit.getAnimations().forEach(a => a.cancel())
 
     let base = parseFloat(getComputedStyle(unit).opacity)
@@ -298,10 +301,10 @@ function objectName(category) {
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  photoDateShow(imgID)
-  d3.select(".sidebar .region").text(loc.region)
-  d3.select(".sidebar .prefecture").text(loc.prefecture)
-  d3.select(".sidebar .city").text(loc.city || loc.prefecture)
+  textCrossfade(document.querySelector(".main-photo .photo-date"), photoDate(imgID))
+  textCrossfade(document.querySelector(".sidebar .region"), loc.region)
+  textCrossfade(document.querySelector(".sidebar .prefecture"), loc.prefecture)
+  textCrossfade(document.querySelector(".sidebar .city"), loc.city || loc.prefecture)
 
   mapDeselectAll()
   mapSelectRegion(mapRegion(loc.prefecture))
@@ -463,9 +466,7 @@ function photoDate(imgID) {
   })
 }
 
-function photoDateShow(imgID) {
-  let el = document.querySelector(".main-photo .photo-date:not(.photo-ghost)")
-  let text = photoDate(imgID)
+function textCrossfade(el, text) {
   if (el.textContent == text) return
 
   if (walkReducedMotion() || !el.textContent) {
@@ -473,15 +474,24 @@ function photoDateShow(imgID) {
     return
   }
 
-  el.parentNode.querySelectorAll(".photo-date.photo-ghost").forEach(g => g.remove())
+  el.parentNode.querySelectorAll(".text-ghost").forEach(g => g.remove())
   el.getAnimations().forEach(a => a.cancel())
 
   let ghost = el.cloneNode(true)
-  ghost.classList.add("photo-ghost")
-  el.before(ghost)
+  ghost.classList.add("text-ghost")
+  if (getComputedStyle(el).position != "absolute") {
+    Object.assign(ghost.style, {
+      position: "absolute",
+      left: `${el.offsetLeft}px`,
+      top: `${el.offsetTop}px`,
+      width: `${el.offsetWidth}px`,
+      margin: 0
+    })
+  }
+  el.after(ghost)
   el.textContent = text
 
-  let opts = { duration: 650, easing: WALK_EASE }
+  let opts = { duration: WALK_FADE, easing: WALK_EASE }
   el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
   ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
     .finished.then(() => ghost.remove()).catch(() => {})
