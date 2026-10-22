@@ -607,13 +607,8 @@ function walkTransitionFlyers(sources) {
 function walkTransitionLand(flyers) {
   let items = d3.selectAll(".summary-gallery .fj-gallery-item").nodes()
 
-  if (flyers.length) {
-    let gallery = document.querySelector(".summary-gallery")
-    gallery.scrollTop = gallery.scrollHeight
-  }
-
   flyers.forEach(f => {
-    let item = items[items.length - 1 - f.offset]
+    let item = items[f.offset]
     if (f.fade || !item) {
       let fade = f.img.animate([{ opacity: f.opacity }, { opacity: 0 }], { duration: 500, easing: WALK_EASE, fill: "forwards" })
       window.walkAnimations.push(fade)
@@ -706,7 +701,7 @@ function walkEnd() {
 
   let s = d3.select(".summary")
   let items = s.select(".fj-gallery")
-    .selectAll("div").data(gh)
+    .selectAll("div").data(gh.slice().reverse())
     .enter()
     .append("div")
     .attr("class", "fj-gallery-item")
