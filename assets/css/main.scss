@@ -1949,15 +1949,17 @@ div.walk-flyer img {
     line-height: normal;
   }
 
-  .walk-flash {
+  .walk-callout {
     position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    z-index: 3;
     white-space: nowrap;
     pointer-events: none;
-    color: var(--text-color);
-    opacity: 0;
+
+    font-family: Literata, serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: white;
+    text-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6), 0 0 0.1rem rgba(0, 0, 0, 0.6);
   }
 }
 

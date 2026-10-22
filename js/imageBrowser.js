@@ -255,28 +255,64 @@ function objectPhrase(category) {
   return `${article} ${name}`
 }
 
+const WALK_CALLOUT_HOLD = 2000
+
 function walkFlashClear() {
-  let el = document.querySelector(".walk-flash")
-  el.getAnimations().forEach(a => a.cancel())
-  el.textContent = ""
+  document.querySelectorAll(".walk-callout").forEach(el => el.remove())
 }
 
-function walkFlash(category) {
-  walkFlashClear()
-  let el = document.querySelector(".walk-flash")
-  el.textContent = objectPhrase(category)
-  if (walkReducedMotion()) return
+function walkCalloutBox(imgID, category) {
+  let boxes = (window.photo_metadata[imgID].detect_boxes || [])
+    .filter(d => d.object == category)
+  let area = d => (d.box.x2 - d.box.x1) * (d.box.y2 - d.box.y1)
+  return boxes.reduce((a, b) => (!a || area(b) > area(a)) ? b : a, null)
+}
 
-  let fadeIn = 360
-  let hold = 5000
-  let fadeOut = 630
-  let duration = fadeIn + hold + fadeOut
-  el.animate([
-    { opacity: 0, easing: "ease-in-out" },
-    { opacity: 1, offset: fadeIn / duration },
-    { opacity: 1, offset: (fadeIn + hold) / duration, easing: "ease-in-out" },
-    { opacity: 0 }
-  ], { duration, fill: "forwards" })
+function walkFlash(imgID, category) {
+  walkFlashClear()
+
+  let container = document.querySelector(".main-photo")
+  let img = document.querySelector("#featured-image")
+  let el = document.createElement("div")
+  el.className = "walk-callout"
+  el.textContent = objectPhrase(category)
+  container.appendChild(el)
+
+  let r = imgContentRect(img)
+  let c = container.getBoundingClientRect()
+  let d = walkCalloutBox(imgID, category)
+  let gap = 8
+
+  let x = r.left + r.width / 2
+  let y = r.top + r.height + gap
+  let above = false
+  if (d) {
+    x = r.left + (d.box.x1 + d.box.x2) / 2 * r.width
+    y = r.top + d.box.y2 * r.height + gap
+    if (y + el.offsetHeight > r.top + r.height) {
+      y = r.top + d.box.y1 * r.height - gap - el.offsetHeight
+      above = true
+    }
+  }
+  let half = el.offsetWidth / 2
+  x = Math.max(r.left + half + gap, Math.min(r.left + r.width - half - gap, x))
+
+  Object.assign(el.style, { left: `${x - half - c.left}px`, top: `${y - c.top}px` })
+
+  if (!walkReducedMotion()) {
+    el.animate([
+      { opacity: 0, transform: `translateY(${above ? 4 : -4}px)` },
+      { opacity: 1, transform: "none" }
+    ], { duration: 400, easing: WALK_EASE })
+  }
+}
+
+function walkFlashHide() {
+  document.querySelectorAll(".walk-callout").forEach(el => {
+    if (walkReducedMotion()) return el.remove()
+    el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: WALK_FADE, easing: WALK_EASE, fill: "forwards" })
+      .finished.then(() => el.remove()).catch(() => {})
+  })
 }
 
 function displayImg(imgID, containerSel, fade=true) {
@@ -350,6 +386,7 @@ function mapRegion(ken) {
 }
 
 function walkAdvance() {
+  if (window.walkPending) return
   console.log('=================== CLICK ===================')
   let el = d3.select(".main-photo")
   let attrs = el.node().attributes
@@ -429,10 +466,20 @@ function walkAdvance() {
     return walkEnd()
   }
 
-  displayImg(selID, ".main-photo")
-  // required to update the history
-  displayLocation(selID, selCat)
-  walkFlash(selCat)
+  let fromID = galleryHistoryGetFromEnd(0).id
+  let walkID = window.walkID
+  window.walkPending = true
+  walkFlash(fromID, selCat)
+
+  setTimeout(() => {
+    window.walkPending = false
+    if (walkID != window.walkID) return
+
+    walkFlashHide()
+    displayImg(selID, ".main-photo")
+    // required to update the history
+    displayLocation(selID, selCat)
+  }, WALK_CALLOUT_HOLD)
 }
 
 function locationName(loc) {
@@ -1142,6 +1189,7 @@ function mockFinish() {
 
 function walkStart() {
   window.walkID = (window.walkID || 0) + 1
+  window.walkPending = false
   window.galleryHistory = []
   walkFlashClear()
 
