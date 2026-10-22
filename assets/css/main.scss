@@ -1949,6 +1949,17 @@ div.walk-flyer img {
     line-height: normal;
   }
 
+  .walk-flash {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    color: var(--text-color);
+    opacity: 0;
+  }
+
   .walk-callout {
     position: absolute;
     z-index: 4;

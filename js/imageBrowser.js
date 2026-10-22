@@ -264,6 +264,7 @@ function objectPhrase(category) {
   return `${article} ${name}`
 }
 
+const WALK_LABELS = "loud"
 const WALK_CALLOUT_LEAVE = 2000
 const WALK_CALLOUT_LEAVE_SAME = 500
 const WALK_CALLOUT_ARRIVE = 2000
@@ -271,6 +272,28 @@ const WALK_SPOTLIGHT_FADE = 0.35
 
 function walkFlashClear() {
   document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => el.remove())
+
+  let quiet = document.querySelector(".walk-flash")
+  quiet.getAnimations().forEach(a => a.cancel())
+  quiet.textContent = ""
+}
+
+function walkQuietFlash(category) {
+  let el = document.querySelector(".walk-flash")
+  el.getAnimations().forEach(a => a.cancel())
+  el.textContent = objectPhrase(category)
+  if (walkReducedMotion()) return
+
+  let fadeIn = 360
+  let hold = 5000
+  let fadeOut = 630
+  let duration = fadeIn + hold + fadeOut
+  el.animate([
+    { opacity: 0, easing: "ease-in-out" },
+    { opacity: 1, offset: fadeIn / duration },
+    { opacity: 1, offset: (fadeIn + hold) / duration, easing: "ease-in-out" },
+    { opacity: 0 }
+  ], { duration, fill: "forwards" })
 }
 
 function walkSpotlight(container, r, c, d) {
@@ -503,6 +526,14 @@ function walkAdvance() {
   }
   else {
     return walkEnd()
+  }
+
+  if (WALK_LABELS == "quiet") {
+    displayImg(selID, ".main-photo")
+    // required to update the history
+    displayLocation(selID, selCat)
+    walkQuietFlash(selCat)
+    return
   }
 
   let from = galleryHistoryGetFromEnd(0)
