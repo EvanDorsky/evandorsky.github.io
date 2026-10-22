@@ -629,7 +629,6 @@ function rectStyle(r) {
 }
 
 const WALK_PAIRS = [
-  [".main-photo .photo-date", ".summary-counts", "corner"],
   [".sidebar .region-row", ".summary-regions", "corner"],
   [".sidebar .prefecture-row", ".summary-prefectures", "corner"],
   [".sidebar .city-row", ".summary-cities", "corner"],
@@ -688,7 +687,7 @@ function walkTransitionPanel(sources) {
 
   let anims = walkFlip(sources.panel, opts)
 
-  document.querySelectorAll(".summary-title, .summary-objects").forEach(el => {
+  document.querySelectorAll(".summary-title, .summary-counts, .summary-objects").forEach(el => {
     anims.push(el.animate([
       { opacity: 0, transform: "translateY(0.5rem)" },
       { opacity: 1, transform: "none" }
