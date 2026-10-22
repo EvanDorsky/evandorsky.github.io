@@ -464,25 +464,27 @@ function photoDate(imgID) {
 }
 
 function photoDateShow(imgID) {
-  let el = document.querySelector(".main-photo .photo-date")
+  let el = document.querySelector(".main-photo .photo-date:not(.photo-ghost)")
   let text = photoDate(imgID)
-  if (el.dataset.date == text) return
-  el.dataset.date = text
+  if (el.textContent == text) return
 
-  let from = parseFloat(getComputedStyle(el).opacity)
-  el.getAnimations().forEach(a => a.cancel())
   if (walkReducedMotion() || !el.textContent) {
     el.textContent = text
     return
   }
 
-  let opts = { duration: 225, easing: WALK_EASE }
-  let out = el.animate([{ opacity: from }, { opacity: 0 }], { ...opts, fill: "forwards" })
-  out.finished.then(() => {
-    el.textContent = el.dataset.date
-    el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
-    out.cancel()
-  }).catch(() => {})
+  el.parentNode.querySelectorAll(".photo-date.photo-ghost").forEach(g => g.remove())
+  el.getAnimations().forEach(a => a.cancel())
+
+  let ghost = el.cloneNode(true)
+  ghost.classList.add("photo-ghost")
+  el.before(ghost)
+  el.textContent = text
+
+  let opts = { duration: 450, easing: WALK_EASE }
+  el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
+  ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+    .finished.then(() => ghost.remove()).catch(() => {})
 }
 
 function walkDateRange(gh) {
