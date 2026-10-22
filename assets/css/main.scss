@@ -528,11 +528,15 @@ h2#gallery {
 
   font-family: Literata, serif;
   .article-title {
-    // margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 
     h2 {
       margin-bottom: 0;
       padding-bottom: 0;
+    }
+
+    .post-date {
+      font-family: Inter, sans-serif;
     }
   }
   h4 {
