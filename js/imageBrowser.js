@@ -165,14 +165,17 @@ function keywordsGetLocation(keywords) {
   return locDict
 }
 
-function photoSwap(el, src, fade, container) {
+function photoSwap(el, src, fade, container, onSwap=null) {
   let token = (el.photoSwapToken || 0) + 1
   el.photoSwapToken = token
 
-  if (!fade || walkReducedMotion()) {
+  let unit = el.closest(".last-photo-frame") || el
+  let swap = () => {
     el.setAttribute("src", src)
-    return
+    if (onSwap) onSwap()
   }
+
+  if (!fade || walkReducedMotion()) return swap()
 
   let next = new Image()
   next.src = src
@@ -181,23 +184,28 @@ function photoSwap(el, src, fade, container) {
 
     container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
 
-    let r = imgContentRect(el)
+    let r = imgContentRect(unit)
     let c = container.getBoundingClientRect()
     let opacity = 1
-    for (let n = el.parentNode; n != container; n = n.parentNode) {
+    for (let n = unit; n != container; n = n.parentNode) {
       opacity *= parseFloat(getComputedStyle(n).opacity)
     }
 
-    let ghost = el.cloneNode()
+    let ghost = unit.cloneNode(true)
     ghost.removeAttribute("id")
-    ghost.className = "photo-ghost"
+    ghost.classList.add("photo-ghost")
     Object.assign(ghost.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
     container.prepend(ghost)
-    el.setAttribute("src", src)
+    swap()
 
-    let opts = { duration: 450, easing: WALK_EASE }
-    el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
-    ghost.animate([{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+    let dip = unit != el
+    let opts = { duration: dip ? 700 : 450, easing: WALK_EASE }
+    unit.animate(dip
+      ? [{ opacity: 0 }, { opacity: 0, offset: 0.4 }]
+      : [{ opacity: 0 }], opts)
+    ghost.animate(dip
+      ? [{ opacity }, { opacity: 0, offset: 0.6 }, { opacity: 0 }]
+      : [{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
       .finished.then(() => ghost.remove()).catch(() => {})
   })
 }
@@ -206,7 +214,7 @@ function objectPhrase(category) {
   let name = objectName(category)
   if (name != name.toUpperCase()) name = name.toLowerCase()
   let article = /^[aeiou]/i.test(name) ? "an" : "a"
-  return `${article} ${name}!`
+  return `${article} ${name}`
 }
 
 function walkFlash(category) {
@@ -223,13 +231,13 @@ function walkFlash(category) {
   ], { duration: 1800, easing: "ease-in-out", fill: "forwards" })
 }
 
-function displayImg(imgID, containerSel, fade=true) {
+function displayImg(imgID, containerSel, fade=true, onSwap=null) {
   // console.log('display image')
   // console.log(imgID)
   // console.log('containerSel')
   // console.log(containerSel)
   let imgContainer = d3.select(containerSel)
-  let img = imgContainer.select("img")
+  let img = imgContainer.select(":scope > img:not(.photo-ghost), :scope > .last-photo-frame:not(.photo-ghost) > img")
   // console.log('img')
   // console.log(img)
   // let lastimgContainer = d3.select(".last-photo")
@@ -255,7 +263,7 @@ function displayImg(imgID, containerSel, fade=true) {
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
-  photoSwap(img.node(), new_src, fade, imgContainer.node())
+  photoSwap(img.node(), new_src, fade, imgContainer.node(), onSwap)
 }
 
 function objectName(category) {
@@ -267,7 +275,6 @@ function objectName(category) {
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  d3.select(".reason").text(objectName(reason))
   d3.select(".sidebar .region").text(loc.region)
   d3.select(".sidebar .prefecture").text(loc.prefecture)
   d3.select(".sidebar .city").text(loc.city || loc.prefecture)
@@ -381,7 +388,7 @@ function walkAdvance() {
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo")
+  displayImg(lastPhotoID, ".last-photo", true, () => d3.select(".reason").text(objectName(selCat)))
 }
 
 function locationName(loc) {
@@ -622,7 +629,7 @@ function walkTransitionSources() {
 
   let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
   if (!d3.select(".last-photo").classed("inactive")) {
-    photos.push({ sel: ".last-photo-frame", offset: 1, opacity: 0.7, fade: true })
+    photos.push({ sel: ".last-photo-frame:not(.photo-ghost)", offset: 1, opacity: 0.7, fade: true })
   }
 
   return {
@@ -771,8 +778,15 @@ function walkEnd() {
   items.append("img")
     .attr("src", d => `/assets/img/posts/${window.pageName}/thumb/${d.id}.webp`)
 
-  items.append("div")
+  let labels = items.append("div")
     .attr("class", "photo-label")
+
+  labels.filter(d => d.reason && d.reason.toUpperCase() != "NONE")
+    .append("div")
+    .attr("class", "photo-label-object")
+    .text(d => objectName(d.reason))
+
+  labels.append("div")
     .text(d => {
       let name = locationName(d.location)
       let city = d.location.city
@@ -984,7 +998,7 @@ function mockFinish() {
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo", false)
+  displayImg(lastPhotoID, ".last-photo", false, () => d3.select(".reason").text(objectName(selCat)))
 }
 
 function walkStart() {
