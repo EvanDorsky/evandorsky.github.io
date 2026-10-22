@@ -58,6 +58,12 @@ no_wrapper: true
   window.japanLocations = JSON.parse(meta_json)
 </script>
 
+{% assign object_names = site.data[page_name]['object_names'] %}
+<script type="text/javascript">
+  var meta_json = '{{ object_names | json }}'.replace(/=>/g, ':')
+  window.objectNames = JSON.parse(meta_json)
+</script>
+
 <!-- tell javascript the name of the page -->
 <script type="text/javascript">
   window.pageName = "{{ page_name }}"

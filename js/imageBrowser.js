@@ -236,13 +236,16 @@ function displayImg(imgID, containerSel, fade=true) {
   photoSwap(img.node(), new_src, fade)
 }
 
+function objectName(category) {
+  if (!category) return ""
+  let key = category.toLowerCase()
+  return window.objectNames[key] || key.charAt(0).toUpperCase() + key.substring(1)
+}
+
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  if (reason) {
-    reason = reason.charAt(0).toUpperCase() + reason.substring(1)
-  }
-  d3.select(".reason").text(`${reason}`)
+  d3.select(".reason").text(objectName(reason))
   d3.select(".sidebar .region").text(loc.region)
   d3.select(".sidebar .prefecture").text(loc.prefecture)
   d3.select(".sidebar .city").text(loc.city || loc.prefecture)
