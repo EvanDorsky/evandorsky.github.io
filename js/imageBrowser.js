@@ -452,8 +452,8 @@ function summaryScrollBy(el, delta) {
   let distance = end - start
   if (distance == 0) return
 
-  let duration = Math.min(2400, 1000 + Math.abs(distance) * 0.8)
-  let ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+  let duration = Math.min(1400, 600 + Math.abs(distance) * 0.4)
+  let ease = t => 1 - Math.pow(1 - t, 3)
   let t0 = null
 
   let step = (now) => {
