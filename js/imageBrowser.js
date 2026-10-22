@@ -298,7 +298,7 @@ function objectName(category) {
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  d3.select(".main-photo .photo-date").text(photoDate(imgID))
+  photoDateShow(imgID)
   d3.select(".sidebar .region").text(loc.region)
   d3.select(".sidebar .prefecture").text(loc.prefecture)
   d3.select(".sidebar .city").text(loc.city || loc.prefecture)
@@ -461,6 +461,28 @@ function photoDate(imgID) {
     month: "long",
     day: "numeric"
   })
+}
+
+function photoDateShow(imgID) {
+  let el = document.querySelector(".main-photo .photo-date")
+  let text = photoDate(imgID)
+  if (el.dataset.date == text) return
+  el.dataset.date = text
+
+  let from = parseFloat(getComputedStyle(el).opacity)
+  el.getAnimations().forEach(a => a.cancel())
+  if (walkReducedMotion() || !el.textContent) {
+    el.textContent = text
+    return
+  }
+
+  let opts = { duration: 225, easing: WALK_EASE }
+  let out = el.animate([{ opacity: from }, { opacity: 0 }], { ...opts, fill: "forwards" })
+  out.finished.then(() => {
+    el.textContent = el.dataset.date
+    el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
+    out.cancel()
+  }).catch(() => {})
 }
 
 function walkDateRange(gh) {
