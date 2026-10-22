@@ -4,6 +4,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import shutil
+import cv2
 from imageai.Classification import ImageClassification
 from imageai.Detection import ObjectDetection
 import os
@@ -20,7 +21,9 @@ IM_EXTS = [
   ".jpg",
   ".jpeg",
   ".JPG",
-  ".JPEG"
+  ".JPEG",
+  ".webp",
+  ".WEBP"
 ]
 
 def is_valid_impath(path):
@@ -83,14 +86,30 @@ def detect(impath, model, result_count=10, debug=False):
   outpath = None
   if debug:
     outpath = impath+"_"+model["name"]+".jpg"
-  detections = model["model"].detectObjectsFromImage(input_image=impath, output_image_path=outpath, minimum_percentage_probability=40)
+  img = cv2.imread(impath)
+  height, width = img.shape[:2]
+  detections = model["model"].detectObjectsFromImage(input_image=img, output_image_path=outpath, minimum_percentage_probability=40)
 
   if debug:
     for det in detections:
       print(det["name"] , " : ", det["percentage_probability"], " : ", det["box_points"] )
       print("--------------------------------")
 
-  return det_counts(detections)
+  boxes = []
+  for det in detections:
+    x1, y1, x2, y2 = det["box_points"]
+    boxes.append({
+      "object": det["name"],
+      "confidence": round(float(det["percentage_probability"]) / 100, 4),
+      "box": {
+        "x1": round(x1 / width, 4),
+        "y1": round(y1 / height, 4),
+        "x2": round(x2 / width, 4),
+        "y2": round(y2 / height, 4)
+      }
+    })
+
+  return det_counts(detections), boxes
 
 def init_classifiers():
   classifiers = {}
@@ -173,14 +192,14 @@ def generate():
     if not timestamp:
       continue
 
-    dets = detect(impath, detector)
+    dets, boxes = detect(impath, detector)
 
-    shutil.move(impath,
-      os.path.join(imgs_path, str(timestamp)+os.path.splitext(f)[1])
-    )
+    newpath = os.path.join(imgs_path, str(timestamp)+os.path.splitext(f)[1])
+    shutil.move(impath, newpath)
     metadata = {
-      "img": impath,
-      "detections": dets
+      "img": newpath,
+      "detections": dets,
+      "detect_boxes": boxes
     }
 
     if timestamp in all_dets:

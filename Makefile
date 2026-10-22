@@ -16,9 +16,14 @@ serve:
 deploy:
 	cp node_modules/d3/dist/d3.min.js js
 
+WALK_TZ = America/Los_Angeles
+WALK_PYTHON ?= uv run --no-project --python-preference only-managed --python 3.11 --with imageai==3.0.3 --with torch --with torchvision --with opencv-python --with pillow --with "numpy<2" --with scipy --with matplotlib --with tqdm python
+
+walk-import:
+	TZ=$(WALK_TZ) ./util.py series japan-walk --action refresh --exif-rename
+
 walk:
-	./util.py series japan-walk --action refresh --exif-rename
-	./annotate.py
+	TZ=$(WALK_TZ) $(WALK_PYTHON) annotate.py
 	./util.py photo-chain _data/2024-04-16-japan-walk/metadata.json
 	$(MAKE) walk-thumbs
 
