@@ -1955,7 +1955,7 @@ div.walk-flyer img {
     white-space: nowrap;
     pointer-events: none;
 
-    padding: 0.4rem 1.2rem;
+    padding: 0.7rem 2rem;
 
     font-family: Literata, serif;
     font-style: italic;
@@ -1963,8 +1963,10 @@ div.walk-flyer img {
     color: var(--text-color);
     background: radial-gradient(
       closest-side,
-      rgba(var(--bg-color-rgb), 0.5) 0%,
-      rgba(var(--bg-color-rgb), 0.35) 50%,
+      rgba(var(--bg-color-rgb), 0.45) 0%,
+      rgba(var(--bg-color-rgb), 0.38) 30%,
+      rgba(var(--bg-color-rgb), 0.22) 55%,
+      rgba(var(--bg-color-rgb), 0.08) 78%,
       rgba(var(--bg-color-rgb), 0) 100%
     );
     text-shadow: 0 0 0.4rem rgba(var(--bg-color-rgb), 0.8);
