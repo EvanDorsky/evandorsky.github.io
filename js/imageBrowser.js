@@ -256,6 +256,7 @@ function objectPhrase(category) {
 }
 
 const WALK_CALLOUT_HOLD = 2000
+const WALK_SPOTLIGHT_FADE = 0.5
 
 function walkFlashClear() {
   document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => el.remove())
@@ -270,8 +271,12 @@ function walkSpotlight(container, r, c, d) {
   let cy = (d.box.y1 + d.box.y2) / 2 * r.height
   let rx = Math.max(40, (d.box.x2 - d.box.x1) / 2 * r.width * 1.5)
   let ry = Math.max(40, (d.box.y2 - d.box.y1) / 2 * r.height * 1.5)
-  spot.style.background = `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, ` +
-    `rgba(var(--bg-color-rgb), 0) 55%, rgba(var(--bg-color-rgb), 0.75) 100%)`
+  let inner = 0.3
+  let stops = d3.range(0, 1.0001, 0.1).map(t => {
+    let a = WALK_SPOTLIGHT_FADE * t * t * (3 - 2 * t)
+    return `rgba(var(--bg-color-rgb), ${a.toFixed(3)}) ${((inner + (1 - inner) * t) * 100).toFixed(1)}%`
+  })
+  spot.style.background = `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, ${stops.join(", ")})`
   container.appendChild(spot)
 
   if (!walkReducedMotion()) {
