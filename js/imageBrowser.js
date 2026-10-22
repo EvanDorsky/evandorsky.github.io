@@ -514,13 +514,19 @@ function walkDateRange(gh) {
   let startDay = part(start, { day: "numeric" })
   let endDay = part(end, { day: "numeric" })
 
+  let startYear = part(start, { year: "numeric" })
+  let endYear = part(end, { year: "numeric" })
+
+  if (startYear != endYear) {
+    return `${startMonth} ${startDay}, ${startYear}-${endMonth} ${endDay}, ${endYear}`
+  }
   if (startMonth != endMonth) {
-    return `${startMonth} ${startDay}-${endMonth} ${endDay}`
+    return `${startMonth} ${startDay}-${endMonth} ${endDay}, ${endYear}`
   }
   if (startDay != endDay) {
-    return `${startMonth} ${startDay}-${endDay}`
+    return `${startMonth} ${startDay}-${endDay}, ${endYear}`
   }
-  return `${startMonth} ${startDay}`
+  return `${startMonth} ${startDay}, ${endYear}`
 }
 
 function summaryMatcher(kens, object) {
@@ -528,7 +534,7 @@ function summaryMatcher(kens, object) {
 }
 
 function summaryHighlight(kens, object=null) {
-  let key = object ? `object:${object}` : kens.join("|")
+  let key = summaryPinKey(kens, object)
   if (window.summaryKen == key) return
   window.summaryKen = key
 
@@ -614,7 +620,32 @@ function summaryScrollBy(el, delta) {
   window.summaryScrollFrame = requestAnimationFrame(step)
 }
 
+function summaryPinKey(kens, object) {
+  return object ? `object:${object}` : kens.join("|")
+}
+
+function summaryPin(kens, object=null) {
+  let pinned = window.summaryPinned
+  if (pinned && summaryPinKey(pinned.kens, pinned.object) == summaryPinKey(kens, object)) {
+    window.summaryPinned = null
+    return
+  }
+  window.summaryPinned = { kens, object }
+  summaryHighlight(kens, object)
+}
+
+function summaryUnpin() {
+  window.summaryPinned = null
+  summaryClear()
+}
+
 function summaryUnhighlight() {
+  let pinned = window.summaryPinned
+  if (pinned) return summaryHighlight(pinned.kens, pinned.object)
+  summaryClear()
+}
+
+function summaryClear() {
   if (window.summaryKen == null) return
   window.summaryKen = null
 
@@ -633,6 +664,13 @@ function summaryGalleryPointer(e) {
     return summaryUnhighlight()
   }
   summaryHighlight([d3.select(item).datum().location.prefecture])
+}
+
+function summaryGalleryClick(e) {
+  let item = e.target.closest(".fj-gallery-item")
+  let panelTop = document.querySelector(".summary-panel").getBoundingClientRect().top
+  if (!item || e.clientY >= panelTop) return summaryUnpin()
+  summaryPin([d3.select(item).datum().location.prefecture])
 }
 
 function summaryGalleryScroll() {
@@ -805,6 +843,7 @@ function walkEnd() {
     .append("span")
     .text((d, i) => i == 0 ? d.text.charAt(0).toUpperCase() + d.text.substring(1) : d.text)
     .on("mouseenter", (e, d) => summaryFocus(null, d.category))
+    .on("click", (e, d) => summaryPin(null, d.category))
     .on("mouseleave", () => summaryUnhighlight())
 
   let km = walkDistanceKm(gh)
@@ -825,6 +864,7 @@ function walkEnd() {
     .append("span")
     .text(d => d)
     .on("mouseenter", (e, d) => summaryFocus(summaryRegionKens(d)))
+    .on("click", (e, d) => summaryPin(summaryRegionKens(d)))
     .on("mouseleave", () => summaryUnhighlight())
 
   d3.select(".summary-prefectures .prefecture-list")
@@ -833,6 +873,7 @@ function walkEnd() {
     .append("span")
     .text(d => d)
     .on("mouseenter", (e, d) => summaryFocus([d]))
+    .on("click", (e, d) => summaryPin([d]))
     .on("mouseleave", () => summaryUnhighlight())
 
   d3.select(".summary-stops")
@@ -842,6 +883,7 @@ function walkEnd() {
     .attr("title", d => d.location.prefecture)
     .text(d => d.name)
     .on("mouseenter", (e, d) => summaryFocus([d.location.prefecture]))
+    .on("click", (e, d) => summaryPin([d.location.prefecture]))
     .on("mouseleave", () => summaryUnhighlight())
 
   mapSetup("#summary-map")
@@ -851,6 +893,7 @@ function walkEnd() {
 
   d3.selectAll("#summary-map .ken.visitedKen")
     .on("mouseenter", (e, d) => summaryFocus([d.properties.nam.split(" ")[0]]))
+    .on("click", (e, d) => summaryPin([d.properties.nam.split(" ")[0]]))
     .on("mouseleave", () => summaryUnhighlight())
 
   let s = d3.select(".summary")
@@ -1144,6 +1187,7 @@ function walkReset() {
   s.select(".summary-gallery").classed("ready", false)
   summaryScrollCancel()
   window.summaryKen = null
+  window.summaryPinned = null
 
   window.walkAnimations.forEach(a => a.cancel())
   window.walkAnimations = []
@@ -1191,6 +1235,7 @@ function main(event) {
   d3.select(".summary-gallery")
     .on("mousemove", (e) => summaryGalleryPointer(e))
     .on("mouseleave", () => summaryUnhighlight())
+    .on("click", (e) => summaryGalleryClick(e))
 
   document.querySelector(".summary-gallery")
     .addEventListener("scroll", summaryGalleryScroll, { passive: true })

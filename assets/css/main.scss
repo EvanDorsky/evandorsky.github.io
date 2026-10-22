@@ -1594,7 +1594,7 @@ footer {
 
   .fj-gallery-item {
     max-width: none;
-    cursor: default;
+    cursor: pointer;
     transition: opacity 300ms;
 
     &.faded {
@@ -1768,7 +1768,7 @@ div.walk-flyer img {
 
   .region-list span, .prefecture-list span, .summary-stops li, .object-list span {
     pointer-events: auto;
-    cursor: default;
+    cursor: pointer;
     transition: color 300ms;
 
     &::before {
