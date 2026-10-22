@@ -265,7 +265,7 @@ function objectPhrase(category) {
 }
 
 const WALK_LABELS = "loud"
-const WALK_CALLOUT_LEAVE = 2000
+const WALK_CALLOUT_LEAVE = 1500
 const WALK_CALLOUT_LEAVE_SAME = 500
 const WALK_CALLOUT_ARRIVE = 2000
 const WALK_SPOTLIGHT_FADE = 0.35
