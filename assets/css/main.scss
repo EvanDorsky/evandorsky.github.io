@@ -1773,10 +1773,19 @@ div.walk-flyer img {
 
     &::before {
       color: var(--text-color);
+      transition: color 300ms;
     }
 
     &.faded {
       color: rgba(var(--text-color-rgb), 0.25);
+    }
+  }
+
+  &.highlighting {
+    .region-list span, .prefecture-list span, .summary-stops li, .object-list span {
+      &::before {
+        color: rgba(var(--text-color-rgb), 0.25);
+      }
     }
   }
 

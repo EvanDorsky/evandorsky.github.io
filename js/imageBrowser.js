@@ -538,6 +538,7 @@ function summaryHighlight(kens, object=null) {
   let regions = entries.map(e => e.location.region)
   let objects = entries.map(reasonKey)
 
+  d3.select(".summary-panel").classed("highlighting", true)
   d3.selectAll("#summary-map .ken.visitedKen")
     .classed("hoveredKen", d => kens.includes(d.properties.nam.split(" ")[0]))
   d3.selectAll(".summary-gallery .fj-gallery-item")
@@ -617,6 +618,7 @@ function summaryUnhighlight() {
   if (window.summaryKen == null) return
   window.summaryKen = null
 
+  d3.select(".summary-panel").classed("highlighting", false)
   d3.selectAll("#summary-map .ken").classed("hoveredKen", false)
   d3.selectAll(".summary-gallery .fj-gallery-item, .region-list span, .prefecture-list span, .summary-stops li, .object-list span")
     .classed("faded", false)
@@ -722,9 +724,10 @@ function walkTransitionPanel(sources) {
   let anims = walkFlip(sources.panel, opts)
 
   document.querySelectorAll(".summary-title, .summary-counts, .summary-objects").forEach(el => {
+    let opacity = parseFloat(getComputedStyle(el).opacity)
     anims.push(el.animate([
       { opacity: 0, transform: "translateY(0.5rem)" },
-      { opacity: 1, transform: "none" }
+      { opacity, transform: "none" }
     ], { ...opts, delay: 300 }))
   })
 
