@@ -298,7 +298,7 @@ function objectName(category) {
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  d3.select(".sidebar .date").text(photoDate(imgID))
+  d3.select(".main-photo .photo-date").text(photoDate(imgID))
   d3.select(".sidebar .region").text(loc.region)
   d3.select(".sidebar .prefecture").text(loc.prefecture)
   d3.select(".sidebar .city").text(loc.city || loc.prefecture)
@@ -455,9 +455,12 @@ function walkDistanceKm(gh) {
 }
 
 function photoDate(imgID) {
-  let t = new Date(parseInt(imgID) * 1000)
-  let part = opts => t.toLocaleDateString("en-US", { timeZone: "America/Los_Angeles", ...opts })
-  return `${part({ year: "numeric" })} ${part({ month: "short" })} ${part({ day: "numeric" })}`
+  return new Date(parseInt(imgID) * 1000).toLocaleDateString("en-US", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })
 }
 
 function walkDateRange(gh) {
@@ -626,7 +629,7 @@ function rectStyle(r) {
 }
 
 const WALK_PAIRS = [
-  [".sidebar .date-row", ".summary-counts", "corner"],
+  [".main-photo .photo-date", ".summary-counts", "corner"],
   [".sidebar .region-row", ".summary-regions", "corner"],
   [".sidebar .prefecture-row", ".summary-prefectures", "corner"],
   [".sidebar .city-row", ".summary-cities", "corner"],

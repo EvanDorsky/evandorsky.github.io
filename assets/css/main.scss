@@ -1908,6 +1908,15 @@ div.walk-flyer img {
     transform: translateX(-50%);
   }
 
+  .photo-date {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    padding: 0.6rem 0;
+    line-height: normal;
+  }
+
   .walk-flash {
     position: absolute;
     left: 100%;
@@ -1942,7 +1951,7 @@ div.walk-flyer img {
   }
 
   .subtitle {
-    .date-row, .region-row, .prefecture-row, .city-row {
+    .region-row, .prefecture-row, .city-row {
       margin-bottom: 0.5rem;
     }
   }
