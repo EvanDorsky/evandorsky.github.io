@@ -1541,11 +1541,7 @@ footer {
   display: flex;
 
   flex-direction: column;
-  justify-content: space-between;
-
-  .last-photo {
-    // background-color: orange;
-  }
+  justify-content: flex-end;
 
   .subtitle {
     flex: 0 1 auto;
@@ -1650,23 +1646,17 @@ footer {
   z-index: 2;
 }
 
-#featured-image, .last-photo img {
+#featured-image {
   position: relative;
 }
 
-.main-photo img.photo-ghost, .sidebar .last-photo .photo-ghost {
+.main-photo img.photo-ghost {
   position: absolute;
   margin: 0;
   padding: 0;
   max-width: none;
   max-height: none;
   pointer-events: none;
-}
-
-.last-photo-frame {
-  position: relative;
-  max-width: 100%;
-  opacity: 70%;
 }
 
 div.walk-flyer img {
@@ -1940,26 +1930,6 @@ div.walk-flyer img {
 }
 
 .sidebar {
-  .last-photo {
-    position: relative;
-    height: 10rem;
-    transition: opacity 450ms;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &.inactive {
-      opacity: 0;
-    }
-
-    img {
-      max-width: 100%;
-      max-height: 10rem;
-      display: block;
-    }
-  }
-
   .subtitle {
     .region-row, .prefecture-row, .city-row {
       margin-bottom: 0.5rem;

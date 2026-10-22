@@ -172,7 +172,6 @@ function photoSwap(el, src, fade, container) {
   let token = (el.photoSwapToken || 0) + 1
   el.photoSwapToken = token
 
-  let unit = el.closest(".last-photo-frame") || el
   let swap = () => el.setAttribute("src", src)
 
   if (!fade || walkReducedMotion()) return swap()
@@ -183,17 +182,12 @@ function photoSwap(el, src, fade, container) {
     if (el.photoSwapToken != token) return
 
     container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
-    unit.getAnimations().forEach(a => a.cancel())
+    el.getAnimations().forEach(a => a.cancel())
 
-    let base = parseFloat(getComputedStyle(unit).opacity)
-    let r = imgContentRect(unit)
+    let r = imgContentRect(el)
     let c = container.getBoundingClientRect()
-    let opacity = 1
-    for (let n = unit; n != container; n = n.parentNode) {
-      opacity *= parseFloat(getComputedStyle(n).opacity)
-    }
 
-    let ghost = unit.cloneNode(true)
+    let ghost = el.cloneNode()
     ghost.removeAttribute("id")
     ghost.classList.add("photo-ghost")
     Object.assign(ghost.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
@@ -201,8 +195,8 @@ function photoSwap(el, src, fade, container) {
     swap()
 
     let opts = { duration: 450, easing: WALK_EASE }
-    unit.animate([{ opacity: 0 }, { opacity: base }], opts)
-    ghost.animate([{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+    el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
+    ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
       .finished.then(() => ghost.remove()).catch(() => {})
   })
 }
@@ -263,7 +257,7 @@ function displayImg(imgID, containerSel, fade=true) {
   // console.log('containerSel')
   // console.log(containerSel)
   let imgContainer = d3.select(containerSel)
-  let img = imgContainer.select(":scope > img:not(.photo-ghost), :scope > .last-photo-frame:not(.photo-ghost) > img")
+  let img = imgContainer.select(":scope > img:not(.photo-ghost)")
   // console.log('img')
   // console.log(img)
   // let lastimgContainer = d3.select(".last-photo")
@@ -412,10 +406,6 @@ function walkAdvance() {
   // required to update the history
   displayLocation(selID, selCat)
   walkFlash(selCat)
-
-  let lastPhotoID = galleryHistoryGetFromEnd(1).id
-  d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo")
 }
 
 function locationName(loc) {
@@ -703,9 +693,6 @@ function walkTransitionSources() {
   if (walkReducedMotion()) return null
 
   let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
-  if (!d3.select(".last-photo").classed("inactive")) {
-    photos.push({ sel: ".last-photo-frame:not(.photo-ghost)", offset: 1, opacity: 0.7, fade: true })
-  }
 
   return {
     photos: photos.map(p => {
@@ -735,13 +722,11 @@ function walkTransitionPanel(sources) {
 
 function walkTransitionFlyers(sources) {
   return sources.photos.map(p => {
-    let img = p.fade ? p.el.cloneNode(true) : document.createElement("div")
+    let img = document.createElement("div")
     img.className = "walk-flyer"
-    if (!p.fade) {
-      let full = document.createElement("img")
-      full.src = p.el.getAttribute("src")
-      img.appendChild(full)
-    }
+    let full = document.createElement("img")
+    full.src = p.el.getAttribute("src")
+    img.appendChild(full)
     Object.assign(img.style, rectStyle(p.rect), { opacity: p.opacity })
     document.body.appendChild(img)
     return { ...p, img }
@@ -753,12 +738,7 @@ function walkTransitionLand(flyers) {
 
   flyers.forEach(f => {
     let item = items[f.offset]
-    if (f.fade || !item) {
-      let fade = f.img.animate([{ opacity: f.opacity }, { opacity: 0 }], { duration: 500, easing: WALK_EASE, fill: "forwards" })
-      window.walkAnimations.push(fade)
-      fade.finished.then(() => f.img.remove()).catch(() => {})
-      return
-    }
+    if (!item) return f.img.remove()
 
     item.style.visibility = "hidden"
 
@@ -1081,10 +1061,6 @@ function mockFinish() {
   displayImg(selID, ".main-photo", false)
   // required to update the history
   displayLocation(selID)
-
-  let lastPhotoID = galleryHistoryGetFromEnd(1).id
-  d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo", false)
 }
 
 function walkStart() {
@@ -1151,7 +1127,6 @@ function walkReset() {
   window.walkAnimations = []
   d3.selectAll(".walk-flyer, .summary-ghost").remove()
 
-  d3.select(".last-photo").classed("inactive", true)
   d3.select(".sidebar-container").classed("walk-complete", false)
 
   if (window.location.search) {
