@@ -373,6 +373,18 @@ function walkDistanceKm(gh) {
   return total
 }
 
+function summaryHighlight(ken) {
+  d3.selectAll("#summary-map .ken.visitedKen")
+    .classed("hoveredKen", d => d.properties.nam.split(" ")[0] == ken)
+  d3.selectAll(".summary-gallery .fj-gallery-item")
+    .classed("faded", d => d.location.prefecture != ken)
+}
+
+function summaryUnhighlight() {
+  d3.selectAll("#summary-map .ken").classed("hoveredKen", false)
+  d3.selectAll(".summary-gallery .fj-gallery-item").classed("faded", false)
+}
+
 function walkEnd() {
   console.log('=============WALK COMPLETE============')
   let gh = window.galleryHistory
@@ -384,8 +396,7 @@ function walkEnd() {
 
   let km = walkDistanceKm(gh)
   let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
-  d3.select(".distance-km").text(fmt(km))
-  d3.select(".distance-mi").text(`(${fmt(km * 0.621371)} mi)`)
+  d3.select(".distance-mi").text(fmt(km * 0.621371))
 
   d3.select(".summary-counts").text(`${gh.length} ${gh.length == 1 ? "photo" : "photos"}`)
 
@@ -403,12 +414,20 @@ function walkEnd() {
     d3.select(`#summary-map .ken.${ken}`).classed("visitedKen", true)
   })
 
+  d3.selectAll("#summary-map .ken.visitedKen")
+    .on("mouseenter", (e, d) => summaryHighlight(d.properties.nam.split(" ")[0]))
+    .on("mouseleave", () => summaryUnhighlight())
+
   let s = d3.select(".summary")
   let items = s.select(".fj-gallery")
     .selectAll("div").data(gh)
     .enter()
     .append("div")
     .attr("class", "fj-gallery-item")
+
+  items
+    .on("mouseenter", (e, d) => summaryHighlight(d.location.prefecture))
+    .on("mouseleave", () => summaryUnhighlight())
 
   items.append("img")
     .attr("src", d => `/assets/img/posts/${window.pageName}/${d.id}.webp`)
@@ -601,14 +620,11 @@ function mockFinish() {
   displayImg(lastPhotoID, ".last-photo")
 }
 
-function main(event) {
-  console.log('Image Browser')
-
-  mapSetup()
-  // svgJapan({ element: "#japan-map" })
+function walkStart() {
+  window.galleryHistory = []
 
   let imgs = Object.keys(window.photo_metadata)
-  
+
   let img = null;
   do {
     img = randomEl(imgs);
@@ -616,9 +632,48 @@ function main(event) {
 
   displayImg(img, ".main-photo")
   displayLocation(img, "NONE")
+}
+
+function walkReset() {
+  let s = d3.select(".summary")
+
+  for (let id in window.galleries) {
+    fjGallery(document.querySelectorAll(`#${id}`), "destroy")
+  }
+  s.select(".fj-gallery").selectAll("*").remove()
+  s.select("#summary-map").selectAll("*").remove()
+  s.select(".summary-stops").selectAll("*").remove()
+  s.selectAll(".distance-mi, .summary-counts, .prefecture-list").text("")
+
+  d3.select(".last-photo").classed("inactive", true)
+  d3.select(".sidebar-container").classed("walk-complete", false)
+
+  if (window.location.search) {
+    window.history.replaceState(null, "", window.location.pathname)
+  }
+
+  walkStart()
+}
+
+function main(event) {
+  console.log('Image Browser')
+
+  mapSetup()
+  // svgJapan({ element: "#japan-map" })
+
+  walkStart()
 
   d3.selectAll('.main-photo')
     .on("click", (e) => click(e))
+
+  d3.select('.new-walk')
+    .on("click", () => walkReset())
+
+  document.querySelector(".summary-panel").addEventListener("wheel", (e) => {
+    let lineHeight = e.deltaMode == 1 ? 16 : 1
+    document.querySelector(".summary-gallery").scrollBy(0, e.deltaY * lineHeight)
+    e.preventDefault()
+  }, { passive: false })
 
   d3.select('.sidebar-container')
     .on("mousedown", (e) => {
