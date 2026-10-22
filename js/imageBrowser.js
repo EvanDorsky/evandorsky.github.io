@@ -1122,6 +1122,9 @@ function walkReturn(sources) {
 
   let fade = sources.ghost.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 700, easing: WALK_EASE, fill: "forwards" })
   fade.finished.then(() => sources.ghost.remove()).catch(() => {})
+  sources.ghost.querySelector(".summary-title").animate(
+    [{ transform: "none" }, { transform: "translateY(0.5rem)" }],
+    { duration: 700, easing: WALK_EASE, fill: "forwards" })
 
   let anims = walkFlip(sources.panel, { duration: 800, easing: WALK_EASE })
   window.walkAnimations.push(fade, ...anims)
