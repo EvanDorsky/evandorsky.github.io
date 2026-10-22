@@ -210,9 +210,35 @@ function photoSwap(el, src, fade, container, onSwap=null) {
   })
 }
 
-function objectPhrase(category) {
+function objectNameLower(category) {
   let name = objectName(category)
-  if (name != name.toUpperCase()) name = name.toLowerCase()
+  return name == name.toUpperCase() ? name : name.toLowerCase()
+}
+
+function objectPlural(name) {
+  if (name == "person") return "people"
+  if (/fe$/.test(name)) return name.replace(/fe$/, "ves")
+  if (/(s|sh|ch|x)$/.test(name)) return name + "es"
+  return name + "s"
+}
+
+function walkObjectCounts(gh) {
+  let counts = new Map()
+  gh.forEach(e => {
+    if (!e.reason || e.reason.toUpperCase() == "NONE") return
+    let key = e.reason.toLowerCase()
+    counts.set(key, (counts.get(key) || 0) + 1)
+  })
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([category, n]) => {
+      let name = objectNameLower(category)
+      return `${n} ${n == 1 ? name : objectPlural(name)}`
+    })
+}
+
+function objectPhrase(category) {
+  let name = objectNameLower(category)
   let article = /^[aeiou]/i.test(name) ? "an" : "a"
   return `${article} ${name}`
 }
@@ -646,7 +672,7 @@ function walkTransitionPanel(sources) {
 
   let anims = walkFlip(sources.panel, opts)
 
-  document.querySelectorAll(".summary-title, .summary-counts").forEach(el => {
+  document.querySelectorAll(".summary-title, .summary-counts, .summary-objects").forEach(el => {
     anims.push(el.animate([
       { opacity: 0, transform: "translateY(0.5rem)" },
       { opacity: 1, transform: "none" }
@@ -721,6 +747,11 @@ function walkEnd() {
   d3.select(".summary-regions .label").text(regions.size > 1 ? "Regions" : "Region")
   d3.select(".summary-prefectures .label").text(prefectures.size > 1 ? "Prefectures" : "Prefecture")
   d3.select(".summary-cities .label").text(cities.length > 1 ? "Cities" : "City")
+
+  let objectCounts = walkObjectCounts(gh)
+  d3.select(".summary-objects").style("display", objectCounts.length ? null : "none")
+  d3.select(".summary-objects .label").text(objectCounts.length > 1 ? "Objects" : "Object")
+  d3.select(".summary-objects .object-list").text(objectCounts.join(", "))
 
   let km = walkDistanceKm(gh)
   let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
@@ -1056,7 +1087,7 @@ function walkReset() {
   s.select(".fj-gallery").selectAll("*").remove()
   s.select("#summary-map").selectAll("*").remove()
   s.select(".summary-stops").selectAll("*").remove()
-  s.selectAll(".summary-title, .summary-counts, .region-list, .prefecture-list").text("")
+  s.selectAll(".summary-title, .summary-counts, .region-list, .prefecture-list, .object-list").text("")
   s.select(".summary-gallery").classed("ready", false)
   summaryScrollCancel()
   window.summaryKen = null
