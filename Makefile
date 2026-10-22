@@ -17,12 +17,12 @@ deploy:
 	cp node_modules/d3/dist/d3.min.js js
 
 walk:
-	./util.py series japan-test --action refresh --exif-rename
+	./util.py series japan-walk --action refresh --exif-rename
 	./annotate.py
-	./util.py photo-chain _data/2024-04-16-japan-test/metadata.json
+	./util.py photo-chain _data/2024-04-16-japan-walk/metadata.json
 	$(MAKE) walk-thumbs
 
-WALK_IMG = assets/img/posts/2024-04-16-japan-test
+WALK_IMG = assets/img/posts/2024-04-16-japan-walk
 SRGB_ICC = /System/Library/ColorSync/Profiles/sRGB Profile.icc
 
 walk-thumbs:

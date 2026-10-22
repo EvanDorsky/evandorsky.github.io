@@ -163,8 +163,8 @@ def generate():
   detectors = init_detectors()
   detector = detectors["yolov3.pt"]
 
-  data_path = "_data/2024-04-16-japan-test"
-  imgs_path = "assets/img/posts/2024-04-16-japan-test/original"
+  data_path = "_data/2024-04-16-japan-walk"
+  imgs_path = "assets/img/posts/2024-04-16-japan-walk/original"
   all_dets = {}
   for f in sorted(os.listdir(imgs_path)):
     impath = os.path.join(imgs_path, f)
