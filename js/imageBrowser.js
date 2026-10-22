@@ -1208,8 +1208,18 @@ function walkReset() {
   if (returnSources) walkReturn(returnSources)
 }
 
+function navbarHeightTrack() {
+  let navbar = document.getElementById("navbar")
+  if (!navbar) return
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--navbar-height", `${navbar.offsetHeight}px`)
+  }).observe(navbar)
+}
+
 function main(event) {
   console.log('Image Browser')
+
+  navbarHeightTrack()
 
   mapSetup()
   // svgJapan({ element: "#japan-map" })
