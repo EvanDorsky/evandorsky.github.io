@@ -289,7 +289,7 @@ a {
 
   flex-direction: column;
   .feed-title {
-    font-family: Inter, san-serif;
+    font-family: Inter, sans-serif;
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: bold;
@@ -338,7 +338,7 @@ a {
       opacity: 0.4;
     }
     .date {
-      font-family: Inter, san-serif;
+      font-family: Inter, sans-serif;
       text-transform: uppercase;
       font-weight: 300;
       font-size: 0.9rem;
@@ -1091,7 +1091,7 @@ footer {
     max-width: calc(33.333% - 10px);
   }
   // 4 columns
-  @media only screen and (min-width: 2000) {
+  @media only screen and (min-width: 2000px) {
     max-width: calc(25% - 10px);
   }
 
@@ -1140,7 +1140,7 @@ footer {
     z-index: 100;
     transition: background-color 0.5s;
     display: flex;
-    font-family: Inter, san-serif;
+    font-family: Inter, sans-serif;
     font-weight: 200;
   }
   .title { 
@@ -1386,8 +1386,9 @@ footer {
 
   img.fullsize {
     display: block;
-    max-width: 95vw;
-    max-height: calc(100vh - 8rem);
+    width: 95vw;
+    height: calc(100vh - 8rem);
+    object-fit: contain;
     border-radius: 0;
   }
   .photo-details {
@@ -1405,7 +1406,7 @@ footer {
   justify-content: flex-end;
 
   padding: 0.5rem;
-  font-family: Inter, san-serif;
+  font-family: Inter, sans-serif;
   font-size: 1rem;
   .photo-caption {
     flex: 0 1 auto;

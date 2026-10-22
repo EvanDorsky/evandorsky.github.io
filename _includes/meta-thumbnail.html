@@ -5,4 +5,9 @@
 {% assign page_name = namesplit[0] %}
 {% assign num_str = page.key_photo | prepend: '00' | slice: -2, 2 %}
 
-<meta property="og:image" content="/assets/img/posts/{{ page_name }}/{{ num_str }}.webp" />
+{% capture og_image %}/assets/img/posts/{{ page_name }}/{{ num_str }}.webp{% endcapture %}
+{% if page.preview_img %}
+  {% capture og_image %}/assets/img/posts/{{ page_name }}/{{ page.preview_img }}{% endcapture %}
+{% endif %}
+
+<meta property="og:image" content="{{ og_image }}" />

@@ -81,7 +81,7 @@ function presentModal(name) {
     modal.classed('active', true)
     window.modal = modal
   }
-  if (!window.mode == Mode.modal) {
+  if (window.mode != Mode.modal) {
     updateMode(Mode.modal)
   }
 }
