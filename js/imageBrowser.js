@@ -563,7 +563,7 @@ function walkAdvance() {
       window.walkPending = false
       if (walkID != window.walkID) return
 
-      let token = walkFlash(selID, selCat)
+      let token = walkFlash(selID, selCat, WALK_CALLOUT_ARRIVE)
       setTimeout(() => {
         if (token == window.walkFlashToken) walkFlashHide()
       }, WALK_CALLOUT_ARRIVE)
