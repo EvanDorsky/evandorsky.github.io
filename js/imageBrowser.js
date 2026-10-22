@@ -296,7 +296,7 @@ function walkQuietFlash(category) {
   ], { duration, fill: "forwards" })
 }
 
-function walkSpotlight(container, r, c, d) {
+function walkSpotlight(container, r, c, d, unfade) {
   let spot = document.createElement("div")
   spot.className = "walk-spotlight"
   Object.assign(spot.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
@@ -313,7 +313,15 @@ function walkSpotlight(container, r, c, d) {
   spot.style.background = `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, ${stops.join(", ")})`
   container.appendChild(spot)
 
-  if (!walkReducedMotion()) {
+  if (walkReducedMotion()) return
+  if (unfade) {
+    let fadeIn = Math.min(400, unfade / 3)
+    spot.animate([
+      { opacity: 0, easing: WALK_EASE },
+      { opacity: 1, offset: fadeIn / unfade, easing: "ease-in-out" },
+      { opacity: 0 }
+    ], { duration: unfade, fill: "forwards" })
+  } else {
     spot.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, easing: WALK_EASE })
   }
 }
@@ -325,7 +333,7 @@ function walkCalloutBox(imgID, category) {
   return boxes.reduce((a, b) => (!a || area(b) > area(a)) ? b : a, null)
 }
 
-function walkFlash(imgID, category) {
+function walkFlash(imgID, category, unfade=null) {
   walkFlashHide()
   window.walkFlashToken = (window.walkFlashToken || 0) + 1
 
@@ -355,7 +363,7 @@ function walkFlash(imgID, category) {
   let half = el.offsetWidth / 2
   x = Math.max(r.left + half + gap, Math.min(r.left + r.width - half - gap, x))
 
-  if (d) walkSpotlight(container, r, c, d)
+  if (d) walkSpotlight(container, r, c, d, unfade)
 
   Object.assign(el.style, { left: `${x - half - c.left}px`, top: `${y - c.top}px` })
 
@@ -541,7 +549,7 @@ function walkAdvance() {
   let leaveHold = reasonKey(from) == selCat.toLowerCase() ? WALK_CALLOUT_LEAVE_SAME : WALK_CALLOUT_LEAVE
   let walkID = window.walkID
   window.walkPending = true
-  walkFlash(fromID, selCat)
+  walkFlash(fromID, selCat, leaveHold)
 
   setTimeout(() => {
     if (walkID != window.walkID) return
