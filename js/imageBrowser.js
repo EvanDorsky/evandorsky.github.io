@@ -435,7 +435,34 @@ function summaryReveal(ken) {
   if (centers.some(c => c >= top && c <= bottom)) return
 
   let nearest = centers.reduce((a, b) => Math.abs(a - middle) < Math.abs(b - middle) ? a : b)
-  gallery.scrollBy({ top: nearest - middle, behavior: "smooth" })
+  summaryScrollBy(gallery, nearest - middle)
+}
+
+function summaryScrollCancel() {
+  cancelAnimationFrame(window.summaryScrollFrame)
+  window.summaryScrollFrame = null
+}
+
+function summaryScrollBy(el, delta) {
+  summaryScrollCancel()
+
+  let start = el.scrollTop
+  let maxScroll = el.scrollHeight - el.clientHeight
+  let end = Math.max(0, Math.min(maxScroll, start + delta))
+  let distance = end - start
+  if (distance == 0) return
+
+  let duration = Math.min(2400, 1000 + Math.abs(distance) * 0.8)
+  let ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+  let t0 = null
+
+  let step = (now) => {
+    if (t0 == null) t0 = now
+    let t = Math.min(1, (now - t0) / duration)
+    el.scrollTop = start + distance * ease(t)
+    window.summaryScrollFrame = t < 1 ? requestAnimationFrame(step) : null
+  }
+  window.summaryScrollFrame = requestAnimationFrame(step)
 }
 
 function summaryUnhighlight() {
@@ -751,6 +778,7 @@ function walkReset() {
   s.select(".summary-stops").selectAll("*").remove()
   s.selectAll(".summary-title, .summary-counts, .prefecture-list").text("")
   s.select(".summary-gallery").classed("ready", false)
+  summaryScrollCancel()
   window.summaryKen = null
 
   d3.select(".last-photo").classed("inactive", true)
@@ -798,6 +826,9 @@ function main(event) {
 
   document.querySelector(".summary-gallery")
     .addEventListener("scroll", summaryGalleryScroll, { passive: true })
+
+  window.addEventListener("wheel", summaryScrollCancel, { passive: true })
+  window.addEventListener("touchstart", summaryScrollCancel, { passive: true })
 
   d3.select('.sidebar-container')
     .on("mousedown", (e) => {
