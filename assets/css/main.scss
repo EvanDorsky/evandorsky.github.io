@@ -1648,6 +1648,10 @@ footer {
 
 #featured-image {
   position: relative;
+
+  &:not([src]) {
+    visibility: hidden;
+  }
 }
 
 .main-photo img.photo-ghost {

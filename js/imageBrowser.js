@@ -187,6 +187,12 @@ function photoSwap(el, src, fade, container) {
     container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
     el.getAnimations().forEach(a => a.cancel())
 
+    if (!el.getAttribute("src")) {
+      swap()
+      el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: WALK_EASE })
+      return
+    }
+
     let r = imgContentRect(el)
     let c = container.getBoundingClientRect()
 
@@ -298,9 +304,7 @@ function displayImg(imgID, containerSel, fade=true) {
     imgContainer.attr(`det_${det.replace(' ', '_')}`, dets[det])
   }
 
-  let img_src = img.attr("src")
-  let src_split = img_src.split("/")
-  let new_src = src_split.slice(0, -1).join("/")+"/"+imgID+".webp"
+  let new_src = `/assets/img/posts/${window.pageName}/${imgID}.webp`
 
   // change the id
   imgContainer.attr("id", `id${imgID}`)
