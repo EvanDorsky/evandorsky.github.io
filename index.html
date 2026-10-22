@@ -24,6 +24,8 @@ show-banner: false
 
     {% include feed.html feed=posts_work title="Published" feedname="print" max_posts=5 feature_first=true %}
 
+    {% include grid-post.html name="japan-walk" posts=posts_pj title="Walk With Me" %}
+
     {% include grid-post.html name="eink-display" posts=posts_proj title="Home Transit Display" %}
 
     {% assign feed = posts | where: "type", "printable" %}
