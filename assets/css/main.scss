@@ -1663,11 +1663,6 @@ footer {
   pointer-events: none;
 }
 
-.last-photo-frame .photo-label, .walk-flyer .photo-label {
-  padding: 1.5rem 0.4rem 0.3rem 0.4rem;
-  font-size: 1rem;
-}
-
 .last-photo-frame {
   position: relative;
   max-width: 100%;
@@ -1947,7 +1942,7 @@ div.walk-flyer img {
   }
 
   .subtitle {
-    .region-row, .prefecture-row, .city-row {
+    .date-row, .region-row, .prefecture-row, .city-row {
       margin-bottom: 0.5rem;
     }
   }
