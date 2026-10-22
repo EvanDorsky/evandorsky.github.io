@@ -11,4 +11,7 @@
 {% endif %}
 
 {% capture img_url %}"/assets/img/posts/{{ series_name }}/{{ num_str }}.webp"{% endcapture %}
+{% if include.post.preview_img %}
+  {% capture img_url %}"/assets/img/posts/{{ series_name }}/{{ include.post.preview_img }}"{% endcapture %}
+{% endif %}
 {% include post-home-preview.html showtitle=include.showtitle  post=include.post img=img_url url=l date=post.date %}
