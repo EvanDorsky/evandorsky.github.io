@@ -800,7 +800,7 @@ function walkEnd() {
     .selectAll("span").data(objectCounts)
     .enter()
     .append("span")
-    .text(d => d.text)
+    .text((d, i) => i == 0 ? d.text.charAt(0).toUpperCase() + d.text.substring(1) : d.text)
     .on("mouseenter", (e, d) => summaryFocus(null, d.category))
     .on("mouseleave", () => summaryUnhighlight())
 
