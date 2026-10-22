@@ -911,6 +911,10 @@ function walkTransitionPanel(sources) {
 
   let anims = walkFlip(sources.panel, opts)
 
+  anims.push(document.querySelector(".summary-content").animate(
+    [{ opacity: 0 }, { opacity: 1 }],
+    { ...opts, pseudoElement: "::before" }))
+
   document.querySelectorAll(".summary-title, .summary-counts, .summary-objects").forEach(el => {
     let opacity = parseFloat(getComputedStyle(el).opacity)
     anims.push(el.animate([

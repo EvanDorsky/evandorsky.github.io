@@ -1698,15 +1698,23 @@ div.walk-flyer img {
   pointer-events: none;
 
   padding-top: 5rem;
-  background: linear-gradient(
-    to top,
-    rgba(var(--bg-color-rgb), 0.92) 0%,
-    rgba(var(--bg-color-rgb), 0.85) calc(80% - 2.5rem),
-    rgba(var(--bg-color-rgb), 0) 100%
-  );
+  isolation: isolate;
 
   display: flex;
   justify-content: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgba(var(--bg-color-rgb), 0.92) 0%,
+      rgba(var(--bg-color-rgb), 0.85) calc(80% - 2.5rem),
+      rgba(var(--bg-color-rgb), 0) 100%
+    );
+  }
 }
 
 .summary-panel {
