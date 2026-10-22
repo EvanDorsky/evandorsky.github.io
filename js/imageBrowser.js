@@ -249,9 +249,15 @@ function objectPhrase(category) {
   return `${article} ${name}`
 }
 
-function walkFlash(category) {
+function walkFlashClear() {
   let el = document.querySelector(".walk-flash")
   el.getAnimations().forEach(a => a.cancel())
+  el.textContent = ""
+}
+
+function walkFlash(category) {
+  walkFlashClear()
+  let el = document.querySelector(".walk-flash")
   el.textContent = objectPhrase(category)
   if (walkReducedMotion()) return
 
@@ -825,6 +831,7 @@ function walkEnd() {
   let gh = window.galleryHistory
 
   let sources = walkTransitionSources()
+  walkFlashClear()
   d3.select(".sidebar-container").classed("walk-complete", true)
 
   let newWalk = document.querySelector(".new-walk")
@@ -1132,6 +1139,7 @@ function mockFinish() {
 function walkStart() {
   window.walkID = (window.walkID || 0) + 1
   window.galleryHistory = []
+  walkFlashClear()
 
   let imgs = Object.keys(window.photo_metadata)
     .filter(id => Object.keys(window.photo_metadata[id].detections).length > 0)
