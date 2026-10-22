@@ -1769,11 +1769,11 @@ div.walk-flyer img {
     }
   }
 
-  .region-list span + span::before, .prefecture-list span + span::before {
+  .region-list span + span::before, .prefecture-list span + span::before, .object-list span + span::before {
     content: ", ";
   }
 
-  .region-list span, .prefecture-list span, .summary-stops li {
+  .region-list span, .prefecture-list span, .summary-stops li, .object-list span {
     pointer-events: auto;
     cursor: default;
     transition: color 300ms;

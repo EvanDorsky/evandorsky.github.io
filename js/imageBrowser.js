@@ -183,7 +183,9 @@ function photoSwap(el, src, fade, container, onSwap=null) {
     if (el.photoSwapToken != token) return
 
     container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
+    unit.getAnimations().forEach(a => a.cancel())
 
+    let base = parseFloat(getComputedStyle(unit).opacity)
     let r = imgContentRect(unit)
     let c = container.getBoundingClientRect()
     let opacity = 1
@@ -198,16 +200,19 @@ function photoSwap(el, src, fade, container, onSwap=null) {
     container.prepend(ghost)
     swap()
 
-    let dip = unit != el
-    let opts = { duration: dip ? 700 : 450, easing: WALK_EASE }
-    unit.animate(dip
-      ? [{ opacity: 0 }, { opacity: 0, offset: 0.4 }]
-      : [{ opacity: 0 }], opts)
-    ghost.animate(dip
-      ? [{ opacity }, { opacity: 0, offset: 0.6 }, { opacity: 0 }]
-      : [{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+    let opts = { duration: 450, easing: WALK_EASE }
+    unit.animate([{ opacity: 0 }, { opacity: base }], opts)
+    ghost.animate([{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
       .finished.then(() => ghost.remove()).catch(() => {})
   })
+}
+
+function lastPhotoLabel(category) {
+  d3.select(".last-photo-frame:not(.photo-ghost) .reason").text(objectName(category))
+}
+
+function reasonKey(e) {
+  return e.reason && e.reason.toUpperCase() != "NONE" ? e.reason.toLowerCase() : null
 }
 
 function objectNameLower(category) {
@@ -225,15 +230,14 @@ function objectPlural(name) {
 function walkObjectCounts(gh) {
   let counts = new Map()
   gh.forEach(e => {
-    if (!e.reason || e.reason.toUpperCase() == "NONE") return
-    let key = e.reason.toLowerCase()
-    counts.set(key, (counts.get(key) || 0) + 1)
+    let key = reasonKey(e)
+    if (key) counts.set(key, (counts.get(key) || 0) + 1)
   })
   return Array.from(counts.entries())
     .sort((a, b) => b[1] - a[1])
     .map(([category, n]) => {
       let name = objectNameLower(category)
-      return `${n} ${n == 1 ? name : objectPlural(name)}`
+      return { category, text: `${n} ${n == 1 ? name : objectPlural(name)}` }
     })
 }
 
@@ -414,7 +418,7 @@ function walkAdvance() {
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo", true, () => d3.select(".reason").text(objectName(selCat)))
+  displayImg(lastPhotoID, ".last-photo", true, () => lastPhotoLabel(selCat))
 }
 
 function locationName(loc) {
@@ -479,19 +483,27 @@ function walkDateRange(gh) {
   return `${startMonth} ${startDay}`
 }
 
-function summaryHighlight(kens) {
-  let key = kens.join("|")
+function summaryMatcher(kens, object) {
+  return object ? e => reasonKey(e) == object : e => kens.includes(e.location.prefecture)
+}
+
+function summaryHighlight(kens, object=null) {
+  let key = object ? `object:${object}` : kens.join("|")
   if (window.summaryKen == key) return
   window.summaryKen = key
 
-  let regions = window.galleryHistory
-    .filter(e => kens.includes(e.location.prefecture))
-    .map(e => e.location.region)
+  let matches = summaryMatcher(kens, object)
+  let entries = window.galleryHistory.filter(matches)
+  if (object) kens = entries.map(e => e.location.prefecture)
+  let regions = entries.map(e => e.location.region)
+  let objects = entries.map(reasonKey)
 
   d3.selectAll("#summary-map .ken.visitedKen")
     .classed("hoveredKen", d => kens.includes(d.properties.nam.split(" ")[0]))
   d3.selectAll(".summary-gallery .fj-gallery-item")
-    .classed("faded", d => !kens.includes(d.location.prefecture))
+    .classed("faded", d => !matches(d))
+  d3.selectAll(".object-list span")
+    .classed("faded", d => !objects.includes(d.category))
   d3.selectAll(".region-list span")
     .classed("faded", d => !regions.includes(d))
   d3.selectAll(".prefecture-list span")
@@ -500,9 +512,9 @@ function summaryHighlight(kens) {
     .classed("faded", d => !kens.includes(d.location.prefecture))
 }
 
-function summaryFocus(kens) {
-  summaryHighlight(kens)
-  summaryReveal(kens)
+function summaryFocus(kens, object=null) {
+  summaryHighlight(kens, object)
+  summaryReveal(summaryMatcher(kens, object))
 }
 
 function summaryRegionKens(region) {
@@ -511,7 +523,7 @@ function summaryRegionKens(region) {
     .map(e => e.location.prefecture)))
 }
 
-function summaryReveal(kens) {
+function summaryReveal(matches) {
   let gallery = document.querySelector(".summary-gallery")
   if (!gallery.classList.contains("ready")) return
 
@@ -520,7 +532,7 @@ function summaryReveal(kens) {
   let middle = (top + bottom) / 2
 
   let centers = d3.selectAll(".summary-gallery .fj-gallery-item")
-    .filter(d => kens.includes(d.location.prefecture))
+    .filter(matches)
     .nodes()
     .map(item => {
       let rect = item.getBoundingClientRect()
@@ -566,7 +578,7 @@ function summaryUnhighlight() {
   window.summaryKen = null
 
   d3.selectAll("#summary-map .ken").classed("hoveredKen", false)
-  d3.selectAll(".summary-gallery .fj-gallery-item, .region-list span, .prefecture-list span, .summary-stops li")
+  d3.selectAll(".summary-gallery .fj-gallery-item, .region-list span, .prefecture-list span, .summary-stops li, .object-list span")
     .classed("faded", false)
 }
 
@@ -751,7 +763,13 @@ function walkEnd() {
   let objectCounts = walkObjectCounts(gh)
   d3.select(".summary-objects").style("display", objectCounts.length ? null : "none")
   d3.select(".summary-objects .label").text(objectCounts.length > 1 ? "Objects" : "Object")
-  d3.select(".summary-objects .object-list").text(objectCounts.join(", "))
+  d3.select(".summary-objects .object-list")
+    .selectAll("span").data(objectCounts)
+    .enter()
+    .append("span")
+    .text(d => d.text)
+    .on("mouseenter", (e, d) => summaryFocus(null, d.category))
+    .on("mouseleave", () => summaryUnhighlight())
 
   let km = walkDistanceKm(gh)
   let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
@@ -1029,7 +1047,7 @@ function mockFinish() {
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo", false, () => d3.select(".reason").text(objectName(selCat)))
+  displayImg(lastPhotoID, ".last-photo", false, () => lastPhotoLabel(selCat))
 }
 
 function walkStart() {
