@@ -387,6 +387,20 @@ function walkFlashHide() {
   })
 }
 
+const WALK_UI_TONED = ".sidebar .region-row, .sidebar .prefecture-row, .sidebar .city-row, #japan-map, .main-photo .walk-advance, .main-photo .photo-date:not(.text-ghost)"
+
+function walkUiTone() {
+  let img = document.querySelector("#featured-image")
+  if (!img.getAttribute("src")) return
+
+  let r = img.getBoundingClientRect()
+  document.querySelectorAll(WALK_UI_TONED).forEach(el => {
+    let b = el.getBoundingClientRect()
+    let overlap = b.left < r.right && b.right > r.left && b.top < r.bottom && b.bottom > r.top
+    el.classList.toggle("on-photo", overlap)
+  })
+}
+
 function displayImg(imgID, containerSel, fade=true) {
   // console.log('display image')
   // console.log(imgID)
@@ -417,7 +431,9 @@ function displayImg(imgID, containerSel, fade=true) {
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
-  return photoSwap(img.node(), new_src, fade, imgContainer.node())
+  let swapped = photoSwap(img.node(), new_src, fade, imgContainer.node())
+  if (containerSel == ".main-photo") swapped.then(walkUiTone)
+  return swapped
 }
 
 function objectName(category) {
@@ -1374,6 +1390,7 @@ function main(event) {
   console.log('Image Browser')
 
   navbarHeightTrack()
+  new ResizeObserver(walkUiTone).observe(document.querySelector(".main-photo"))
 
   mapSetup()
   // svgJapan({ element: "#japan-map" })

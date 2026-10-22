@@ -1541,7 +1541,12 @@ footer {
   // padding-b: 1rem;
   padding: 1rem 0.5rem 1rem 1rem;
 
-  flex: 0 0 10rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 10rem;
+  pointer-events: none;
 
   display: flex;
 
@@ -1560,8 +1565,6 @@ footer {
 .main-photo {
   // background-color: blue;
 
-  align-self: stretch;
-  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -1919,9 +1922,9 @@ div.walk-flyer img {
   user-select: none;
   -webkit-user-select: none;
 
-  position: relative;
+  position: absolute;
+  inset: 0;
   box-sizing: border-box;
-  padding-bottom: 3.5rem;
 
   display: flex;
   flex-direction: column;
@@ -1929,11 +1932,10 @@ div.walk-flyer img {
   align-items: center;
 
   #featured-image {
-    padding: 1rem;
     margin: 0 auto;
 
-    max-width: calc(100% - 1rem - 1rem);
-    max-height: calc(100vh - var(--navbar-height, 0px) - 3.5rem - 1rem - 1rem);
+    max-width: 100%;
+    max-height: 100%;
 
     display: block;
     text-align: center;
@@ -1955,6 +1957,18 @@ div.walk-flyer img {
     padding: 0.6rem 0;
     font-size: 0.8rem;
     line-height: normal;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .walk-advance {
+      left: auto;
+      right: 0.5rem;
+      transform: none;
+    }
+
+    .photo-date {
+      bottom: 3.2rem;
+    }
   }
 
   .walk-flash {
@@ -2011,6 +2025,46 @@ div.walk-flyer img {
     font-size: 0.7rem;
     line-height: 1.2;
     opacity: 50%;
+  }
+}
+
+.sidebar .region-row, .sidebar .prefecture-row, .sidebar .city-row, .main-photo .walk-advance, .main-photo .photo-date {
+  transition: color var(--walk-fade), text-shadow var(--walk-fade);
+
+  &.on-photo {
+    color: white;
+    text-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.35), 0 0 0.15rem rgba(0, 0, 0, 0.3);
+  }
+}
+
+.main-photo .walk-advance.on-photo {
+  &:hover, &:focus-visible {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+#japan-map {
+  svg {
+    transition: filter var(--walk-fade);
+  }
+
+  path.region, .country {
+    transition: stroke var(--walk-fade);
+  }
+
+  &.on-photo {
+    svg {
+      filter: drop-shadow(0 0 0.15rem rgba(0, 0, 0, 0.35));
+    }
+
+    path.region, .country {
+      stroke: rgba(255, 255, 255, 0.45);
+    }
+
+    path.activeKen, path.activeRegion {
+      stroke: rgba(255, 255, 255, 0.85) !important;
+      fill: rgba(255, 255, 255, 0.85) !important;
+    }
   }
 }
 
