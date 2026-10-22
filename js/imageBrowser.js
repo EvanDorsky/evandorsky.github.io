@@ -591,9 +591,13 @@ function walkTransitionPanel(sources) {
 
 function walkTransitionFlyers(sources) {
   return sources.photos.map(p => {
-    let img = p.fade ? p.el.cloneNode(true) : document.createElement("img")
+    let img = p.fade ? p.el.cloneNode(true) : document.createElement("div")
     img.className = "walk-flyer"
-    if (!p.fade) img.src = p.el.getAttribute("src")
+    if (!p.fade) {
+      let full = document.createElement("img")
+      full.src = p.el.getAttribute("src")
+      img.appendChild(full)
+    }
     Object.assign(img.style, rectStyle(p.rect), { opacity: p.opacity })
     document.body.appendChild(img)
     return { ...p, img }
@@ -618,6 +622,12 @@ function walkTransitionLand(flyers) {
     }
 
     item.style.visibility = "hidden"
+
+    let thumb = item.querySelector("img").cloneNode()
+    thumb.className = "walk-flyer-thumb"
+    f.img.appendChild(thumb)
+    window.walkAnimations.push(thumb.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, easing: WALK_EASE, fill: "forwards" }))
+
     let anim = f.img.animate([
       { ...rectStyle(f.rect), opacity: f.opacity },
       { ...rectStyle(item.getBoundingClientRect()), opacity: 0.6 }
