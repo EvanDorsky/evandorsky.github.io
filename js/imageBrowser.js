@@ -396,8 +396,27 @@ function walkUiTone() {
   let r = img.getBoundingClientRect()
   document.querySelectorAll(WALK_UI_TONED).forEach(el => {
     let b = el.getBoundingClientRect()
-    let overlap = b.left < r.right && b.right > r.left && b.top < r.bottom && b.bottom > r.top
-    el.classList.toggle("on-photo", overlap)
+    let w = Math.max(0, Math.min(b.right, r.right) - Math.max(b.left, r.left))
+    let h = Math.max(0, Math.min(b.bottom, r.bottom) - Math.max(b.top, r.top))
+    let needed = el.id == "japan-map" ? 0.75 : 0.5
+    let share = b.width * b.height > 0 ? w * h / (b.width * b.height) : 0
+    el.classList.toggle("on-photo", share >= needed)
+    el.classList.toggle("near-photo", share > 0 && share < needed)
+    if (share == 0) return
+
+    let cs = getComputedStyle(el, "::before")
+    let p = {
+      left: b.left + parseFloat(cs.left),
+      top: b.top + parseFloat(cs.top),
+      right: b.right - parseFloat(cs.right),
+      bottom: b.bottom - parseFloat(cs.bottom)
+    }
+    el.style.setProperty("--clip", [
+      Math.max(0, r.top - p.top),
+      Math.max(0, p.right - r.right),
+      Math.max(0, p.bottom - r.bottom),
+      Math.max(0, r.left - p.left)
+    ].map(v => `${v}px`).join(" "))
   })
 }
 
@@ -1346,6 +1365,7 @@ function walkReturn(sources) {
 
   let anims = walkFlip(sources.panel, { duration: 800, easing: WALK_EASE })
   window.walkAnimations.push(fade, ...anims)
+  Promise.all(anims.map(a => a.finished)).then(walkUiTone).catch(() => {})
 }
 
 function walkReset() {

@@ -2028,12 +2028,63 @@ div.walk-flyer img {
   }
 }
 
-.sidebar .region-row, .sidebar .prefecture-row, .sidebar .city-row, .main-photo .walk-advance, .main-photo .photo-date {
+.sidebar .region-row, .sidebar .prefecture-row, .sidebar .city-row {
+  width: fit-content;
+}
+
+.sidebar .region-row, .sidebar .prefecture-row, .sidebar .city-row, #japan-map, .main-photo .walk-advance, .main-photo .photo-date {
   transition: color var(--walk-fade), text-shadow var(--walk-fade);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -1.2rem;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--walk-fade);
+    clip-path: inset(var(--clip, 0px));
+    background: radial-gradient(
+      closest-side,
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.32) 45%,
+      rgba(0, 0, 0, 0.12) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  &.near-photo::before {
+    opacity: 1;
+    background: radial-gradient(
+      closest-side,
+      rgba(var(--bg-color-rgb), 0.6) 0%,
+      rgba(var(--bg-color-rgb), 0.45) 45%,
+      rgba(var(--bg-color-rgb), 0.18) 75%,
+      rgba(var(--bg-color-rgb), 0) 100%
+    );
+  }
 
   &.on-photo {
     color: white;
-    text-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.35), 0 0 0.15rem rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.55), 0 0 0.12rem rgba(0, 0, 0, 0.5);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .label {
+      opacity: 80%;
+    }
+  }
+}
+
+#japan-map::before {
+  inset: -0.5rem;
+}
+
+.main-photo {
+  @media only screen and (min-width: 700px) {
+    padding: 1.5rem;
   }
 }
 
@@ -2054,16 +2105,16 @@ div.walk-flyer img {
 
   &.on-photo {
     svg {
-      filter: drop-shadow(0 0 0.15rem rgba(0, 0, 0, 0.35));
+      filter: drop-shadow(0 0 0.15rem rgba(0, 0, 0, 0.6));
     }
 
     path.region, .country {
-      stroke: rgba(255, 255, 255, 0.45);
+      stroke: rgba(255, 255, 255, 0.75);
     }
 
     path.activeKen, path.activeRegion {
-      stroke: rgba(255, 255, 255, 0.85) !important;
-      fill: rgba(255, 255, 255, 0.85) !important;
+      stroke: white !important;
+      fill: white !important;
     }
   }
 }
