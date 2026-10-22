@@ -481,7 +481,7 @@ function photoDateShow(imgID) {
   el.before(ghost)
   el.textContent = text
 
-  let opts = { duration: 1000, easing: WALK_EASE }
+  let opts = { duration: 650, easing: WALK_EASE }
   el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
   ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
     .finished.then(() => ghost.remove()).catch(() => {})
