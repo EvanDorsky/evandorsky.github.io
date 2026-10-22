@@ -245,9 +245,9 @@ function mapRegion(ken) {
   return null
 }
 
-function click(e) {
+function walkAdvance() {
   console.log('=================== CLICK ===================')
-  let el = d3.select(e.target.parentElement)
+  let el = d3.select(".main-photo")
   let attrs = el.node().attributes
 
   let el_id = el.attr("id")
@@ -373,6 +373,29 @@ function walkDistanceKm(gh) {
   return total
 }
 
+function walkDateRange(gh) {
+  let times = gh.map(e => parseInt(e.id) * 1000).sort((a, b) => a - b)
+  let part = (t, opts) => new Date(t).toLocaleDateString("en-US", {
+    timeZone: "America/Los_Angeles",
+    ...opts
+  })
+
+  let start = times[0]
+  let end = times[times.length-1]
+  let startMonth = part(start, { month: "short" })
+  let endMonth = part(end, { month: "short" })
+  let startDay = part(start, { day: "numeric" })
+  let endDay = part(end, { day: "numeric" })
+
+  if (startMonth != endMonth) {
+    return `${startMonth} ${startDay} - ${endMonth} ${endDay}`
+  }
+  if (startDay != endDay) {
+    return `${startMonth} ${startDay} - ${endDay}`
+  }
+  return `${startMonth} ${startDay}`
+}
+
 function summaryHighlight(ken) {
   d3.selectAll("#summary-map .ken.visitedKen")
     .classed("hoveredKen", d => d.properties.nam.split(" ")[0] == ken)
@@ -396,9 +419,15 @@ function walkEnd() {
 
   let km = walkDistanceKm(gh)
   let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
-  d3.select(".distance-mi").text(fmt(km * 0.621371))
+  let miles = fmt(km * 0.621371)
+  d3.select(".summary-title").text(miles == "0"
+    ? "A short walk."
+    : `You walked ${miles} ${miles == "1" ? "mile" : "miles"}.`)
 
-  d3.select(".summary-counts").text(`${gh.length} ${gh.length == 1 ? "photo" : "photos"}`)
+  d3.select(".summary-counts").text([
+    `${gh.length} ${gh.length == 1 ? "stop" : "stops"}`,
+    walkDateRange(gh)
+  ].join(" · "))
 
   d3.select(".summary-prefectures .prefecture-list").text(Array.from(prefectures).join(", "))
 
@@ -439,6 +468,9 @@ function walkEnd() {
       let city = d.location.city
       return city && city != name ? `${name}, ${city}` : name
     })
+
+  let bandHeight = document.querySelector(".summary-content").offsetHeight
+  d3.select(".summary-gallery").style("padding-bottom", `${bandHeight}px`)
 
   gallerySetup()
 }
@@ -643,7 +675,7 @@ function walkReset() {
   s.select(".fj-gallery").selectAll("*").remove()
   s.select("#summary-map").selectAll("*").remove()
   s.select(".summary-stops").selectAll("*").remove()
-  s.selectAll(".distance-mi, .summary-counts, .prefecture-list").text("")
+  s.selectAll(".summary-title, .summary-counts, .prefecture-list").text("")
 
   d3.select(".last-photo").classed("inactive", true)
   d3.select(".sidebar-container").classed("walk-complete", false)
@@ -663,11 +695,26 @@ function main(event) {
 
   walkStart()
 
-  d3.selectAll('.main-photo')
-    .on("click", (e) => click(e))
+  d3.select('#featured-image')
+    .on("click", () => walkAdvance())
+
+  d3.select('.walk-advance')
+    .on("click", () => walkAdvance())
 
   d3.select('.new-walk')
     .on("click", () => walkReset())
+
+  d3.select(document)
+    .on("keydown", (e) => {
+      let isSpace = e.key == " "
+      if (!(isSpace || e.key == "ArrowRight")) return
+      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return
+      if (isSpace && e.target.closest("button")) return
+      if (d3.select(".sidebar-container").classed("walk-complete")) return
+
+      e.preventDefault()
+      walkAdvance()
+    })
 
   document.querySelector(".summary-panel").addEventListener("wheel", (e) => {
     let lineHeight = e.deltaMode == 1 ? 16 : 1
