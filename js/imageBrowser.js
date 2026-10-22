@@ -525,7 +525,7 @@ function walkTransitionSources() {
 
   let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
   if (!d3.select(".last-photo").classed("inactive")) {
-    photos.push({ sel: ".last-photo img", offset: 1, opacity: 0.7 })
+    photos.push({ sel: ".last-photo img", offset: 1, opacity: 0.7, fade: true })
   }
 
   return {
@@ -587,7 +587,12 @@ function walkTransitionLand(flyers) {
 
   flyers.forEach(f => {
     let item = items[items.length - 1 - f.offset]
-    if (!item) return f.img.remove()
+    if (f.fade || !item) {
+      let fade = f.img.animate([{ opacity: f.opacity }, { opacity: 0 }], { duration: 500, easing: WALK_EASE, fill: "forwards" })
+      window.walkAnimations.push(fade)
+      fade.finished.then(() => f.img.remove()).catch(() => {})
+      return
+    }
 
     item.style.visibility = "hidden"
     let anim = f.img.animate([
@@ -612,6 +617,11 @@ function walkEnd() {
 
   let cities = walkCities(gh)
   let prefectures = new Set(gh.map(e => e.location.prefecture))
+  let regions = new Set(gh.map(e => e.location.region))
+
+  d3.select(".summary-regions .label").text(regions.size > 1 ? "Regions" : "Region")
+  d3.select(".summary-prefectures .label").text(prefectures.size > 1 ? "Prefectures" : "Prefecture")
+  d3.select(".summary-cities .label").text(cities.length > 1 ? "Cities" : "City")
 
   let km = walkDistanceKm(gh)
   let fmt = n => n.toLocaleString(undefined, { maximumFractionDigits: n < 10 ? 1 : 0 })
@@ -626,7 +636,7 @@ function walkEnd() {
   ].join(" · "))
 
   d3.select(".summary-regions .region-list")
-    .selectAll("span").data(Array.from(new Set(gh.map(e => e.location.region))))
+    .selectAll("span").data(Array.from(regions))
     .enter()
     .append("span")
     .text(d => d)
