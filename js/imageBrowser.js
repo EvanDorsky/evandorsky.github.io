@@ -114,6 +114,9 @@ function shuffleArray(arr) {
 
 window.galleryHistory = []
 window.walkAnimations = []
+window.seenImages = new Set()
+
+const WALK_SEEN_WEIGHT = 0.05
 
 const WALK_FADE = 520
 document.documentElement.style.setProperty("--walk-fade", `${WALK_FADE}ms`)
@@ -318,6 +321,7 @@ function displayLocation(imgID, reason=null) {
   mapSelectKen(loc.prefecture)
 
   if (reason != null) {
+    window.seenImages.add(imgID)
     window.galleryHistory.push({
       id: imgID,
       reason: reason,
@@ -1130,11 +1134,12 @@ function walkStart() {
   window.galleryHistory = []
 
   let imgs = Object.keys(window.photo_metadata)
+    .filter(id => Object.keys(window.photo_metadata[id].detections).length > 0)
+  let weights = imgs.map(id => window.seenImages.has(id) ? WALK_SEEN_WEIGHT : 1)
 
-  let img = null;
-  do {
-    img = randomEl(imgs);
-  } while (Object.keys(window.photo_metadata[img].detections).length === 0);
+  let total = weights.reduce((a, b) => a + b, 0)
+  let r = Math.random() * total
+  let img = imgs.find((id, i) => (r -= weights[i]) < 0) || imgs[imgs.length - 1]
 
   displayImg(img, ".main-photo")
   displayLocation(img, "NONE")
