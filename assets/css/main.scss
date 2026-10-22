@@ -1630,6 +1630,17 @@ footer {
   }
 }
 
+.summary.summary-ghost {
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sidebar .subtitle > div, .walk-advance {
+  position: relative;
+  z-index: 2;
+}
+
 .walk-flyer {
   position: fixed;
   z-index: 10;

@@ -518,10 +518,45 @@ function rectStyle(r) {
   return { left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px` }
 }
 
-function walkTransitionSources() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null
+const WALK_PAIRS = [
+  [".sidebar .region-row", ".summary-regions", "corner"],
+  [".sidebar .prefecture-row", ".summary-prefectures", "corner"],
+  [".sidebar .city-row", ".summary-cities", "corner"],
+  ["#japan-map", "#summary-map", "fit"],
+  [".walk-advance", ".new-walk", "center"]
+]
 
-  let rect = sel => document.querySelector(sel).getBoundingClientRect()
+function walkReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+
+function walkRect(sel) {
+  return document.querySelector(sel).getBoundingClientRect()
+}
+
+function walkFlip(panel, opts) {
+  return panel.map(({ from, to, align }) => {
+    let el = document.querySelector(to)
+    let r = el.getBoundingClientRect()
+    let base = getComputedStyle(el).transform
+    base = base == "none" ? "" : base
+
+    let transform = `translate(${from.left - r.left}px, ${from.top - r.top}px)`
+    if (align != "corner") {
+      let dx = from.left + from.width / 2 - (r.left + r.width / 2)
+      let dy = from.top + from.height / 2 - (r.top + r.height / 2)
+      let s = align == "fit" ? from.width / r.width : 1
+      transform = `translate(${dx}px, ${dy}px) scale(${s})`
+    }
+    return el.animate([
+      { transform: `${transform} ${base}` },
+      { transform: base || "none" }
+    ], opts)
+  })
+}
+
+function walkTransitionSources() {
+  if (walkReducedMotion()) return null
 
   let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
   if (!d3.select(".last-photo").classed("inactive")) {
@@ -533,31 +568,14 @@ function walkTransitionSources() {
       let img = document.querySelector(p.sel)
       return { ...p, src: img.getAttribute("src"), rect: imgContentRect(img) }
     }),
-    panel: [
-      { from: rect(".sidebar .region-row"), to: ".summary-regions", align: "corner" },
-      { from: rect(".sidebar .prefecture-row"), to: ".summary-prefectures", align: "corner" },
-      { from: rect(".sidebar .city-row"), to: ".summary-cities", align: "corner" },
-      { from: rect("#japan-map"), to: "#summary-map", align: "fit" },
-      { from: rect(".walk-advance"), to: ".new-walk", align: "center" }
-    ]
+    panel: WALK_PAIRS.map(([walk, summary, align]) => ({ from: walkRect(walk), to: summary, align }))
   }
 }
 
 function walkTransitionPanel(sources) {
   let opts = { duration: 800, easing: WALK_EASE, fill: "backwards" }
 
-  let anims = sources.panel.map(({ from, to, align }) => {
-    let el = document.querySelector(to)
-    let r = el.getBoundingClientRect()
-    let transform = `translate(${from.left - r.left}px, ${from.top - r.top}px)`
-    if (align != "corner") {
-      let dx = from.left + from.width / 2 - (r.left + r.width / 2)
-      let dy = from.top + from.height / 2 - (r.top + r.height / 2)
-      let s = align == "fit" ? from.width / r.width : 1
-      transform = `translate(${dx}px, ${dy}px) scale(${s})`
-    }
-    return el.animate([{ transform }, { transform: "none" }], opts)
-  })
+  let anims = walkFlip(sources.panel, opts)
 
   document.querySelectorAll(".summary-title, .summary-counts").forEach(el => {
     anims.push(el.animate([
@@ -905,8 +923,39 @@ function walkStart() {
   displayLocation(img, "NONE")
 }
 
+function walkReturnSources() {
+  if (walkReducedMotion()) return null
+
+  let summary = document.querySelector(".summary")
+  let ghost = summary.cloneNode(true)
+  ghost.classList.add("summary-ghost")
+  WALK_PAIRS.forEach(([walk, summarySel]) => {
+    ghost.querySelector(summarySel).style.visibility = "hidden"
+  })
+  ghost.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"))
+
+  return {
+    ghost,
+    scrollTop: summary.querySelector(".summary-gallery").scrollTop,
+    panel: WALK_PAIRS.map(([walk, summarySel, align]) => ({ from: walkRect(summarySel), to: walk, align }))
+  }
+}
+
+function walkReturn(sources) {
+  let container = document.querySelector(".sidebar-container")
+  container.appendChild(sources.ghost)
+  sources.ghost.querySelector(".summary-gallery").scrollTop = sources.scrollTop
+
+  let fade = sources.ghost.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 700, easing: WALK_EASE, fill: "forwards" })
+  fade.finished.then(() => sources.ghost.remove()).catch(() => {})
+
+  let anims = walkFlip(sources.panel, { duration: 800, easing: WALK_EASE })
+  window.walkAnimations.push(fade, ...anims)
+}
+
 function walkReset() {
   let s = d3.select(".summary")
+  let returnSources = walkReturnSources()
 
   for (let id in window.galleries) {
     fjGallery(document.querySelectorAll(`#${id}`), "destroy")
@@ -921,7 +970,7 @@ function walkReset() {
 
   window.walkAnimations.forEach(a => a.cancel())
   window.walkAnimations = []
-  d3.selectAll(".walk-flyer").remove()
+  d3.selectAll(".walk-flyer, .summary-ghost").remove()
 
   d3.select(".last-photo").classed("inactive", true)
   d3.select(".sidebar-container").classed("walk-complete", false)
@@ -931,6 +980,7 @@ function walkReset() {
   }
 
   walkStart()
+  if (returnSources) walkReturn(returnSources)
 }
 
 function main(event) {
