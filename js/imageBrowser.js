@@ -556,7 +556,6 @@ function walkAdvance() {
   setTimeout(() => {
     if (walkID != window.walkID) return
 
-    walkFlashHide()
     let arrived = displayImg(selID, ".main-photo")
     // required to update the history
     displayLocation(selID, selCat)
