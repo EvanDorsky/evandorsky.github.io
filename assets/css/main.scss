@@ -1641,6 +1641,19 @@ footer {
   z-index: 2;
 }
 
+#featured-image, .last-photo img {
+  position: relative;
+}
+
+.main-photo img.photo-ghost, .sidebar .last-photo img.photo-ghost {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  pointer-events: none;
+}
+
 .last-photo-frame {
   position: relative;
   max-width: 100%;
@@ -1890,6 +1903,7 @@ div.walk-flyer img {
 .sidebar {
   .last-photo {
     height: 10rem;
+    transition: opacity 450ms;
 
     display: flex;
     align-items: center;

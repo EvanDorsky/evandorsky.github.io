@@ -165,7 +165,43 @@ function keywordsGetLocation(keywords) {
   return locDict
 }
 
-function displayImg(imgID, containerSel) {
+function photoSwap(el, src, fade) {
+  let token = (el.photoSwapToken || 0) + 1
+  el.photoSwapToken = token
+
+  if (!fade || walkReducedMotion()) {
+    el.setAttribute("src", src)
+    return
+  }
+
+  let next = new Image()
+  next.src = src
+  next.decode().catch(() => {}).then(() => {
+    if (el.photoSwapToken != token) return
+
+    el.parentNode.querySelectorAll(".photo-ghost").forEach(g => g.remove())
+
+    let cs = getComputedStyle(el)
+    let ghost = el.cloneNode()
+    ghost.removeAttribute("id")
+    ghost.className = "photo-ghost"
+    Object.assign(ghost.style, {
+      left: `${el.offsetLeft + parseFloat(cs.paddingLeft)}px`,
+      top: `${el.offsetTop + parseFloat(cs.paddingTop)}px`,
+      width: `${el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)}px`,
+      height: `${el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)}px`
+    })
+    el.before(ghost)
+    el.setAttribute("src", src)
+
+    let opts = { duration: 450, easing: WALK_EASE }
+    el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
+    ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+      .finished.then(() => ghost.remove()).catch(() => {})
+  })
+}
+
+function displayImg(imgID, containerSel, fade=true) {
   // console.log('display image')
   // console.log(imgID)
   // console.log('containerSel')
@@ -197,7 +233,7 @@ function displayImg(imgID, containerSel) {
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
-  img.attr("src", new_src)
+  photoSwap(img.node(), new_src, fade)
 }
 
 function displayLocation(imgID, reason=null) {
@@ -916,13 +952,13 @@ function mockFinish() {
   var selID = galleryHistoryGetFromEnd(0).id
   var selCat = galleryHistoryGetFromEnd(0).reason
 
-  displayImg(selID, ".main-photo")
+  displayImg(selID, ".main-photo", false)
   // required to update the history
   displayLocation(selID)
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)
-  displayImg(lastPhotoID, ".last-photo")
+  displayImg(lastPhotoID, ".last-photo", false)
 }
 
 function walkStart() {
