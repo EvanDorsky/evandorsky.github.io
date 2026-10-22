@@ -165,7 +165,7 @@ function keywordsGetLocation(keywords) {
   return locDict
 }
 
-function photoSwap(el, src, fade) {
+function photoSwap(el, src, fade, container) {
   let token = (el.photoSwapToken || 0) + 1
   el.photoSwapToken = token
 
@@ -179,26 +179,48 @@ function photoSwap(el, src, fade) {
   next.decode().catch(() => {}).then(() => {
     if (el.photoSwapToken != token) return
 
-    el.parentNode.querySelectorAll(".photo-ghost").forEach(g => g.remove())
+    container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
 
-    let cs = getComputedStyle(el)
+    let r = imgContentRect(el)
+    let c = container.getBoundingClientRect()
+    let opacity = 1
+    for (let n = el.parentNode; n != container; n = n.parentNode) {
+      opacity *= parseFloat(getComputedStyle(n).opacity)
+    }
+
     let ghost = el.cloneNode()
     ghost.removeAttribute("id")
     ghost.className = "photo-ghost"
-    Object.assign(ghost.style, {
-      left: `${el.offsetLeft + parseFloat(cs.paddingLeft)}px`,
-      top: `${el.offsetTop + parseFloat(cs.paddingTop)}px`,
-      width: `${el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)}px`,
-      height: `${el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)}px`
-    })
-    el.before(ghost)
+    Object.assign(ghost.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
+    container.prepend(ghost)
     el.setAttribute("src", src)
 
     let opts = { duration: 450, easing: WALK_EASE }
     el.animate([{ opacity: 0 }, { opacity: 1 }], opts)
-    ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
+    ghost.animate([{ opacity }, { opacity, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
       .finished.then(() => ghost.remove()).catch(() => {})
   })
+}
+
+function objectPhrase(category) {
+  let name = objectName(category)
+  if (name != name.toUpperCase()) name = name.toLowerCase()
+  let article = /^[aeiou]/i.test(name) ? "an" : "a"
+  return `${article} ${name}!`
+}
+
+function walkFlash(category) {
+  let el = document.querySelector(".walk-flash")
+  el.getAnimations().forEach(a => a.cancel())
+  el.textContent = objectPhrase(category)
+  if (walkReducedMotion()) return
+
+  el.animate([
+    { opacity: 0 },
+    { opacity: 1, offset: 0.2 },
+    { opacity: 1, offset: 0.65 },
+    { opacity: 0 }
+  ], { duration: 1800, easing: "ease-in-out", fill: "forwards" })
 }
 
 function displayImg(imgID, containerSel, fade=true) {
@@ -233,7 +255,7 @@ function displayImg(imgID, containerSel, fade=true) {
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
-  photoSwap(img.node(), new_src, fade)
+  photoSwap(img.node(), new_src, fade, imgContainer.node())
 }
 
 function objectName(category) {
@@ -355,6 +377,7 @@ function walkAdvance() {
   displayImg(selID, ".main-photo")
   // required to update the history
   displayLocation(selID, selCat)
+  walkFlash(selCat)
 
   let lastPhotoID = galleryHistoryGetFromEnd(1).id
   d3.select(".last-photo").classed("inactive", false)

@@ -1654,6 +1654,11 @@ footer {
   pointer-events: none;
 }
 
+.last-photo-frame .photo-label, .walk-flyer .photo-label {
+  padding: 1.5rem 0.4rem 0.3rem 0.4rem;
+  font-size: 1rem;
+}
+
 .last-photo-frame {
   position: relative;
   max-width: 100%;
@@ -1898,10 +1903,22 @@ div.walk-flyer img {
     left: 50%;
     transform: translateX(-50%);
   }
+
+  .walk-flash {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    color: var(--text-color);
+    opacity: 0;
+  }
 }
 
 .sidebar {
   .last-photo {
+    position: relative;
     height: 10rem;
     transition: opacity 450ms;
 
