@@ -1523,9 +1523,6 @@ footer {
   height: 100vh;
   overflow: hidden;
 
-  font-family: Literata, serif;
-  font-weight: 400;
-
   display: flex;
 }
 
@@ -1590,12 +1587,28 @@ footer {
   padding: 10px 10px 0 10px;
   opacity: 0.6;
 
+  .fj-gallery {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  &.ready .fj-gallery {
+    opacity: 1;
+  }
+
   .fj-gallery-item {
+    max-width: none;
     cursor: default;
     transition: opacity 300ms;
 
     &.faded {
       opacity: 0.2;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -1628,7 +1641,7 @@ footer {
   background: linear-gradient(
     to top,
     rgba(var(--bg-color-rgb), 0.92) 0%,
-    rgba(var(--bg-color-rgb), 0.8) 60%,
+    rgba(var(--bg-color-rgb), 0.85) calc(80% - 2.5rem),
     rgba(var(--bg-color-rgb), 0) 100%
   );
 
@@ -1651,14 +1664,11 @@ footer {
   row-gap: 0.5rem;
   align-items: end;
 
-  @media (hover: hover) {
-    pointer-events: auto;
-  }
-
   .summary-title {
     grid-column: 1 / -1;
     margin: 0;
 
+    font-family: Literata, serif;
     font-size: 1.5rem;
     font-weight: 400;
   }
@@ -1697,9 +1707,29 @@ footer {
     }
   }
 
+  .prefecture-list span + span::before {
+    content: ", ";
+  }
+
+  .prefecture-list span, .summary-stops li {
+    pointer-events: auto;
+    cursor: default;
+    transition: color 300ms;
+
+    &::before {
+      color: var(--text-color);
+    }
+
+    &.faded {
+      color: rgba(var(--text-color-rgb), 0.25);
+    }
+  }
+
   .new-walk {
     pointer-events: auto;
     margin-top: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   #summary-map {
@@ -1772,20 +1802,20 @@ footer {
 .walk-button {
   padding: 0.6rem 1rem;
 
-  font-family: inherit;
-  font-weight: inherit;
+  font-family: Literata, serif;
+  font-style: italic;
+  font-weight: 400;
   font-size: 1rem;
   color: var(--text-color);
   background-color: transparent;
-  border: 2px solid rgba(var(--text-color-rgb), 0.2);
-  border-radius: var(--input-border-radius);
+  border: none;
   outline: none;
   cursor: pointer;
 
   transition: all 300ms;
 
   &:hover, &:focus-visible {
-    border-color: var(--text-color);
+    color: rgba(var(--text-color-rgb), 0.5);
   }
 }
 
@@ -1819,12 +1849,6 @@ footer {
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-
-    border: none;
-
-    &:hover, &:focus-visible {
-      color: rgba(var(--text-color-rgb), 0.5);
-    }
   }
 }
 

@@ -20,6 +20,14 @@ walk:
 	./util.py series japan-test --action refresh --exif-rename
 	./annotate.py
 	./util.py photo-chain _data/2024-04-16-japan-test/metadata.json
+	$(MAKE) walk-thumbs
+
+WALK_IMG = assets/img/posts/2024-04-16-japan-test
+SRGB_ICC = /System/Library/ColorSync/Profiles/sRGB Profile.icc
+
+walk-thumbs:
+	mkdir -p $(WALK_IMG)/thumb
+	cd $(WALK_IMG) && find . -maxdepth 1 -name "*.webp" -print0 | xargs -0 -P 8 -I{} magick {} -resize '900x900>' -profile "$(SRGB_ICC)" -strip -quality 78 -define webp:method=6 thumb/{}
 
 img:
 	rm -f assets/img/**/*_tn.jpg

@@ -388,24 +388,82 @@ function walkDateRange(gh) {
   let endDay = part(end, { day: "numeric" })
 
   if (startMonth != endMonth) {
-    return `${startMonth} ${startDay} - ${endMonth} ${endDay}`
+    return `${startMonth} ${startDay}-${endMonth} ${endDay}`
   }
   if (startDay != endDay) {
-    return `${startMonth} ${startDay} - ${endDay}`
+    return `${startMonth} ${startDay}-${endDay}`
   }
   return `${startMonth} ${startDay}`
 }
 
 function summaryHighlight(ken) {
+  if (window.summaryKen == ken) return
+  window.summaryKen = ken
+
   d3.selectAll("#summary-map .ken.visitedKen")
     .classed("hoveredKen", d => d.properties.nam.split(" ")[0] == ken)
   d3.selectAll(".summary-gallery .fj-gallery-item")
     .classed("faded", d => d.location.prefecture != ken)
+  d3.selectAll(".prefecture-list span")
+    .classed("faded", d => d != ken)
+  d3.selectAll(".summary-stops li")
+    .classed("faded", d => d.location.prefecture != ken)
+}
+
+function summaryFocus(ken) {
+  summaryHighlight(ken)
+  summaryReveal(ken)
+}
+
+function summaryReveal(ken) {
+  let gallery = document.querySelector(".summary-gallery")
+  if (!gallery.classList.contains("ready")) return
+
+  let top = gallery.getBoundingClientRect().top
+  let bottom = document.querySelector(".summary-panel").getBoundingClientRect().top
+  let middle = (top + bottom) / 2
+
+  let centers = d3.selectAll(".summary-gallery .fj-gallery-item")
+    .filter(d => d.location.prefecture == ken)
+    .nodes()
+    .map(item => {
+      let rect = item.getBoundingClientRect()
+      return rect.top + rect.height / 2
+    })
+
+  if (centers.length == 0) return
+  if (centers.some(c => c >= top && c <= bottom)) return
+
+  let nearest = centers.reduce((a, b) => Math.abs(a - middle) < Math.abs(b - middle) ? a : b)
+  gallery.scrollBy({ top: nearest - middle, behavior: "smooth" })
 }
 
 function summaryUnhighlight() {
+  if (window.summaryKen == null) return
+  window.summaryKen = null
+
   d3.selectAll("#summary-map .ken").classed("hoveredKen", false)
-  d3.selectAll(".summary-gallery .fj-gallery-item").classed("faded", false)
+  d3.selectAll(".summary-gallery .fj-gallery-item, .prefecture-list span, .summary-stops li")
+    .classed("faded", false)
+}
+
+function summaryGalleryPointer(e) {
+  if (window.summaryScrolling) return
+
+  let item = e.target.closest(".fj-gallery-item")
+  let panelTop = document.querySelector(".summary-panel").getBoundingClientRect().top
+  if (!item || e.clientY >= panelTop) {
+    return summaryUnhighlight()
+  }
+  summaryHighlight(d3.select(item).datum().location.prefecture)
+}
+
+function summaryGalleryScroll() {
+  window.summaryScrolling = true
+  clearTimeout(window.summaryScrollTimer)
+  window.summaryScrollTimer = setTimeout(() => {
+    window.summaryScrolling = false
+  }, 150)
 }
 
 function walkEnd() {
@@ -429,7 +487,13 @@ function walkEnd() {
     walkDateRange(gh)
   ].join(" · "))
 
-  d3.select(".summary-prefectures .prefecture-list").text(Array.from(prefectures).join(", "))
+  d3.select(".summary-prefectures .prefecture-list")
+    .selectAll("span").data(Array.from(prefectures))
+    .enter()
+    .append("span")
+    .text(d => d)
+    .on("mouseenter", (e, d) => summaryFocus(d))
+    .on("mouseleave", () => summaryUnhighlight())
 
   d3.select(".summary-stops")
     .selectAll("li").data(cities)
@@ -437,6 +501,8 @@ function walkEnd() {
     .append("li")
     .attr("title", d => d.location.prefecture)
     .text(d => d.name)
+    .on("mouseenter", (e, d) => summaryFocus(d.location.prefecture))
+    .on("mouseleave", () => summaryUnhighlight())
 
   mapSetup("#summary-map")
   prefectures.forEach(ken => {
@@ -444,7 +510,7 @@ function walkEnd() {
   })
 
   d3.selectAll("#summary-map .ken.visitedKen")
-    .on("mouseenter", (e, d) => summaryHighlight(d.properties.nam.split(" ")[0]))
+    .on("mouseenter", (e, d) => summaryFocus(d.properties.nam.split(" ")[0]))
     .on("mouseleave", () => summaryUnhighlight())
 
   let s = d3.select(".summary")
@@ -454,12 +520,8 @@ function walkEnd() {
     .append("div")
     .attr("class", "fj-gallery-item")
 
-  items
-    .on("mouseenter", (e, d) => summaryHighlight(d.location.prefecture))
-    .on("mouseleave", () => summaryUnhighlight())
-
   items.append("img")
-    .attr("src", d => `/assets/img/posts/${window.pageName}/${d.id}.webp`)
+    .attr("src", d => `/assets/img/posts/${window.pageName}/thumb/${d.id}.webp`)
 
   items.append("div")
     .attr("class", "summary-photo-label")
@@ -472,7 +534,18 @@ function walkEnd() {
   let bandHeight = document.querySelector(".summary-content").offsetHeight
   d3.select(".summary-gallery").style("padding-bottom", `${bandHeight}px`)
 
-  gallerySetup()
+  let walkID = window.walkID
+  let imgs = items.select("img").nodes()
+  Promise.all(imgs.map(img => img.decode().catch(() => {}))).then(() => {
+    if (walkID != window.walkID) return
+
+    imgs.forEach(img => {
+      img.setAttribute("width", img.naturalWidth)
+      img.setAttribute("height", img.naturalHeight)
+    })
+    gallerySetup()
+    d3.select(".summary-gallery").classed("ready", true)
+  })
 }
 
 function gallerySetup() {
@@ -653,6 +726,7 @@ function mockFinish() {
 }
 
 function walkStart() {
+  window.walkID = (window.walkID || 0) + 1
   window.galleryHistory = []
 
   let imgs = Object.keys(window.photo_metadata)
@@ -676,6 +750,8 @@ function walkReset() {
   s.select("#summary-map").selectAll("*").remove()
   s.select(".summary-stops").selectAll("*").remove()
   s.selectAll(".summary-title, .summary-counts, .prefecture-list").text("")
+  s.select(".summary-gallery").classed("ready", false)
+  window.summaryKen = null
 
   d3.select(".last-photo").classed("inactive", true)
   d3.select(".sidebar-container").classed("walk-complete", false)
@@ -716,11 +792,12 @@ function main(event) {
       walkAdvance()
     })
 
-  document.querySelector(".summary-panel").addEventListener("wheel", (e) => {
-    let lineHeight = e.deltaMode == 1 ? 16 : 1
-    document.querySelector(".summary-gallery").scrollBy(0, e.deltaY * lineHeight)
-    e.preventDefault()
-  }, { passive: false })
+  d3.select(".summary-gallery")
+    .on("mousemove", (e) => summaryGalleryPointer(e))
+    .on("mouseleave", () => summaryUnhighlight())
+
+  document.querySelector(".summary-gallery")
+    .addEventListener("scroll", summaryGalleryScroll, { passive: true })
 
   d3.select('.sidebar-container')
     .on("mousedown", (e) => {
