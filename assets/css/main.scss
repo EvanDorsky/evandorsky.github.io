@@ -1630,6 +1630,16 @@ footer {
   }
 }
 
+.walk-flyer {
+  position: fixed;
+  z-index: 10;
+  margin: 0;
+  max-width: none;
+  display: block;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 .summary-content {
   position: absolute;
   left: 0;

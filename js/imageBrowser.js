@@ -113,6 +113,7 @@ function shuffleArray(arr) {
 
 
 window.galleryHistory = []
+window.walkAnimations = []
 
 function galleryHistoryGetFromEnd(offset=0) {
   let len = window.galleryHistory.length
@@ -493,10 +494,119 @@ function summaryGalleryScroll() {
   }, 150)
 }
 
+const WALK_EASE = "cubic-bezier(0.37, 0, 0.63, 1)"
+
+function imgContentRect(img) {
+  let r = img.getBoundingClientRect()
+  let cs = getComputedStyle(img)
+  let left = r.left + parseFloat(cs.paddingLeft)
+  let top = r.top + parseFloat(cs.paddingTop)
+  let width = r.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
+  let height = r.height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
+
+  if (cs.objectFit == "contain" && img.naturalWidth) {
+    let s = Math.min(width / img.naturalWidth, height / img.naturalHeight)
+    left += (width - img.naturalWidth * s) / 2
+    top += (height - img.naturalHeight * s) / 2
+    width = img.naturalWidth * s
+    height = img.naturalHeight * s
+  }
+  return { left, top, width, height }
+}
+
+function rectStyle(r) {
+  return { left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px` }
+}
+
+function walkTransitionSources() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null
+
+  let rect = sel => document.querySelector(sel).getBoundingClientRect()
+
+  let photos = [{ sel: "#featured-image", offset: 0, opacity: 1 }]
+  if (!d3.select(".last-photo").classed("inactive")) {
+    photos.push({ sel: ".last-photo img", offset: 1, opacity: 0.7 })
+  }
+
+  return {
+    photos: photos.map(p => {
+      let img = document.querySelector(p.sel)
+      return { ...p, src: img.getAttribute("src"), rect: imgContentRect(img) }
+    }),
+    panel: [
+      { from: document.querySelector(".sidebar .prefecture").parentNode.getBoundingClientRect(), to: ".summary-prefectures", align: "corner" },
+      { from: rect(".sidebar .neighborhood"), to: ".summary-cities", align: "corner" },
+      { from: rect("#japan-map"), to: "#summary-map", align: "fit" },
+      { from: rect(".walk-advance"), to: ".new-walk", align: "center" }
+    ]
+  }
+}
+
+function walkTransitionPanel(sources) {
+  let opts = { duration: 800, easing: WALK_EASE, fill: "backwards" }
+
+  let anims = sources.panel.map(({ from, to, align }) => {
+    let el = document.querySelector(to)
+    let r = el.getBoundingClientRect()
+    let transform = `translate(${from.left - r.left}px, ${from.top - r.top}px)`
+    if (align != "corner") {
+      let dx = from.left + from.width / 2 - (r.left + r.width / 2)
+      let dy = from.top + from.height / 2 - (r.top + r.height / 2)
+      let s = align == "fit" ? from.width / r.width : 1
+      transform = `translate(${dx}px, ${dy}px) scale(${s})`
+    }
+    return el.animate([{ transform }, { transform: "none" }], opts)
+  })
+
+  document.querySelectorAll(".summary-title, .summary-counts").forEach(el => {
+    anims.push(el.animate([
+      { opacity: 0, transform: "translateY(0.5rem)" },
+      { opacity: 1, transform: "none" }
+    ], { ...opts, delay: 300 }))
+  })
+
+  anims.forEach(a => a.pause())
+  window.walkAnimations.push(...anims)
+  return anims
+}
+
+function walkTransitionFlyers(sources) {
+  return sources.photos.map(p => {
+    let img = document.createElement("img")
+    img.className = "walk-flyer"
+    img.src = p.src
+    Object.assign(img.style, rectStyle(p.rect), { opacity: p.opacity })
+    document.body.appendChild(img)
+    return { ...p, img }
+  })
+}
+
+function walkTransitionLand(flyers) {
+  let items = d3.selectAll(".summary-gallery .fj-gallery-item").nodes()
+
+  flyers.forEach(f => {
+    let item = items[items.length - 1 - f.offset]
+    if (!item) return f.img.remove()
+
+    item.style.visibility = "hidden"
+    let anim = f.img.animate([
+      { ...rectStyle(f.rect), opacity: f.opacity },
+      { ...rectStyle(item.getBoundingClientRect()), opacity: 0.6 }
+    ], { duration: 1000, easing: WALK_EASE, fill: "forwards" })
+    window.walkAnimations.push(anim)
+
+    anim.finished.then(() => {
+      item.style.visibility = ""
+      f.img.remove()
+    }).catch(() => {})
+  })
+}
+
 function walkEnd() {
   console.log('=============WALK COMPLETE============')
   let gh = window.galleryHistory
 
+  let sources = walkTransitionSources()
   d3.select(".sidebar-container").classed("walk-complete", true)
 
   let cities = walkCities(gh)
@@ -561,6 +671,11 @@ function walkEnd() {
   let bandHeight = document.querySelector(".summary-content").offsetHeight
   d3.select(".summary-gallery").style("padding-bottom", `${bandHeight}px`)
 
+  let panelAnims = sources ? walkTransitionPanel(sources) : []
+  let flyers = sources ? walkTransitionFlyers(sources) : []
+  let startPanel = () => panelAnims.forEach(a => a.play())
+  let panelTimer = setTimeout(startPanel, 800)
+
   let walkID = window.walkID
   let imgs = items.select("img").nodes()
   Promise.all(imgs.map(img => img.decode().catch(() => {}))).then(() => {
@@ -572,6 +687,10 @@ function walkEnd() {
     })
     gallerySetup()
     d3.select(".summary-gallery").classed("ready", true)
+
+    clearTimeout(panelTimer)
+    startPanel()
+    walkTransitionLand(flyers)
   })
 }
 
@@ -780,6 +899,10 @@ function walkReset() {
   s.select(".summary-gallery").classed("ready", false)
   summaryScrollCancel()
   window.summaryKen = null
+
+  window.walkAnimations.forEach(a => a.cancel())
+  window.walkAnimations = []
+  d3.selectAll(".walk-flyer").remove()
 
   d3.select(".last-photo").classed("inactive", true)
   d3.select(".sidebar-container").classed("walk-complete", false)
