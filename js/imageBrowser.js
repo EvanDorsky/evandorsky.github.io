@@ -264,7 +264,8 @@ function objectPhrase(category) {
   return `${article} ${name}`
 }
 
-const WALK_CALLOUT_LEAVE = 1000
+const WALK_CALLOUT_LEAVE = 2000
+const WALK_CALLOUT_LEAVE_SAME = 500
 const WALK_CALLOUT_ARRIVE = 2000
 const WALK_SPOTLIGHT_FADE = 0.35
 
@@ -504,7 +505,9 @@ function walkAdvance() {
     return walkEnd()
   }
 
-  let fromID = galleryHistoryGetFromEnd(0).id
+  let from = galleryHistoryGetFromEnd(0)
+  let fromID = from.id
+  let leaveHold = reasonKey(from) == selCat.toLowerCase() ? WALK_CALLOUT_LEAVE_SAME : WALK_CALLOUT_LEAVE
   let walkID = window.walkID
   window.walkPending = true
   walkFlash(fromID, selCat)
@@ -526,7 +529,7 @@ function walkAdvance() {
         if (token == window.walkFlashToken) walkFlashHide()
       }, WALK_CALLOUT_ARRIVE)
     })
-  }, WALK_CALLOUT_LEAVE)
+  }, leaveHold)
 }
 
 function locationName(loc) {
