@@ -207,17 +207,9 @@ function displayLocation(imgID, reason=null) {
     reason = reason.charAt(0).toUpperCase() + reason.substring(1)
   }
   d3.select(".reason").text(`${reason}`)
-  d3.select(".region").text(`${loc.region}`)
-  d3.select(".prefecture").text(`${loc.prefecture}`)
-  let neighborhood_text = loc.neighborhood
-
-  if (loc.subneighborhood) {
-    neighborhood_text += ' ' + loc.subneighborhood
-  }
-
-  d3.select(".neighborhood").text(`${neighborhood_text}`)
-
-  let city_text = loc.city
+  d3.select(".sidebar .region").text(loc.region)
+  d3.select(".sidebar .prefecture").text(loc.prefecture)
+  d3.select(".sidebar .city").text(loc.city || loc.prefecture)
 
   mapDeselectAll()
   mapSelectRegion(mapRegion(loc.prefecture))
@@ -230,11 +222,6 @@ function displayLocation(imgID, reason=null) {
       location: loc
     })
   }
-
-  // if (neighborhood_text) {
-  //   city_text = ', '+city_text
-  // }
-  // d3.select(".city").text(city_text)
 }
 
 function mapRegion(ken) {
@@ -397,26 +384,39 @@ function walkDateRange(gh) {
   return `${startMonth} ${startDay}`
 }
 
-function summaryHighlight(ken) {
-  if (window.summaryKen == ken) return
-  window.summaryKen = ken
+function summaryHighlight(kens) {
+  let key = kens.join("|")
+  if (window.summaryKen == key) return
+  window.summaryKen = key
+
+  let regions = window.galleryHistory
+    .filter(e => kens.includes(e.location.prefecture))
+    .map(e => e.location.region)
 
   d3.selectAll("#summary-map .ken.visitedKen")
-    .classed("hoveredKen", d => d.properties.nam.split(" ")[0] == ken)
+    .classed("hoveredKen", d => kens.includes(d.properties.nam.split(" ")[0]))
   d3.selectAll(".summary-gallery .fj-gallery-item")
-    .classed("faded", d => d.location.prefecture != ken)
+    .classed("faded", d => !kens.includes(d.location.prefecture))
+  d3.selectAll(".region-list span")
+    .classed("faded", d => !regions.includes(d))
   d3.selectAll(".prefecture-list span")
-    .classed("faded", d => d != ken)
+    .classed("faded", d => !kens.includes(d))
   d3.selectAll(".summary-stops li")
-    .classed("faded", d => d.location.prefecture != ken)
+    .classed("faded", d => !kens.includes(d.location.prefecture))
 }
 
-function summaryFocus(ken) {
-  summaryHighlight(ken)
-  summaryReveal(ken)
+function summaryFocus(kens) {
+  summaryHighlight(kens)
+  summaryReveal(kens)
 }
 
-function summaryReveal(ken) {
+function summaryRegionKens(region) {
+  return Array.from(new Set(window.galleryHistory
+    .filter(e => e.location.region == region)
+    .map(e => e.location.prefecture)))
+}
+
+function summaryReveal(kens) {
   let gallery = document.querySelector(".summary-gallery")
   if (!gallery.classList.contains("ready")) return
 
@@ -425,7 +425,7 @@ function summaryReveal(ken) {
   let middle = (top + bottom) / 2
 
   let centers = d3.selectAll(".summary-gallery .fj-gallery-item")
-    .filter(d => d.location.prefecture == ken)
+    .filter(d => kens.includes(d.location.prefecture))
     .nodes()
     .map(item => {
       let rect = item.getBoundingClientRect()
@@ -471,7 +471,7 @@ function summaryUnhighlight() {
   window.summaryKen = null
 
   d3.selectAll("#summary-map .ken").classed("hoveredKen", false)
-  d3.selectAll(".summary-gallery .fj-gallery-item, .prefecture-list span, .summary-stops li")
+  d3.selectAll(".summary-gallery .fj-gallery-item, .region-list span, .prefecture-list span, .summary-stops li")
     .classed("faded", false)
 }
 
@@ -483,7 +483,7 @@ function summaryGalleryPointer(e) {
   if (!item || e.clientY >= panelTop) {
     return summaryUnhighlight()
   }
-  summaryHighlight(d3.select(item).datum().location.prefecture)
+  summaryHighlight([d3.select(item).datum().location.prefecture])
 }
 
 function summaryGalleryScroll() {
@@ -534,8 +534,9 @@ function walkTransitionSources() {
       return { ...p, src: img.getAttribute("src"), rect: imgContentRect(img) }
     }),
     panel: [
-      { from: document.querySelector(".sidebar .prefecture").parentNode.getBoundingClientRect(), to: ".summary-prefectures", align: "corner" },
-      { from: rect(".sidebar .neighborhood"), to: ".summary-cities", align: "corner" },
+      { from: rect(".sidebar .region-row"), to: ".summary-regions", align: "corner" },
+      { from: rect(".sidebar .prefecture-row"), to: ".summary-prefectures", align: "corner" },
+      { from: rect(".sidebar .city-row"), to: ".summary-cities", align: "corner" },
       { from: rect("#japan-map"), to: "#summary-map", align: "fit" },
       { from: rect(".walk-advance"), to: ".new-walk", align: "center" }
     ]
@@ -624,12 +625,20 @@ function walkEnd() {
     walkDateRange(gh)
   ].join(" · "))
 
+  d3.select(".summary-regions .region-list")
+    .selectAll("span").data(Array.from(new Set(gh.map(e => e.location.region))))
+    .enter()
+    .append("span")
+    .text(d => d)
+    .on("mouseenter", (e, d) => summaryFocus(summaryRegionKens(d)))
+    .on("mouseleave", () => summaryUnhighlight())
+
   d3.select(".summary-prefectures .prefecture-list")
     .selectAll("span").data(Array.from(prefectures))
     .enter()
     .append("span")
     .text(d => d)
-    .on("mouseenter", (e, d) => summaryFocus(d))
+    .on("mouseenter", (e, d) => summaryFocus([d]))
     .on("mouseleave", () => summaryUnhighlight())
 
   d3.select(".summary-stops")
@@ -638,7 +647,7 @@ function walkEnd() {
     .append("li")
     .attr("title", d => d.location.prefecture)
     .text(d => d.name)
-    .on("mouseenter", (e, d) => summaryFocus(d.location.prefecture))
+    .on("mouseenter", (e, d) => summaryFocus([d.location.prefecture]))
     .on("mouseleave", () => summaryUnhighlight())
 
   mapSetup("#summary-map")
@@ -647,7 +656,7 @@ function walkEnd() {
   })
 
   d3.selectAll("#summary-map .ken.visitedKen")
-    .on("mouseenter", (e, d) => summaryFocus(d.properties.nam.split(" ")[0]))
+    .on("mouseenter", (e, d) => summaryFocus([d.properties.nam.split(" ")[0]]))
     .on("mouseleave", () => summaryUnhighlight())
 
   let s = d3.select(".summary")
@@ -895,7 +904,7 @@ function walkReset() {
   s.select(".fj-gallery").selectAll("*").remove()
   s.select("#summary-map").selectAll("*").remove()
   s.select(".summary-stops").selectAll("*").remove()
-  s.selectAll(".summary-title, .summary-counts, .prefecture-list").text("")
+  s.selectAll(".summary-title, .summary-counts, .region-list, .prefecture-list").text("")
   s.select(".summary-gallery").classed("ready", false)
   summaryScrollCancel()
   window.summaryKen = null

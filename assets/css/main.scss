@@ -1697,7 +1697,7 @@ footer {
     opacity: 50%;
   }
 
-  .summary-prefectures {
+  .summary-regions, .summary-prefectures {
     margin-bottom: 0.5rem;
   }
 
@@ -1717,11 +1717,11 @@ footer {
     }
   }
 
-  .prefecture-list span + span::before {
+  .region-list span + span::before, .prefecture-list span + span::before {
     content: ", ";
   }
 
-  .prefecture-list span, .summary-stops li {
+  .region-list span, .prefecture-list span, .summary-stops li {
     pointer-events: auto;
     cursor: default;
     transition: color 300ms;
@@ -1884,16 +1884,6 @@ footer {
   }
 
   .subtitle {
-    .neighborhood {
-      height: 1.65rem; // 1.1 * 1.5
-    }
-    .city {
-      font-size: 2rem;
-    }
-    .region-container {
-      margin-top: 2rem;
-    }
-
     .label {
       opacity: 50%;
     }
