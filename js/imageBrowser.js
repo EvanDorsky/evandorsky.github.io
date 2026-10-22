@@ -603,6 +603,11 @@ function walkTransitionFlyers(sources) {
 function walkTransitionLand(flyers) {
   let items = d3.selectAll(".summary-gallery .fj-gallery-item").nodes()
 
+  if (flyers.length) {
+    let gallery = document.querySelector(".summary-gallery")
+    gallery.scrollTop = gallery.scrollHeight
+  }
+
   flyers.forEach(f => {
     let item = items[items.length - 1 - f.offset]
     if (f.fade || !item) {
