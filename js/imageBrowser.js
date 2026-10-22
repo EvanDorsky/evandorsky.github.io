@@ -265,7 +265,7 @@ function objectPhrase(category) {
 }
 
 const WALK_CALLOUT_HOLD = 2000
-const WALK_SPOTLIGHT_FADE = 0.5
+const WALK_SPOTLIGHT_FADE = 0.35
 
 function walkFlashClear() {
   document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => el.remove())
