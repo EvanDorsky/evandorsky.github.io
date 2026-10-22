@@ -264,7 +264,8 @@ function objectPhrase(category) {
   return `${article} ${name}`
 }
 
-const WALK_CALLOUT_HOLD = 2000
+const WALK_CALLOUT_LEAVE = 1000
+const WALK_CALLOUT_ARRIVE = 2000
 const WALK_SPOTLIGHT_FADE = 0.35
 
 function walkFlashClear() {
@@ -523,9 +524,9 @@ function walkAdvance() {
       let token = walkFlash(selID, selCat)
       setTimeout(() => {
         if (token == window.walkFlashToken) walkFlashHide()
-      }, WALK_CALLOUT_HOLD)
+      }, WALK_CALLOUT_ARRIVE)
     })
-  }, WALK_CALLOUT_HOLD)
+  }, WALK_CALLOUT_LEAVE)
 }
 
 function locationName(loc) {
