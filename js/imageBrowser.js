@@ -179,7 +179,7 @@ function photoSwap(el, src, fade, container) {
   next.decode().catch(() => {}).then(() => {
     if (el.photoSwapToken != token) return
 
-    container.querySelectorAll(".photo-ghost").forEach(g => g.remove())
+    container.querySelectorAll(".photo-ghost:not(.photo-date)").forEach(g => g.remove())
     unit.getAnimations().forEach(a => a.cancel())
 
     let base = parseFloat(getComputedStyle(unit).opacity)
