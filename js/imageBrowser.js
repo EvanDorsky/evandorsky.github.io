@@ -380,7 +380,9 @@ function walkFlashHide() {
   document.querySelectorAll(".walk-callout:not(.leaving), .walk-spotlight:not(.leaving)").forEach(el => {
     el.classList.add("leaving")
     if (walkReducedMotion()) return el.remove()
-    el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: WALK_FADE, easing: WALK_EASE, fill: "forwards" })
+    let opacity = parseFloat(getComputedStyle(el).opacity)
+    el.getAnimations().forEach(a => a.cancel())
+    el.animate([{ opacity }, { opacity: 0 }], { duration: WALK_FADE, easing: WALK_EASE, fill: "forwards" })
       .finished.then(() => el.remove()).catch(() => {})
   })
 }
