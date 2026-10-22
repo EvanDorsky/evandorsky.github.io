@@ -1693,16 +1693,12 @@ footer {
     margin-bottom: 1.5rem;
   }
 
-  .label {
-    opacity: 50%;
-  }
-
-  .summary-regions, .summary-prefectures {
+  .summary-regions, .summary-prefectures, .summary-cities {
     margin-bottom: 0.5rem;
   }
 
   .summary-stops {
-    display: inline;
+    display: block;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -1737,7 +1733,7 @@ footer {
 
   .new-walk {
     pointer-events: auto;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     padding-left: 0;
     padding-right: 0;
   }
@@ -1884,9 +1880,17 @@ footer {
   }
 
   .subtitle {
-    .label {
-      opacity: 50%;
+    .region-row, .prefecture-row, .city-row {
+      margin-bottom: 0.5rem;
     }
+  }
+}
+
+.sidebar .subtitle, .summary-panel {
+  .label {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    opacity: 50%;
   }
 }
 
