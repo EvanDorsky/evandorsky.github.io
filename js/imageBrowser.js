@@ -217,6 +217,15 @@ function objectPlural(name) {
   return name + "s"
 }
 
+function numberWord(n) {
+  let ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+  let tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+  if (n < 20) return ones[n]
+  if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? `-${ones[n % 10]}` : "")
+  return n.toLocaleString()
+}
+
 function walkObjectCounts(gh) {
   let counts = new Map()
   gh.forEach(e => {
@@ -227,7 +236,7 @@ function walkObjectCounts(gh) {
     .sort((a, b) => b[1] - a[1])
     .map(([category, n]) => {
       let name = objectNameLower(category)
-      return { category, text: `${n} ${n == 1 ? name : objectPlural(name)}` }
+      return { category, text: `${numberWord(n)} ${n == 1 ? name : objectPlural(name)}` }
     })
 }
 
@@ -779,7 +788,6 @@ function walkEnd() {
 
   let objectCounts = walkObjectCounts(gh)
   d3.select(".summary-objects").style("display", objectCounts.length ? null : "none")
-  d3.select(".summary-objects .label").text(objectCounts.length > 1 ? "Objects" : "Object")
   d3.select(".summary-objects .object-list")
     .selectAll("span").data(objectCounts)
     .enter()

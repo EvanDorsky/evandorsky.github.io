@@ -1758,6 +1758,14 @@ div.walk-flyer img {
     content: ", ";
   }
 
+  .object-list span:nth-child(2):last-child::before {
+    content: " and ";
+  }
+
+  .object-list span:nth-child(n+3):last-child::before {
+    content: ", and ";
+  }
+
   .region-list span, .prefecture-list span, .summary-stops li, .object-list span {
     pointer-events: auto;
     cursor: default;
