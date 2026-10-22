@@ -258,7 +258,28 @@ function objectPhrase(category) {
 const WALK_CALLOUT_HOLD = 2000
 
 function walkFlashClear() {
-  document.querySelectorAll(".walk-callout").forEach(el => el.remove())
+  document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => el.remove())
+}
+
+function walkSpotlight(container, r, c, d) {
+  let spot = document.createElement("div")
+  spot.className = "walk-spotlight"
+  Object.assign(spot.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
+
+  let hole = document.createElement("div")
+  hole.className = "walk-spotlight-hole"
+  Object.assign(hole.style, {
+    left: `${d.box.x1 * 100}%`,
+    top: `${d.box.y1 * 100}%`,
+    width: `${(d.box.x2 - d.box.x1) * 100}%`,
+    height: `${(d.box.y2 - d.box.y1) * 100}%`
+  })
+  spot.appendChild(hole)
+  container.appendChild(spot)
+
+  if (!walkReducedMotion()) {
+    spot.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, easing: WALK_EASE })
+  }
 }
 
 function walkCalloutBox(imgID, category) {
@@ -297,6 +318,8 @@ function walkFlash(imgID, category) {
   let half = el.offsetWidth / 2
   x = Math.max(r.left + half + gap, Math.min(r.left + r.width - half - gap, x))
 
+  if (d) walkSpotlight(container, r, c, d)
+
   Object.assign(el.style, { left: `${x - half - c.left}px`, top: `${y - c.top}px` })
 
   if (!walkReducedMotion()) {
@@ -308,7 +331,7 @@ function walkFlash(imgID, category) {
 }
 
 function walkFlashHide() {
-  document.querySelectorAll(".walk-callout").forEach(el => {
+  document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => {
     if (walkReducedMotion()) return el.remove()
     el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: WALK_FADE, easing: WALK_EASE, fill: "forwards" })
       .finished.then(() => el.remove()).catch(() => {})

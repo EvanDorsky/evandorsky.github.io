@@ -1951,15 +1951,27 @@ div.walk-flyer img {
 
   .walk-callout {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     white-space: nowrap;
     pointer-events: none;
 
     font-family: Literata, serif;
     font-style: italic;
-    font-size: 1.1rem;
-    color: white;
-    text-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6), 0 0 0.1rem rgba(0, 0, 0, 0.6);
+    font-size: 1.5rem;
+    color: var(--text-color);
+  }
+
+  .walk-spotlight {
+    position: absolute;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .walk-spotlight-hole {
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 0 200vmax rgba(var(--bg-color-rgb), 0.75);
   }
 }
 
