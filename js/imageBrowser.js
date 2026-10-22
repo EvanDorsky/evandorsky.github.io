@@ -551,7 +551,7 @@ function walkAdvance() {
   let leaveHold = reasonKey(from) == selCat.toLowerCase() ? WALK_CALLOUT_LEAVE_SAME : WALK_CALLOUT_LEAVE
   let walkID = window.walkID
   window.walkPending = true
-  walkFlash(fromID, selCat, leaveHold)
+  walkFlash(fromID, selCat)
 
   setTimeout(() => {
     if (walkID != window.walkID) return
