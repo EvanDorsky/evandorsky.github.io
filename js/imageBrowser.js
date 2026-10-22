@@ -175,9 +175,17 @@ function photoSwap(el, src, fade, container) {
   let token = (el.photoSwapToken || 0) + 1
   el.photoSwapToken = token
 
-  let swap = () => el.setAttribute("src", src)
+  let swapped
+  let done = new Promise(resolve => swapped = resolve)
+  let swap = () => {
+    el.setAttribute("src", src)
+    swapped()
+  }
 
-  if (!fade || walkReducedMotion()) return swap()
+  if (!fade || walkReducedMotion()) {
+    swap()
+    return done
+  }
 
   let next = new Image()
   next.src = src
@@ -208,6 +216,7 @@ function photoSwap(el, src, fade, container) {
     ghost.animate([{ opacity: 1 }, { opacity: 1, offset: 0.4 }, { opacity: 0 }], { ...opts, fill: "forwards" })
       .finished.then(() => ghost.remove()).catch(() => {})
   })
+  return done
 }
 
 function reasonKey(e) {
@@ -292,7 +301,8 @@ function walkCalloutBox(imgID, category) {
 }
 
 function walkFlash(imgID, category) {
-  walkFlashClear()
+  walkFlashHide()
+  window.walkFlashToken = (window.walkFlashToken || 0) + 1
 
   let container = document.querySelector(".main-photo")
   let img = document.querySelector("#featured-image")
@@ -304,7 +314,7 @@ function walkFlash(imgID, category) {
   let r = imgContentRect(img)
   let c = container.getBoundingClientRect()
   let d = walkCalloutBox(imgID, category)
-  let gap = 8
+  let gap = 0
 
   let x = r.left + r.width / 2
   let y = r.top + r.height + gap
@@ -330,10 +340,12 @@ function walkFlash(imgID, category) {
       { opacity: 1, transform: "none" }
     ], { duration: 400, easing: WALK_EASE })
   }
+  return window.walkFlashToken
 }
 
 function walkFlashHide() {
-  document.querySelectorAll(".walk-callout, .walk-spotlight").forEach(el => {
+  document.querySelectorAll(".walk-callout:not(.leaving), .walk-spotlight:not(.leaving)").forEach(el => {
+    el.classList.add("leaving")
     if (walkReducedMotion()) return el.remove()
     el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: WALK_FADE, easing: WALK_EASE, fill: "forwards" })
       .finished.then(() => el.remove()).catch(() => {})
@@ -370,7 +382,7 @@ function displayImg(imgID, containerSel, fade=true) {
   // change the id
   imgContainer.attr("id", `id${imgID}`)
   // change the img src
-  photoSwap(img.node(), new_src, fade, imgContainer.node())
+  return photoSwap(img.node(), new_src, fade, imgContainer.node())
 }
 
 function objectName(category) {
@@ -497,13 +509,22 @@ function walkAdvance() {
   walkFlash(fromID, selCat)
 
   setTimeout(() => {
-    window.walkPending = false
     if (walkID != window.walkID) return
 
     walkFlashHide()
-    displayImg(selID, ".main-photo")
+    let arrived = displayImg(selID, ".main-photo")
     // required to update the history
     displayLocation(selID, selCat)
+
+    arrived.then(() => {
+      window.walkPending = false
+      if (walkID != window.walkID) return
+
+      let token = walkFlash(selID, selCat)
+      setTimeout(() => {
+        if (token == window.walkFlashToken) walkFlashHide()
+      }, WALK_CALLOUT_HOLD)
+    })
   }, WALK_CALLOUT_HOLD)
 }
 

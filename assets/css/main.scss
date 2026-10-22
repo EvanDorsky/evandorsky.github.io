@@ -1955,10 +1955,19 @@ div.walk-flyer img {
     white-space: nowrap;
     pointer-events: none;
 
+    padding: 0.4rem 1.2rem;
+
     font-family: Literata, serif;
     font-style: italic;
     font-size: 1.5rem;
     color: var(--text-color);
+    background: radial-gradient(
+      closest-side,
+      rgba(var(--bg-color-rgb), 0.85) 0%,
+      rgba(var(--bg-color-rgb), 0.7) 55%,
+      rgba(var(--bg-color-rgb), 0) 100%
+    );
+    text-shadow: 0 0 0.5rem rgba(var(--bg-color-rgb), 0.9);
   }
 
   .walk-spotlight {
