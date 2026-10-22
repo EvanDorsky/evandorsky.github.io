@@ -266,15 +266,12 @@ function walkSpotlight(container, r, c, d) {
   spot.className = "walk-spotlight"
   Object.assign(spot.style, rectStyle({ ...r, left: r.left - c.left, top: r.top - c.top }))
 
-  let hole = document.createElement("div")
-  hole.className = "walk-spotlight-hole"
-  Object.assign(hole.style, {
-    left: `${d.box.x1 * 100}%`,
-    top: `${d.box.y1 * 100}%`,
-    width: `${(d.box.x2 - d.box.x1) * 100}%`,
-    height: `${(d.box.y2 - d.box.y1) * 100}%`
-  })
-  spot.appendChild(hole)
+  let cx = (d.box.x1 + d.box.x2) / 2 * r.width
+  let cy = (d.box.y1 + d.box.y2) / 2 * r.height
+  let rx = Math.max(40, (d.box.x2 - d.box.x1) / 2 * r.width * 1.5)
+  let ry = Math.max(40, (d.box.y2 - d.box.y1) / 2 * r.height * 1.5)
+  spot.style.background = `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, ` +
+    `rgba(var(--bg-color-rgb), 0) 55%, rgba(var(--bg-color-rgb), 0.75) 100%)`
   container.appendChild(spot)
 
   if (!walkReducedMotion()) {
