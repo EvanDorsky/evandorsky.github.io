@@ -252,12 +252,16 @@ function walkFlash(category) {
   el.textContent = objectPhrase(category)
   if (walkReducedMotion()) return
 
+  let fadeIn = 360
+  let hold = 5000
+  let fadeOut = 630
+  let duration = fadeIn + hold + fadeOut
   el.animate([
-    { opacity: 0 },
-    { opacity: 1, offset: 0.2 },
-    { opacity: 1, offset: 0.65 },
+    { opacity: 0, easing: "ease-in-out" },
+    { opacity: 1, offset: fadeIn / duration },
+    { opacity: 1, offset: (fadeIn + hold) / duration, easing: "ease-in-out" },
     { opacity: 0 }
-  ], { duration: 1800, easing: "ease-in-out", fill: "forwards" })
+  ], { duration, fill: "forwards" })
 }
 
 function displayImg(imgID, containerSel, fade=true) {
