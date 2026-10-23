@@ -892,9 +892,6 @@ function rectStyle(r) {
 }
 
 const WALK_PAIRS = [
-  [".sidebar .region-row", ".summary-regions", "corner"],
-  [".sidebar .prefecture-row", ".summary-prefectures", "corner"],
-  [".sidebar .city-row", ".summary-cities", "corner"],
   ["#japan-map", "#summary-map", "fit"],
   [".walk-advance", ".new-walk", "center"]
 ]
@@ -905,11 +902,6 @@ function walkReducedMotion() {
 
 function walkRect(sel) {
   return document.querySelector(sel).getBoundingClientRect()
-}
-
-function walkPairs() {
-  let small = window.matchMedia("(max-width: 700px)").matches
-  return WALK_PAIRS.filter(([walk]) => !(small && walk.startsWith(".sidebar .")))
 }
 
 function walkFlip(panel, opts) {
@@ -943,7 +935,7 @@ function walkTransitionSources() {
       let el = document.querySelector(p.sel)
       return { ...p, el, rect: imgContentRect(el) }
     }),
-    panel: walkPairs().map(([walk, summary, align]) => ({ from: walkRect(walk), to: summary, align }))
+    panel: WALK_PAIRS.map(([walk, summary, align]) => ({ from: walkRect(walk), to: summary, align }))
   }
 }
 
@@ -1345,7 +1337,7 @@ function walkReturnSources() {
   let summary = document.querySelector(".summary")
   let ghost = summary.cloneNode(true)
   ghost.classList.add("summary-ghost")
-  walkPairs().forEach(([walk, summarySel]) => {
+  WALK_PAIRS.forEach(([walk, summarySel]) => {
     ghost.querySelector(summarySel).style.visibility = "hidden"
   })
   ghost.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"))
@@ -1353,7 +1345,7 @@ function walkReturnSources() {
   return {
     ghost,
     scrollTop: summary.querySelector(".summary-gallery").scrollTop,
-    panel: walkPairs().map(([walk, summarySel, align]) => ({ from: walkRect(summarySel), to: walk, align }))
+    panel: WALK_PAIRS.map(([walk, summarySel, align]) => ({ from: walkRect(summarySel), to: walk, align }))
   }
 }
 
