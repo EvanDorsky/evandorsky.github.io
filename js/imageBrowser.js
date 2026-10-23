@@ -464,7 +464,7 @@ function objectName(category) {
 function displayLocation(imgID, reason=null) {
   // update the location
   let loc = metadataGetLocation(window.photo_info[imgID])
-  textCrossfade(document.querySelector(".main-photo .photo-date"), photoDate(imgID))
+  textCrossfade(document.querySelector(".main-photo .photo-date"), `${loc.city || loc.prefecture}, ${photoDate(imgID)}`)
   textCrossfade(document.querySelector(".sidebar .region"), loc.region)
   textCrossfade(document.querySelector(".sidebar .prefecture"), loc.prefecture)
   textCrossfade(document.querySelector(".sidebar .city"), loc.city || loc.prefecture)
