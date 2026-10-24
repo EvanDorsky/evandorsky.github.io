@@ -302,33 +302,86 @@ const Mode = {
 
 function bodyKeydown(event) {
   if (window.mode == Mode.modal) {
-    var indexChange = 0
     if (event.keyCode == '39') {
       // right arrow
-      indexChange = 1
+      stepModal(1)
     }
     else if (event.keyCode == '37') {
       // left arrow
-      indexChange = -1
+      stepModal(-1)
     }
     else {
       return dismissModal(event, true)
     }
-    
-    if (indexChange != 0) {
-      var gallery = d3.selectAll(`.fj-gallery[series='${window.modal.attr("series")}']`)
-      var maxphotos = gallery.attr("n_photos")
-
-      var newNum = parseInt(window.modal.attr("index")) + indexChange
-
-      if (0 < newNum && newNum <= maxphotos) {
-        var newModal = d3.selectAll(`.photo-modal-bg[index='${newNum}'][series='${window.modal.attr("series")}']`)
-        dismissModal()
-
-        setTimeout(() => presentModal(newModal.attr("name")), 0)
-      }
-    }
   }
+}
+
+// show the previous (-1) or next (1) photo of the open modal's series, if there is one
+function stepModal(indexChange) {
+  var series = window.modal.attr("series")
+  var gallery = d3.selectAll(`.fj-gallery[series='${series}']`)
+  var maxphotos = gallery.attr("n_photos")
+
+  var newNum = parseInt(window.modal.attr("index")) + indexChange
+
+  if (0 < newNum && newNum <= maxphotos) {
+    var newModal = d3.selectAll(`.photo-modal-bg[index='${newNum}'][series='${series}']`)
+    dismissModal()
+
+    setTimeout(() => presentModal(newModal.attr("name")), 0)
+  }
+}
+
+// tap zones on the open modal: left third = previous, right third = next, middle = close
+function modalZone(event) {
+  var x = event.clientX / window.innerWidth
+  return x < 1/3 ? -1 : (x > 2/3 ? 1 : 0)
+}
+
+function modalClick(event) {
+  // a swipe can leave a click behind; it already stepped
+  if (Date.now() - window.modalSwipedAt < 350) {
+    return
+  }
+  var zone = modalZone(event)
+  if (zone == 0) {
+    return dismissModal(event, true)
+  }
+  stepModal(zone)
+}
+
+function modalMousemove(event) {
+  var zone = modalZone(event)
+  this.style.cursor = zone < 0 ? "w-resize" : (zone > 0 ? "e-resize" : "zoom-out")
+}
+
+// a horizontal swipe steps too: swipe left = next, swipe right = previous
+const SWIPE_MIN_PX = 50
+
+function modalTouchstart(event) {
+  window.modalTouch = event.touches.length == 1
+    ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+    : null
+}
+
+function modalTouchend(event) {
+  var start = window.modalTouch
+  window.modalTouch = null
+  if (!start || event.changedTouches.length != 1) {
+    return
+  }
+  // leave pinch-zoomed panning alone
+  if (window.visualViewport && window.visualViewport.scale > 1.01) {
+    return
+  }
+  var dx = event.changedTouches[0].clientX - start.x
+  var dy = event.changedTouches[0].clientY - start.y
+  if (Math.abs(dx) < SWIPE_MIN_PX || Math.abs(dx) < 1.5 * Math.abs(dy)) {
+    return
+  }
+  window.modalSwipedAt = Date.now()
+  event.preventDefault()
+  stepModal(dx < 0 ? 1 : -1)
 }
 
 async function emailFormSubmit(e) {
@@ -389,9 +442,13 @@ function main(event) {
     .select("img")
     .on("click", imgClick)
 
-  // modal dismiss
+  // modal: tap/click left or right to step, middle to dismiss; swipe to step
+  window.modalSwipedAt = 0
   d3.selectAll(".photo-modal-bg")
-    .on("click", (e) => dismissModal(e, true))
+    .on("click", modalClick)
+    .on("mousemove", modalMousemove)
+    .on("touchstart", modalTouchstart, { passive: true })
+    .on("touchend", modalTouchend)
 
   // modal dismiss
   d3.select('body')
