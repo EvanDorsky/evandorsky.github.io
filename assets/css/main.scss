@@ -2163,6 +2163,9 @@ form#email {
       ~ button {
         // border-color: rgba(var(--text-color-rgb), 0.2);
         border-color: var(--text-color);
+
+        // reveal the "Join" label only while the input is focused
+        color: var(--text-color);
       }
     }
   }
@@ -2174,15 +2177,17 @@ form#email {
     border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
     background-color: var(--bg-color);
 
-    // mobile browsers (esp. iOS Safari) re-apply UA button styling and
-    // dropped the inherited text color, hiding the label — reset it here
-    color: var(--text-color);
+    // appearance reset: mobile browsers (esp. iOS Safari) re-apply UA
+    // button styling which was mangling this control
     -webkit-appearance: none;
     appearance: none;
 
+    // label stays hidden until the input is focused
+    // (shown via input#email:focus ~ button below)
+    color: transparent;
+
     &:hover {
       cursor: pointer;
-      color: rgba(var(--text-color-rgb), 0.5);
     }
   }
 }
