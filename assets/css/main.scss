@@ -2174,6 +2174,12 @@ form#email {
     border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
     background-color: var(--bg-color);
 
+    // mobile browsers (esp. iOS Safari) re-apply UA button styling and
+    // dropped the inherited text color, hiding the label — reset it here
+    color: var(--text-color);
+    -webkit-appearance: none;
+    appearance: none;
+
     &:hover {
       cursor: pointer;
       color: rgba(var(--text-color-rgb), 0.5);
