@@ -1,0 +1,80 @@
+{
+    "id": [
+        ""
+    ],
+    "title": [
+        ""
+    ],
+    "caption": [
+        ""
+    ],
+    "camera": [
+        "Leitz-Minolta CL"
+    ],
+    "lens": [
+        "M-Rokkor 40mm f/2"
+    ],
+    "lens_specs": [
+        "40mm f/2"
+    ],
+    "lens_make": [
+        "M-Rokkor"
+    ],
+    "stock": [
+        "Fujicolor 400"
+    ],
+    "speed": [
+        "400"
+    ],
+    "category": [
+        ""
+    ],
+    "format": [
+        "35mm"
+    ],
+    "keywords": [],
+    "location": [],
+    "filename": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33"
+    ],
+    "lens_dict": {
+        "M-Rokkor": [
+            "40mm f/2"
+        ]
+    },
+    "lens_summary": "M-Rokkor 40mm f/2",
+    "camera_summary": "Leitz-Minolta CL",
+    "stock_summary": "Fujicolor 400"
+}

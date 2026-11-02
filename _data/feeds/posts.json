@@ -2,11 +2,56 @@
     {
         "type": "github",
         "title": "evandorsky.github.io",
-        "date": 1788752407,
+        "date": 1793379627,
         "description": null,
         "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
         "link": "https://github.com/EvanDorsky/evandorsky.github.io",
         "key": "EvanDorsky/evandorsky.github.io"
+    },
+    {
+        "type": "github",
+        "title": "eink-transit-time",
+        "date": 1793021258,
+        "description": "Transit time + weather display, learning platformio / esp32",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/eink-transit-time",
+        "key": "EvanDorsky/eink-transit-time"
+    },
+    {
+        "type": "github",
+        "title": "dotfiles",
+        "date": 1792428546,
+        "description": ":wrench: .files, including ~/.macos — sensible hacker defaults for macOS",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/dotfiles",
+        "key": "EvanDorsky/dotfiles"
+    },
+    {
+        "type": "github",
+        "title": "claude-watch",
+        "date": 1792287408,
+        "description": "Control your claude code from your apple watch",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/claude-watch",
+        "key": "EvanDorsky/claude-watch"
+    },
+    {
+        "type": "github",
+        "title": "go-winio",
+        "date": 1791986132,
+        "description": "Win32 IO-related utilities for Go",
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/go-winio",
+        "key": "EvanDorsky/go-winio"
+    },
+    {
+        "type": "github",
+        "title": "goutils",
+        "date": 1789412248,
+        "description": null,
+        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
+        "link": "https://github.com/EvanDorsky/goutils",
+        "key": "EvanDorsky/goutils"
     },
     {
         "type": "github",
@@ -18,48 +63,12 @@
         "key": "EvanDorsky/api"
     },
     {
-        "type": "github",
-        "title": "goutils",
-        "date": 1788453215,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/goutils",
-        "key": "EvanDorsky/goutils"
-    },
-    {
-        "type": "github",
-        "title": "eink-transit-time",
-        "date": 1788367079,
-        "description": "Transit time + weather display, learning platformio / esp32",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/eink-transit-time",
-        "key": "EvanDorsky/eink-transit-time"
-    },
-    {
-        "type": "github",
-        "title": "dotfiles",
-        "date": 1785852199,
-        "description": ":wrench: .files, including ~/.macos — sensible hacker defaults for macOS",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/dotfiles",
-        "key": "EvanDorsky/dotfiles"
-    },
-    {
         "type": "observable",
         "title": "Why is Color Negative Film Orange?",
         "date": 1784409813,
         "description": "",
         "img": "https://static.observableusercontent.com/thumbnail/82137a18dd092cfeab8f14e5bd3d63dd602b8cf7eafd40f67d2d2c7dc1ec8f84.jpg",
         "link": "https://observablehq.com/@dorskyee/understanding-color-film"
-    },
-    {
-        "type": "github",
-        "title": "go-winio",
-        "date": 1783535937,
-        "description": "Win32 IO-related utilities for Go",
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/go-winio",
-        "key": "EvanDorsky/go-winio"
     },
     {
         "type": "notion",
@@ -90,15 +99,6 @@
     },
     {
         "type": "github",
-        "title": "memory-calendar",
-        "date": 1766262325,
-        "description": null,
-        "img": "https://avatars.githubusercontent.com/u/2582895?v=4",
-        "link": "https://github.com/EvanDorsky/memory-calendar",
-        "key": "EvanDorsky/memory-calendar"
-    },
-    {
-        "type": "github",
         "title": "digital-negative",
         "date": 1759642905,
         "description": "Film effects",
@@ -116,7 +116,7 @@
     },
     {
         "type": "printable",
-        "likes": 136,
+        "likes": 143,
         "title": "Paterson Reel for 4x5 Sheet Film (6 Sheets)",
         "date": 1745802681,
         "description": "",
@@ -151,7 +151,7 @@
     },
     {
         "type": "printable",
-        "likes": 13,
+        "likes": 14,
         "title": "Ricoh GR III/x Filter Mount",
         "date": 1713030212,
         "description": "",
@@ -160,7 +160,7 @@
     },
     {
         "type": "printable",
-        "likes": 14,
+        "likes": 16,
         "title": "Paterson Reel for 3x4 Sheet Film (6 Sheets)",
         "date": 1704426523,
         "description": "",
@@ -186,15 +186,6 @@
         "key": "Generative AI Research"
     },
     {
-        "type": "notion",
-        "title": "Japan Travel",
-        "date": 1703739720,
-        "description": "",
-        "img": "",
-        "link": "https://evandorsky.notion.site/Japan-Travel-4ecc1ceb6c1d47adb702bc0607f1795b",
-        "key": "Japan Travel"
-    },
-    {
         "type": "github",
         "title": "anki-reorder",
         "date": 1699030930,
@@ -205,7 +196,7 @@
     },
     {
         "type": "printable",
-        "likes": 13,
+        "likes": 14,
         "title": "CS-LITE to NS Basic 120 Carrier Mk 1 for Film Scanning",
         "date": 1698605638,
         "description": "",
@@ -241,7 +232,7 @@
     },
     {
         "type": "printable",
-        "likes": 169,
+        "likes": 178,
         "title": "35mm Film Carrier for Full Border DSLR Scanning + Riser Kit for CS-LITE Light Source",
         "date": 1692589979,
         "description": "",
@@ -285,7 +276,7 @@
     },
     {
         "type": "printable",
-        "likes": 80,
+        "likes": 84,
         "title": "35mm Film Roll Holder",
         "date": 1687542092,
         "description": "",
