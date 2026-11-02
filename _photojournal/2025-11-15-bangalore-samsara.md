@@ -2,7 +2,7 @@
 layout: post
 order: 0
 n_photos: 33
-key_photo: 1
+key_photo: 31
 title: 
 subtitle: 
 location: Bangalore
