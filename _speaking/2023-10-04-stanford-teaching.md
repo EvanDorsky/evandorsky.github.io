@@ -1,7 +1,8 @@
 ---
 start_date: 2023-10-04
 end_date: 2023-11-15
-org: "stanford"
+org: "Stanford"
+type: "teaching"
 location: "online"
-title: "stanford teaching"
+title: "Ethics, Technology, and Public Policy for Practitioners"
 ---
