@@ -11,3 +11,5 @@ detectors
 classifiers
 ruby
 __pycache__
+
+speak_outline.md
