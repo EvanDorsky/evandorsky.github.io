@@ -55,6 +55,8 @@ IM_EXTS = [
   ".JPEG"
 ]
 
+WEBP_SOURCE_EXTS = IM_EXTS + [".png", ".PNG"]
+
 def is_valid_impath(path):
   p, ext = os.path.splitext(path)
 
@@ -608,14 +610,14 @@ def run_get_feed(args):
     print("Failed to save combined posts: %s" % e)
 
 def is_im(path):
-  return os.path.isfile(path) and os.path.splitext(path)[-1] in IM_EXTS
+  return os.path.isfile(path) and os.path.splitext(path)[-1] in WEBP_SOURCE_EXTS
 
 def create_webp(im, webp, dim):
   # return call(['magick', im, '-resize', '%ix%i' % (dim, dim), '-quality', '90', '-define', 'webp:method=6', webp])
   return call(['magick', im, '-quality', '90', webp])
 
 def get_series_path(name):
-  series_folders = ['_photojournal', '_portfolio', '_projects', '_photowork']
+  series_folders = ['_photojournal', '_portfolio', '_projects', '_photowork', '_speaking']
   for folder in series_folders:
     test_path = os.path.join(folder, name+".md")
 
@@ -638,7 +640,7 @@ def run_process_img(args):
         im_dirs += [os.path.split(dirpath)[0]]
         break
 
-      if os.path.splitext(fname)[-1] in IM_EXTS:
+      if os.path.splitext(fname)[-1] in WEBP_SOURCE_EXTS:
         im_dirs += [dirpath]
         break
 

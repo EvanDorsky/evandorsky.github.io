@@ -5,7 +5,7 @@ title: About
 thumb: /assets/img/about/me_tn.webp
 
 navbar: true
-navbar-order: 3
+navbar-order: 4
 
 ---
 

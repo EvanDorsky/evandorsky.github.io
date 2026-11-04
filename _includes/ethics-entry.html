@@ -1,0 +1,56 @@
+{% assign t = include.entry %}
+<div class="ethics-item">
+  <div class="ethics-year">
+    {{ t.start_date | date: "%Y" }}
+    <div class="ethics-month">{{ t.start_date | date: "%b" }}</div>
+  </div>
+  <div class="ethics-body">
+    <div class="ethics-heading">
+      {% if include.linked %}
+      <a class="ethics-title" href="{{ t.url }}">{{ t.title }}</a>
+      {% else %}
+      <span class="ethics-title">{{ t.title }}</span>
+      {% endif %}
+    </div>
+    <div class="ethics-type">{{ t.type }} {{ t.pre | default: "with" }} {{ t.org }}{% if t.location %} <span class="ethics-location">{{ t.location }}</span>{% endif %}</div>
+    {% assign entry_name = t.path | split: "/" | last | split: "." | first %}
+    {% capture img_dir %}/assets/img/posts/{{ entry_name }}/{% endcapture %}
+    {% assign entry_imgs = '' | split: '' %}
+    {% for f in site.static_files %}
+      {% unless f.path contains img_dir %}{% continue %}{% endunless %}
+      {% assign rest = f.path | split: img_dir | last %}
+      {% if rest contains "/" %}{% continue %}{% endif %}
+      {% assign ext = f.extname | downcase %}
+      {% if ext == ".webp" or ext == ".png" or ext == ".jpg" or ext == ".jpeg" %}
+        {% assign entry_imgs = entry_imgs | push: f.path %}
+      {% endif %}
+    {% endfor %}
+    {% if entry_imgs.size > 0 %}
+    <div class="ethics-images-wrap">
+      <div class="ethics-images fj-gallery" series="{{ entry_name }}" n_photos="{{ entry_imgs.size }}">
+        {% assign entry_imgs = entry_imgs | sort %}
+        {% for src in entry_imgs %}
+          {% assign rel = src | remove_first: "/assets/img/" %}
+          {% include photo.html src=rel folder=entry_name num_str=forloop.index %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% if t.blurb and t.blurb != "" %}
+    <div class="ethics-blurb">
+      {% assign paragraphs = t.blurb | strip | split: "
+" %}
+      {% for p in paragraphs %}{% assign p = p | strip %}{% if p != "" %}<p>{{ p }}</p>{% endif %}{% endfor %}
+    </div>
+    {% endif %}
+    {% if include.full %}
+    {% assign desc = t.content | strip %}
+    {% if desc != "" %}
+    <div class="ethics-description">{{ t.content }}</div>
+    {% endif %}
+    {% if t.link %}
+    <a class="ethics-link" href="{{ t.link }}" target="blank">{{ t.link_text | default: "Read more" }} →</a>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>

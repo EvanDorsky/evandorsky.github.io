@@ -1,8 +1,9 @@
 ---
 start_date: 2022-09-30
 end_date: 2022-11-15
-org: "olin"
-type: "teaching"
-location: "online"
-title: "Ethics for Engineering Practice Seminar"
+type: "Seminar course"
+pre: "with"
+org: "Olin College"
+location: "Online"
+title: "Olin Learning Lab: Ethics for Engineering Practice"
 ---

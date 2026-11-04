@@ -1,0 +1,21 @@
+---
+layout: page
+jumbotron: false
+title: Ethics
+
+navbar: true
+navbar-order: 3
+---
+
+{% capture ethics_blurb %}{% include ethics-blurb.md %}{% endcapture %}
+<div class="ethics-intro">{{ ethics_blurb | markdownify }}</div>
+
+{% assign talks = site.speaking | sort: "start_date" | reverse %}
+
+<div class="gallery-modal-bg"></div>
+
+<div class="ethics-timeline">
+{% for t in talks %}
+  {% include ethics-entry.html entry=t linked=true %}
+{% endfor %}
+</div>

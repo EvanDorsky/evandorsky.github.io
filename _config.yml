@@ -54,6 +54,15 @@ collections:
     output: true
   projects:
     output: true
+  speaking:
+    output: true
+    permalink: /ethics/:name/
+
+defaults:
+  - scope:
+      type: speaking
+    values:
+      layout: speaking
 
 markdown: kramdown
 
