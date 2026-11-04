@@ -1407,6 +1407,13 @@ footer {
     p:last-child {
       margin-bottom: 0;
     }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
   }
 
   .ethics-location {

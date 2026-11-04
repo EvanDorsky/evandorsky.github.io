@@ -37,11 +37,7 @@
     </div>
     {% endif %}
     {% if t.blurb and t.blurb != "" %}
-    <div class="ethics-blurb">
-      {% assign paragraphs = t.blurb | strip | split: "
-" %}
-      {% for p in paragraphs %}{% assign p = p | strip %}{% if p != "" %}<p>{{ p }}</p>{% endif %}{% endfor %}
-    </div>
+    <div class="ethics-blurb">{{ t.blurb | markdownify }}</div>
     {% endif %}
     {% if include.full %}
     {% assign desc = t.content | strip %}
