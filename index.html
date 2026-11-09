@@ -11,6 +11,15 @@ show-banner: false
 
 {% assign posts_pj = site.photojournal | reverse %}
 {% assign posts_music = site.shows | reverse %}
+{% comment %}Concerts card: the soonest upcoming show; the most recent one if none are upcoming{% endcomment %}
+{% assign now = "now" | date: "%s" | plus: 0 %}
+{% assign shows_upcoming = "" | split: "" %}
+{% assign shows_by_date = site.shows | sort: "date" %}
+{% for s in shows_by_date %}
+  {% assign showdate = s.date | date: "%s" | plus: 0 %}
+  {% if showdate > now %}{% assign shows_upcoming = shows_upcoming | push: s %}{% endif %}
+{% endfor %}
+{% if shows_upcoming.size > 0 %}{% assign posts_music = shows_upcoming %}{% endif %}
 {% assign posts_proj = site.projects | reverse %}
 {% assign posts_work = site.photowork | reverse %}
 
