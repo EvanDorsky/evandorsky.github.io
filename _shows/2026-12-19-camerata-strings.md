@@ -8,7 +8,7 @@ ensemble: "Camerata Notturna"
 role: "Viola"
 feature: false
 rep: "Bach, Tchaikovsky"
-link: ""
+link: "https://camerata-notturna.org/concerts/dec26/"
 tickets: true
 recordings: []
 ---
