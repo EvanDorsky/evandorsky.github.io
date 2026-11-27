@@ -9,34 +9,27 @@
         ""
     ],
     "camera": [
-        "Mamiya 645 Pro TL",
-        "PENTAX K-1"
+        "Mamiya 645 Pro TL"
     ],
     "lens": [
-        " smc PENTAX-FA MACRO 50mm F2.8",
         "Mamiya Sekor C 80mm f/2.8 N"
     ],
     "lens_specs": [
-        "80mm f/2.8 N",
-        "smc PENTAX-FA MACRO 50mm F2.8"
+        "80mm f/2.8 N"
     ],
     "lens_make": [
-        "",
         "Mamiya Sekor C"
     ],
     "stock": [
-        "",
         "Kodak Ektachrome 100"
     ],
     "speed": [
-        "",
         "100"
     ],
     "category": [
         ""
     ],
     "format": [
-        "35mm",
         "645"
     ],
     "keywords": [],
@@ -54,13 +47,11 @@
         "10"
     ],
     "lens_dict": {
-        "": [
-            "smc PENTAX-FA MACRO 50mm F2.8",
-            "amiya Sekor C 80mm f/2.8 N"
-        ],
-        "Mamiya Sekor C": []
+        "Mamiya Sekor C": [
+            "80mm f/2.8 N"
+        ]
     },
-    "lens_summary": " smc PENTAX-FA MACRO 50mm F2.8, amiya Sekor C 80mm f/2.8 N, Mamiya Sekor C ",
-    "camera_summary": "Mamiya 645 Pro TL, PENTAX K-1",
-    "stock_summary": ", Kodak Ektachrome 100"
+    "lens_summary": "Mamiya Sekor C 80mm f/2.8 N",
+    "camera_summary": "Mamiya 645 Pro TL",
+    "stock_summary": "Kodak Ektachrome 100"
 }

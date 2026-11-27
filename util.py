@@ -786,7 +786,9 @@ def run_series(args):
   data_path = '_data/%s' % args.name
 
   input_path = os.path.expanduser(args.input_path)
-  input_files = get_input_files(input_path)
+  input_files = []
+  if args.action != "meta":
+    input_files = get_input_files(input_path)
   # if we're just refreshing and there are no input images,
   # don't delete the existing images
   if len(input_files) == 0 and args.action == "refresh":
@@ -838,13 +840,13 @@ def run_series(args):
         f.write('{% include series-photo.html %}')
         f.write('\n')
 
-  if args.action != "read":
+  if args.action not in ["read", "meta"]:
     # run process-img, since there are new images to process now
     run_process_img({"dim": args.resolution, "force": False, "dir": PROCESS_IMG_DIR})
 
   # then collect the metadata
   series_meta = []
-  if args.action in ["create", "refresh", "read"]:
+  if args.action in ["create", "refresh", "read", "meta"]:
     print("Recreating metadata...")
     jpg_path = os.path.join(im_out_path, 'original')
     contents = os.listdir(jpg_path)
